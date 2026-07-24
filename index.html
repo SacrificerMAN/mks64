@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MKS64 — Chess Mastery, One Square at a Time</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0F1F;
+    --bg-elevated:#101830;
+    --board-dark:#0D1428;
+    --board-light:#161F3C;
+    --gold:#C9A24B;
+    --gold-bright:#E8C767;
+    --ivory:#EAE6DA;
+    --muted:#8891AD;
+    --line: rgba(201,162,75,0.20);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ivory);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold);color:var(--bg);}
+  .mono{font-family:'Space Mono',monospace;}
+  .display{font-family:'Fraunces',serif;}
+
+  a{color:inherit;text-decoration:none;}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold-bright);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 32px;
+    background:linear-gradient(to bottom, rgba(10,15,31,0.92), rgba(10,15,31,0));
+    backdrop-filter:blur(6px);
+  }
+  .brandmark{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces',serif; font-weight:700; font-size:22px;
+    letter-spacing:0.02em;
+  }
+  .brandmark .sq{
+    width:16px;height:16px;
+    background:var(--gold);
+    display:inline-block;
+    transform:rotate(45deg);
+  }
+  .navlinks{display:flex; gap:38px; font-size:14px; color:var(--muted);}
+  .navlinks a{transition:color 0.25s;}
+  .navlinks a:hover{color:var(--gold-bright);}
+  .nav-cta{
+    border:1px solid var(--gold);
+    color:var(--gold-bright);
+    padding:9px 20px;
+    font-size:13px;
+    letter-spacing:0.03em;
+    transition: all 0.25s;
+  }
+  .nav-cta:hover{background:var(--gold); color:var(--bg);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:center;
+    padding-top:100px;
+    overflow:hidden;
+  }
+  .board-field{
+    position:absolute; inset:0;
+    display:grid;
+    grid-template-columns:repeat(8,1fr);
+    grid-template-rows:repeat(8,1fr);
+    opacity:0.5;
+  }
+  .board-field div:nth-child(odd){background:var(--board-dark);}
+  .board-field div:nth-child(even){background:var(--board-light);}
+  .board-field{
+    mask-image: radial-gradient(ellipse 70% 60% at 60% 40%, black 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 60% 40%, black 0%, transparent 75%);
+  }
+
+  .hero-content{position:relative; z-index:2; width:100%;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    color:var(--gold);
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    display:flex; align-items:center; gap:12px;
+    margin-bottom:28px;
+    opacity:0;
+    animation:fadeUp 0.8s ease forwards 0.1s;
+  }
+  .eyebrow::before{
+    content:'';
+    width:28px; height:1px;
+    background:var(--gold);
+  }
+  .hero h1{
+    font-size:clamp(48px, 8vw, 104px);
+    font-weight:600;
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    max-width:900px;
+    opacity:0;
+    animation:fadeUp 0.9s ease forwards 0.25s;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:300;
+    color:var(--gold-bright);
+  }
+  .hero p.sub{
+    margin-top:28px;
+    max-width:520px;
+    font-size:18px;
+    line-height:1.6;
+    color:var(--muted);
+    opacity:0;
+    animation:fadeUp 0.9s ease forwards 0.4s;
+  }
+  .hero-ctas{
+    margin-top:44px;
+    display:flex; gap:18px; align-items:center;
+    opacity:0;
+    animation:fadeUp 0.9s ease forwards 0.55s;
+  }
+  .btn-primary{
+    background:var(--gold);
+    color:var(--bg);
+    padding:16px 34px;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    transition:transform 0.25s, box-shadow 0.25s;
+    display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 30px -8px rgba(201,162,75,0.5);}
+  .btn-ghost{
+    color:var(--ivory);
+    font-size:15px;
+    padding:16px 8px;
+    border-bottom:1px solid var(--line);
+    display:inline-flex; align-items:center; gap:8px;
+    transition:border-color 0.25s;
+  }
+  .btn-ghost:hover{border-color:var(--gold);}
+
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .hero-rating{
+    position:absolute;
+    right:32px; top:170px;
+    z-index:2;
+    text-align:right;
+    opacity:0;
+    animation:fadeUp 0.9s ease forwards 0.7s;
+  }
+  .hero-rating .num{
+    font-family:'Fraunces',serif;
+    font-size:88px;
+    font-weight:300;
+    color:var(--gold-bright);
+    line-height:1;
+  }
+  .hero-rating .lbl{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:0.08em;
+    margin-top:6px;
+  }
+  @media (max-width:900px){ .hero-rating{display:none;} }
+
+  /* ---------- coordinate section labels ---------- */
+  .coord-label{
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    color:var(--gold);
+    letter-spacing:0.1em;
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:20px;
+  }
+  .coord-label::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  section{padding:130px 0;}
+
+  /* ---------- FOUNDER ---------- */
+  .founder{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:80px;
+    align-items:center;
+  }
+  @media (max-width:860px){ .founder{grid-template-columns:1fr; gap:50px;} }
+
+  .founder-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    background:var(--bg-elevated);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .founder-visual .initials{
+    font-family:'Fraunces',serif;
+    font-size:120px;
+    font-weight:300;
+    color:var(--line);
+  }
+  .founder-visual .corner{
+    position:absolute; width:22px; height:22px;
+    border:1px solid var(--gold);
+  }
+  .corner.tl{top:-1px; left:-1px; border-right:none; border-bottom:none;}
+  .corner.br{bottom:-1px; right:-1px; border-left:none; border-top:none;}
+
+  .founder h2{
+    font-size:clamp(32px,4vw,48px);
+    font-weight:500;
+    line-height:1.15;
+  }
+  .founder h2 span{color:var(--gold-bright); font-style:italic; font-weight:300;}
+  .founder p{
+    margin-top:24px;
+    color:var(--muted);
+    line-height:1.75;
+    font-size:16px;
+    max-width:480px;
+  }
+  .stat-row{
+    display:flex; gap:48px;
+    margin-top:44px;
+    flex-wrap:wrap;
+  }
+  .stat-row .stat .n{
+    font-family:'Space Mono',monospace;
+    font-size:30px;
+    color:var(--gold-bright);
+  }
+  .stat-row .stat .l{
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:0.05em;
+    margin-top:6px;
+    text-transform:uppercase;
+  }
+
+  /* ---------- COURSES — chessboard grid ---------- */
+  .courses-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:60px;
+    flex-wrap:wrap; gap:20px;
+  }
+  .courses-head h2{
+    font-size:clamp(32px,4vw,46px);
+    font-weight:500;
+    max-width:600px;
+  }
+  .courses-head p{color:var(--muted); max-width:340px; font-size:15px; line-height:1.6;}
+
+  .board-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    border:1px solid var(--line);
+  }
+  @media (max-width:900px){ .board-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .board-grid{grid-template-columns:1fr;} }
+
+  .square{
+    padding:38px 30px;
+    border:1px solid var(--line);
+    position:relative;
+    transition:background 0.35s;
+    min-height:220px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .square:nth-child(8n+1),.square:nth-child(8n+3),.square:nth-child(8n+6),.square:nth-child(8n+8){
+    background:var(--board-dark);
+  }
+  .square:nth-child(8n+2),.square:nth-child(8n+4),.square:nth-child(8n+5),.square:nth-child(8n+7){
+    background:var(--board-light);
+  }
+  .square:hover{background:#221d14;}
+  .square .coord{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    color:var(--gold);
+    opacity:0.7;
+  }
+  .square h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:22px;
+    margin-top:20px;
+  }
+  .square .lvl{
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:8px;
+  }
+  .square .price{
+    margin-top:24px;
+    font-family:'Space Mono',monospace;
+    color:var(--gold-bright);
+    font-size:15px;
+  }
+
+  /* ---------- PROOF / video strip ---------- */
+  .proof-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:50px; flex-wrap:wrap; gap:20px;
+  }
+  .proof-head h2{ font-size:clamp(30px,4vw,42px); font-weight:500; max-width:580px;}
+  .strip{
+    display:flex; gap:2px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .strip::-webkit-scrollbar{display:none;}
+  .clip{
+    flex:0 0 260px;
+    aspect-ratio:9/16;
+    background:linear-gradient(160deg, var(--bg-elevated), #080C18);
+    border:1px solid var(--line);
+    position:relative;
+    display:flex; align-items:flex-end;
+    padding:20px;
+  }
+  .clip .tag{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    color:var(--gold-bright);
+    letter-spacing:0.05em;
+  }
+  .clip::before{
+    content:'▶';
+    position:absolute; top:20px; left:20px;
+    color:var(--gold);
+    font-size:13px;
+    opacity:0.6;
+  }
+
+  /* ---------- PRICING CTA ---------- */
+  .pricing{
+    text-align:center;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .pricing .coord-label{justify-content:center;}
+  .pricing .coord-label::after{display:none;}
+  .pricing h2{
+    font-size:clamp(34px,5vw,58px);
+    font-weight:500;
+    max-width:700px;
+    margin:0 auto;
+    line-height:1.15;
+  }
+  .pricing h2 em{color:var(--gold-bright); font-style:italic; font-weight:300;}
+  .pricing p{
+    color:var(--muted); margin:24px auto 0; max-width:460px; font-size:16px; line-height:1.7;
+  }
+  .pricing .btn-primary{margin-top:44px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:60px 0 40px;}
+  .foot-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:36px; margin-top:36px;
+    border-top:1px solid var(--line);
+    flex-wrap:wrap; gap:16px;
+    font-size:13px; color:var(--muted);
+  }
+  .foot-brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces',serif; font-size:20px; font-weight:700; color:var(--ivory);
+  }
+  .foot-links{display:flex; gap:28px;}
+  .foot-links a{color:var(--muted); transition:color 0.25s;}
+  .foot-links a:hover{color:var(--gold-bright);}
+
+  /* scroll reveal */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brandmark"><span class="sq"></span>MKS64</div>
+  <div class="navlinks">
+    <a href="#founder">Coach</a>
+    <a href="#courses">Courses</a>
+    <a href="#proof">Games</a>
+  </div>
+  <a href="#join" class="nav-cta">Join Academy</a>
+</nav>
+
+<section class="hero">
+  <div class="board-field" id="boardField"></div>
+  <div class="wrap hero-content">
+    <div class="eyebrow">FIDE Rated &nbsp;·&nbsp; Coach &amp; Competitor</div>
+    <h1 class="display">Learn chess from<br>someone who <em>plays</em><br>at the board, not<br>just teaches it.</h1>
+    <p class="sub">MKS64 is Mohit Kumar Soni's chess academy — structured courses from your first move to master-level endgames, built on real tournament experience.</p>
+    <div class="hero-ctas">
+      <a href="#courses" class="btn-primary">Explore Courses</a>
+      <a href="#proof" class="btn-ghost">Watch tournament breakdowns →</a>
+    </div>
+  </div>
+  <div class="hero-rating">
+    <div class="num mono">2520+</div>
+    <div class="lbl">RAPID &amp; BLITZ · CHESS.COM &amp; LICHESS</div>
+  </div>
+</section>
+
+<section id="founder">
+  <div class="wrap founder reveal">
+    <div class="founder-visual">
+      <div class="corner tl"></div>
+      <div class="corner br"></div>
+      <div class="initials">MS</div>
+    </div>
+    <div>
+      <div class="coord-label">E4 — THE COACH</div>
+      <h2 class="display">Mohit Kumar Soni —<br><span>player first, teacher by craft.</span></h2>
+      <p>A 2520+ rated player across Rapid and Blitz on both Chess.com and Lichess, Mohit built MKS64 on a simple belief: the best chess teaching comes from someone still competing at the board, not just explaining it from memory. Every course, puzzle set, and analysis at MKS64 is drawn from real games — including live tournament coverage the academy produces itself.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="n">2520+</div><div class="l">Live Rating</div></div>
+        <div class="stat"><div class="n">1000s</div><div class="l">Games Analysed</div></div>
+        <div class="stat"><div class="n">3</div><div class="l">Skill Tracks</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="courses">
+  <div class="wrap">
+    <div class="courses-head reveal">
+      <h2 class="display">Every square of the board, covered.</h2>
+      <p>Structured tracks from first principles to master-level strategy — subscribe once, progress at your pace.</p>
+    </div>
+    <div class="board-grid reveal">
+      <div class="square">
+        <div class="coord">A1</div>
+        <div>
+          <h3 class="display">First Moves</h3>
+          <div class="lvl">Beginner · Rules &amp; Basic Tactics</div>
+        </div>
+        <div class="price">Included in Subscription</div>
+      </div>
+      <div class="square">
+        <div class="coord">B1</div>
+        <div>
+          <h3 class="display">Pattern Recognition</h3>
+          <div class="lvl">Beginner → Intermediate</div>
+        </div>
+        <div class="price">Included in Subscription</div>
+      </div>
+      <div class="square">
+        <div class="coord">C1</div>
+        <div>
+          <h3 class="display">Opening Repertoire</h3>
+          <div class="lvl">Intermediate</div>
+        </div>
+        <div class="price">Included in Subscription</div>
+      </div>
+      <div class="square">
+        <div class="coord">D1</div>
+        <div>
+          <h3 class="display">Middlegame Strategy</h3>
+          <div class="lvl">Intermediate → Advanced</div>
+        </div>
+        <div class="price">Included in Subscription</div>
+      </div>
+      <div class="square">
+        <div class="coord">E1</div>
+        <div>
+          <h3 class="display">Calculation &amp; Calculation Depth</h3>
+          <div class="lvl">Advanced</div>
+        </div>
+        <div class="price">Included in Subscription</div>
+      </div>
+      <div class="square">
+        <div class="coord">F1</div>
+        <div>
+          <h3 class="display">Endgame Mastery</h3>
+          <div class="lvl">Advanced</div>
+        </div>
+        <div class="price">Included in Subscription</div>
+      </div>
+      <div class="square">
+        <div class="coord">G1</div>
+        <div>
+          <h3 class="display">Tournament Games, Explained</h3>
+          <div class="lvl">All Levels · Live Coverage</div>
+        </div>
+        <div class="price">Included in Subscription</div>
+      </div>
+      <div class="square">
+        <div class="coord">H1</div>
+        <div>
+          <h3 class="display">1:1 Coaching</h3>
+          <div class="lvl">All Levels · Add-on</div>
+        </div>
+        <div class="price">Priced Separately</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proof">
+  <div class="wrap">
+    <div class="proof-head reveal">
+      <h2 class="display">Straight from the tournament floor.</h2>
+      <p style="color:var(--muted); max-width:360px; font-size:15px;">Every dramatic finish, upset, and brilliancy — broken down within hours of the game ending.</p>
+    </div>
+    <div class="strip reveal">
+      <div class="clip"><div class="tag">ROUND 4 · DRAMATIC DRAW</div></div>
+      <div class="clip"><div class="tag">UPSET WIN · +180 UPSET</div></div>
+      <div class="clip"><div class="tag">BRILLIANCY · Nf5!!</div></div>
+      <div class="clip"><div class="tag">ENDGAME MASTERCLASS</div></div>
+      <div class="clip"><div class="tag">TIME SCRAMBLE FINISH</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="join">
+  <div class="wrap reveal">
+    <div class="coord-label">JOIN THE ACADEMY</div>
+    <h2 class="display">One subscription. <em>Every square</em> of the game.</h2>
+    <p>Beginner to advanced, opening to endgame — all tracks, all tournament breakdowns, one membership.</p>
+    <a href="#" class="btn-primary">Start Your Subscription</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <div class="foot-brand"><span class="sq" style="width:12px;height:12px;background:var(--gold);display:inline-block;transform:rotate(45deg);"></span>MKS64</div>
+      <div class="foot-links">
+        <a href="#founder">Coach</a>
+        <a href="#courses">Courses</a>
+        <a href="#proof">Games</a>
+        <a href="#join">Join</a>
+      </div>
+      <div>© 2026 MKS64 Chess Academy</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // build 64-square board field for hero
+  const field = document.getElementById('boardField');
+  for(let i=0;i<64;i++){
+    const d = document.createElement('div');
+    field.appendChild(d);
+  }
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
