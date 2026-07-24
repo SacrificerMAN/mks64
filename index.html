@@ -391,6 +391,77 @@
   }
   .pricing .btn-primary{margin-top:44px;}
 
+  .region-tabs{
+    display:inline-flex;
+    margin:48px auto 0;
+    border:1px solid var(--line);
+  }
+  .region-tab{
+    background:transparent;
+    border:none;
+    color:var(--muted);
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    padding:13px 26px;
+    cursor:pointer;
+    transition: all 0.25s;
+  }
+  .region-tab + .region-tab{ border-left:1px solid var(--line); }
+  .region-tab.active{ background:var(--gold); color:var(--bg); }
+  .region-tab:hover:not(.active){ color:var(--gold-bright); }
+
+  .pricing-cards{
+    display:flex;
+    gap:24px;
+    justify-content:center;
+    margin-top:44px;
+    flex-wrap:wrap;
+  }
+  .price-card{
+    position:relative;
+    background:var(--bg-elevated);
+    border:1px solid var(--line);
+    padding:38px 40px;
+    width:260px;
+    text-align:left;
+  }
+  .price-card.featured{ border-color:var(--gold); }
+  .price-card-badge{
+    position:absolute;
+    top:-13px; left:40px;
+    background:var(--gold);
+    color:var(--bg);
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.04em;
+    padding:5px 12px;
+  }
+  .price-card-label{
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .price-card-amount{
+    font-size:34px;
+    color:var(--gold-bright);
+    margin-top:12px;
+  }
+  .price-card-amount span{
+    font-size:14px;
+    color:var(--muted);
+    margin-left:4px;
+  }
+  .price-card .btn-primary{
+    display:block;
+    text-align:center;
+    margin-top:26px;
+    width:100%;
+    padding:13px 0;
+    font-size:14px;
+  }
+
   /* ---------- FOOTER ---------- */
   footer{padding:60px 0 40px;}
   .foot-row{
@@ -558,7 +629,39 @@
     <div class="coord-label">JOIN THE ACADEMY</div>
     <h2 class="display">One subscription. <em>Every square</em> of the game.</h2>
     <p>Beginner to advanced, opening to endgame — all tracks, all tournament breakdowns, one membership.</p>
-    <a href="https://rzp.io/rzp/JqE6l3i" target="_blank" rel="noopener" class="btn-primary">Start Your Subscription</a>
+
+    <div class="region-tabs">
+      <button class="region-tab active" data-region="in" type="button">India (₹)</button>
+      <button class="region-tab" data-region="intl" type="button">International ($)</button>
+    </div>
+
+    <div class="pricing-cards" data-region-panel="in">
+      <div class="price-card">
+        <div class="price-card-label">Monthly</div>
+        <div class="price-card-amount mono">₹2,000<span>/mo</span></div>
+        <a href="https://rzp.io/rzp/96MjIUUY" target="_blank" rel="noopener" class="btn-primary">Start Monthly</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-card-badge">Save ₹9,000</div>
+        <div class="price-card-label">Yearly</div>
+        <div class="price-card-amount mono">₹15,000<span>/yr</span></div>
+        <a href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener" class="btn-primary">Start Yearly</a>
+      </div>
+    </div>
+
+    <div class="pricing-cards" data-region-panel="intl" style="display:none;">
+      <div class="price-card">
+        <div class="price-card-label">Monthly</div>
+        <div class="price-card-amount mono">$50<span>/mo</span></div>
+        <a href="https://rzp.io/rzp/AgH7laAA" target="_blank" rel="noopener" class="btn-primary">Start Monthly</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-card-badge">Save $100</div>
+        <div class="price-card-label">Yearly</div>
+        <div class="price-card-amount mono">$500<span>/yr</span></div>
+        <a href="https://rzp.io/rzp/j4oz4Ry" target="_blank" rel="noopener" class="btn-primary">Start Yearly</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -584,6 +687,20 @@
     const d = document.createElement('div');
     field.appendChild(d);
   }
+
+  // pricing region tabs
+  const tabs = document.querySelectorAll('.region-tab');
+  const panels = document.querySelectorAll('[data-region-panel]');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      tabs.forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      const region = tab.dataset.region;
+      panels.forEach(p=>{
+        p.style.display = (p.dataset.regionPanel === region) ? 'flex' : 'none';
+      });
+    });
+  });
 
   // scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
