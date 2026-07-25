@@ -762,7 +762,7 @@
   }
 
   // lead capture form
-  const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycby2r-XSzKO5F28zgmqa3jC4y1Y7cL26xwb-i4LuewCi0D3ksXH2627ddrsuzPr366UU/exec";
+  const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbyn4ox_ddK6q5LKXVmDwU8SjiBUrWuYBvErWzHr1GD76VZmK_Ce4GkZrvZMWnqN8Lam/exec";
   const leadForm = document.getElementById('leadForm');
   const leadBtn = document.getElementById('leadSubmitBtn');
   const leadMsg = document.getElementById('leadFormMsg');
@@ -784,6 +784,7 @@
 
     fetch(LEAD_ENDPOINT, {
       method: 'POST',
+      mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
     })
