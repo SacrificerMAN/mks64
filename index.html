@@ -462,6 +462,53 @@
     font-size:14px;
   }
 
+  /* ---------- LEAD FORM ---------- */
+  .inquire-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:start;
+  }
+  @media (max-width:860px){ .inquire-grid{grid-template-columns:1fr; gap:36px;} }
+
+  .lead-form{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .lead-form input, .lead-form select{
+    background:var(--bg-elevated);
+    border:1px solid var(--line);
+    color:var(--ivory);
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    padding:15px 18px;
+    width:100%;
+    transition:border-color 0.25s;
+  }
+  .lead-form input::placeholder{ color:var(--muted); }
+  .lead-form input:focus, .lead-form select:focus{
+    outline:none;
+    border-color:var(--gold);
+  }
+  .lead-form select{ color:var(--muted); }
+  .lead-form select:valid{ color:var(--ivory); }
+  .lead-form button{
+    border:none;
+    cursor:pointer;
+    margin-top:6px;
+    font-family:'Inter',sans-serif;
+  }
+  .lead-form button:disabled{ opacity:0.6; cursor:not-allowed; }
+  .lead-form-msg{
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    margin-top:4px;
+    min-height:18px;
+  }
+  .lead-form-msg.success{ color:var(--gold-bright); }
+  .lead-form-msg.error{ color:#d98a6b; }
+
   /* ---------- FOOTER ---------- */
   footer{padding:60px 0 40px;}
   .foot-row{
@@ -624,6 +671,32 @@
   </div>
 </section>
 
+<section id="inquire">
+  <div class="wrap">
+    <div class="coord-label reveal">D5 — NOT READY TO SUBSCRIBE YET?</div>
+    <div class="inquire-grid reveal">
+      <div>
+        <h2 class="display">Talk to us before you commit.</h2>
+        <p style="color:var(--muted); margin-top:20px; max-width:420px; line-height:1.7; font-size:15px;">Tell us where you're at and what you're aiming for — we'll get back to you personally before you subscribe to anything.</p>
+      </div>
+      <form id="leadForm" class="lead-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="text" name="contact" placeholder="Email or Phone" required>
+        <input type="text" name="rating" placeholder="Current Rating (or 'Beginner')">
+        <select name="goal" required>
+          <option value="" disabled selected>What's your goal?</option>
+          <option value="Improve my rating">Improve my rating</option>
+          <option value="Prepare for a tournament">Prepare for a tournament</option>
+          <option value="Learn chess from scratch">Learn chess from scratch</option>
+          <option value="Other">Other</option>
+        </select>
+        <button type="submit" class="btn-primary" id="leadSubmitBtn">Send Inquiry</button>
+        <div id="leadFormMsg" class="lead-form-msg"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
 <section class="pricing" id="join">
   <div class="wrap reveal">
     <div class="coord-label">JOIN THE ACADEMY</div>
@@ -687,6 +760,47 @@
     const d = document.createElement('div');
     field.appendChild(d);
   }
+
+  // lead capture form
+  const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycby2r-XSzKO5F28zgmqa3jC4y1Y7cL26xwb-i4LuewCi0D3ksXH2627ddrsuzPr366UU/exec";
+  const leadForm = document.getElementById('leadForm');
+  const leadBtn = document.getElementById('leadSubmitBtn');
+  const leadMsg = document.getElementById('leadFormMsg');
+
+  leadForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    leadBtn.disabled = true;
+    leadBtn.textContent = 'Sending...';
+    leadMsg.textContent = '';
+    leadMsg.className = 'lead-form-msg';
+
+    const formData = new FormData(leadForm);
+    const payload = {
+      name: formData.get('name'),
+      contact: formData.get('contact'),
+      rating: formData.get('rating') || 'Not specified',
+      goal: formData.get('goal')
+    };
+
+    fetch(LEAD_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    })
+    .then(() => {
+      leadMsg.textContent = "Thanks! We'll get back to you soon.";
+      leadMsg.className = 'lead-form-msg success';
+      leadForm.reset();
+      leadBtn.textContent = 'Send Inquiry';
+      leadBtn.disabled = false;
+    })
+    .catch(() => {
+      leadMsg.textContent = "Something went wrong. Please try again.";
+      leadMsg.className = 'lead-form-msg error';
+      leadBtn.textContent = 'Send Inquiry';
+      leadBtn.disabled = false;
+    });
+  });
 
   // pricing region tabs
   const tabs = document.querySelectorAll('.region-tab');
