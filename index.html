@@ -509,6 +509,108 @@
   .lead-form-msg.success{ color:var(--gold-bright); }
   .lead-form-msg.error{ color:#d98a6b; }
 
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonial-grid{
+    display:grid;
+    grid-template-columns:0.8fr 1.2fr;
+    gap:70px;
+    align-items:center;
+  }
+  @media (max-width:860px){ .testimonial-grid{grid-template-columns:1fr; gap:40px;} }
+
+  .testimonial-photo{
+    position:relative;
+    aspect-ratio:4/5;
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .testimonial-photo img{
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:contrast(1.05) saturate(0.95);
+  }
+
+  .quote-mark{
+    font-family:'Fraunces',serif;
+    font-size:90px;
+    color:var(--gold);
+    opacity:0.5;
+    line-height:0.5;
+    margin-bottom:10px;
+  }
+  .testimonial-text{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    font-weight:300;
+    line-height:1.55;
+    color:var(--ivory);
+    max-width:560px;
+  }
+  .testimonial-author{
+    margin-top:30px;
+  }
+  .author-name{
+    font-family:'Space Mono',monospace;
+    color:var(--gold-bright);
+    font-size:14px;
+    letter-spacing:0.03em;
+  }
+  .author-detail{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:4px;
+  }
+  .testimonial-stats{
+    display:flex;
+    gap:50px;
+    margin-top:36px;
+    padding-top:30px;
+    border-top:1px solid var(--line);
+  }
+  .t-num{
+    font-size:24px;
+    color:var(--gold-bright);
+  }
+  .t-lbl{
+    font-size:11px;
+    color:var(--muted);
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    margin-top:6px;
+    max-width:150px;
+  }
+
+  /* ---------- TROPHY WALL ---------- */
+  .trophy-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:50px; flex-wrap:wrap; gap:20px;
+  }
+  .trophy-head h2{ font-size:clamp(30px,4vw,42px); font-weight:500; max-width:580px; }
+  .trophy-strip{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding-bottom:6px;
+  }
+  .trophy-strip::-webkit-scrollbar{ display:none; }
+  .trophy-item{
+    flex:0 0 220px;
+    aspect-ratio:3/4;
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .trophy-item img{
+    width:100%; height:100%;
+    object-fit:cover;
+    transition:transform 0.5s ease, filter 0.5s ease;
+    filter:grayscale(35%) contrast(1.05);
+  }
+  .trophy-item:hover img{
+    transform:scale(1.05);
+    filter:grayscale(0%) contrast(1.05);
+  }
+
   /* ---------- FOOTER ---------- */
   footer{padding:60px 0 40px;}
   .foot-row{
@@ -667,6 +769,53 @@
       <div class="clip"><div class="tag">BRILLIANCY · Nf5!!</div></div>
       <div class="clip"><div class="tag">ENDGAME MASTERCLASS</div></div>
       <div class="clip"><div class="tag">TIME SCRAMBLE FINISH</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="wrap">
+    <div class="coord-label reveal">C7 — RESULTS, NOT PROMISES</div>
+    <div class="testimonial-grid reveal">
+      <div class="testimonial-photo">
+        <div class="corner tl"></div>
+        <div class="corner br"></div>
+        <img src="student-vedant.jpg" alt="MKS64 student with tournament trophies and medals">
+      </div>
+      <div class="testimonial-content">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">Mohit sir is an excellent chess coach... When we started, my son was Unrated. In six months, he has become FIDE rated in all three formats with a peak Blitz rating of 1532 after just 4 FIDE rated tournaments. His Chess.com Rapid rating increased by more than 200 points. Mohit sir is an active competitive player himself, so his guidance is always current and practical — not just theory.</p>
+        <div class="testimonial-author">
+          <div class="author-name">Vedant's Father</div>
+          <div class="author-detail">Parent of a 9-year-old student, 1:1 online coaching</div>
+        </div>
+        <div class="testimonial-stats">
+          <div class="t-stat"><div class="t-num mono">Unrated → 1532</div><div class="t-lbl">Peak Blitz Rating in 6 Months</div></div>
+          <div class="t-stat"><div class="t-num mono">+200</div><div class="t-lbl">Chess.com Rapid Points Gained</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trophywall">
+  <div class="wrap">
+    <div class="coord-label reveal">B7 — THE TROPHY WALL</div>
+    <div class="trophy-head reveal">
+      <h2 class="display">From unrated to the podium.</h2>
+      <p style="color:var(--muted); max-width:420px; font-size:15px; line-height:1.7;">Real students, real tournaments, real results — not stock photos.</p>
+    </div>
+    <div class="trophy-strip reveal">
+      <div class="trophy-item"><img src="students/s1.jpg" alt="MKS64 student with 2nd place trophy"></div>
+      <div class="trophy-item"><img src="students/s2.jpg" alt="MKS64 student with tournament trophy"></div>
+      <div class="trophy-item"><img src="students/s3.jpg" alt="MKS64 student with tournament trophy"></div>
+      <div class="trophy-item"><img src="students/s4.jpg" alt="MKS64 student with rapid challenge medal"></div>
+      <div class="trophy-item"><img src="students/s5.jpg" alt="MKS64 student with trophy collection"></div>
+      <div class="trophy-item"><img src="students/s6.jpg" alt="MKS64 student with 1st place trophy"></div>
+      <div class="trophy-item"><img src="students/s7.jpg" alt="MKS64 student with trophy shelf"></div>
+      <div class="trophy-item"><img src="students/s8.jpg" alt="MKS64 student focused during a tournament game"></div>
+      <div class="trophy-item"><img src="students/s9.jpg" alt="MKS64 student playing in a tournament hall"></div>
+      <div class="trophy-item"><img src="students/s10.jpg" alt="MKS64 student thinking over the board"></div>
     </div>
   </div>
 </section>
