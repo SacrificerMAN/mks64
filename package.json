@@ -1,0 +1,9 @@
+{
+  "name": "mks64-chess-academy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production site for MKS64 Chess Academy",
+  "engines": { "node": ">=20" },
+  "scripts": { "start": "node server.js" }
+}
+
