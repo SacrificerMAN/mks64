@@ -1,1 +1,321 @@
-<placeholder>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Saran Chess Academy — structured coaching by a 2520+ rated player. Stop guessing moves. Start thinking like a competitor.">
+<meta property="og:title" content="Saran Chess Academy — Play with clarity">
+<meta property="og:description" content="Real coaching. Real students. Real progress over the board.">
+<meta property="og:image" content="founder.jpg">
+<title>Saran Chess Academy — Play with clarity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--bg2:#0a0a0a;--surface:#111;--surface2:#161616;--border:rgba(255,255,255,.08);--border-h:rgba(255,255,255,.16);--text:#f5f5f5;--muted:#8a8a8a;--muted2:#666;--green:#10a37f;--green-dim:rgba(16,163,127,.14);--radius:16px;--rsm:12px;--max:1080px}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}img{max-width:100%;display:block}button,input,select{font:inherit;color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+nav{position:fixed;inset:0 0 auto;z-index:100;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(5,5,5,.72);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:.3s}
+nav.scrolled{border-color:var(--border);background:rgba(5,5,5,.9)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.02em}
+.logo-mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#1a1a1a,#2a2a2a);border:1px solid var(--border);display:grid;place-items:center;font-size:14px}
+.nav-links{display:flex;gap:26px;font-size:14px;color:var(--muted);font-weight:500}.nav-links a:hover{color:var(--text)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:500;border-radius:999px;padding:10px 18px;border:1px solid transparent;cursor:pointer;transition:.2s}
+.btn-ghost{color:var(--muted)}.btn-ghost:hover{color:var(--text)}
+.btn-outline{color:var(--text);border-color:var(--border)}.btn-outline:hover{border-color:var(--border-h);background:rgba(255,255,255,.03)}
+.btn-solid{color:#050505;background:#fff}.btn-solid:hover{background:#e8e8e8}
+.btn-green{color:#fff;background:var(--green)}.btn-green:hover{background:#0e8f6f}
+.nav-toggle{display:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--border);background:0;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.nav-toggle span{display:block;width:16px;height:1.5px;background:var(--text)}
+.drawer{display:none;position:fixed;inset:64px 0 0;z-index:99;background:rgba(5,5,5,.98);padding:28px 24px;flex-direction:column;gap:8px}
+.drawer.open{display:flex}.drawer a{font-size:18px;font-weight:500;padding:14px 4px;border-bottom:1px solid var(--border)}
+.hero{position:relative;min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px 24px 56px;overflow:hidden}
+.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(16,163,127,.13),transparent 60%)}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--muted);padding:6px 12px 6px 8px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.03);margin-bottom:24px}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px var(--green-dim)}
+.hero h1{font-size:clamp(38px,6.5vw,64px);font-weight:600;letter-spacing:-.04em;line-height:1.06;max-width:780px}
+.hero h1 .grad{background:linear-gradient(180deg,#fff 25%,#777);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{margin:20px auto 0;max-width:500px;font-size:17px;line-height:1.6;color:var(--muted)}
+.hero-ctas{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.hero-ctas .btn{padding:13px 22px;font-size:15px}
+.micro{margin-top:16px;font-size:13px;color:var(--muted2)}
+.proof{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);padding:28px 0}
+.proof-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.proof-text{font-size:14px;color:var(--muted);max-width:280px;line-height:1.5}.proof-text strong{color:var(--text)}
+.faces{display:flex;align-items:center}.faces img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--bg);margin-left:-10px}.faces img:first-child{margin-left:0}.faces span{margin-left:12px;font-size:13px;color:var(--muted);font-weight:500}
+.proof-stats{display:flex;gap:28px}.proof-stats strong{display:block;font-size:20px;font-weight:600}.proof-stats span{font-size:12px;color:var(--muted)}
+section{padding:88px 0}
+.sec-label{font-size:12px;font-weight:600;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px}
+.sec-title{font-size:clamp(26px,4vw,38px);font-weight:600;letter-spacing:-.03em;line-height:1.15;max-width:560px}
+.sec-desc{margin-top:12px;color:var(--muted);font-size:16px;max-width:460px;line-height:1.6}.sec-head{margin-bottom:40px}
+.pain{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pain-card{padding:28px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface)}
+.pain-card.good{border-color:rgba(16,163,127,.35);background:linear-gradient(180deg,rgba(16,163,127,.08),var(--surface))}
+.pain-card h3{font-size:16px;font-weight:600;margin-bottom:10px}
+.pain-card ul{list-style:none;font-size:14px;color:var(--muted);line-height:1.7}
+.pain-card.good ul{color:#c8e6dc}
+.pain-card li{padding-left:18px;position:relative}.pain-card li::before{content:"–";position:absolute;left:0;color:var(--muted2)}
+.pain-card.good li::before{content:"✓";color:var(--green)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;transition:.25s}
+.card:hover{border-color:var(--border-h);background:var(--surface2);transform:translateY(-2px)}
+.card-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid var(--border);display:grid;place-items:center;font-size:17px;margin-bottom:16px}
+.card h3{font-size:16px;font-weight:600;margin-bottom:8px}.card p{font-size:14px;color:var(--muted);line-height:1.55}
+.card .link{display:inline-block;margin-top:14px;font-size:13px;font-weight:500}.card .link:hover{color:var(--green)}
+.results-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.gallery img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--rsm);border:1px solid var(--border);filter:grayscale(15%);transition:.3s}
+.gallery img:hover{filter:none;transform:scale(1.03)}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.quote{padding:28px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);display:flex;gap:20px;align-items:center}
+.quote img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
+.quote blockquote{font-size:17px;font-weight:500;line-height:1.45}.quote cite{display:block;margin-top:8px;font-size:13px;color:var(--muted);font-style:normal}
+.coach{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
+.coach-photo{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5;border:1px solid var(--border)}
+.coach-photo img{width:100%;height:100%;object-fit:cover;object-position:top}
+.coach h2{font-size:clamp(26px,3.5vw,34px);font-weight:600;line-height:1.2}
+.coach p{margin-top:14px;color:var(--muted);font-size:15px;line-height:1.65;max-width:440px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.pill{font-size:12px;font-weight:500;color:var(--muted);padding:7px 12px;border-radius:999px;border:1px solid var(--border)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.step{background:var(--bg);padding:24px;min-height:160px}.step .n{font-size:12px;font-weight:600;color:var(--green);margin-bottom:16px}.step h3{font-size:15px;font-weight:600;margin-bottom:6px}.step p{font-size:13px;color:var(--muted)}
+.pricing-wrap{text-align:center}.pricing-wrap .sec-title,.pricing-wrap .sec-desc{margin-left:auto;margin-right:auto}
+.tabs{display:inline-flex;margin:32px auto 0;padding:4px;background:var(--surface);border:1px solid var(--border);border-radius:999px}
+.tab{border:0;background:0;color:var(--muted);font-size:13px;font-weight:500;padding:10px 18px;border-radius:999px;cursor:pointer}.tab.active{background:#fff;color:#050505}
+.price-row{display:flex;gap:14px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+.price-card{width:300px;text-align:left;padding:28px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);position:relative}
+.price-card.featured{border-color:rgba(16,163,127,.45);box-shadow:0 24px 48px -24px rgba(16,163,127,.25)}
+.price-card .tag{position:absolute;top:-11px;left:24px;background:var(--green);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px}
+.price-card .label{font-size:13px;color:var(--muted)}.price-card .amount{font-size:36px;font-weight:600;margin:10px 0 4px}.price-card .amount span{font-size:14px;font-weight:400;color:var(--muted)}
+.price-card .perks{margin:16px 0 0;list-style:none;font-size:13px;color:var(--muted);line-height:1.7}.price-card .perks li{padding-left:16px;position:relative}.price-card .perks li::before{content:"✓";position:absolute;left:0;color:var(--green)}
+.price-card .btn{width:100%;margin-top:20px;padding:12px}.guarantee{margin-top:20px;font-size:13px;color:var(--muted2)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.form-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:12px}
+.form-box input,.form-box select{background:var(--bg);border:1px solid var(--border);border-radius:var(--rsm);padding:14px 16px;font-size:14px;width:100%;outline:0}
+.form-box input::placeholder{color:var(--muted2)}.form-box select{color:var(--muted)}.form-box select:valid{color:var(--text)}
+.form-msg{font-size:13px;min-height:18px}.form-msg.ok{color:var(--green)}.form-msg.err{color:#e07a5f}.form-note{font-size:12px;color:var(--muted2)}
+.faq-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+details{background:var(--surface);border:1px solid var(--border);border-radius:var(--rsm);padding:16px 18px}
+summary{cursor:pointer;font-weight:500;font-size:14px;list-style:none}summary::-webkit-details-marker{display:none}
+details p{margin-top:10px;font-size:13px;color:var(--muted)}
+.cta-band{text-align:center;padding:88px 24px;background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(16,163,127,.1),transparent 60%);border-top:1px solid var(--border)}
+.cta-band h2{font-size:clamp(26px,4vw,36px);font-weight:600;max-width:520px;margin:0 auto}.cta-band p{margin:12px auto 0;color:var(--muted);max-width:400px}
+footer{padding:40px 0;border-top:1px solid var(--border)}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--muted)}
+.foot-links{display:flex;gap:18px}
+.reveal{opacity:0;transform:translateY(16px);transition:.55s}.reveal.in{opacity:1;transform:none}
+@media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr}.steps,.pain,.form-grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(3,1fr)}.coach{grid-template-columns:1fr}}
+@media(max-width:700px){.nav-links,.nav-actions .btn-ghost{display:none}.nav-toggle{display:flex}.grid-3,.faq-list,.quotes{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}section{padding:64px 0}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="#" class="logo"><span class="logo-mark">♟</span>Saran Chess Academy</a>
+  <div class="nav-links">
+    <a href="#results">Results</a><a href="#programs">Programs</a><a href="#coach">Coach</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+  </div>
+  <div class="nav-actions">
+    <a href="#join" class="btn btn-ghost">Talk to us</a>
+    <a href="#join" class="btn btn-solid">Book a free call</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer" id="drawer">
+  <a href="#results" data-close>Results</a><a href="#programs" data-close>Programs</a><a href="#coach" data-close>Coach</a><a href="#pricing" data-close>Pricing</a><a href="#faq" data-close>FAQ</a>
+  <a href="#join" class="btn btn-solid" style="margin-top:16px;width:fit-content" data-close>Book a free call</a>
+</div>
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="badge"><i></i> Students already improving over the board</div>
+  <h1><span class="grad">Stop guessing moves.<br>Start seeing the board.</span></h1>
+  <p class="sub">Structured coaching from a 2520+ rated player — so every game teaches you something you can use next time.</p>
+  <div class="hero-ctas">
+    <a href="#join" class="btn btn-solid">Book a free training call</a>
+    <a href="#results" class="btn btn-outline">See student results</a>
+  </div>
+  <p class="micro">No commitment · English &amp; Hindi · Online</p>
+</section>
+<div class="proof">
+  <div class="wrap proof-inner">
+    <p class="proof-text"><strong>Real students. Real tournaments.</strong><br>Progress you can see — not just engine scores.</p>
+    <div class="faces">
+      <img src="s4_1.jpg" alt="Vedant"><img src="s1_1.jpg" alt=""><img src="s3_1.jpg" alt=""><img src="s6_1.jpg" alt=""><img src="s8_1.jpg" alt=""><img src="s10_1.jpg" alt="">
+      <span>Academy community</span>
+    </div>
+    <div class="proof-stats">
+      <div><strong>2520+</strong><span>Coach rating</span></div>
+      <div><strong>1:1 + Group</strong><span>Formats</span></div>
+      <div><strong>EN + HI</strong><span>Languages</span></div>
+    </div>
+  </div>
+</div>
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="sec-label">Why players get stuck</div>
+      <h2 class="sec-title">Playing more isn’t the same as improving</h2>
+      <p class="sec-desc">Most players repeat the same mistakes for months. Coaching shortens that loop.</p></div>
+    <div class="pain reveal">
+      <div class="pain-card"><h3>Without a system</h3><ul>
+        <li>Random videos, no clear path</li><li>Same opening traps, again and again</li>
+        <li>Engine lines you can’t explain in a real game</li><li>Tournaments feel like luck, not skill</li></ul></div>
+      <div class="pain-card good"><h3>With Saran Chess Academy</h3><ul>
+        <li>A path matched to your level</li><li>Feedback on your actual games</li>
+        <li>Thinking habits you can use under pressure</li><li>Preparation that shows up on the board</li></ul></div>
+    </div>
+  </div>
+</section>
+<section id="results" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="results-head reveal"><div>
+      <div class="sec-label">Proof</div><h2 class="sec-title">They showed up. They improved.</h2>
+      <p class="sec-desc">Tournament boards, trophies, and confidence from knowing what to do next.</p></div>
+      <a href="#join" class="btn btn-outline">I want results like this</a></div>
+    <div class="gallery reveal">
+      <img loading="lazy" src="s1_1.jpg" alt=""><img loading="lazy" src="s2_1.jpg" alt=""><img loading="lazy" src="s3_1.jpg" alt=""><img loading="lazy" src="s4_1.jpg" alt="Vedant"><img loading="lazy" src="s5.jpg" alt="">
+      <img loading="lazy" src="s6_1.jpg" alt=""><img loading="lazy" src="s7_1.jpg" alt=""><img loading="lazy" src="s8_1.jpg" alt=""><img loading="lazy" src="s9.jpg" alt=""><img loading="lazy" src="s10_1.jpg" alt="">
+    </div>
+    <div class="quotes reveal">
+      <div class="quote">
+        <img loading="lazy" src="s4_1.jpg" alt="Vedant">
+        <div>
+          <blockquote>“Training here changed how I think during games — not just which move to play, but why it works.”</blockquote>
+          <cite>Vedant · Saran Chess Academy</cite>
+        </div>
+      </div>
+      <div class="quote">
+        <img loading="lazy" src="s10_1.jpg" alt="Student">
+        <div>
+          <blockquote>“I stopped freezing in tactics. Now I know what I’m looking for — and why.”</blockquote>
+          <cite>Saran Chess Academy student</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="programs"><div class="wrap">
+  <div class="sec-head reveal"><div class="sec-label">Programs</div><h2 class="sec-title">Pick the path that fits you</h2>
+    <p class="sec-desc">Every program is built around one outcome: better decisions when the clock is ticking.</p></div>
+  <div class="grid-3 reveal">
+    <div class="card"><div class="card-icon">♟</div><h3>Beginner foundation</h3><p>Rules to real plans — so you understand the game, not just move pieces.</p><a class="link" href="#join">Start here →</a></div>
+    <div class="card"><div class="card-icon">♞</div><h3>Intermediate climb</h3><p>Calculation and game review for players stuck in the same rating band.</p><a class="link" href="#join">Break the plateau →</a></div>
+    <div class="card"><div class="card-icon">♛</div><h3>Advanced performance</h3><p>Deep calculation and serious review for competitive players.</p><a class="link" href="#join">Train seriously →</a></div>
+    <div class="card"><div class="card-icon">1:1</div><h3>Private coaching</h3><p>Your games. Your weaknesses. A plan built only for you.</p><a class="link" href="#join">Get a personal plan →</a></div>
+    <div class="card"><div class="card-icon">⏱</div><h3>Tournament prep</h3><p>Walk into the hall prepared — openings, tactics, calm plan.</p><a class="link" href="#join">Prepare to compete →</a></div>
+    <div class="card"><div class="card-icon">◎</div><h3>Game analysis</h3><p>Turn losses into lessons you actually remember next time.</p><a class="link" href="#join">Review my games →</a></div>
+  </div>
+</div></section>
+<section id="coach" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap"><div class="coach reveal">
+    <div class="coach-photo"><img src="founder.jpg" alt="Mohit Kumar Soni"></div>
+    <div><div class="sec-label">Your coach</div><h2>Mohit Kumar Soni</h2>
+      <p>A 2520+ rated player who teaches the way the game is actually played — under pressure, with limited time. Not just what the engine likes.</p>
+      <div class="pills"><span class="pill">2520+ live rating</span><span class="pill">Chess.com &amp; Lichess</span><span class="pill">English &amp; Hindi</span><span class="pill">Online worldwide</span></div>
+      <div style="margin-top:28px"><a href="#join" class="btn btn-solid">Talk to the coach</a></div>
+    </div>
+  </div></div>
+</section>
+<section><div class="wrap">
+  <div class="sec-head reveal"><div class="sec-label">How it works</div><h2 class="sec-title">Four steps. Clear progress.</h2></div>
+  <div class="steps reveal">
+    <div class="step"><div class="n">01</div><h3>Diagnose</h3><p>Find what’s costing you points — not what looks busy on a study list.</p></div>
+    <div class="step"><div class="n">02</div><h3>Train</h3><p>Targeted positions and habits that fix those gaps.</p></div>
+    <div class="step"><div class="n">03</div><h3>Play</h3><p>Use it in real games, not only in puzzles.</p></div>
+    <div class="step"><div class="n">04</div><h3>Review</h3><p>Measure what changed and set the next focus.</p></div>
+  </div>
+</div></section>
+<section id="pricing" style="border-top:1px solid var(--border)"><div class="wrap pricing-wrap">
+  <div class="sec-head reveal"><div class="sec-label">Pricing</div>
+    <h2 class="sec-title">Invest in clarity, not more random games</h2>
+    <p class="sec-desc">One structured month often saves months of trial and error.</p></div>
+  <div class="tabs reveal">
+    <button class="tab active" data-region="in" type="button">India (₹)</button>
+    <button class="tab" data-region="intl" type="button">International ($)</button>
+  </div>
+  <div class="price-row reveal" id="priceIn">
+    <div class="price-card"><div class="label">Monthly</div><div class="amount">₹2,999<span>/mo</span></div>
+      <ul class="perks"><li>Structured training path</li><li>Game feedback focus</li><li>English &amp; Hindi support</li></ul>
+      <a class="btn btn-outline" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start monthly</a></div>
+    <div class="price-card featured"><div class="tag">Most students choose this</div>
+      <div class="label">Yearly · save ₹6,000</div><div class="amount">₹29,999<span>/yr</span></div>
+      <ul class="perks"><li>Full year of guided progress</li><li>Best value for serious climbers</li><li>Priority coaching slots</li></ul>
+      <a class="btn btn-green" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start yearly</a></div>
+  </div>
+  <div class="price-row reveal" id="priceIntl" style="display:none">
+    <div class="price-card"><div class="label">Monthly</div><div class="amount">$50<span>/mo</span></div>
+      <ul class="perks"><li>Structured training path</li><li>Game feedback focus</li><li>Online worldwide</li></ul>
+      <a class="btn btn-outline" href="https://rzp.io/rzp/AgH7laAA" target="_blank" rel="noopener">Start monthly</a></div>
+    <div class="price-card featured"><div class="tag">Best value · save $100</div>
+      <div class="label">Yearly</div><div class="amount">$500<span>/yr</span></div>
+      <ul class="perks"><li>Full year of guided progress</li><li>Best value for serious climbers</li><li>Priority coaching slots</li></ul>
+      <a class="btn btn-green" href="https://rzp.io/rzp/j4oz4Ry" target="_blank" rel="noopener">Start yearly</a></div>
+  </div>
+  <p class="guarantee reveal">Prefer to talk first? Book a free call — no payment required.</p>
+</div></section>
+<section id="join" style="background:var(--bg2);border-top:1px solid var(--border)"><div class="wrap">
+  <div class="form-grid reveal">
+    <div><div class="sec-label">Next step</div><h2 class="sec-title">Tell us where you are. We’ll map the path.</h2>
+      <p class="sec-desc">A short call. Honest advice. If we’re a fit, we train. If not, you still leave with clarity.</p>
+      <div class="pills"><span class="pill">Free guidance call</span><span class="pill">No spam</span><span class="pill">Reply within 24–48 hrs</span></div></div>
+    <form class="form-box" id="leadForm">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="text" name="contact" placeholder="Phone or email" required>
+      <select name="rating"><option value="" disabled selected>Where are you now?</option>
+        <option value="Beginner">Beginner</option><option value="Under 1200">Under 1200</option>
+        <option value="1200-1600">1200–1600</option><option value="1600-2000">1600–2000</option><option value="2000+">2000+</option></select>
+      <select name="goal" required><option value="" disabled selected>What do you want most?</option>
+        <option value="Improve rating">Higher rating</option><option value="Tournament prep">Win more tournament games</option>
+        <option value="Fundamentals">Solid fundamentals</option><option value="Openings">A real repertoire</option><option value="1:1 coaching">1:1 coaching</option></select>
+      <button type="submit" class="btn btn-solid" id="leadBtn" style="width:100%">Request my free call</button>
+      <div class="form-msg" id="leadMsg"></div>
+      <p class="form-note">Takes under a minute. We’ll only use this to reach you about training.</p>
+    </form>
+  </div>
+</div></section>
+<section id="faq"><div class="wrap">
+  <div class="sec-head reveal"><div class="sec-label">FAQ</div><h2 class="sec-title">Questions players ask before joining</h2></div>
+  <div class="faq-list reveal">
+    <details><summary>Is this only for kids / only for adults?</summary><p>Both. We match the plan to the player’s level and goals.</p></details>
+    <details><summary>I’m busy. Will this fit my week?</summary><p>Online sessions scheduled around you — consistent progress, not endless homework.</p></details>
+    <details><summary>I’ve watched lots of free videos. Why pay?</summary><p>Videos don’t watch your games. Coaching finds your specific leaks and closes them.</p></details>
+    <details><summary>What if I’m a complete beginner?</summary><p>Perfect. Clean foundation so you never unlearn bad habits later.</p></details>
+    <details><summary>Can you help before a tournament?</summary><p>Yes — openings, tactics readiness, and a practical plan for the event.</p></details>
+    <details><summary>English or Hindi?</summary><p>Both — clear explanations without jargon overload.</p></details>
+  </div>
+</div></section>
+<section class="cta-band">
+  <h2>Your next rating jump starts with one clear decision.</h2>
+  <p>Book the call. Bring your current level. Leave with a plan.</p>
+  <div class="hero-ctas" style="margin-top:24px">
+    <a href="#join" class="btn btn-solid">Book a free call</a>
+    <a href="#results" class="btn btn-outline">See student results</a>
+  </div>
+</section>
+<footer><div class="wrap foot">
+  <div class="logo" style="font-size:14px"><span class="logo-mark" style="width:24px;height:24px;font-size:12px">♟</span>Saran Chess Academy</div>
+  <div>© 2026 Saran Chess Academy</div>
+  <div class="foot-links"><a href="#results">Results</a><a href="#pricing">Pricing</a><a href="#join">Contact</a></div>
+</div></footer>
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+const drawer=document.getElementById('drawer');
+document.getElementById('navToggle').onclick=()=>drawer.classList.toggle('open');
+drawer.querySelectorAll('[data-close]').forEach(a=>a.onclick=()=>drawer.classList.remove('open'));
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');
+const intl=t.dataset.region==='intl';document.getElementById('priceIn').style.display=intl?'none':'flex';document.getElementById('priceIntl').style.display=intl?'flex':'none';});
+const LEAD_ENDPOINT="https://script.google.com/macros/s/AKfycbyn4ox_ddK6q5LKXVmDwU8SjiBUrWuYBvErWzHr1GD76VZmK_Ce4GkZrvZMWnqN8Lam/exec";
+const form=document.getElementById('leadForm'),btn=document.getElementById('leadBtn'),msg=document.getElementById('leadMsg');
+form.onsubmit=e=>{e.preventDefault();btn.disabled=true;btn.textContent='Sending…';msg.textContent='';msg.className='form-msg';
+const d=new FormData(form);const payload={name:d.get('name'),contact:d.get('contact'),rating:d.get('rating')||'Not specified',goal:d.get('goal')};
+fetch(LEAD_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
+.then(()=>{msg.textContent="Thanks — we'll reach out soon.";msg.className='form-msg ok';form.reset();btn.disabled=false;btn.textContent='Request my free call'})
+.catch(()=>{msg.textContent='Something went wrong. Please try again.';msg.className='form-msg err';btn.disabled=false;btn.textContent='Request my free call'});};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
+</script>
+</body>
+</html>
