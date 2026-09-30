@@ -3,316 +3,463 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0A0F1F">
-<meta name="description" content="Saran Chess Academy — structured chess coaching, tournament preparation and practical game analysis by Mohit Kumar Soni. 2520+ rated coach.">
-<meta name="keywords" content="chess coaching, chess academy, online chess lessons, tournament preparation, Mohit Kumar Soni, Saran Chess Academy">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Saran Chess Academy — Chess Mastery, One Square at a Time">
-<meta property="og:description" content="Structured chess coaching from a 2520+ rated coach. Beginner to tournament prep. English & Hindi.">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Saran Chess Academy — structured chess coaching and tournament preparation by Mohit Kumar Soni. 2520+ rated coach.">
+<meta property="og:title" content="Saran Chess Academy">
+<meta property="og:description" content="Learn chess from a 2520+ rated coach. Structured training from fundamentals to tournament prep.">
 <meta property="og:image" content="founder.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Saran Chess Academy">
-<meta name="twitter:description" content="Learn chess from someone who plays at the board — not just teaches it.">
-<title>Saran Chess Academy — Chess Mastery, One Square at a Time</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0F1F'/%3E%3Crect x='10' y='10' width='12' height='12' fill='%23C9A24B' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
+<title>Saran Chess Academy</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23050505'/%3E%3Cpath d='M16 6l3 6h6l-5 4 2 6-6-4-6 4 2-6-5-4h6z' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0A0F1F;
-  --bg-elevated:#101830;
-  --board-dark:#0D1428;
-  --board-light:#161F3C;
-  --gold:#C9A24B;
-  --gold-bright:#E8C767;
-  --ivory:#EAE6DA;
-  --muted:#8891AD;
-  --line:rgba(201,162,75,0.20);
-  --green:#71d1a0;
+  --bg:#050505;
+  --bg2:#0a0a0a;
+  --surface:#111111;
+  --surface2:#161616;
+  --border:rgba(255,255,255,0.08);
+  --border-hover:rgba(255,255,255,0.16);
+  --text:#f5f5f5;
+  --muted:#8a8a8a;
+  --muted2:#6b6b6b;
+  --accent:#fff;
+  --green:#10a37f;
+  --green-dim:rgba(16,163,127,0.15);
+  --radius:16px;
+  --radius-sm:12px;
+  --max:1080px;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--ivory);font-family:'Inter',sans-serif;overflow-x:hidden;line-height:1.6;}
-::selection{background:var(--gold);color:var(--bg);}
-.mono{font-family:'Space Mono',monospace;}
-.display{font-family:'Fraunces',serif;}
-a{color:inherit;text-decoration:none;}
-img{max-width:100%;display:block;}
-button,input,select{font:inherit;}
-a:focus-visible,button:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px;}
-@media (prefers-reduced-motion:reduce){*{animation-duration:0.001ms!important;transition-duration:0.001ms!important;}}
-.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button,input,select{font:inherit;color:inherit}
+::selection{background:rgba(255,255,255,0.18)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:linear-gradient(to bottom,rgba(10,15,31,0.94),rgba(10,15,31,0));backdrop-filter:blur(8px);}
-.brandmark{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:clamp(15px,2.2vw,20px);letter-spacing:0.02em;}
-.brandmark .sq{width:14px;height:14px;background:var(--gold);display:inline-block;transform:rotate(45deg);flex-shrink:0;}
-.navlinks{display:flex;gap:36px;font-size:14px;color:var(--muted);}
-.navlinks a{transition:color .25s;}
-.navlinks a:hover{color:var(--gold-bright);}
-.nav-cta{border:1px solid var(--gold);color:var(--gold-bright);padding:9px 20px;font-size:13px;letter-spacing:0.03em;transition:all .25s;}
-.nav-cta:hover{background:var(--gold);color:var(--bg);}
-.nav-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--ivory);width:42px;height:42px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px;}
-.nav-toggle span{display:block;width:18px;height:1.5px;background:var(--gold-bright);}
-.mobile-drawer{display:none;position:fixed;inset:0;z-index:99;background:rgba(10,15,31,0.97);padding:100px 32px 40px;flex-direction:column;gap:24px;}
-.mobile-drawer.open{display:flex;}
-.mobile-drawer a{font-family:'Fraunces',serif;font-size:28px;color:var(--ivory);padding:8px 0;border-bottom:1px solid var(--line);}
-.mobile-drawer a:hover{color:var(--gold-bright);}
-.mobile-drawer .nav-cta{display:inline-block;width:fit-content;margin-top:12px;text-align:center;}
+nav{
+  position:fixed;inset:0 0 auto 0;z-index:100;
+  height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;
+  background:rgba(5,5,5,0.72);
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,background .3s;
+}
+nav.scrolled{border-bottom-color:var(--border);background:rgba(5,5,5,0.88)}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-weight:600;font-size:15px;letter-spacing:-0.02em;
+}
+.logo-mark{
+  width:28px;height:28px;border-radius:8px;
+  background:linear-gradient(135deg,#1a1a1a,#2a2a2a);
+  border:1px solid var(--border);
+  display:grid;place-items:center;
+  font-size:14px;
+}
+.nav-links{display:flex;gap:28px;font-size:14px;color:var(--muted);font-weight:500}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-size:14px;font-weight:500;border-radius:999px;
+  padding:10px 18px;border:1px solid transparent;cursor:pointer;
+  transition:background .2s,border-color .2s,transform .15s,box-shadow .2s;
+}
+.btn:active{transform:scale(0.98)}
+.btn-ghost{color:var(--muted);background:transparent}
+.btn-ghost:hover{color:var(--text)}
+.btn-outline{
+  color:var(--text);background:transparent;
+  border-color:var(--border);
+}
+.btn-outline:hover{border-color:var(--border-hover);background:rgba(255,255,255,0.03)}
+.btn-solid{
+  color:#050505;background:var(--text);
+  box-shadow:0 0 0 1px rgba(255,255,255,0.08);
+}
+.btn-solid:hover{background:#e8e8e8;box-shadow:0 8px 24px -8px rgba(255,255,255,0.25)}
+.btn-green{
+  color:#fff;background:var(--green);
+}
+.btn-green:hover{background:#0e8f6f}
+.nav-toggle{
+  display:none;width:40px;height:40px;border-radius:10px;
+  border:1px solid var(--border);background:transparent;cursor:pointer;
+  align-items:center;justify-content:center;flex-direction:column;gap:5px;
+}
+.nav-toggle span{display:block;width:16px;height:1.5px;background:var(--text)}
+.drawer{
+  display:none;position:fixed;inset:64px 0 0 0;z-index:99;
+  background:rgba(5,5,5,0.98);padding:28px 24px;
+  flex-direction:column;gap:8px;
+}
+.drawer.open{display:flex}
+.drawer a{
+  font-size:18px;font-weight:500;padding:14px 4px;
+  border-bottom:1px solid var(--border);color:var(--text);
+}
 
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:100px;overflow:hidden;}
-.board-field{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);opacity:0.45;mask-image:radial-gradient(ellipse 70% 60% at 60% 40%,black 0%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 60% 40%,black 0%,transparent 75%);}
-.board-field div:nth-child(odd){background:var(--board-dark);}
-.board-field div:nth-child(even){background:var(--board-light);}
-.hero-content{position:relative;z-index:2;width:100%;}
-.eyebrow{font-family:'Space Mono',monospace;font-size:13px;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:28px;opacity:0;animation:fadeUp .8s ease forwards .1s;}
-.eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
-.hero h1{font-size:clamp(44px,7.5vw,96px);font-weight:600;line-height:0.98;letter-spacing:-0.02em;max-width:900px;opacity:0;animation:fadeUp .9s ease forwards .25s;}
-.hero h1 em{font-style:italic;font-weight:300;color:var(--gold-bright);}
-.hero p.sub{margin-top:28px;max-width:540px;font-size:18px;line-height:1.65;color:var(--muted);opacity:0;animation:fadeUp .9s ease forwards .4s;}
-.hero-ctas{margin-top:40px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s ease forwards .55s;}
-.btn-primary{background:var(--gold);color:var(--bg);padding:15px 32px;font-size:15px;font-weight:600;letter-spacing:0.02em;transition:transform .25s,box-shadow .25s;display:inline-block;border:none;cursor:pointer;}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(201,162,75,0.5);}
-.btn-ghost{color:var(--ivory);font-size:15px;padding:15px 8px;border-bottom:1px solid var(--line);display:inline-flex;align-items:center;gap:8px;transition:border-color .25s;}
-.btn-ghost:hover{border-color:var(--gold);}
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
-.hero-rating{position:absolute;right:32px;top:160px;z-index:2;text-align:right;opacity:0;animation:fadeUp .9s ease forwards .7s;}
-.hero-rating .num{font-family:'Fraunces',serif;font-size:80px;font-weight:300;color:var(--gold-bright);line-height:1;}
-.hero-rating .lbl{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em;margin-top:6px;}
-@media(max-width:900px){.hero-rating{display:none;}}
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:120px 24px 80px;
+  overflow:hidden;
+}
+.hero-glow{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(16,163,127,0.12), transparent 60%),
+    radial-gradient(ellipse 50% 30% at 50% 100%, rgba(255,255,255,0.03), transparent 50%);
+}
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;opacity:0.35;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:500;color:var(--muted);
+  padding:6px 12px 6px 8px;border-radius:999px;
+  border:1px solid var(--border);background:rgba(255,255,255,0.03);
+  margin-bottom:28px;
+  opacity:0;animation:up .7s ease forwards .1s;
+}
+.badge i{
+  width:8px;height:8px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 4px var(--green-dim);
+}
+.hero h1{
+  font-size:clamp(40px,7vw,72px);
+  font-weight:600;letter-spacing:-0.04em;line-height:1.05;
+  max-width:820px;margin:0 auto;
+  opacity:0;animation:up .8s ease forwards .2s;
+}
+.hero h1 .grad{
+  background:linear-gradient(180deg,#fff 30%,#7a7a7a);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero .sub{
+  margin:22px auto 0;max-width:520px;
+  font-size:18px;line-height:1.6;color:var(--muted);font-weight:400;
+  opacity:0;animation:up .8s ease forwards .35s;
+}
+.hero-ctas{
+  margin-top:36px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+  opacity:0;animation:up .8s ease forwards .5s;
+}
+.hero-ctas .btn{padding:12px 22px;font-size:15px}
+.hero-stats{
+  margin-top:64px;display:flex;gap:48px;flex-wrap:wrap;justify-content:center;
+  opacity:0;animation:up .8s ease forwards .65s;
+}
+.hero-stats div{text-align:center}
+.hero-stats strong{
+  display:block;font-size:28px;font-weight:600;letter-spacing:-0.03em;
+}
+.hero-stats span{font-size:13px;color:var(--muted);margin-top:4px;display:block}
 
-.coord-label{font-family:'Space Mono',monospace;font-size:13px;color:var(--gold);letter-spacing:0.1em;display:flex;align-items:center;gap:10px;margin-bottom:20px;}
-.coord-label::after{content:'';flex:1;height:1px;background:var(--line);}
-section{padding:120px 0;}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-.founder{display:grid;grid-template-columns:0.9fr 1.1fr;gap:72px;align-items:center;}
-@media(max-width:860px){.founder{grid-template-columns:1fr;gap:48px;}}
-.founder-visual{position:relative;aspect-ratio:4/5;background:var(--bg-elevated);border:1px solid var(--line);overflow:hidden;}
-.founder-visual img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:grayscale(12%) contrast(1.05);}
-.founder-visual .corner{position:absolute;width:22px;height:22px;border:1px solid var(--gold);}
-.corner.tl{top:-1px;left:-1px;border-right:none;border-bottom:none;}
-.corner.br{bottom:-1px;right:-1px;border-left:none;border-top:none;}
-.founder h2{font-size:clamp(30px,4vw,46px);font-weight:500;line-height:1.15;}
-.founder h2 span{color:var(--gold-bright);font-style:italic;font-weight:300;}
-.founder p{margin-top:22px;color:var(--muted);line-height:1.75;font-size:16px;max-width:480px;}
-.stat-row{display:flex;gap:44px;margin-top:40px;flex-wrap:wrap;}
-.stat-row .n{font-family:'Space Mono',monospace;font-size:28px;color:var(--gold-bright);}
-.stat-row .l{font-size:11px;color:var(--muted);letter-spacing:0.05em;margin-top:6px;text-transform:uppercase;}
+section{padding:100px 0}
+.sec-label{
+  font-size:13px;font-weight:500;color:var(--green);
+  letter-spacing:0.04em;text-transform:uppercase;margin-bottom:12px;
+}
+.sec-title{
+  font-size:clamp(28px,4vw,40px);font-weight:600;
+  letter-spacing:-0.03em;line-height:1.15;max-width:560px;
+}
+.sec-desc{margin-top:14px;color:var(--muted);font-size:16px;max-width:480px;line-height:1.6}
+.sec-head{margin-bottom:48px}
 
-.programs-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:20px;}
-.programs-head h2{font-size:clamp(30px,4vw,44px);font-weight:500;max-width:560px;}
-.programs-head p{color:var(--muted);max-width:320px;font-size:15px;line-height:1.6;}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:560px){.cards{grid-template-columns:1fr;}}
-.card{padding:32px 28px;border:1px solid var(--line);background:var(--bg-elevated);min-height:240px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s,border-color .3s,transform .3s;}
-.card:hover{background:#1a1620;border-color:rgba(201,162,75,0.45);transform:translateY(-3px);}
-.card .coord{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);opacity:0.8;}
-.card h3{font-family:'Fraunces',serif;font-weight:500;font-size:22px;margin-top:18px;}
-.card p{color:var(--muted);font-size:14px;line-height:1.6;margin-top:10px;flex:1;}
-.card a{margin-top:20px;font-size:13px;color:var(--gold-bright);font-weight:600;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px;
+  transition:border-color .25s,background .25s,transform .25s;
+}
+.card:hover{border-color:var(--border-hover);background:var(--surface2);transform:translateY(-2px)}
+.card-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:rgba(255,255,255,0.04);border:1px solid var(--border);
+  display:grid;place-items:center;font-size:18px;margin-bottom:18px;
+}
+.card h3{font-size:17px;font-weight:600;letter-spacing:-0.02em;margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted);line-height:1.55}
+.card .link{display:inline-block;margin-top:16px;font-size:13px;font-weight:500;color:var(--text)}
+.card .link:hover{color:var(--green)}
 
-.process{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);}
-@media(max-width:800px){.process{grid-template-columns:1fr 1fr;}}
-@media(max-width:480px){.process{grid-template-columns:1fr;}}
-.step{padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:180px;}
-.step:nth-child(4n){border-right:none;}
-.stepNo{font-family:'Space Mono',monospace;color:var(--gold);font-size:12px;}
-.step h3{margin:28px 0 8px;font-size:18px;}
-.step p{font-size:13px;color:var(--muted);line-height:1.55;}
+.coach{
+  display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:center;
+}
+.coach-photo{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  aspect-ratio:4/5;border:1px solid var(--border);background:var(--surface);
+}
+.coach-photo img{width:100%;height:100%;object-fit:cover;object-position:top}
+.coach-photo::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(5,5,5,0.5),transparent 40%);
+  pointer-events:none;
+}
+.coach h2{font-size:clamp(28px,3.5vw,36px);font-weight:600;letter-spacing:-0.03em;line-height:1.2}
+.coach p{margin-top:16px;color:var(--muted);font-size:16px;line-height:1.65;max-width:440px}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.pill{
+  font-size:13px;font-weight:500;color:var(--muted);
+  padding:8px 14px;border-radius:999px;
+  border:1px solid var(--border);background:rgba(255,255,255,0.02);
+}
 
-.gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
-@media(max-width:900px){.gallery{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:560px){.gallery{grid-template-columns:repeat(2,1fr);}}
-.gallery img{width:100%;aspect-ratio:3/4;object-fit:cover;border:1px solid var(--line);filter:grayscale(30%) contrast(1.05);transition:transform .45s,filter .45s;}
-.gallery img:hover{filter:grayscale(0%) contrast(1.05);transform:scale(1.03);}
-.testimonial{margin-top:56px;padding:44px;background:linear-gradient(135deg,rgba(201,162,75,0.08),rgba(255,255,255,0.02));border:1px solid var(--line);display:grid;grid-template-columns:110px 1fr;gap:32px;align-items:center;}
-@media(max-width:700px){.testimonial{grid-template-columns:1fr;text-align:center;}}
-.quoteAvatar{width:110px;height:110px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);margin:0 auto;}
-blockquote{font-family:'Fraunces',serif;font-size:22px;font-weight:300;line-height:1.5;}
-cite{display:block;margin-top:16px;font-family:'Space Mono',monospace;font-size:11px;color:var(--gold-bright);font-style:normal;letter-spacing:0.04em;}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.step{background:var(--bg);padding:28px 24px;min-height:180px}
+.step .n{font-size:13px;font-weight:600;color:var(--green);margin-bottom:20px}
+.step h3{font-size:16px;font-weight:600;margin-bottom:8px}
+.step p{font-size:13px;color:var(--muted);line-height:1.5}
 
-.pricing{text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.pricing .coord-label{justify-content:center;}
-.pricing .coord-label::after{display:none;}
-.pricing h2{font-size:clamp(32px,5vw,52px);font-weight:500;max-width:680px;margin:0 auto;line-height:1.15;}
-.pricing h2 em{color:var(--gold-bright);font-style:italic;font-weight:300;}
-.pricing > .wrap > p{color:var(--muted);margin:20px auto 0;max-width:440px;font-size:16px;line-height:1.65;}
-.region-tabs{display:inline-flex;margin:44px auto 0;border:1px solid var(--line);}
-.region-tab{background:transparent;border:none;color:var(--muted);font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.04em;padding:12px 24px;cursor:pointer;transition:all .25s;}
-.region-tab + .region-tab{border-left:1px solid var(--line);}
-.region-tab.active{background:var(--gold);color:var(--bg);}
-.region-tab:hover:not(.active){color:var(--gold-bright);}
-.pricing-cards{display:flex;gap:22px;justify-content:center;margin-top:40px;flex-wrap:wrap;}
-.price-card{position:relative;background:var(--bg-elevated);border:1px solid var(--line);padding:36px 38px;width:280px;text-align:left;}
-.price-card.featured{border-color:var(--gold);}
-.price-card-badge{position:absolute;top:-12px;left:38px;background:var(--gold);color:var(--bg);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.04em;padding:5px 12px;font-weight:700;}
-.price-card-label{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
-.price-card-amount{font-size:32px;color:var(--gold-bright);margin-top:12px;font-family:'Space Mono',monospace;}
-.price-card-amount span{font-size:14px;color:var(--muted);margin-left:4px;font-family:'Inter',sans-serif;}
-.price-card .btn-primary{display:block;text-align:center;margin-top:24px;width:100%;padding:13px 0;font-size:14px;}
+.gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.gallery img{
+  width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--radius-sm);
+  border:1px solid var(--border);filter:grayscale(20%);
+  transition:filter .3s,transform .3s;
+}
+.gallery img:hover{filter:none;transform:scale(1.02)}
+.quote{
+  margin-top:40px;padding:32px;border-radius:var(--radius);
+  border:1px solid var(--border);background:var(--surface);
+  display:flex;gap:24px;align-items:center;
+}
+.quote img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:1px solid var(--border);flex-shrink:0}
+.quote blockquote{font-size:18px;font-weight:500;letter-spacing:-0.02em;line-height:1.45}
+.quote cite{display:block;margin-top:10px;font-size:13px;color:var(--muted);font-style:normal}
 
-.inquire-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
-@media(max-width:860px){.inquire-grid{grid-template-columns:1fr;gap:36px;}}
-.lead-form{display:flex;flex-direction:column;gap:14px;}
-.lead-form input,.lead-form select{background:var(--bg-elevated);border:1px solid var(--line);color:var(--ivory);font-size:14px;padding:14px 16px;width:100%;transition:border-color .25s;}
-.lead-form input::placeholder{color:var(--muted);}
-.lead-form input:focus,.lead-form select:focus{outline:none;border-color:var(--gold);}
-.lead-form select{color:var(--muted);}
-.lead-form select:valid{color:var(--ivory);}
-.lead-form button{border:none;cursor:pointer;margin-top:4px;}
-.lead-form button:disabled{opacity:0.6;cursor:not-allowed;}
-.lead-form-msg{font-family:'Space Mono',monospace;font-size:13px;min-height:18px;}
-.lead-form-msg.success{color:var(--green);}
-.lead-form-msg.error{color:#d98a6b;}
+.pricing-wrap{text-align:center}
+.pricing-wrap .sec-title{margin:0 auto}
+.pricing-wrap .sec-desc{margin-left:auto;margin-right:auto}
+.tabs{
+  display:inline-flex;margin:36px auto 0;padding:4px;
+  background:var(--surface);border:1px solid var(--border);border-radius:999px;
+}
+.tab{
+  border:none;background:transparent;color:var(--muted);
+  font-size:13px;font-weight:500;padding:10px 20px;border-radius:999px;cursor:pointer;
+  transition:all .2s;
+}
+.tab.active{background:var(--text);color:var(--bg)}
+.price-row{display:flex;gap:16px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+.price-card{
+  width:300px;text-align:left;padding:32px 28px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  position:relative;
+}
+.price-card.featured{border-color:rgba(16,163,127,0.45);box-shadow:0 0 0 1px rgba(16,163,127,0.15),0 24px 48px -24px rgba(16,163,127,0.2)}
+.price-card .tag{
+  position:absolute;top:-12px;left:28px;
+  background:var(--green);color:#fff;font-size:11px;font-weight:600;
+  padding:4px 10px;border-radius:999px;letter-spacing:0.02em;
+}
+.price-card .label{font-size:14px;color:var(--muted);font-weight:500}
+.price-card .amount{font-size:40px;font-weight:600;letter-spacing:-0.03em;margin:12px 0 4px}
+.price-card .amount span{font-size:15px;font-weight:400;color:var(--muted)}
+.price-card .btn{width:100%;margin-top:24px;padding:12px}
 
-.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-@media(max-width:700px){.faq-grid{grid-template-columns:1fr;}}
-.faq-grid details{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:18px 20px;}
-.faq-grid summary{cursor:pointer;font-weight:600;font-size:15px;}
-.faq-grid p{color:var(--muted);font-size:14px;margin-top:12px;line-height:1.6;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.form-box{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:12px;
+}
+.form-box input,.form-box select{
+  background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px 16px;font-size:14px;width:100%;outline:none;
+  transition:border-color .2s;
+}
+.form-box input::placeholder{color:var(--muted2)}
+.form-box input:focus,.form-box select:focus{border-color:rgba(255,255,255,0.25)}
+.form-box select{color:var(--muted)}
+.form-box select:valid{color:var(--text)}
+.form-msg{font-size:13px;min-height:18px}
+.form-msg.ok{color:var(--green)}
+.form-msg.err{color:#e07a5f}
 
-.cta{text-align:center;padding:90px 0;background:radial-gradient(circle at center,rgba(201,162,75,0.1),transparent 50%);}
-.cta h2{font-size:clamp(30px,4.5vw,48px);font-weight:500;max-width:640px;margin:0 auto;}
-.cta p{color:var(--muted);margin:18px auto 0;max-width:480px;}
-.cta .hero-ctas{justify-content:center;}
+.faq-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+details{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:18px 20px;
+}
+summary{cursor:pointer;font-weight:500;font-size:15px;list-style:none}
+summary::-webkit-details-marker{display:none}
+details p{margin-top:12px;font-size:14px;color:var(--muted);line-height:1.55}
 
-footer{padding:48px 0 36px;}
-.foot-row{display:flex;justify-content:space-between;align-items:center;padding-top:28px;margin-top:28px;border-top:1px solid var(--line);flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted);}
-.foot-brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:var(--ivory);}
-.foot-links{display:flex;gap:24px;}
-.foot-links a{color:var(--muted);transition:color .25s;}
-.foot-links a:hover{color:var(--gold-bright);}
+.cta-band{
+  text-align:center;padding:100px 24px;
+  background:radial-gradient(ellipse 60% 80% at 50% 100%, rgba(16,163,127,0.1), transparent 60%);
+  border-top:1px solid var(--border);
+}
+.cta-band h2{font-size:clamp(28px,4vw,40px);font-weight:600;letter-spacing:-0.03em;max-width:560px;margin:0 auto}
+.cta-band p{margin:14px auto 0;color:var(--muted);max-width:420px}
+.cta-band .hero-ctas{margin-top:28px}
 
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
-.reveal.in{opacity:1;transform:translateY(0);}
+footer{padding:48px 0 40px;border-top:1px solid var(--border)}
+.foot{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  font-size:13px;color:var(--muted);
+}
+.foot-links{display:flex;gap:20px}
+.foot-links a:hover{color:var(--text)}
 
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .grid-3{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .gallery{grid-template-columns:repeat(3,1fr)}
+  .coach{grid-template-columns:1fr;gap:32px}
+  .form-grid{grid-template-columns:1fr}
+}
 @media(max-width:700px){
-  .navlinks{display:none;}
-  .nav-toggle{display:flex;}
-  .nav-cta{display:none;}
-  nav{padding:16px 20px;}
-  .wrap{padding:0 20px;}
-  section{padding:80px 0;}
+  .nav-links,.nav-actions .btn-ghost{display:none}
+  .nav-toggle{display:flex}
+  .grid-3,.faq-list{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .hero-stats{gap:28px}
+  section{padding:72px 0}
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="#" class="brandmark"><span class="sq"></span>Saran Chess Academy</a>
-  <div class="navlinks">
+<nav id="nav">
+  <a href="#" class="logo"><span class="logo-mark">♟</span>Saran Chess Academy</a>
+  <div class="nav-links">
     <a href="#coach">Coach</a>
     <a href="#programs">Programs</a>
     <a href="#results">Results</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
   </div>
-  <a href="#join" class="nav-cta">Book a Trial</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Open menu" type="button">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-actions">
+    <a href="#join" class="btn btn-ghost">Contact</a>
+    <a href="#join" class="btn btn-solid">Book a trial</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
 </nav>
-<div class="mobile-drawer" id="mobileDrawer">
+<div class="drawer" id="drawer">
   <a href="#coach" data-close>Coach</a>
   <a href="#programs" data-close>Programs</a>
   <a href="#results" data-close>Results</a>
   <a href="#pricing" data-close>Pricing</a>
   <a href="#faq" data-close>FAQ</a>
-  <a href="#join" class="nav-cta" data-close>Book a Trial</a>
+  <a href="#join" class="btn btn-solid" style="margin-top:16px;width:fit-content" data-close>Book a trial</a>
 </div>
 
 <section class="hero">
-  <div class="board-field" id="boardField"></div>
-  <div class="wrap hero-content">
-    <div class="eyebrow">FIDE Rated · Coach & Competitor</div>
-    <h1 class="display">Learn chess from<br>someone who <em>plays</em><br>at the board, not<br>just teaches it.</h1>
-    <p class="sub">Saran Chess Academy is Mohit Kumar Soni’s chess academy — structured coaching from first moves to tournament prep, built on real competitive experience.</p>
-    <div class="hero-ctas">
-      <a href="#join" class="btn-primary">Start Your Chess Journey</a>
-      <a href="#programs" class="btn-ghost">Explore Programs →</a>
-    </div>
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="badge"><i></i> 2520+ rated · Online coaching</div>
+  <h1><span class="grad">Chess mastery,<br>taught like a product.</span></h1>
+  <p class="sub">Structured coaching from a competitive player — fundamentals, calculation, and tournament prep you can use over the board.</p>
+  <div class="hero-ctas">
+    <a href="#join" class="btn btn-solid">Start learning</a>
+    <a href="#programs" class="btn btn-outline">Explore programs</a>
   </div>
-  <div class="hero-rating">
-    <div class="num">2520+</div>
-    <div class="lbl">RAPID & BLITZ · CHESS.COM & LICHESS</div>
-  </div>
-</section>
-
-<section id="coach">
-  <div class="wrap founder reveal">
-    <div class="founder-visual">
-      <div class="corner tl"></div>
-      <div class="corner br"></div>
-      <img src="founder.jpg" alt="Mohit Kumar Soni, founder and coach at Saran Chess Academy">
-    </div>
-    <div>
-      <div class="coord-label">E4 — THE COACH</div>
-      <h2 class="display">Mohit Kumar Soni —<br><span>player first, teacher by craft.</span></h2>
-      <p>Chess improvement is more than memorising openings. Saran Chess Academy combines fundamentals, calculation, positional understanding, practical decision-making and real-game analysis so students learn how to think during a game — not just what the engine recommends.</p>
-      <div class="stat-row">
-        <div><div class="n">2520+</div><div class="l">Live Rating</div></div>
-        <div><div class="n">1:1 + Group</div><div class="l">Flexible Formats</div></div>
-        <div><div class="n">EN + HI</div><div class="l">Clear Teaching</div></div>
-      </div>
-    </div>
+  <div class="hero-stats">
+    <div><strong>2520+</strong><span>Rapid & blitz rating</span></div>
+    <div><strong>1:1 + Group</strong><span>Flexible formats</span></div>
+    <div><strong>EN + HI</strong><span>Clear teaching</span></div>
   </div>
 </section>
 
 <section id="programs">
   <div class="wrap">
-    <div class="programs-head reveal">
-      <h2 class="display">A path for every player.</h2>
-      <p>Choose the track that matches your level and goal. Progress you can apply over the board.</p>
+    <div class="sec-head reveal">
+      <div class="sec-label">Programs</div>
+      <h2 class="sec-title">A path for every level</h2>
+      <p class="sec-desc">Pick the track that matches where you are — and where you want to go.</p>
     </div>
-    <div class="cards reveal">
+    <div class="grid-3 reveal">
       <div class="card">
-        <div>
-          <div class="coord">A1 · FOUNDATION</div>
-          <h3 class="display">Beginner</h3>
-          <p>Rules, piece movement, checkmate patterns, opening principles, basic tactics and the habits that create a strong foundation.</p>
-        </div>
-        <a href="#join">Start learning →</a>
+        <div class="card-icon">♟</div>
+        <h3>Beginner</h3>
+        <p>Rules, piece play, checkmates, opening principles, and habits that build a real foundation.</p>
+        <a class="link" href="#join">Start learning →</a>
       </div>
       <div class="card">
-        <div>
-          <div class="coord">B2 · IMPROVEMENT</div>
-          <h3 class="display">Intermediate</h3>
-          <p>Calculation, tactical patterns, opening repertoire, positional plans, endgames and deep analysis of your own games.</p>
-        </div>
-        <a href="#join">Level up →</a>
+        <div class="card-icon">♞</div>
+        <h3>Intermediate</h3>
+        <p>Calculation, tactics, repertoire, positional plans, endgames, and your own game analysis.</p>
+        <a class="link" href="#join">Level up →</a>
       </div>
       <div class="card">
-        <div>
-          <div class="coord">C3 · PERFORMANCE</div>
-          <h3 class="display">Advanced</h3>
-          <p>Tournament preparation, advanced calculation, practical decision-making, repertoire work and serious game review.</p>
-        </div>
-        <a href="#join">Train seriously →</a>
+        <div class="card-icon">♛</div>
+        <h3>Advanced</h3>
+        <p>Tournament prep, deep calculation, practical decisions, and serious review work.</p>
+        <a class="link" href="#join">Train seriously →</a>
       </div>
       <div class="card">
-        <div>
-          <div class="coord">D4 · PERSONAL</div>
-          <h3 class="display">1:1 Coaching</h3>
-          <p>Personalised sessions around your rating, weaknesses, tournament calendar and long-term goals.</p>
-        </div>
-        <a href="#join">Talk to the coach →</a>
+        <div class="card-icon">1:1</div>
+        <h3>Private coaching</h3>
+        <p>Sessions built around your rating, weaknesses, and tournament calendar.</p>
+        <a class="link" href="#join">Talk to the coach →</a>
       </div>
       <div class="card">
-        <div>
-          <div class="coord">E5 · TOURNAMENT</div>
-          <h3 class="display">Tournament Prep</h3>
-          <p>Opponent preparation, opening review, tactical readiness and practical plans for competitive events.</p>
-        </div>
-        <a href="#join">Prepare →</a>
+        <div class="card-icon">⏱</div>
+        <h3>Tournament prep</h3>
+        <p>Openings, tactics readiness, opponent prep, and practical event plans.</p>
+        <a class="link" href="#join">Prepare →</a>
       </div>
       <div class="card">
-        <div>
-          <div class="coord">F6 · ANALYSIS</div>
-          <h3 class="display">Game Analysis</h3>
-          <p>Understand not only what the engine says, but why the position demanded a particular decision.</p>
+        <div class="card-icon">◎</div>
+        <h3>Game analysis</h3>
+        <p>Understand not only what the engine says — but why the position demanded it.</p>
+        <a class="link" href="#join">Analyse →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="coach" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="coach reveal">
+      <div class="coach-photo">
+        <img src="founder.jpg" alt="Mohit Kumar Soni, coach at Saran Chess Academy">
+      </div>
+      <div>
+        <div class="sec-label">The coach</div>
+        <h2>Mohit Kumar Soni</h2>
+        <p>Player first, teacher by craft. Saran Chess Academy focuses on how to think during a game — not just memorising lines or copying the engine.</p>
+        <div class="pill-row">
+          <span class="pill">2520+ live rating</span>
+          <span class="pill">Chess.com & Lichess</span>
+          <span class="pill">English & Hindi</span>
+          <span class="pill">Online sessions</span>
         </div>
-        <a href="#join">Analyse →</a>
       </div>
     </div>
   </div>
@@ -320,110 +467,102 @@ footer{padding:48px 0 36px;}
 
 <section>
   <div class="wrap">
-    <div class="programs-head reveal">
-      <div>
-        <div class="coord-label">D4 — THE METHOD</div>
-        <h2 class="display">From training to the board.</h2>
-      </div>
-      <p>A simple repeatable cycle that turns knowledge into practical playing strength.</p>
+    <div class="sec-head reveal">
+      <div class="sec-label">Method</div>
+      <h2 class="sec-title">From training to the board</h2>
+      <p class="sec-desc">A simple cycle that turns ideas into practical strength.</p>
     </div>
-    <div class="process reveal">
-      <div class="step"><div class="stepNo">01</div><h3>Diagnose</h3><p>Find the patterns behind your mistakes and identify the highest-impact areas to improve.</p></div>
-      <div class="step"><div class="stepNo">02</div><h3>Train</h3><p>Work through positions, concepts and exercises that directly target those weaknesses.</p></div>
-      <div class="step"><div class="stepNo">03</div><h3>Play</h3><p>Apply the ideas in real games and tournament positions instead of keeping them theoretical.</p></div>
-      <div class="step"><div class="stepNo">04</div><h3>Review</h3><p>Analyse the game, measure progress and decide what the next training cycle should focus on.</p></div>
+    <div class="steps reveal">
+      <div class="step"><div class="n">01</div><h3>Diagnose</h3><p>Find the patterns behind your mistakes and the highest-impact areas to improve.</p></div>
+      <div class="step"><div class="n">02</div><h3>Train</h3><p>Positions and exercises aimed directly at those weaknesses.</p></div>
+      <div class="step"><div class="n">03</div><h3>Play</h3><p>Apply the ideas in real games — not only in theory.</p></div>
+      <div class="step"><div class="n">04</div><h3>Review</h3><p>Measure progress and decide what the next cycle should focus on.</p></div>
     </div>
   </div>
 </section>
 
-<section id="results">
+<section id="results" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="wrap">
-    <div class="programs-head reveal">
-      <div>
-        <div class="coord-label">H8 — RESULTS</div>
-        <h2 class="display">Real students. Real chess.</h2>
-      </div>
-      <p>Tournament moments from the academy community.</p>
+    <div class="sec-head reveal">
+      <div class="sec-label">Results</div>
+      <h2 class="sec-title">Real students. Real boards.</h2>
+      <p class="sec-desc">Moments from the academy community.</p>
     </div>
     <div class="gallery reveal">
-      <img loading="lazy" src="s1_1.jpg" alt="Saran Chess Academy student at a chess tournament">
-      <img loading="lazy" src="s2_1.jpg" alt="Saran Chess Academy student with tournament achievement">
-      <img loading="lazy" src="s3_1.jpg" alt="Saran Chess Academy student at a tournament">
-      <img loading="lazy" src="s4_1.jpg" alt="Saran Chess Academy student with chess award">
-      <img loading="lazy" src="s5.jpg" alt="Saran Chess Academy student tournament moment">
-      <img loading="lazy" src="s6_1.jpg" alt="Saran Chess Academy student with chess trophy">
-      <img loading="lazy" src="s7_1.jpg" alt="Saran Chess Academy student chess achievement">
-      <img loading="lazy" src="s8_1.jpg" alt="Saran Chess Academy student playing chess">
-      <img loading="lazy" src="s9.jpg" alt="Saran Chess Academy student at chess event">
-      <img loading="lazy" src="s10_1.jpg" alt="Saran Chess Academy student over the chessboard">
+      <img loading="lazy" src="s1_1.jpg" alt="Student tournament">
+      <img loading="lazy" src="s2_1.jpg" alt="Student achievement">
+      <img loading="lazy" src="s3_1.jpg" alt="Student event">
+      <img loading="lazy" src="s4_1.jpg" alt="Student award">
+      <img loading="lazy" src="s5.jpg" alt="Tournament moment">
+      <img loading="lazy" src="s6_1.jpg" alt="Trophy">
+      <img loading="lazy" src="s7_1.jpg" alt="Achievement">
+      <img loading="lazy" src="s8_1.jpg" alt="Playing chess">
+      <img loading="lazy" src="s9.jpg" alt="Chess event">
+      <img loading="lazy" src="s10_1.jpg" alt="Over the board">
     </div>
-    <div class="testimonial reveal">
-      <img loading="lazy" class="quoteAvatar" src="s10_1.jpg" alt="Chess student">
+    <div class="quote reveal">
+      <img loading="lazy" src="s10_1.jpg" alt="Student">
       <div>
-        <blockquote>“Training at Saran Chess Academy changed how I think during games — not just which moves to play, but why.”</blockquote>
-        <cite>— SARAN CHESS ACADEMY STUDENT</cite>
+        <blockquote>“Training here changed how I think during games — not just which moves to play, but why.”</blockquote>
+        <cite>Saran Chess Academy student</cite>
       </div>
     </div>
   </div>
 </section>
 
-<section id="pricing" class="pricing">
-  <div class="wrap">
-    <div class="coord-label">PRICING</div>
-    <h2 class="display">Clear plans. Real progress.<br><em>No guesswork.</em></h2>
-    <p>Choose India or International pricing. Start monthly or save with yearly.</p>
-    <div class="region-tabs">
-      <button class="region-tab active" data-region="in" type="button">India (₹)</button>
-      <button class="region-tab" data-region="intl" type="button">International ($)</button>
+<section id="pricing">
+  <div class="wrap pricing-wrap">
+    <div class="sec-head reveal">
+      <div class="sec-label">Pricing</div>
+      <h2 class="sec-title">Simple plans</h2>
+      <p class="sec-desc">India or international. Monthly or yearly.</p>
     </div>
-    <div class="pricing-cards" id="priceIn">
+    <div class="tabs reveal">
+      <button class="tab active" data-region="in" type="button">India (₹)</button>
+      <button class="tab" data-region="intl" type="button">International ($)</button>
+    </div>
+    <div class="price-row reveal" id="priceIn">
       <div class="price-card">
-        <div class="price-card-label">Monthly</div>
-        <div class="price-card-amount">₹2,999<span>/ month</span></div>
-        <a class="btn-primary" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start Monthly</a>
+        <div class="label">Monthly</div>
+        <div class="amount">₹2,999<span>/mo</span></div>
+        <a class="btn btn-outline" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start monthly</a>
       </div>
       <div class="price-card featured">
-        <div class="price-card-badge">BEST VALUE · SAVE ₹6,000</div>
-        <div class="price-card-label">Yearly</div>
-        <div class="price-card-amount">₹29,999<span>/ year</span></div>
-        <a class="btn-primary" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start Yearly</a>
+        <div class="tag">Best value</div>
+        <div class="label">Yearly</div>
+        <div class="amount">₹29,999<span>/yr</span></div>
+        <a class="btn btn-green" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start yearly</a>
       </div>
     </div>
-    <div class="pricing-cards" id="priceIntl" style="display:none">
+    <div class="price-row reveal" id="priceIntl" style="display:none">
       <div class="price-card">
-        <div class="price-card-label">Monthly</div>
-        <div class="price-card-amount">$50<span>/ month</span></div>
-        <a class="btn-primary" href="https://rzp.io/rzp/AgH7laAA" target="_blank" rel="noopener">Start Monthly</a>
+        <div class="label">Monthly</div>
+        <div class="amount">$50<span>/mo</span></div>
+        <a class="btn btn-outline" href="https://rzp.io/rzp/AgH7laAA" target="_blank" rel="noopener">Start monthly</a>
       </div>
       <div class="price-card featured">
-        <div class="price-card-badge">BEST VALUE · SAVE $100</div>
-        <div class="price-card-label">Yearly</div>
-        <div class="price-card-amount">$500<span>/ year</span></div>
-        <a class="btn-primary" href="https://rzp.io/rzp/j4oz4Ry" target="_blank" rel="noopener">Start Yearly</a>
+        <div class="tag">Best value</div>
+        <div class="label">Yearly</div>
+        <div class="amount">$500<span>/yr</span></div>
+        <a class="btn btn-green" href="https://rzp.io/rzp/j4oz4Ry" target="_blank" rel="noopener">Start yearly</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="join">
+<section id="join" style="border-top:1px solid var(--border)">
   <div class="wrap">
-    <div class="inquire-grid reveal">
+    <div class="form-grid reveal">
       <div>
-        <div class="coord-label">G5 — START HERE</div>
-        <h2 class="display" style="font-size:clamp(28px,3.5vw,40px);font-weight:500;line-height:1.2;margin-bottom:18px;">Not sure where<br>to begin?</h2>
-        <p style="color:var(--muted);line-height:1.7;max-width:400px;">Tell us your current level and goal. We’ll help you choose the right training path before you commit.</p>
-        <div style="margin-top:32px;display:flex;gap:36px;flex-wrap:wrap;">
-          <div>
-            <div style="font-family:'Space Mono',monospace;font-size:20px;color:var(--gold-bright);">Free</div>
-            <div style="font-size:11px;color:var(--muted);letter-spacing:0.04em;margin-top:4px;text-transform:uppercase;">Initial guidance</div>
-          </div>
-          <div>
-            <div style="font-family:'Space Mono',monospace;font-size:20px;color:var(--gold-bright);">EN + HI</div>
-            <div style="font-size:11px;color:var(--muted);letter-spacing:0.04em;margin-top:4px;text-transform:uppercase;">Language support</div>
-          </div>
+        <div class="sec-label">Get started</div>
+        <h2 class="sec-title">Not sure where to begin?</h2>
+        <p class="sec-desc">Share your level and goal. We’ll help you pick the right path before you commit.</p>
+        <div class="pill-row">
+          <span class="pill">Free initial guidance</span>
+          <span class="pill">English & Hindi</span>
         </div>
       </div>
-      <form class="lead-form" id="leadForm">
+      <form class="form-box" id="leadForm">
         <input type="text" name="name" placeholder="Your name" required>
         <input type="text" name="contact" placeholder="Phone or email" required>
         <select name="rating">
@@ -442,92 +581,82 @@ footer{padding:48px 0 36px;}
           <option value="Openings">Build repertoire</option>
           <option value="1:1 coaching">1:1 coaching</option>
         </select>
-        <button type="submit" class="btn-primary" id="leadBtn">Request a Training Call →</button>
-        <div class="lead-form-msg" id="leadMsg"></div>
+        <button type="submit" class="btn btn-solid" id="leadBtn" style="width:100%;margin-top:4px">Request a training call</button>
+        <div class="form-msg" id="leadMsg"></div>
       </form>
     </div>
   </div>
 </section>
 
-<section id="faq">
+<section id="faq" style="background:var(--bg2);border-top:1px solid var(--border)">
   <div class="wrap">
-    <div class="programs-head reveal">
-      <div>
-        <div class="coord-label">FAQ</div>
-        <h2 class="display">Common questions.</h2>
-      </div>
+    <div class="sec-head reveal">
+      <div class="sec-label">FAQ</div>
+      <h2 class="sec-title">Common questions</h2>
     </div>
-    <div class="faq-grid reveal">
-      <details><summary>Who is this for?</summary><p>Beginners building fundamentals, intermediate players stuck on a plateau, and competitive players preparing for tournaments.</p></details>
-      <details><summary>Is training online or offline?</summary><p>Sessions are primarily online so you can train from anywhere. Formats can be adjusted based on your location and preference.</p></details>
-      <details><summary>Do I need a chess board?</summary><p>A physical board helps, but online platforms (Chess.com / Lichess) work well for most training and analysis sessions.</p></details>
-      <details><summary>How is this different from free videos?</summary><p>You get a structured path, feedback on your own games, and coaching that connects concepts to real decisions over the board.</p></details>
-      <details><summary>Can I prepare for tournaments?</summary><p>Yes. Tournament preparation can include opening review, tactical readiness, opponent preparation and practical game planning.</p></details>
-      <details><summary>What languages do you teach in?</summary><p>Sessions are available in English and Hindi with clear, practical explanations.</p></details>
+    <div class="faq-list reveal">
+      <details><summary>Who is this for?</summary><p>Beginners, intermediate players stuck on a plateau, and competitive players preparing for tournaments.</p></details>
+      <details><summary>Online or offline?</summary><p>Primarily online so you can train from anywhere. Formats can adjust to your preference.</p></details>
+      <details><summary>Do I need a physical board?</summary><p>Helpful, but Chess.com / Lichess work well for most sessions and analysis.</p></details>
+      <details><summary>How is this different from free videos?</summary><p>You get a structured path, feedback on your games, and coaching tied to real decisions over the board.</p></details>
+      <details><summary>Tournament preparation?</summary><p>Yes — openings, tactics readiness, opponent prep, and practical planning.</p></details>
+      <details><summary>Languages?</summary><p>English and Hindi, with clear practical explanations.</p></details>
     </div>
   </div>
 </section>
 
-<section class="cta">
-  <div class="wrap reveal">
-    <div class="coord-label" style="justify-content:center;">YOUR NEXT MOVE</div>
-    <h2 class="display">Every strong player started with <em style="color:var(--gold-bright);font-style:italic;font-weight:300;">one move.</em></h2>
-    <p>Start with a clear training plan and build your chess one decision at a time.</p>
-    <div class="hero-ctas" style="margin-top:36px;">
-      <a href="#join" class="btn-primary">Start Training →</a>
-      <a href="#coach" class="btn-ghost">Meet the Coach</a>
-    </div>
+<section class="cta-band">
+  <h2>Every strong player started with one move.</h2>
+  <p>Get a clear plan and build from there.</p>
+  <div class="hero-ctas">
+    <a href="#join" class="btn btn-solid">Start training</a>
+    <a href="#coach" class="btn btn-outline">Meet the coach</a>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">
-    <div class="foot-brand"><span class="sq" style="width:14px;height:14px;background:var(--gold);display:inline-block;transform:rotate(45deg);"></span>Saran Chess Academy</div>
-    <div class="foot-row">
-      <div>© 2026 Saran Chess Academy · Learn. Think. Play.</div>
-      <div class="foot-links">
-        <a href="#coach">Coach</a>
-        <a href="#programs">Programs</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#join">Contact</a>
-      </div>
+  <div class="wrap foot">
+    <div class="logo" style="font-size:14px"><span class="logo-mark" style="width:24px;height:24px;font-size:12px">♟</span>Saran Chess Academy</div>
+    <div>© 2026 Saran Chess Academy</div>
+    <div class="foot-links">
+      <a href="#coach">Coach</a>
+      <a href="#programs">Programs</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#join">Contact</a>
     </div>
   </div>
 </footer>
 
 <script>
-const board=document.getElementById('boardField');
-for(let i=0;i<64;i++) board.appendChild(document.createElement('div'));
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
 
-const LEAD_ENDPOINT="https://script.google.com/macros/s/AKfycbyn4ox_ddK6q5LKXVmDwU8SjiBUrWuYBvErWzHr1GD76VZmK_Ce4GkZrvZMWnqN8Lam/exec";
-const form=document.getElementById("leadForm"),btn=document.getElementById("leadBtn"),msg=document.getElementById("leadMsg");
-form.addEventListener("submit",e=>{
-  e.preventDefault();
-  btn.disabled=true;btn.textContent="Sending…";msg.textContent="";msg.className="lead-form-msg";
-  const d=new FormData(form);
-  const payload={name:d.get("name"),contact:d.get("contact"),rating:d.get("rating")||"Not specified",goal:d.get("goal")};
-  fetch(LEAD_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})
-  .then(()=>{msg.textContent="Thanks! We'll get back to you soon.";msg.className="lead-form-msg success";form.reset();btn.disabled=false;btn.textContent="Request a Training Call →";})
-  .catch(()=>{msg.textContent="Something went wrong. Please try again.";msg.className="lead-form-msg error";btn.disabled=false;btn.textContent="Request a Training Call →";});
+const drawer=document.getElementById('drawer');
+document.getElementById('navToggle').onclick=()=>drawer.classList.toggle('open');
+drawer.querySelectorAll('[data-close]').forEach(a=>a.onclick=()=>drawer.classList.remove('open'));
+
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  const intl=t.dataset.region==='intl';
+  document.getElementById('priceIn').style.display=intl?'none':'flex';
+  document.getElementById('priceIntl').style.display=intl?'flex':'none';
 });
 
-document.querySelectorAll(".region-tab").forEach(s=>s.addEventListener("click",()=>{
-  document.querySelectorAll(".region-tab").forEach(x=>x.classList.remove("active"));
-  s.classList.add("active");
-  const intl=s.dataset.region==="intl";
-  document.getElementById("priceIn").style.display=intl?"none":"flex";
-  document.getElementById("priceIntl").style.display=intl?"flex":"none";
-}));
+const LEAD_ENDPOINT="https://script.google.com/macros/s/AKfycbyn4ox_ddK6q5LKXVmDwU8SjiBUrWuYBvErWzHr1GD76VZmK_Ce4GkZrvZMWnqN8Lam/exec";
+const form=document.getElementById('leadForm'),btn=document.getElementById('leadBtn'),msg=document.getElementById('leadMsg');
+form.onsubmit=e=>{
+  e.preventDefault();
+  btn.disabled=true;btn.textContent='Sending…';msg.textContent='';msg.className='form-msg';
+  const d=new FormData(form);
+  const payload={name:d.get('name'),contact:d.get('contact'),rating:d.get('rating')||'Not specified',goal:d.get('goal')};
+  fetch(LEAD_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
+  .then(()=>{msg.textContent="Thanks! We'll get back to you soon.";msg.className='form-msg ok';form.reset();btn.disabled=false;btn.textContent='Request a training call'})
+  .catch(()=>{msg.textContent='Something went wrong. Please try again.';msg.className='form-msg err';btn.disabled=false;btn.textContent='Request a training call'});
+};
 
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.12});
-document.querySelectorAll(".reveal").forEach(x=>io.observe(x));
-
-const navToggle=document.getElementById("navToggle");
-const mobileDrawer=document.getElementById("mobileDrawer");
-if(navToggle&&mobileDrawer){
-  navToggle.addEventListener("click",()=>mobileDrawer.classList.toggle("open"));
-  mobileDrawer.querySelectorAll("[data-close]").forEach(a=>a.addEventListener("click",()=>mobileDrawer.classList.remove("open")));
-}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
 </script>
 </body>
 </html>
