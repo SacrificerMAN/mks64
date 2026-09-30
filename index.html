@@ -5,7 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0A0F1F">
 <meta name="description" content="MKS64 Chess Academy — structured chess coaching, tournament preparation and practical game analysis by Mohit Kumar Soni. 2520+ rated coach.">
+<meta name="keywords" content="chess coaching, chess academy, online chess lessons, tournament preparation, Mohit Kumar Soni, MKS64">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MKS64 — Chess Mastery, One Square at a Time">
+<meta property="og:description" content="Structured chess coaching from a 2520+ rated coach. Beginner to tournament prep. English & Hindi.">
+<meta property="og:image" content="founder.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MKS64 Chess Academy">
+<meta name="twitter:description" content="Learn chess from someone who plays at the board — not just teaches it.">
 <title>MKS64 — Chess Mastery, One Square at a Time</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0F1F'/%3E%3Crect x='10' y='10' width='12' height='12' fill='%23C9A24B' transform='rotate(45 16 16)'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -43,6 +52,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .navlinks a:hover{color:var(--gold-bright);}
 .nav-cta{border:1px solid var(--gold);color:var(--gold-bright);padding:9px 20px;font-size:13px;letter-spacing:0.03em;transition:all .25s;}
 .nav-cta:hover{background:var(--gold);color:var(--bg);}
+.nav-toggle{display:none;background:transparent;border:1px solid var(--line);color:var(--ivory);width:42px;height:42px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px;}
+.nav-toggle span{display:block;width:18px;height:1.5px;background:var(--gold-bright);}
+.mobile-drawer{display:none;position:fixed;inset:0;z-index:99;background:rgba(10,15,31,0.97);padding:100px 32px 40px;flex-direction:column;gap:24px;}
+.mobile-drawer.open{display:flex;}
+.mobile-drawer a{font-family:'Fraunces',serif;font-size:28px;color:var(--ivory);padding:8px 0;border-bottom:1px solid var(--line);}
+.mobile-drawer a:hover{color:var(--gold-bright);}
+.mobile-drawer .nav-cta{display:inline-block;width:fit-content;margin-top:12px;text-align:center;}
 
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:100px;overflow:hidden;}
 .board-field{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);opacity:0.45;mask-image:radial-gradient(ellipse 70% 60% at 60% 40%,black 0%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 60% 40%,black 0%,transparent 75%);}
@@ -173,6 +189,8 @@ footer{padding:48px 0 36px;}
 
 @media(max-width:700px){
   .navlinks{display:none;}
+  .nav-toggle{display:flex;}
+  .nav-cta{display:none;}
   nav{padding:16px 20px;}
   .wrap{padding:0 20px;}
   section{padding:80px 0;}
@@ -191,7 +209,18 @@ footer{padding:48px 0 36px;}
     <a href="#faq">FAQ</a>
   </div>
   <a href="#join" class="nav-cta">Book a Trial</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" type="button">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="#coach" data-close>Coach</a>
+  <a href="#programs" data-close>Programs</a>
+  <a href="#results" data-close>Results</a>
+  <a href="#pricing" data-close>Pricing</a>
+  <a href="#faq" data-close>FAQ</a>
+  <a href="#join" class="nav-cta" data-close>Book a Trial</a>
+</div>
 
 <section class="hero">
   <div class="board-field" id="boardField"></div>
@@ -317,46 +346,46 @@ footer{padding:48px 0 36px;}
       <p>Tournament moments from the academy community.</p>
     </div>
     <div class="gallery reveal">
-      <img src="s1_1.jpg" alt="MKS64 student at a chess tournament">
-      <img src="s2_1.jpg" alt="MKS64 student with tournament achievement">
-      <img src="s3_1.jpg" alt="MKS64 student at a tournament">
-      <img src="s4_1.jpg" alt="MKS64 student with chess award">
-      <img src="s5.jpg" alt="MKS64 student tournament moment">
-      <img src="s6_1.jpg" alt="MKS64 student with chess trophy">
-      <img src="s7_1.jpg" alt="MKS64 student chess achievement">
-      <img src="s8_1.jpg" alt="MKS64 student playing chess">
-      <img src="s9.jpg" alt="MKS64 student at chess event">
-      <img src="s10_1.jpg" alt="MKS64 student over the chessboard">
+      <img loading="lazy" src="s1_1.jpg" alt="MKS64 student at a chess tournament">
+      <img loading="lazy" src="s2_1.jpg" alt="MKS64 student with tournament achievement">
+      <img loading="lazy" src="s3_1.jpg" alt="MKS64 student at a tournament">
+      <img loading="lazy" src="s4_1.jpg" alt="MKS64 student with chess award">
+      <img loading="lazy" src="s5.jpg" alt="MKS64 student tournament moment">
+      <img loading="lazy" src="s6_1.jpg" alt="MKS64 student with chess trophy">
+      <img loading="lazy" src="s7_1.jpg" alt="MKS64 student chess achievement">
+      <img loading="lazy" src="s8_1.jpg" alt="MKS64 student playing chess">
+      <img loading="lazy" src="s9.jpg" alt="MKS64 student at chess event">
+      <img loading="lazy" src="s10_1.jpg" alt="MKS64 student over the chessboard">
     </div>
     <div class="testimonial reveal">
-      <img class="quoteAvatar" src="s10_1.jpg" alt="Chess student">
+      <img loading="lazy" class="quoteAvatar" src="s10_1.jpg" alt="Chess student">
       <div>
-        <blockquote>“The goal is not to make students dependent on a coach. The goal is to teach them how to think for themselves when the clock is running and the position gets difficult.”</blockquote>
-        <cite>— MKS64 COACHING PHILOSOPHY</cite>
+        <blockquote>“Training at MKS64 changed how I think during games — not just which moves to play, but why.”</blockquote>
+        <cite>— MKS64 STUDENT</cite>
       </div>
     </div>
   </div>
 </section>
 
 <section id="pricing" class="pricing">
-  <div class="wrap reveal">
-    <div class="coord-label">F6 — MEMBERSHIP</div>
-    <h2 class="display">Choose your <em>training plan.</em></h2>
-    <p>Structured academy access with a simple monthly or yearly option.</p>
-    <div class="region-tabs" id="regionTabs">
-      <button type="button" class="region-tab active" data-region="in">India ₹</button>
-      <button type="button" class="region-tab" data-region="intl">International $</button>
+  <div class="wrap">
+    <div class="coord-label">PRICING</div>
+    <h2 class="display">Clear plans. Real progress.<br><em>No guesswork.</em></h2>
+    <p>Choose India or International pricing. Start monthly or save with yearly.</p>
+    <div class="region-tabs">
+      <button class="region-tab active" data-region="in" type="button">India (₹)</button>
+      <button class="region-tab" data-region="intl" type="button">International ($)</button>
     </div>
     <div class="pricing-cards" id="priceIn">
       <div class="price-card">
         <div class="price-card-label">Monthly</div>
-        <div class="price-card-amount">₹2,000<span>/ month</span></div>
-        <a class="btn-primary" href="https://rzp.io/rzp/96MjIUUY" target="_blank" rel="noopener">Start Monthly</a>
+        <div class="price-card-amount">₹2,999<span>/ month</span></div>
+        <a class="btn-primary" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start Monthly</a>
       </div>
       <div class="price-card featured">
-        <div class="price-card-badge">BEST VALUE · SAVE ₹9,000</div>
+        <div class="price-card-badge">BEST VALUE · SAVE ₹6,000</div>
         <div class="price-card-label">Yearly</div>
-        <div class="price-card-amount">₹15,000<span>/ year</span></div>
+        <div class="price-card-amount">₹29,999<span>/ year</span></div>
         <a class="btn-primary" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start Yearly</a>
       </div>
     </div>
@@ -492,6 +521,13 @@ document.querySelectorAll(".region-tab").forEach(s=>s.addEventListener("click",(
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(x=>io.observe(x));
+
+const navToggle=document.getElementById("navToggle");
+const mobileDrawer=document.getElementById("mobileDrawer");
+if(navToggle&&mobileDrawer){
+  navToggle.addEventListener("click",()=>mobileDrawer.classList.toggle("open"));
+  mobileDrawer.querySelectorAll("[data-close]").forEach(a=>a.addEventListener("click",()=>mobileDrawer.classList.remove("open")));
+}
 </script>
 </body>
 </html>
