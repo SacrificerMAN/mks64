@@ -7,10 +7,10 @@
   const wrap = document.createElement("div");
   wrap.innerHTML = `<button class="chat-fab" id="chatFab" type="button">♟</button>
 <div class="chat-panel" id="chatPanel">
-  <div class="chat-head"><i class="dot"></i><div><strong>Academy Coach</strong><span>Academy · Chess64 Studio · AFCS</span></div></div>
-  <div class="chat-msgs" id="chatMsgs"><div class="bubble bot">Namaste. Academy, Chess64 Studio, ya AFCS — poochho. Naam + phone/email likho to lead auto-save ho jayegi.</div></div>
+  <div class="chat-head"><i class="dot"></i><div><strong>Academy Coach</strong><span>Academy · Studio · AFCS reports</span></div></div>
+  <div class="chat-msgs" id="chatMsgs"><div class="bubble bot">Namaste. Academy coaching, Chess64 Studio videos, ya AFCS report (FIDE/Chess.com/Lichess links) — poochho. Naam + phone/email likho to lead save ho jayega.</div></div>
   <p class="chat-hint">AI assistant · name/phone saves to the same lead sheet</p>
-  <form class="chat-form" id="chatForm"><input id="chatInput" autocomplete="off" placeholder="Naam + number ya sawaal"><button type="submit">Send</button></form>
+  <form class="chat-form" id="chatForm"><input id="chatInput" autocomplete="off" placeholder="Naam + number ya profile links"><button type="submit">Send</button></form>
 </div>`;
   document.body.appendChild(wrap);
   const fab = document.getElementById("chatFab");
