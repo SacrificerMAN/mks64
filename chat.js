@@ -46,7 +46,7 @@
   <div class="chat-head">
     <div class="chat-head-left">
       <i class="dot"></i>
-      <div><strong>Academy Coach</strong><span>Saran Chess Academy · voice ready</span></div>
+      <div><strong>Academy Coach</strong><span>Saran Chess Academy · calm coach voice</span></div>
     </div>
     <div class="chat-head-actions">
       <button type="button" class="icon-btn on" id="ttsToggle" title="Voice replies on/off" aria-label="Toggle voice replies">🔊</button>
@@ -121,20 +121,47 @@
     return /[\u0900-\u097F]/.test(text || "") ? "hi-IN" : "en-IN";
   }
 
+  function pickCalmVoice(lang) {
+    const voices = window.speechSynthesis.getVoices() || [];
+    if (!voices.length) return null;
+    const name = (v) => (v.name || "") + " " + (v.lang || "");
+    const score = (v) => {
+      let s = 0;
+      const n = name(v);
+      if (lang.startsWith("hi")) {
+        if (/hi(-|_)IN|Hindi/i.test(n)) s += 50;
+        else if (/hi(-|_)/i.test(n)) s += 30;
+      } else {
+        if (/en(-|_)IN|India/i.test(n)) s += 40;
+        else if (/en(-|_)GB|UK|British/i.test(n)) s += 35;
+        else if (/en(-|_)US|en(-|_)AU/i.test(n)) s += 25;
+        else if (/^en/i.test(v.lang || "")) s += 15;
+      }
+      if (/Natural|Neural|Premium|Enhanced|Online/i.test(n)) s += 20;
+      if (/Google|Microsoft|Apple|Samantha|Daniel|Karen|Rishi|Neerja|Lekha|Veena/i.test(n)) s += 12;
+      if (/Robot|Bad|Joke|Whisper|Zarvox|Trinoids|Bells|Organ|Cellos/i.test(n)) s -= 40;
+      if (v.localService) s += 3;
+      return s;
+    };
+    return voices.slice().sort((a, b) => score(b) - score(a))[0] || null;
+  }
+
   function speak(text) {
     if (!ttsOn || !hasTTS || !text) return;
     try {
       window.speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = pickLang(text);
-      u.rate = 1;
-      u.pitch = 1;
-      const voices = window.speechSynthesis.getVoices() || [];
-      const want = u.lang.startsWith("hi")
-        ? voices.find((v) => /hi(-|_)|Hindi/i.test(v.lang + v.name))
-        : voices.find((v) => /en-IN|English.*India/i.test(v.lang + v.name)) ||
-          voices.find((v) => /^en/i.test(v.lang));
-      if (want) u.voice = want;
+      const clean = String(text).replace(/\n+/g, ". ").replace(/\s{2,}/g, " ").trim();
+      const u = new SpeechSynthesisUtterance(clean);
+      const lang = pickLang(clean);
+      u.lang = lang;
+      u.rate = 0.9;
+      u.pitch = 0.95;
+      u.volume = 1;
+      const voice = pickCalmVoice(lang);
+      if (voice) {
+        u.voice = voice;
+        if (voice.lang) u.lang = voice.lang;
+      }
       window.speechSynthesis.speak(u);
     } catch (_) {}
   }
