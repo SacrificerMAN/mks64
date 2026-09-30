@@ -2,134 +2,496 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#07111f">
-<meta name="description" content="MKS64 Chess Academy — structured chess coaching, tournament preparation and practical game analysis by Mohit Kumar Soni.">
-<title>MKS64 Chess Academy | Learn Chess. Think Better. Play Stronger.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0F1F">
+<meta name="description" content="MKS64 Chess Academy — structured chess coaching, tournament preparation and practical game analysis by Mohit Kumar Soni. 2520+ rated coach.">
+<title>MKS64 — Chess Mastery, One Square at a Time</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#07111f;--navy2:#0b182b;--panel:#0f2035;--gold:#d5ad4b;--gold2:#f0cf72;--cream:#f5f1e7;--muted:#9ba9bb;--line:rgba(213,173,75,.22);--green:#71d1a0}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--navy);color:var(--cream);font-family:"DM Sans",sans-serif;line-height:1.6;overflow-x:hidden}a{text-decoration:none;color:inherit}button,input,select{font:inherit}img{max-width:100%;display:block}
-.wrap{width:min(1180px,calc(100% - 40px));margin:auto}.serif{font-family:"Playfair Display",serif}.mono{font-family:"Space Mono",monospace}.gold{color:var(--gold2)}
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:18px 0;background:rgba(7,17,31,.72);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.05)}
-.navin{display:flex;align-items:center;justify-content:space-between;gap:24px}.logo{display:flex;align-items:center;gap:11px;font-weight:700;font-size:21px}.logoMark{width:25px;height:25px;border:2px solid var(--gold);position:relative;transform:rotate(45deg)}.logoMark:after{content:"";position:absolute;inset:5px;background:var(--gold)}
-.links{display:flex;gap:30px;color:var(--muted);font-size:14px}.links a:hover{color:var(--gold2)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 22px;border-radius:4px;font-weight:700;font-size:14px;border:1px solid transparent;transition:.25s;cursor:pointer}.primary{background:var(--gold);color:#07111f}.primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 14px 35px rgba(213,173,75,.2)}.outline{border-color:var(--line);color:var(--cream);background:rgba(255,255,255,.02)}.outline:hover{border-color:var(--gold);color:var(--gold2)}
-.hero{min-height:850px;position:relative;display:flex;align-items:center;padding:140px 0 90px;overflow:hidden;background:radial-gradient(circle at 78% 42%,rgba(213,173,75,.13),transparent 28%),linear-gradient(135deg,#07111f 0%,#0b192d 55%,#07111f 100%)}
-.hero:before{content:"";position:absolute;inset:0;opacity:.16;background-image:linear-gradient(45deg,rgba(255,255,255,.08) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.08) 75%),linear-gradient(45deg,rgba(255,255,255,.08) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.08) 75%);background-size:92px 92px;background-position:0 0,46px 46px;mask-image:linear-gradient(to right,transparent 5%,black 45%,black 100%)}
-.heroGrid{position:absolute;right:-80px;top:125px;width:min(650px,58vw);aspect-ratio:1;border:1px solid rgba(213,173,75,.13);transform:rotate(4deg);box-shadow:0 0 100px rgba(213,173,75,.08)}.heroGrid:before{content:"";position:absolute;inset:12.5%;border:1px solid rgba(213,173,75,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
-.heroContent{position:relative;z-index:2;max-width:790px}.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold2);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:24px}.eyebrow:before{content:"";width:30px;height:1px;background:var(--gold)}
-h1{font-size:clamp(48px,7.3vw,92px);line-height:.98;letter-spacing:-.045em;font-weight:600}h1 em{font-weight:500;color:var(--gold2)}.heroText{max-width:610px;color:var(--muted);font-size:18px;margin-top:28px}.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:35px}
-.trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:44px}.trustItem{padding-left:15px;border-left:1px solid var(--gold)}.trustNum{font-size:20px;font-weight:700}.trustLbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-section{padding:105px 0}.sectionTop{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:48px}.kicker{font-family:"Space Mono";font-size:11px;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}.sectionTitle{font-size:clamp(34px,4.6vw,58px);line-height:1.06;letter-spacing:-.03em}.sectionDesc{max-width:420px;color:var(--muted);font-size:15px}
-.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:75px;align-items:center}.portrait{position:relative;background:var(--panel);border:1px solid var(--line);padding:10px}.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top}.badge{position:absolute;left:-15px;bottom:28px;background:var(--gold);color:#07111f;padding:14px 18px;font-weight:800;box-shadow:10px 10px 0 rgba(7,17,31,.8)}.aboutCopy p{color:var(--muted);margin-top:22px;max-width:620px}.featureList{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px}.feature{padding:18px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06)}.feature b{display:block;margin-bottom:4px}.feature span{font-size:13px;color:var(--muted)}
-.programs{background:linear-gradient(180deg,#081424,#0a1728)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{position:relative;background:rgba(255,255,255,.025);border:1px solid var(--line);padding:30px;min-height:275px;overflow:hidden;transition:.3s}.card:hover{transform:translateY(-5px);border-color:rgba(213,173,75,.6);background:rgba(213,173,75,.045)}.cardNum{font-family:"Space Mono";font-size:11px;color:var(--gold);letter-spacing:.1em}.card h3{font-size:25px;margin:42px 0 10px}.card p{color:var(--muted);font-size:14px}.card a{display:inline-block;margin-top:22px;color:var(--gold2);font-size:13px;font-weight:700}.card:after{content:"♟";position:absolute;right:-12px;bottom:-32px;font-size:145px;color:rgba(213,173,75,.035)}
-.process{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.step{padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:190px}.stepNo{font-family:"Space Mono";color:var(--gold);font-size:12px}.step h3{margin:35px 0 8px}.step p{font-size:13px;color:var(--muted)}
-.results{background:#0a1626}.gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.gallery img{width:100%;aspect-ratio:3/4;object-fit:cover;border:1px solid var(--line);filter:saturate(.8);transition:.35s}.gallery img:hover{filter:saturate(1.1);transform:scale(1.025)}
-.testimonial{margin-top:55px;padding:45px;background:linear-gradient(135deg,rgba(213,173,75,.09),rgba(255,255,255,.025));border:1px solid var(--line);display:grid;grid-template-columns:120px 1fr;gap:35px;align-items:center}.quoteAvatar{width:120px;height:120px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)}blockquote{font-family:"Playfair Display";font-size:25px;line-height:1.45}cite{display:block;margin-top:18px;font-family:"Space Mono";font-size:11px;color:var(--gold2);font-style:normal}
-.pricing{border-top:1px solid var(--line)}.priceSwitch{display:flex;width:max-content;margin:25px auto 35px;border:1px solid var(--line)}.switch{background:transparent;border:0;color:var(--muted);padding:10px 18px;cursor:pointer}.switch.active{background:var(--gold);color:#07111f;font-weight:700}.priceGrid{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}.price{width:290px;background:var(--panel);border:1px solid var(--line);padding:30px;text-align:left}.price.featured{border-color:var(--gold);box-shadow:0 18px 55px rgba(0,0,0,.25)}.priceLabel{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}.amount{font-family:"Space Mono";font-size:31px;color:var(--gold2);margin:12px 0 22px}.amount small{font-family:"DM Sans";font-size:13px;color:var(--muted)}.price .btn{width:100%}.save{font-size:10px;background:var(--gold);color:#07111f;padding:5px 9px;display:inline-block;margin-bottom:14px;font-weight:800}
-.lead{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px}.form{display:grid;gap:13px}.form input,.form select{width:100%;padding:14px 16px;background:var(--panel);border:1px solid var(--line);color:var(--cream);outline:none}.form input:focus,.form select:focus{border-color:var(--gold)}.msg{font-family:"Space Mono";font-size:12px;min-height:18px}.success{color:var(--green)}
-.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}.faq details{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);padding:19px}.faq summary{cursor:pointer;font-weight:700}.faq p{color:var(--muted);font-size:14px;margin-top:12px}
-.cta{padding:85px 0;background:radial-gradient(circle at center,rgba(213,173,75,.13),transparent 45%),#081321;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.cta p{color:var(--muted);max-width:550px;margin:18px auto 0}.cta .actions{justify-content:center}
-footer{padding:40px 0;color:var(--muted);font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.07);padding-top:25px}
-@media(max-width:900px){.links{display:none}.hero{min-height:760px}.heroGrid{width:75vw;opacity:.55}.about,.lead{grid-template-columns:1fr;gap:45px}.cards{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:repeat(3,1fr)}.sectionTop{align-items:start;flex-direction:column}.testimonial{grid-template-columns:1fr;text-align:center}.quoteAvatar{margin:auto}}
-@media(max-width:600px){.wrap{width:min(100% - 28px,1180px)}section{padding:75px 0}.hero{padding-top:120px}.heroText{font-size:16px}.trust{gap:18px}.cards{grid-template-columns:1fr}.process{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}.featureList{grid-template-columns:1fr}.testimonial{padding:28px 20px}blockquote{font-size:20px}.price{width:100%;max-width:340px}}
-.reveal{opacity:0;transform:translateY(18px);transition:.7s ease}.reveal.in{opacity:1;transform:none}
+:root{
+  --bg:#0A0F1F;
+  --bg-elevated:#101830;
+  --board-dark:#0D1428;
+  --board-light:#161F3C;
+  --gold:#C9A24B;
+  --gold-bright:#E8C767;
+  --ivory:#EAE6DA;
+  --muted:#8891AD;
+  --line:rgba(201,162,75,0.20);
+  --green:#71d1a0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ivory);font-family:'Inter',sans-serif;overflow-x:hidden;line-height:1.6;}
+::selection{background:var(--gold);color:var(--bg);}
+.mono{font-family:'Space Mono',monospace;}
+.display{font-family:'Fraunces',serif;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+button,input,select{font:inherit;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){*{animation-duration:0.001ms!important;transition-duration:0.001ms!important;}}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:linear-gradient(to bottom,rgba(10,15,31,0.94),rgba(10,15,31,0));backdrop-filter:blur(8px);}
+.brandmark{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:700;font-size:22px;letter-spacing:0.02em;}
+.brandmark .sq{width:16px;height:16px;background:var(--gold);display:inline-block;transform:rotate(45deg);}
+.navlinks{display:flex;gap:36px;font-size:14px;color:var(--muted);}
+.navlinks a{transition:color .25s;}
+.navlinks a:hover{color:var(--gold-bright);}
+.nav-cta{border:1px solid var(--gold);color:var(--gold-bright);padding:9px 20px;font-size:13px;letter-spacing:0.03em;transition:all .25s;}
+.nav-cta:hover{background:var(--gold);color:var(--bg);}
+
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:100px;overflow:hidden;}
+.board-field{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);opacity:0.45;mask-image:radial-gradient(ellipse 70% 60% at 60% 40%,black 0%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 60% 40%,black 0%,transparent 75%);}
+.board-field div:nth-child(odd){background:var(--board-dark);}
+.board-field div:nth-child(even){background:var(--board-light);}
+.hero-content{position:relative;z-index:2;width:100%;}
+.eyebrow{font-family:'Space Mono',monospace;font-size:13px;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:28px;opacity:0;animation:fadeUp .8s ease forwards .1s;}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+.hero h1{font-size:clamp(44px,7.5vw,96px);font-weight:600;line-height:0.98;letter-spacing:-0.02em;max-width:900px;opacity:0;animation:fadeUp .9s ease forwards .25s;}
+.hero h1 em{font-style:italic;font-weight:300;color:var(--gold-bright);}
+.hero p.sub{margin-top:28px;max-width:540px;font-size:18px;line-height:1.65;color:var(--muted);opacity:0;animation:fadeUp .9s ease forwards .4s;}
+.hero-ctas{margin-top:40px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;opacity:0;animation:fadeUp .9s ease forwards .55s;}
+.btn-primary{background:var(--gold);color:var(--bg);padding:15px 32px;font-size:15px;font-weight:600;letter-spacing:0.02em;transition:transform .25s,box-shadow .25s;display:inline-block;border:none;cursor:pointer;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(201,162,75,0.5);}
+.btn-ghost{color:var(--ivory);font-size:15px;padding:15px 8px;border-bottom:1px solid var(--line);display:inline-flex;align-items:center;gap:8px;transition:border-color .25s;}
+.btn-ghost:hover{border-color:var(--gold);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.hero-rating{position:absolute;right:32px;top:160px;z-index:2;text-align:right;opacity:0;animation:fadeUp .9s ease forwards .7s;}
+.hero-rating .num{font-family:'Fraunces',serif;font-size:80px;font-weight:300;color:var(--gold-bright);line-height:1;}
+.hero-rating .lbl{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em;margin-top:6px;}
+@media(max-width:900px){.hero-rating{display:none;}}
+
+.coord-label{font-family:'Space Mono',monospace;font-size:13px;color:var(--gold);letter-spacing:0.1em;display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.coord-label::after{content:'';flex:1;height:1px;background:var(--line);}
+section{padding:120px 0;}
+
+.founder{display:grid;grid-template-columns:0.9fr 1.1fr;gap:72px;align-items:center;}
+@media(max-width:860px){.founder{grid-template-columns:1fr;gap:48px;}}
+.founder-visual{position:relative;aspect-ratio:4/5;background:var(--bg-elevated);border:1px solid var(--line);overflow:hidden;}
+.founder-visual img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:grayscale(12%) contrast(1.05);}
+.founder-visual .corner{position:absolute;width:22px;height:22px;border:1px solid var(--gold);}
+.corner.tl{top:-1px;left:-1px;border-right:none;border-bottom:none;}
+.corner.br{bottom:-1px;right:-1px;border-left:none;border-top:none;}
+.founder h2{font-size:clamp(30px,4vw,46px);font-weight:500;line-height:1.15;}
+.founder h2 span{color:var(--gold-bright);font-style:italic;font-weight:300;}
+.founder p{margin-top:22px;color:var(--muted);line-height:1.75;font-size:16px;max-width:480px;}
+.stat-row{display:flex;gap:44px;margin-top:40px;flex-wrap:wrap;}
+.stat-row .n{font-family:'Space Mono',monospace;font-size:28px;color:var(--gold-bright);}
+.stat-row .l{font-size:11px;color:var(--muted);letter-spacing:0.05em;margin-top:6px;text-transform:uppercase;}
+
+.programs-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:20px;}
+.programs-head h2{font-size:clamp(30px,4vw,44px);font-weight:500;max-width:560px;}
+.programs-head p{color:var(--muted);max-width:320px;font-size:15px;line-height:1.6;}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.cards{grid-template-columns:1fr;}}
+.card{padding:32px 28px;border:1px solid var(--line);background:var(--bg-elevated);min-height:240px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s,border-color .3s,transform .3s;}
+.card:hover{background:#1a1620;border-color:rgba(201,162,75,0.45);transform:translateY(-3px);}
+.card .coord{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);opacity:0.8;}
+.card h3{font-family:'Fraunces',serif;font-weight:500;font-size:22px;margin-top:18px;}
+.card p{color:var(--muted);font-size:14px;line-height:1.6;margin-top:10px;flex:1;}
+.card a{margin-top:20px;font-size:13px;color:var(--gold-bright);font-weight:600;}
+
+.process{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);}
+@media(max-width:800px){.process{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.process{grid-template-columns:1fr;}}
+.step{padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:180px;}
+.step:nth-child(4n){border-right:none;}
+.stepNo{font-family:'Space Mono',monospace;color:var(--gold);font-size:12px;}
+.step h3{margin:28px 0 8px;font-size:18px;}
+.step p{font-size:13px;color:var(--muted);line-height:1.55;}
+
+.gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:560px){.gallery{grid-template-columns:repeat(2,1fr);}}
+.gallery img{width:100%;aspect-ratio:3/4;object-fit:cover;border:1px solid var(--line);filter:grayscale(30%) contrast(1.05);transition:transform .45s,filter .45s;}
+.gallery img:hover{filter:grayscale(0%) contrast(1.05);transform:scale(1.03);}
+.testimonial{margin-top:56px;padding:44px;background:linear-gradient(135deg,rgba(201,162,75,0.08),rgba(255,255,255,0.02));border:1px solid var(--line);display:grid;grid-template-columns:110px 1fr;gap:32px;align-items:center;}
+@media(max-width:700px){.testimonial{grid-template-columns:1fr;text-align:center;}}
+.quoteAvatar{width:110px;height:110px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);margin:0 auto;}
+blockquote{font-family:'Fraunces',serif;font-size:22px;font-weight:300;line-height:1.5;}
+cite{display:block;margin-top:16px;font-family:'Space Mono',monospace;font-size:11px;color:var(--gold-bright);font-style:normal;letter-spacing:0.04em;}
+
+.pricing{text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.pricing .coord-label{justify-content:center;}
+.pricing .coord-label::after{display:none;}
+.pricing h2{font-size:clamp(32px,5vw,52px);font-weight:500;max-width:680px;margin:0 auto;line-height:1.15;}
+.pricing h2 em{color:var(--gold-bright);font-style:italic;font-weight:300;}
+.pricing > .wrap > p{color:var(--muted);margin:20px auto 0;max-width:440px;font-size:16px;line-height:1.65;}
+.region-tabs{display:inline-flex;margin:44px auto 0;border:1px solid var(--line);}
+.region-tab{background:transparent;border:none;color:var(--muted);font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.04em;padding:12px 24px;cursor:pointer;transition:all .25s;}
+.region-tab + .region-tab{border-left:1px solid var(--line);}
+.region-tab.active{background:var(--gold);color:var(--bg);}
+.region-tab:hover:not(.active){color:var(--gold-bright);}
+.pricing-cards{display:flex;gap:22px;justify-content:center;margin-top:40px;flex-wrap:wrap;}
+.price-card{position:relative;background:var(--bg-elevated);border:1px solid var(--line);padding:36px 38px;width:280px;text-align:left;}
+.price-card.featured{border-color:var(--gold);}
+.price-card-badge{position:absolute;top:-12px;left:38px;background:var(--gold);color:var(--bg);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.04em;padding:5px 12px;font-weight:700;}
+.price-card-label{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
+.price-card-amount{font-size:32px;color:var(--gold-bright);margin-top:12px;font-family:'Space Mono',monospace;}
+.price-card-amount span{font-size:14px;color:var(--muted);margin-left:4px;font-family:'Inter',sans-serif;}
+.price-card .btn-primary{display:block;text-align:center;margin-top:24px;width:100%;padding:13px 0;font-size:14px;}
+
+.inquire-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+@media(max-width:860px){.inquire-grid{grid-template-columns:1fr;gap:36px;}}
+.lead-form{display:flex;flex-direction:column;gap:14px;}
+.lead-form input,.lead-form select{background:var(--bg-elevated);border:1px solid var(--line);color:var(--ivory);font-size:14px;padding:14px 16px;width:100%;transition:border-color .25s;}
+.lead-form input::placeholder{color:var(--muted);}
+.lead-form input:focus,.lead-form select:focus{outline:none;border-color:var(--gold);}
+.lead-form select{color:var(--muted);}
+.lead-form select:valid{color:var(--ivory);}
+.lead-form button{border:none;cursor:pointer;margin-top:4px;}
+.lead-form button:disabled{opacity:0.6;cursor:not-allowed;}
+.lead-form-msg{font-family:'Space Mono',monospace;font-size:13px;min-height:18px;}
+.lead-form-msg.success{color:var(--green);}
+.lead-form-msg.error{color:#d98a6b;}
+
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:700px){.faq-grid{grid-template-columns:1fr;}}
+.faq-grid details{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);padding:18px 20px;}
+.faq-grid summary{cursor:pointer;font-weight:600;font-size:15px;}
+.faq-grid p{color:var(--muted);font-size:14px;margin-top:12px;line-height:1.6;}
+
+.cta{text-align:center;padding:90px 0;background:radial-gradient(circle at center,rgba(201,162,75,0.1),transparent 50%);}
+.cta h2{font-size:clamp(30px,4.5vw,48px);font-weight:500;max-width:640px;margin:0 auto;}
+.cta p{color:var(--muted);margin:18px auto 0;max-width:480px;}
+.cta .hero-ctas{justify-content:center;}
+
+footer{padding:48px 0 36px;}
+.foot-row{display:flex;justify-content:space-between;align-items:center;padding-top:28px;margin-top:28px;border-top:1px solid var(--line);flex-wrap:wrap;gap:16px;font-size:13px;color:var(--muted);}
+.foot-brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:var(--ivory);}
+.foot-links{display:flex;gap:24px;}
+.foot-links a{color:var(--muted);transition:color .25s;}
+.foot-links a:hover{color:var(--gold-bright);}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+@media(max-width:700px){
+  .navlinks{display:none;}
+  nav{padding:16px 20px;}
+  .wrap{padding:0 20px;}
+  section{padding:80px 0;}
+}
 </style>
 </head>
 <body>
-<nav class="nav"><div class="wrap navin">
-<a class="logo" href="#"><span class="logoMark"></span>MKS64</a>
-<div class="links"><a href="#coach">Coach</a><a href="#programs">Programs</a><a href="#results">Results</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
-<a class="btn primary" href="#join">Book a Trial</a>
-</div></nav>
 
-<header class="hero">
-<div class="heroGrid"></div>
-<div class="wrap heroContent">
-<div class="eyebrow">MKS64 CHESS ACADEMY · COACHING & TRAINING</div>
-<h1 class="serif">Learn chess.<br><em>Think better.</em><br>Play stronger.</h1>
-<p class="heroText">Structured chess coaching for beginners, improving players and serious competitors — built around practical training, game analysis and tournament experience.</p>
-<div class="actions"><a class="btn primary" href="#join">Start Your Chess Journey →</a><a class="btn outline" href="#programs">Explore Programs</a></div>
-<div class="trust"><div class="trustItem"><div class="trustNum">FIDE Rated</div><div class="trustLbl">Competitive Coach</div></div><div class="trustItem"><div class="trustNum">1:1 + Group</div><div class="trustLbl">Flexible Training</div></div><div class="trustItem"><div class="trustNum">EN + HI</div><div class="trustLbl">Simple Explanations</div></div></div>
-</div></header>
+<nav>
+  <a href="#" class="brandmark"><span class="sq"></span>MKS64</a>
+  <div class="navlinks">
+    <a href="#coach">Coach</a>
+    <a href="#programs">Programs</a>
+    <a href="#results">Results</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="#join" class="nav-cta">Book a Trial</a>
+</nav>
 
-<section id="coach"><div class="wrap about reveal">
-<div class="portrait"><img src="founder.jpg" alt="Mohit Kumar Soni, founder of MKS64 Chess Academy"><div class="badge">FOUNDER · MOHIT KUMAR SONI</div></div>
-<div class="aboutCopy"><div class="kicker">01 / THE COACH</div><h2 class="sectionTitle serif">Train with a coach who understands the <span class="gold">competitive board.</span></h2>
-<p>Chess improvement is more than memorising openings. MKS64 combines fundamentals, calculation, positional understanding, practical decision-making and real-game analysis so students learn how to think during a game.</p>
-<div class="featureList"><div class="feature"><b>Game-Based Training</b><span>Your own games become training material.</span></div><div class="feature"><b>Complete Curriculum</b><span>Opening · Middlegame · Endgame · Tactics.</span></div><div class="feature"><b>Tournament Preparation</b><span>Preparation built around your next event.</span></div><div class="feature"><b>Personal Feedback</b><span>Clear next steps after every training cycle.</span></div></div>
-</div></div></section>
+<section class="hero">
+  <div class="board-field" id="boardField"></div>
+  <div class="wrap hero-content">
+    <div class="eyebrow">FIDE Rated · Coach & Competitor</div>
+    <h1 class="display">Learn chess from<br>someone who <em>plays</em><br>at the board, not<br>just teaches it.</h1>
+    <p class="sub">MKS64 is Mohit Kumar Soni’s chess academy — structured coaching from first moves to tournament prep, built on real competitive experience.</p>
+    <div class="hero-ctas">
+      <a href="#join" class="btn-primary">Start Your Chess Journey</a>
+      <a href="#programs" class="btn-ghost">Explore Programs →</a>
+    </div>
+  </div>
+  <div class="hero-rating">
+    <div class="num">2520+</div>
+    <div class="lbl">RAPID & BLITZ · CHESS.COM & LICHESS</div>
+  </div>
+</section>
 
-<section class="programs" id="programs"><div class="wrap">
-<div class="sectionTop reveal"><div><div class="kicker">02 / PROGRAMS</div><h2 class="sectionTitle serif">A path for every <span class="gold">player.</span></h2></div><p class="sectionDesc">Choose the training path that matches your current level and goal. The focus is progress you can actually apply over the board.</p></div>
-<div class="cards reveal">
-<div class="card"><div class="cardNum">A1 · FOUNDATION</div><h3 class="serif">Beginner</h3><p>Rules, piece movement, checkmate patterns, opening principles, basic tactics and the habits that create a strong chess foundation.</p><a href="#join">Start learning →</a></div>
-<div class="card"><div class="cardNum">B2 · IMPROVEMENT</div><h3 class="serif">Intermediate</h3><p>Calculation, tactical patterns, opening repertoire, positional plans, endgames and deep analysis of your own games.</p><a href="#join">Level up →</a></div>
-<div class="card"><div class="cardNum">C3 · PERFORMANCE</div><h3 class="serif">Advanced</h3><p>Tournament preparation, advanced calculation, practical decision-making, repertoire work and serious game review.</p><a href="#join">Train seriously →</a></div>
-<div class="card"><div class="cardNum">D4 · PERSONAL</div><h3 class="serif">1:1 Coaching</h3><p>Personalised sessions designed around your rating, weaknesses, tournament calendar and long-term chess goals.</p><a href="#join">Talk to the coach →</a></div>
-<div class="card"><div class="cardNum">E5 · TOURNAMENT</div><h3 class="serif">Tournament Prep</h3><p>Opponent preparation, opening review, tactical readiness and practical plans for competitive events.</p><a href="#join">Prepare →</a></div>
-<div class="card"><div class="cardNum">F6 · ANALYSIS</div><h3 class="serif">Game Analysis</h3><p>Understand not only what the engine says, but why the position demanded a particular decision.</p><a href="#join">Analyse →</a></div>
-</div></div></section>
+<section id="coach">
+  <div class="wrap founder reveal">
+    <div class="founder-visual">
+      <div class="corner tl"></div>
+      <div class="corner br"></div>
+      <img src="founder.jpg" alt="Mohit Kumar Soni, founder and coach at MKS64">
+    </div>
+    <div>
+      <div class="coord-label">E4 — THE COACH</div>
+      <h2 class="display">Mohit Kumar Soni —<br><span>player first, teacher by craft.</span></h2>
+      <p>Chess improvement is more than memorising openings. MKS64 combines fundamentals, calculation, positional understanding, practical decision-making and real-game analysis so students learn how to think during a game — not just what the engine recommends.</p>
+      <div class="stat-row">
+        <div><div class="n">2520+</div><div class="l">Live Rating</div></div>
+        <div><div class="n">1:1 + Group</div><div class="l">Flexible Formats</div></div>
+        <div><div class="n">EN + HI</div><div class="l">Clear Teaching</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section><div class="wrap">
-<div class="sectionTop reveal"><div><div class="kicker">03 / THE METHOD</div><h2 class="sectionTitle serif">From <span class="gold">training</span> to the board.</h2></div><p class="sectionDesc">A simple repeatable cycle designed to turn knowledge into practical playing strength.</p></div>
-<div class="process reveal">
-<div class="step"><div class="stepNo">01</div><h3>Diagnose</h3><p>Find the patterns behind your mistakes and identify the highest-impact areas to improve.</p></div>
-<div class="step"><div class="stepNo">02</div><h3>Train</h3><p>Work through positions, concepts and exercises that directly target those weaknesses.</p></div>
-<div class="step"><div class="stepNo">03</div><h3>Play</h3><p>Apply the ideas in real games and tournament positions instead of keeping them theoretical.</p></div>
-<div class="step"><div class="stepNo">04</div><h3>Review</h3><p>Analyse the game, measure progress and decide what the next training cycle should focus on.</p></div>
-</div></div></section>
+<section id="programs">
+  <div class="wrap">
+    <div class="programs-head reveal">
+      <h2 class="display">A path for every player.</h2>
+      <p>Choose the track that matches your level and goal. Progress you can apply over the board.</p>
+    </div>
+    <div class="cards reveal">
+      <div class="card">
+        <div>
+          <div class="coord">A1 · FOUNDATION</div>
+          <h3 class="display">Beginner</h3>
+          <p>Rules, piece movement, checkmate patterns, opening principles, basic tactics and the habits that create a strong foundation.</p>
+        </div>
+        <a href="#join">Start learning →</a>
+      </div>
+      <div class="card">
+        <div>
+          <div class="coord">B2 · IMPROVEMENT</div>
+          <h3 class="display">Intermediate</h3>
+          <p>Calculation, tactical patterns, opening repertoire, positional plans, endgames and deep analysis of your own games.</p>
+        </div>
+        <a href="#join">Level up →</a>
+      </div>
+      <div class="card">
+        <div>
+          <div class="coord">C3 · PERFORMANCE</div>
+          <h3 class="display">Advanced</h3>
+          <p>Tournament preparation, advanced calculation, practical decision-making, repertoire work and serious game review.</p>
+        </div>
+        <a href="#join">Train seriously →</a>
+      </div>
+      <div class="card">
+        <div>
+          <div class="coord">D4 · PERSONAL</div>
+          <h3 class="display">1:1 Coaching</h3>
+          <p>Personalised sessions around your rating, weaknesses, tournament calendar and long-term goals.</p>
+        </div>
+        <a href="#join">Talk to the coach →</a>
+      </div>
+      <div class="card">
+        <div>
+          <div class="coord">E5 · TOURNAMENT</div>
+          <h3 class="display">Tournament Prep</h3>
+          <p>Opponent preparation, opening review, tactical readiness and practical plans for competitive events.</p>
+        </div>
+        <a href="#join">Prepare →</a>
+      </div>
+      <div class="card">
+        <div>
+          <div class="coord">F6 · ANALYSIS</div>
+          <h3 class="display">Game Analysis</h3>
+          <p>Understand not only what the engine says, but why the position demanded a particular decision.</p>
+        </div>
+        <a href="#join">Analyse →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="results" id="results"><div class="wrap">
-<div class="sectionTop reveal"><div><div class="kicker">04 / STUDENT JOURNEY</div><h2 class="sectionTitle serif">Real students.<br><span class="gold">Real chess.</span></h2></div><p class="sectionDesc">A visual wall of tournament moments from the academy community.</p></div>
-<div class="gallery reveal">
-<img src="s1_1.jpg" alt="MKS64 student at a chess tournament"><img src="s2_1.jpg" alt="MKS64 student with tournament achievement"><img src="s3_1.jpg" alt="MKS64 student at a tournament"><img src="s4_1.jpg" alt="MKS64 student with chess award"><img src="s5.jpg" alt="MKS64 student tournament moment"><img src="s6_1.jpg" alt="MKS64 student with chess trophy"><img src="s7_1.jpg" alt="MKS64 student chess achievement"><img src="s8_1.jpg" alt="MKS64 student playing chess"><img src="s9.jpg" alt="MKS64 student at chess event"><img src="s10_1.jpg" alt="MKS64 student over the chessboard">
-</div>
-<div class="testimonial reveal"><img class="quoteAvatar" src="s10_1.jpg" alt="Chess student"><div><blockquote>“The goal is not to make students dependent on a coach. The goal is to teach them how to think for themselves when the clock is running and the position gets difficult.”</blockquote><cite>— MKS64 COACHING PHILOSOPHY</cite></div></div>
-</div></section>
+<section>
+  <div class="wrap">
+    <div class="programs-head reveal">
+      <div>
+        <div class="coord-label">D4 — THE METHOD</div>
+        <h2 class="display">From training to the board.</h2>
+      </div>
+      <p>A simple repeatable cycle that turns knowledge into practical playing strength.</p>
+    </div>
+    <div class="process reveal">
+      <div class="step"><div class="stepNo">01</div><h3>Diagnose</h3><p>Find the patterns behind your mistakes and identify the highest-impact areas to improve.</p></div>
+      <div class="step"><div class="stepNo">02</div><h3>Train</h3><p>Work through positions, concepts and exercises that directly target those weaknesses.</p></div>
+      <div class="step"><div class="stepNo">03</div><h3>Play</h3><p>Apply the ideas in real games and tournament positions instead of keeping them theoretical.</p></div>
+      <div class="step"><div class="stepNo">04</div><h3>Review</h3><p>Analyse the game, measure progress and decide what the next training cycle should focus on.</p></div>
+    </div>
+  </div>
+</section>
 
-<section id="pricing"><div class="wrap" style="text-align:center">
-<div class="kicker">05 / MEMBERSHIP</div><h2 class="sectionTitle serif">Choose your <span class="gold">training plan.</span></h2><p class="sectionDesc" style="margin:15px auto 0">Structured academy access with a simple monthly or yearly option.</p>
-<div class="priceSwitch"><button class="switch active" data-region="in">India ₹</button><button class="switch" data-region="intl">International $</button></div>
-<div class="priceGrid" id="priceIn">
-<div class="price"><div class="priceLabel">Monthly</div><div class="amount">₹2,000 <small>/ month</small></div><a class="btn primary" href="https://rzp.io/rzp/96MjIUUY" target="_blank" rel="noopener">Start Monthly</a></div>
-<div class="price featured"><div class="save">BEST VALUE · SAVE ₹9,000</div><div class="priceLabel">Yearly</div><div class="amount">₹15,000 <small>/ year</small></div><a class="btn primary" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start Yearly</a></div>
-</div>
-<div class="priceGrid" id="priceIntl" style="display:none">
-<div class="price"><div class="priceLabel">Monthly</div><div class="amount">$50 <small>/ month</small></div><a class="btn primary" href="https://rzp.io/rzp/AgH7laAA" target="_blank" rel="noopener">Start Monthly</a></div>
-<div class="price featured"><div class="save">BEST VALUE · SAVE $100</div><div class="priceLabel">Yearly</div><div class="amount">$500 <small>/ year</small></div><a class="btn primary" href="https://rzp.io/rzp/j4oz4Ry" target="_blank" rel="noopener">Start Yearly</a></div>
-</div>
-</div></section>
+<section id="results">
+  <div class="wrap">
+    <div class="programs-head reveal">
+      <div>
+        <div class="coord-label">H8 — RESULTS</div>
+        <h2 class="display">Real students. Real chess.</h2>
+      </div>
+      <p>Tournament moments from the academy community.</p>
+    </div>
+    <div class="gallery reveal">
+      <img src="s1_1.jpg" alt="MKS64 student at a chess tournament">
+      <img src="s2_1.jpg" alt="MKS64 student with tournament achievement">
+      <img src="s3_1.jpg" alt="MKS64 student at a tournament">
+      <img src="s4_1.jpg" alt="MKS64 student with chess award">
+      <img src="s5.jpg" alt="MKS64 student tournament moment">
+      <img src="s6_1.jpg" alt="MKS64 student with chess trophy">
+      <img src="s7_1.jpg" alt="MKS64 student chess achievement">
+      <img src="s8_1.jpg" alt="MKS64 student playing chess">
+      <img src="s9.jpg" alt="MKS64 student at chess event">
+      <img src="s10_1.jpg" alt="MKS64 student over the chessboard">
+    </div>
+    <div class="testimonial reveal">
+      <img class="quoteAvatar" src="s10_1.jpg" alt="Chess student">
+      <div>
+        <blockquote>“The goal is not to make students dependent on a coach. The goal is to teach them how to think for themselves when the clock is running and the position gets difficult.”</blockquote>
+        <cite>— MKS64 COACHING PHILOSOPHY</cite>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section id="join"><div class="wrap lead reveal"><div><div class="kicker">06 / START HERE</div><h2 class="sectionTitle serif">Not sure where to <span class="gold">begin?</span></h2><p class="sectionDesc" style="margin-top:20px">Tell us your current level and goal. We'll help you choose the right training path before you commit.</p></div>
-<form class="form" id="leadForm"><input name="name" placeholder="Your name" required><input name="contact" placeholder="Email or phone" required><input name="rating" placeholder="Current rating (or Beginner)"><select name="goal" required><option value="" selected disabled>What is your goal?</option><option>Improve my rating</option><option>Prepare for a tournament</option><option>Learn chess from scratch</option><option>Build an opening repertoire</option><option>Other</option></select><button class="btn primary" id="leadBtn">Request a Training Call →</button><div class="msg" id="leadMsg"></div></form>
-</div></section>
+<section id="pricing" class="pricing">
+  <div class="wrap reveal">
+    <div class="coord-label">F6 — MEMBERSHIP</div>
+    <h2 class="display">Choose your <em>training plan.</em></h2>
+    <p>Structured academy access with a simple monthly or yearly option.</p>
+    <div class="region-tabs" id="regionTabs">
+      <button type="button" class="region-tab active" data-region="in">India ₹</button>
+      <button type="button" class="region-tab" data-region="intl">International $</button>
+    </div>
+    <div class="pricing-cards" id="priceIn">
+      <div class="price-card">
+        <div class="price-card-label">Monthly</div>
+        <div class="price-card-amount">₹2,000<span>/ month</span></div>
+        <a class="btn-primary" href="https://rzp.io/rzp/96MjIUUY" target="_blank" rel="noopener">Start Monthly</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-card-badge">BEST VALUE · SAVE ₹9,000</div>
+        <div class="price-card-label">Yearly</div>
+        <div class="price-card-amount">₹15,000<span>/ year</span></div>
+        <a class="btn-primary" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start Yearly</a>
+      </div>
+    </div>
+    <div class="pricing-cards" id="priceIntl" style="display:none">
+      <div class="price-card">
+        <div class="price-card-label">Monthly</div>
+        <div class="price-card-amount">$50<span>/ month</span></div>
+        <a class="btn-primary" href="https://rzp.io/rzp/AgH7laAA" target="_blank" rel="noopener">Start Monthly</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-card-badge">BEST VALUE · SAVE $100</div>
+        <div class="price-card-label">Yearly</div>
+        <div class="price-card-amount">$500<span>/ year</span></div>
+        <a class="btn-primary" href="https://rzp.io/rzp/j4oz4Ry" target="_blank" rel="noopener">Start Yearly</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section id="faq"><div class="wrap"><div class="sectionTop reveal"><div><div class="kicker">07 / FAQ</div><h2 class="sectionTitle serif">Questions, <span class="gold">answered.</span></h2></div></div>
-<div class="faq reveal">
-<details><summary>Who is MKS64 for?</summary><p>Students can start from beginner level and continue through intermediate and advanced training. The exact program depends on the student's goals and current playing level.</p></details>
-<details><summary>Is coaching online or offline?</summary><p>Online and personalised coaching formats can be arranged. Availability depends on the selected program and schedule.</p></details>
-<details><summary>Do you analyse my own games?</summary><p>Yes. Own-game analysis is a core part of practical improvement because it connects training concepts with real decisions made during your games.</p></details>
-<details><summary>Can I prepare for tournaments?</summary><p>Yes. Tournament preparation can include opening review, tactical readiness, opponent preparation and practical game planning.</p></details>
-</div></div></section>
+<section id="join">
+  <div class="wrap">
+    <div class="inquire-grid reveal">
+      <div>
+        <div class="coord-label">G5 — START HERE</div>
+        <h2 class="display" style="font-size:clamp(28px,3.5vw,40px);font-weight:500;line-height:1.2;margin-bottom:18px;">Not sure where<br>to begin?</h2>
+        <p style="color:var(--muted);line-height:1.7;max-width:400px;">Tell us your current level and goal. We’ll help you choose the right training path before you commit.</p>
+        <div style="margin-top:32px;display:flex;gap:36px;flex-wrap:wrap;">
+          <div>
+            <div style="font-family:'Space Mono',monospace;font-size:20px;color:var(--gold-bright);">Free</div>
+            <div style="font-size:11px;color:var(--muted);letter-spacing:0.04em;margin-top:4px;text-transform:uppercase;">Initial guidance</div>
+          </div>
+          <div>
+            <div style="font-family:'Space Mono',monospace;font-size:20px;color:var(--gold-bright);">EN + HI</div>
+            <div style="font-size:11px;color:var(--muted);letter-spacing:0.04em;margin-top:4px;text-transform:uppercase;">Language support</div>
+          </div>
+        </div>
+      </div>
+      <form class="lead-form" id="leadForm">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="text" name="contact" placeholder="Phone or email" required>
+        <select name="rating">
+          <option value="" disabled selected>Approximate rating / level</option>
+          <option value="Beginner">Beginner (just starting)</option>
+          <option value="Under 1200">Under 1200</option>
+          <option value="1200-1600">1200–1600</option>
+          <option value="1600-2000">1600–2000</option>
+          <option value="2000+">2000+</option>
+        </select>
+        <select name="goal" required>
+          <option value="" disabled selected>Primary goal</option>
+          <option value="Improve rating">Improve rating</option>
+          <option value="Tournament prep">Tournament preparation</option>
+          <option value="Fundamentals">Solid fundamentals</option>
+          <option value="Openings">Build repertoire</option>
+          <option value="1:1 coaching">1:1 coaching</option>
+        </select>
+        <button type="submit" class="btn-primary" id="leadBtn">Request a Training Call →</button>
+        <div class="lead-form-msg" id="leadMsg"></div>
+      </form>
+    </div>
+  </div>
+</section>
 
-<section class="cta"><div class="wrap reveal"><div class="kicker">YOUR NEXT MOVE</div><h2 class="sectionTitle serif">Every strong player started with <span class="gold">one move.</span></h2><p>Start with a clear training plan and build your chess one decision at a time.</p><div class="actions"><a class="btn primary" href="#join">Start Training →</a><a class="btn outline" href="#coach">Meet the Coach</a></div></div></section>
+<section id="faq">
+  <div class="wrap">
+    <div class="programs-head reveal">
+      <div>
+        <div class="coord-label">FAQ</div>
+        <h2 class="display">Common questions.</h2>
+      </div>
+    </div>
+    <div class="faq-grid reveal">
+      <details><summary>Who is this for?</summary><p>Beginners building fundamentals, intermediate players stuck on a plateau, and competitive players preparing for tournaments.</p></details>
+      <details><summary>Is training online or offline?</summary><p>Sessions are primarily online so you can train from anywhere. Formats can be adjusted based on your location and preference.</p></details>
+      <details><summary>Do I need a chess board?</summary><p>A physical board helps, but online platforms (Chess.com / Lichess) work well for most training and analysis sessions.</p></details>
+      <details><summary>How is this different from free videos?</summary><p>You get a structured path, feedback on your own games, and coaching that connects concepts to real decisions over the board.</p></details>
+      <details><summary>Can I prepare for tournaments?</summary><p>Yes. Tournament preparation can include opening review, tactical readiness, opponent preparation and practical game planning.</p></details>
+      <details><summary>What languages do you teach in?</summary><p>Sessions are available in English and Hindi with clear, practical explanations.</p></details>
+    </div>
+  </div>
+</section>
 
-<footer><div class="wrap foot"><div><b style="color:var(--cream)">MKS64 Chess Academy</b> · Learn. Think. Play.</div><div>© 2026 MKS64 Chess Academy</div></div></footer>
+<section class="cta">
+  <div class="wrap reveal">
+    <div class="coord-label" style="justify-content:center;">YOUR NEXT MOVE</div>
+    <h2 class="display">Every strong player started with <em style="color:var(--gold-bright);font-style:italic;font-weight:300;">one move.</em></h2>
+    <p>Start with a clear training plan and build your chess one decision at a time.</p>
+    <div class="hero-ctas" style="margin-top:36px;">
+      <a href="#join" class="btn-primary">Start Training →</a>
+      <a href="#coach" class="btn-ghost">Meet the Coach</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-brand"><span class="sq" style="width:14px;height:14px;background:var(--gold);display:inline-block;transform:rotate(45deg);"></span>MKS64</div>
+    <div class="foot-row">
+      <div>© 2026 MKS64 Chess Academy · Learn. Think. Play.</div>
+      <div class="foot-links">
+        <a href="#coach">Coach</a>
+        <a href="#programs">Programs</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#join">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script>
+const board=document.getElementById('boardField');
+for(let i=0;i<64;i++) board.appendChild(document.createElement('div'));
+
 const LEAD_ENDPOINT="https://script.google.com/macros/s/AKfycbyn4ox_ddK6q5LKXVmDwU8SjiBUrWuYBvErWzHr1GD76VZmK_Ce4GkZrvZMWnqN8Lam/exec";
 const form=document.getElementById("leadForm"),btn=document.getElementById("leadBtn"),msg=document.getElementById("leadMsg");
-form.addEventListener("submit",e=>{e.preventDefault();btn.disabled=true;btn.textContent="Sending…";msg.textContent="";
-const d=new FormData(form);const payload={name:d.get("name"),contact:d.get("contact"),rating:d.get("rating")||"Not specified",goal:d.get("goal")};
-fetch(LEAD_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})
-.then(()=>{msg.textContent="Thanks! We'll get back to you soon.";msg.className="msg success";form.reset();btn.disabled=false;btn.textContent="Request a Training Call →"})
-.catch(()=>{msg.textContent="Something went wrong. Please try again.";btn.disabled=false;btn.textContent="Request a Training Call →"});
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+  btn.disabled=true;btn.textContent="Sending…";msg.textContent="";msg.className="lead-form-msg";
+  const d=new FormData(form);
+  const payload={name:d.get("name"),contact:d.get("contact"),rating:d.get("rating")||"Not specified",goal:d.get("goal")};
+  fetch(LEAD_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})
+  .then(()=>{msg.textContent="Thanks! We'll get back to you soon.";msg.className="lead-form-msg success";form.reset();btn.disabled=false;btn.textContent="Request a Training Call →";})
+  .catch(()=>{msg.textContent="Something went wrong. Please try again.";msg.className="lead-form-msg error";btn.disabled=false;btn.textContent="Request a Training Call →";});
 });
-document.querySelectorAll(".switch").forEach(s=>s.addEventListener("click",()=>{document.querySelectorAll(".switch").forEach(x=>x.classList.remove("active"));s.classList.add("active");const intl=s.dataset.region==="intl";document.getElementById("priceIn").style.display=intl?"none":"flex";document.getElementById("priceIntl").style.display=intl?"flex":"none"}));
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll(".reveal").forEach(x=>io.observe(x));
+
+document.querySelectorAll(".region-tab").forEach(s=>s.addEventListener("click",()=>{
+  document.querySelectorAll(".region-tab").forEach(x=>x.classList.remove("active"));
+  s.classList.add("active");
+  const intl=s.dataset.region==="intl";
+  document.getElementById("priceIn").style.display=intl?"none":"flex";
+  document.getElementById("priceIntl").style.display=intl?"flex":"none";
+}));
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(x=>io.observe(x));
 </script>
-</body></html>
+</body>
+</html>
