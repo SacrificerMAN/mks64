@@ -16,7 +16,7 @@ Academy facts:
 - Programs: Beginner, Intermediate, Advanced, 1:1, Tournament prep, Game analysis
 - India: Rs 2999/month, Rs 29999/year
 - International: $50/month, $500/year
-- Payment links: India https://rzp.io/rzp/wUiMq5BI | Intl monthly https://rzp.io/rzp/AgH7laAA | Intl yearly https://rzp.io/rzp/j4oz4Ry
+- Payment links: India https://rzp.io/rzp/wUiMq5BI | Intl monthly https://rzp.io/rzp/j4oz4Ry | Intl yearly https://rzp.io/rzp/AgH7laAA
 - Best next step: free training call via the website form (#join)
 Goals: answer chess/academy questions clearly; soft conversion to free call or checkout; if they share name + phone/email, thank them (lead is auto-saved).
 Keep replies under 120 words.`;
