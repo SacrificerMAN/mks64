@@ -2,8 +2,12 @@
   if (document.getElementById("chatFab")) return;
 
   const css = `
-.chat-fab{position:fixed;right:20px;bottom:20px;z-index:200;width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.08);background:#fff;color:#050505;font-size:22px;cursor:pointer;box-shadow:0 12px 32px -8px rgba(0,0,0,.5);display:grid;place-items:center}
-.chat-panel{position:fixed;right:20px;bottom:86px;z-index:200;width:min(380px,calc(100vw - 24px));height:min(540px,calc(100vh - 120px));background:#0d0d0d;border:1px solid rgba(255,255,255,.08);border-radius:18px;display:none;flex-direction:column;overflow:hidden}
+.chat-fab{position:fixed;right:20px;bottom:20px;z-index:200;height:52px;padding:0 20px 0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:#fff;color:#050505;font-size:14px;font-weight:600;letter-spacing:-.01em;cursor:pointer;box-shadow:0 12px 32px -8px rgba(0,0,0,.55);display:inline-flex;align-items:center;gap:10px;font-family:Inter,system-ui,sans-serif;transition:transform .15s ease,box-shadow .15s ease}
+.chat-fab:hover{transform:translateY(-2px);box-shadow:0 16px 40px -8px rgba(0,0,0,.65)}
+.chat-fab .fab-ico{width:28px;height:28px;border-radius:50%;background:#10a37f;color:#fff;display:grid;place-items:center;font-size:14px;flex-shrink:0}
+.chat-fab.open{background:#111;color:#f5f5f5;border-color:rgba(255,255,255,.12)}
+.chat-fab.open .fab-ico{background:#fff;color:#050505}
+.chat-panel{position:fixed;right:20px;bottom:90px;z-index:200;width:min(380px,calc(100vw - 24px));height:min(540px,calc(100vh - 120px));background:#0d0d0d;border:1px solid rgba(255,255,255,.08);border-radius:18px;display:none;flex-direction:column;overflow:hidden}
 .chat-panel.open{display:flex}
 .chat-head{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;gap:10px}
 .chat-head-left{display:flex;align-items:center;gap:10px}
@@ -37,7 +41,7 @@
 
   const wrap = document.createElement("div");
   wrap.innerHTML = `
-<button class="chat-fab" id="chatFab" type="button" aria-label="Open coach chat">♟</button>
+<button class="chat-fab" id="chatFab" type="button" aria-label="Let's talk with the academy coach"><span class="fab-ico">♟</span><span class="fab-label">Let's talk</span></button>
 <div class="chat-panel" id="chatPanel">
   <div class="chat-head">
     <div class="chat-head-left">
@@ -84,9 +88,16 @@
     ttsOn = false;
   }
 
+  const fabLabel = fab.querySelector(".fab-label");
+  function setFabOpen(isOpen) {
+    fab.classList.toggle("open", isOpen);
+    if (fabLabel) fabLabel.textContent = isOpen ? "Close" : "Let's talk";
+  }
   fab.onclick = () => {
-    panel.classList.toggle("open");
-    if (panel.classList.contains("open")) inp.focus();
+    const willOpen = !panel.classList.contains("open");
+    panel.classList.toggle("open", willOpen);
+    setFabOpen(willOpen);
+    if (willOpen) inp.focus();
     else stopListen();
   };
 
