@@ -2,29 +2,38 @@
 
 Professional landing page for **MKS64** — Mohit Kumar Soni’s chess academy.
 
-**Live repo:** [github.com/SacrificerMAN/mks64](https://github.com/SacrificerMAN/mks64)
+**Repo:** [github.com/SacrificerMAN/mks64](https://github.com/SacrificerMAN/mks64)
 
 ## Local preview
 
 ```bash
 npx serve .
-# or open index.html in a browser
 ```
 
-## Deploy on Railway (static site)
+## Deploy on Railway
 
-1. Go to [railway.app](https://railway.app) → **New Project** → **Deploy from GitHub repo**
+1. [railway.app](https://railway.app) → **New Project** → **Deploy from GitHub**
 2. Select **SacrificerMAN/mks64**
-3. Railway will detect Node and run `npm start` (serves the static files via `serve`)
-4. Add a public domain under **Settings → Networking → Generate Domain**
+3. Railway uses `package.json` → `npm start` (static file server)
+4. **Settings → Networking → Generate Domain**
 
-Optional: set service start command explicitly to:
+Start command (if needed):
 
 ```
 npx --yes serve -s . -l tcp://0.0.0.0:$PORT
 ```
 
-No build step required — pure static HTML + images.
+No build step — pure static HTML + images.
+
+## Features
+
+- Premium dark theme (Fraunces + Inter)
+- Chessboard hero background
+- Coach / Programs / Results / Pricing / FAQ
+- India ₹ + International $ Razorpay links
+- Lead form → Google Apps Script
+- Mobile navigation drawer
+- SEO / Open Graph tags
 
 ## Contents
 
@@ -32,8 +41,6 @@ No build step required — pure static HTML + images.
 |------|---------|
 | `index.html` | Full landing page |
 | `founder.jpg` | Coach photo |
-| `s1_1.jpg` … `s10_1.jpg` | Student / tournament gallery |
-| `package.json` | Railway / Node static server |
-
-Payments: Razorpay links (India ₹ / International $).  
-Lead form posts to Google Apps Script endpoint.
+| `s1_1.jpg` … `s10_1.jpg` | Student gallery |
+| `package.json` | Node static server for Railway |
+| `railway.toml` | Railway deploy config |
