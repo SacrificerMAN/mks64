@@ -1,0 +1,12 @@
+{
+  "name": "mks64",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MKS64 Chess Academy — professional landing page",
+  "scripts": {
+    "start": "npx --yes serve -s . -l tcp://0.0.0.0:${PORT:-3000}"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
