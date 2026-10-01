@@ -64,6 +64,7 @@ const boardEl=document.getElementById('board');
 const statusEl=document.getElementById('status');
 const chipsEl=document.getElementById('themeChips');
 let chess=null,solution=[],solIndex=0,selected=null,playerColor='w',currentAngle='mateIn1';
+let lastFetch=0;
 
 THEMES.forEach(t=>{
   const b=document.createElement('button');
@@ -82,45 +83,68 @@ THEMES.forEach(t=>{
 function fenFromPgn(pgn){
   const c=new Chess();
   if(!pgn) return null;
-  // try full pgn load
-  if(c.load_pgn(pgn, {sloppy:true})) return c.fen();
-  // fallback: play SAN tokens
+  try{
+    if(c.load_pgn(String(pgn), {sloppy:true})) return c.fen();
+  }catch(e){}
   const c2=new Chess();
-  const parts=pgn.replace(/\d+\./g,' ').trim().split(/\s+/).filter(Boolean);
+  const parts=String(pgn).replace(/\d+\./g,' ').trim().split(/\s+/).filter(Boolean);
   for(const san of parts){
     if(['1-0','0-1','1/2-1/2','*'].includes(san)) break;
-    if(!c2.move(san, {sloppy:true})) break;
+    const m=c2.move(san, {sloppy:true});
+    if(!m) break;
   }
   return c2.fen();
 }
 
+function applyPuzzle(d){
+  const puzzle=d.puzzle, game=d.game||{};
+  let fen=puzzle.fen;
+  if(!fen && game.pgn) fen=fenFromPgn(game.pgn);
+  if(!fen) throw new Error('no fen');
+  document.getElementById('rating').textContent=puzzle.rating||'—';
+  document.getElementById('fromGame').innerHTML=(game.players||[]).map(p=>'<div class="stat-row"><span>'+p.color+'</span><b>'+(p.name||'')+' ('+(p.rating||'?')+')</b></div>').join('')||'—';
+  chess=new Chess(fen);
+  playerColor=chess.turn();
+  solution=puzzle.solution||[];
+  solIndex=0;selected=null;
+  document.getElementById('turnLabel').textContent=(playerColor==='w'?'White':'Black')+' to move';
+  document.getElementById('stepLabel').textContent='Step 1 of '+Math.max(1,Math.ceil(solution.length/2));
+  draw();
+  statusEl.textContent='Find the best move!';
+}
+
 async function load(){
-  statusEl.textContent='Loading '+currentAngle+' puzzle…';
+  statusEl.textContent='Loading puzzle…';
   selected=null;solution=[];solIndex=0;chess=null;
   boardEl.innerHTML='';
+  // throttle: min 1.2s between API calls
+  const wait=1200-(Date.now()-lastFetch);
+  if(wait>0) await new Promise(r=>setTimeout(r,wait));
   try{
-    const next=await (await fetch('https://lichess.org/api/puzzle/next?angle='+encodeURIComponent(currentAngle),{headers:{Accept:'application/json'}})).json();
-    const id=next.puzzle && next.puzzle.id;
-    if(!id) throw new Error('no id');
-    // full puzzle includes fen
-    const d=await (await fetch('https://lichess.org/api/puzzle/'+id,{headers:{Accept:'application/json'}})).json();
-    const puzzle=d.puzzle, game=d.game;
-    let fen=puzzle.fen;
-    if(!fen && game && game.pgn) fen=fenFromPgn(game.pgn);
-    if(!fen) throw new Error('no fen');
-    document.getElementById('rating').textContent=puzzle.rating||'—';
-    document.getElementById('fromGame').innerHTML=(game.players||[]).map(p=>'<div class="stat-row"><span>'+p.color+'</span><b>'+(p.name||'')+' ('+(p.rating||'?')+')</b></div>').join('')||'—';
-    chess=new Chess(fen);
-    playerColor=chess.turn();
-    solution=puzzle.solution||[];
-    solIndex=0;
-    document.getElementById('turnLabel').textContent=(playerColor==='w'?'White':'Black')+' to move';
-    document.getElementById('stepLabel').textContent='Step 1 of '+Math.max(1,Math.ceil(solution.length/2));
-    draw();
-    statusEl.textContent='Find the best move!';
+    lastFetch=Date.now();
+    const res=await fetch('https://lichess.org/api/puzzle/next?angle='+encodeURIComponent(currentAngle),{headers:{Accept:'application/json'}});
+    if(res.status===429){
+      // fallback to daily
+      statusEl.textContent='Theme busy — loading daily puzzle…';
+      lastFetch=Date.now();
+      const daily=await (await fetch('https://lichess.org/api/puzzle/daily',{headers:{Accept:'application/json'}})).json();
+      applyPuzzle(daily);
+      statusEl.textContent='Daily puzzle (theme limit reached). Find the best move!';
+      return;
+    }
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const d=await res.json();
+    if(!d.puzzle) throw new Error('no puzzle');
+    applyPuzzle(d);
   }catch(e){
     console.error(e);
-    statusEl.textContent='Could not load puzzle. Try another theme.';
+    try{
+      const daily=await (await fetch('https://lichess.org/api/puzzle/daily',{headers:{Accept:'application/json'}})).json();
+      applyPuzzle(daily);
+      statusEl.textContent='Daily puzzle loaded. Find the best move!';
+    }catch(e2){
+      statusEl.textContent='Could not load puzzle. Wait a few seconds and try again.';
+    }
   }
 }
 function draw(hints=[]){
