@@ -79,18 +79,38 @@ THEMES.forEach(t=>{
   chipsEl.appendChild(b);
 });
 
+function fenFromPgn(pgn){
+  const c=new Chess();
+  if(!pgn) return null;
+  // try full pgn load
+  if(c.load_pgn(pgn, {sloppy:true})) return c.fen();
+  // fallback: play SAN tokens
+  const c2=new Chess();
+  const parts=pgn.replace(/\d+\./g,' ').trim().split(/\s+/).filter(Boolean);
+  for(const san of parts){
+    if(['1-0','0-1','1/2-1/2','*'].includes(san)) break;
+    if(!c2.move(san, {sloppy:true})) break;
+  }
+  return c2.fen();
+}
+
 async function load(){
   statusEl.textContent='Loading '+currentAngle+' puzzle…';
   selected=null;solution=[];solIndex=0;chess=null;
   boardEl.innerHTML='';
   try{
-    const url='https://lichess.org/api/puzzle/next?angle='+encodeURIComponent(currentAngle);
-    const d=await (await fetch(url,{headers:{Accept:'application/json'}})).json();
+    const next=await (await fetch('https://lichess.org/api/puzzle/next?angle='+encodeURIComponent(currentAngle),{headers:{Accept:'application/json'}})).json();
+    const id=next.puzzle && next.puzzle.id;
+    if(!id) throw new Error('no id');
+    // full puzzle includes fen
+    const d=await (await fetch('https://lichess.org/api/puzzle/'+id,{headers:{Accept:'application/json'}})).json();
     const puzzle=d.puzzle, game=d.game;
-    if(!puzzle||!puzzle.fen){throw new Error('no puzzle');}
+    let fen=puzzle.fen;
+    if(!fen && game && game.pgn) fen=fenFromPgn(game.pgn);
+    if(!fen) throw new Error('no fen');
     document.getElementById('rating').textContent=puzzle.rating||'—';
     document.getElementById('fromGame').innerHTML=(game.players||[]).map(p=>'<div class="stat-row"><span>'+p.color+'</span><b>'+(p.name||'')+' ('+(p.rating||'?')+')</b></div>').join('')||'—';
-    chess=new Chess(puzzle.fen);
+    chess=new Chess(fen);
     playerColor=chess.turn();
     solution=puzzle.solution||[];
     solIndex=0;
