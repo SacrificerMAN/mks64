@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Search any player on Chess.com and Lichess.">
+<title>Player Lookup | Saran Chess Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/tools.css">
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">♟ Saran Chess Academy</a>
+  <div class="nav-links">
+    <a href="/explore.html" class="on">Chess Hub</a>
+    <a href="/tournaments.html">Tournaments</a>
+    <a href="/#join">Join</a>
+  </div>
+  <a class="btn btn-solid" href="/#join">Book a free call</a>
+</nav>
+<main>
+<div class="wrap">
+  <div class="page-head"><h1>🔍 Player Lookup</h1><p>Enter username to see stats on Chess.com and Lichess.</p></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;max-width:560px">
+    <input id="q" placeholder="Username (e.g. hikaru)" style="flex:1;min-width:220px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--text);font-size:15px">
+    <button class="btn btn-solid" id="searchBtn" type="button">Search</button>
+  </div>
+  <div class="chips">
+    <button type="button" class="chip" data-user="hikaru">hikaru</button>
+    <button type="button" class="chip" data-user="MagnusCarlsen">MagnusCarlsen</button>
+    <button type="button" class="chip" data-user="GMAnishGiri">GMAnishGiri</button>
+    <button type="button" class="chip" data-user="DrNykterstein">DrNykterstein</button>
+  </div>
+  <p class="status" id="status"></p>
+  <div id="results" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:12px"></div>
+  <p style="margin-top:20px"><a class="btn btn-outline" href="/explore.html">← Chess Hub</a></p>
+</div>
+</main>
+<footer>
+  <div>© 2026 Saran Chess Academy</div>
+  <div><a href="/">Home</a> · <a href="/explore.html">Chess Hub</a> · <a href="/tournaments.html">Tournaments</a></div>
+</footer>
+<script src="/board.js"></script>
+<script>
+const out=document.getElementById('results');
+const statusEl=document.getElementById('status');
+async function search(name){
+  name=(name||'').trim();if(!name)return;
+  statusEl.textContent='Searching…';out.innerHTML='';
+  const [lichess,chesscom,cstats]=await Promise.all([
+    fetch('https://lichess.org/api/user/'+encodeURIComponent(name)).then(r=>r.ok?r.json():null).catch(()=>null),
+    fetch('https://api.chess.com/pub/player/'+encodeURIComponent(name.toLowerCase()),{headers:{'User-Agent':'SaranChessAcademy/1.0'}}).then(r=>r.ok?r.json():null).catch(()=>null),
+    fetch('https://api.chess.com/pub/player/'+encodeURIComponent(name.toLowerCase())+'/stats',{headers:{'User-Agent':'SaranChessAcademy/1.0'}}).then(r=>r.ok?r.json():null).catch(()=>null)
+  ]);
+  if(!lichess&&!chesscom){statusEl.textContent='No player found for "'+name+'".';return}
+  statusEl.textContent='Results for '+name;
+  let html='';
+  if(lichess){
+    const p=lichess.perfs||{};
+    html+='<div class="card"><h3>Lichess · '+(lichess.username||name)+(lichess.title?(' · '+lichess.title):'')+'</h3>';
+    ['bullet','blitz','rapid','classical','puzzle'].forEach(k=>{if(p[k]&&p[k].rating)html+='<div class="stat-row"><span>'+k+'</span><b>'+p[k].rating+'</b></div>'});
+    if(lichess.count)html+='<div class="stat-row"><span>Games</span><b>'+lichess.count.all+'</b></div>';
+    html+='<a class="btn btn-outline" style="margin-top:10px" href="https://lichess.org/@/'+lichess.username+'" target="_blank" rel="noopener">Open Lichess</a></div>';
+  }
+  if(chesscom){
+    html+='<div class="card"><h3>Chess.com · '+(chesscom.username||name)+(chesscom.title?(' · '+chesscom.title):'')+'</h3>';
+    if(cstats){[['chess_bullet','Bullet'],['chess_blitz','Blitz'],['chess_rapid','Rapid'],['chess_daily','Daily']].forEach(([k,label])=>{const r=cstats[k]&&cstats[k].last&&cstats[k].last.rating;if(r)html+='<div class="stat-row"><span>'+label+'</span><b>'+r+'</b></div>'})}
+    html+='<a class="btn btn-outline" style="margin-top:10px" href="'+chesscom.url+'" target="_blank" rel="noopener">Open Chess.com</a></div>';
+  }
+  out.innerHTML=html;
+}
+document.getElementById('searchBtn').onclick=()=>search(document.getElementById('q').value);
+document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')search(e.target.value)});
+document.querySelectorAll('[data-user]').forEach(b=>b.onclick=()=>{document.getElementById('q').value=b.dataset.user;search(b.dataset.user)});
+</script>
+</body>
+</html>
