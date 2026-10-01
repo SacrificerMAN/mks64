@@ -47,20 +47,12 @@ section{padding:80px 0}
 .form-box{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
 .form-box input,.form-box select{background:#050505;border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--text)}
 footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.traps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}
-.trap-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px}
-.trap-card h3{font-size:16px;margin-bottom:6px;display:flex;align-items:center;gap:8px}
-.trap-card .num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;background:var(--green);color:#fff;font-size:12px;font-weight:600;flex-shrink:0}
-.trap-card .opening{font-size:12px;color:var(--green);font-weight:500;margin-bottom:8px}
-.trap-card .moves{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#c8c8c8;background:#0a0a0a;border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin:10px 0;line-height:1.45}
-.trap-card .pieces{font-size:13px;color:var(--muted);line-height:1.5}
-.trap-card .pieces strong{color:var(--text);font-weight:500}
 .video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
 .video-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;overflow:hidden}
 .video-card video{width:100%;border-radius:10px;background:#000;aspect-ratio:16/12;object-fit:contain}
 .video-card .vcap{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.4}
 .video-card .vcap strong{color:var(--text);display:block;margin-bottom:2px}
-@media(max-width:800px){.grid-3,.quotes,.coach,.form-grid,.traps-grid,.video-grid{grid-template-columns:1fr}.nav-links{display:none}.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.grid-3,.quotes,.coach,.form-grid,.video-grid{grid-template-columns:1fr}.nav-links{display:none}.gallery{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -115,18 +107,6 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
       <div class="vcap"><strong>Blackburne Shilling</strong>Full video with voiceover · Italian Game trap</div>
     </div>
     <div id="trap-player" style="margin-top:16px"></div>
-    <div class="traps-grid">
-      <div class="trap-card"><h3><span class="num">1</span> Scholar's Mate</h3><div class="opening">King's Pawn</div><div class="moves">1.e4 e5 2.Qh5 Nc6 3.Bc4 Nf6? 4.Qxf7#</div><div class="pieces"><strong>Queen + Bishop</strong> both aim at f7. Knight to f6 is the usual defence.</div></div>
-      <div class="trap-card"><h3><span class="num">2</span> Legal's Mate</h3><div class="opening">Italian / Philidor</div><div class="moves">…Bg4 pins Nf3 → Nxe5! If …Bxd1 then Bxf7+ Ke7 Nd5#</div><div class="pieces"><strong>Knight + Bishop + Knight</strong> — queen is bait. Pin only works if the piece cannot move safely.</div></div>
-      <div class="trap-card"><h3><span class="num">3</span> Fried Liver</h3><div class="opening">Two Knights</div><div class="moves">4.Ng5 d5 5.exd5 Nxd5? 6.Nxf7!</div><div class="pieces"><strong>Knight on g5</strong> hits f7. After the sac, bishop and pieces hunt the king.</div></div>
-      <div class="trap-card"><h3><span class="num">4</span> Blackburne Shilling</h3><div class="opening">Italian · video above</div><div class="moves">3…Nd4 4.Nxe5? Qg5! → …Qxg2 and …Nf3#</div><div class="pieces"><strong>Black Queen + Knight on d4</strong> punish greedy Nxe5.</div></div>
-      <div class="trap-card"><h3><span class="num">5</span> Noah's Ark</h3><div class="opening">Ruy Lopez</div><div class="moves">…a6 Ba4 b5 Bb3 …Na5 / c4 traps the bishop</div><div class="pieces"><strong>Black pawns + knight</strong> chain-trap White’s light-squared bishop.</div></div>
-      <div class="trap-card"><h3><span class="num">6</span> Lasker Trap</h3><div class="opening">Albin Countergambit</div><div class="moves">…Bb4+ and underpromotion ideas</div><div class="pieces"><strong>Bishop check + d-pawn</strong> — rare knight underpromotion threat.</div></div>
-      <div class="trap-card"><h3><span class="num">7</span> Elephant Trap</h3><div class="opening">QGD</div><div class="moves">Nxd5? Nxd5 Bxd8 Bb4+ → Black regains the queen</div><div class="pieces"><strong>Bishop on b4</strong> — winning the queen is not always winning the game.</div></div>
-      <div class="trap-card"><h3><span class="num">8</span> Cambridge Springs</h3><div class="opening">Queen's Gambit</div><div class="moves">…Qa5 + …Ne4 / …Bb4</div><div class="pieces"><strong>Queen on a5</strong> + knight/bishop overload White’s defence.</div></div>
-      <div class="trap-card"><h3><span class="num">9</span> Siberian Trap</h3><div class="opening">Sicilian lines</div><div class="moves">Early …Qh4 vs uncastled king</div><div class="pieces"><strong>Black Queen</strong> targets e4/f2 while White’s king sits in the centre.</div></div>
-      <div class="trap-card"><h3><span class="num">10</span> Fishing Pole</h3><div class="opening">Ruy Lopez</div><div class="moves">…Ng4 h3 h5! — sac to open the h-file</div><div class="pieces"><strong>Knight on g4</strong> is bait; open h-file for rook/queen vs castled king.</div></div>
-    </div>
   </div>
 </section>
 <section id="programs">
