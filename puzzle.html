@@ -45,7 +45,7 @@
   <div>© 2026 Saran Chess Academy</div>
   <div><a href="/">Home</a> · <a href="/explore.html">Chess Hub</a> · <a href="/tournaments.html">Tournaments</a></div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/chess.js@0.13.4/chess.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
 <script src="/board.js"></script>
 <script>
 const boardEl=document.getElementById('board');
@@ -66,13 +66,14 @@ async function load(){
     document.getElementById('turnLabel').textContent=(playerColor==='w'?'White':'Black')+' to move';
     document.getElementById('stepLabel').textContent='Step 1 of '+Math.ceil(solution.length/2);
     draw(); statusEl.textContent='Find the best move!';
-  }catch(e){statusEl.textContent='Could not load puzzle.';}
+  }catch(e){console.error(e);statusEl.textContent='Could not load puzzle.';}
 }
 function draw(hints=[]){
+  if(!chess) return;
   renderBoard(boardEl,chess.fen(),{flip:playerColor==='b',selected,hints,onClick:onSq});
 }
 function onSq(sq,piece){
-  if(solIndex>=solution.length) return;
+  if(!chess||solIndex>=solution.length) return;
   if(selected){
     const from=selected;selected=null;
     const expected=solution[solIndex];
