@@ -52,13 +52,11 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 .video-card video{width:100%;border-radius:10px;background:#000;aspect-ratio:16/12;object-fit:contain}
 .video-card .vcap{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.4}
 .video-card .vcap strong{color:var(--text);display:block;margin-bottom:2px}
-.tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
-.tool-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;overflow:hidden}
-.tool-card h3{font-size:15px;margin-bottom:10px}
-.tool-card iframe{width:100%;border:0;border-radius:10px;background:#000;display:block}
-.tool-card .tool-note{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.4}
-.tool-wide{grid-column:1/-1}
-@media(max-width:800px){.grid-3,.quotes,.coach,.form-grid,.video-grid,.tools-grid{grid-template-columns:1fr}.nav-links{display:none}.gallery{grid-template-columns:repeat(2,1fr)}}
+.tool-solo{margin-top:28px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;overflow:hidden}
+.tool-solo iframe{width:100%;border:0;border-radius:10px;background:#000;display:block}
+.tool-solo .tool-note{margin-top:12px;font-size:13px;color:var(--muted);line-height:1.45}
+.tool-actions{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
+@media(max-width:800px){.grid-3,.quotes,.coach,.form-grid,.video-grid{grid-template-columns:1fr}.nav-links{display:none}.gallery{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -68,7 +66,10 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
     <a href="#programs">Programs</a>
     <a href="#results">Results</a>
     <a href="#traps">Traps</a>
-    <a href="#tools">Tools</a>
+    <a href="#puzzle">Puzzle</a>
+    <a href="#live-tv">Live TV</a>
+    <a href="#openings">Openings</a>
+    <a href="#tournaments">Tournaments</a>
     <a href="#pricing">Pricing</a>
     <a href="#join">Join</a>
   </div>
@@ -116,34 +117,79 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
     <div id="trap-player" style="margin-top:16px"></div>
   </div>
 </section>
-<section id="tools" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+
+<section id="puzzle" style="border-top:1px solid var(--border)">
   <div class="wrap">
     <div class="sec-label">Free chess tools</div>
-    <h2 class="sec-title">Daily Puzzle, Live TV, Opening Explorer</h2>
-    <p class="sec-desc">Practice tactics, watch top games live, and explore openings — free on this site.</p>
-    <div class="tools-grid">
-      <div class="tool-card">
-        <h3>Daily Puzzle</h3>
-        <iframe src="https://lichess.org/training/frame?theme=green&bg=dark" style="aspect-ratio:1/1.12;min-height:360px" allowtransparency="true" loading="lazy" title="Daily chess puzzle"></iframe>
-        <p class="tool-note">New puzzle every day. Click the board to solve on Lichess.</p>
-      </div>
-      <div class="tool-card">
-        <h3>Live TV</h3>
-        <iframe src="https://lichess.org/tv/frame?theme=green&bg=dark" style="aspect-ratio:1/1.12;min-height:360px" allowtransparency="true" loading="lazy" title="Lichess Live TV"></iframe>
-        <p class="tool-note">Watch top-rated games as they happen.</p>
-      </div>
-      <div class="tool-card tool-wide">
-        <h3>Opening Explorer & Analysis</h3>
-        <iframe src="https://lichess.org/embed/analysis?theme=green&bg=dark" style="aspect-ratio:4/3;min-height:420px" allowtransparency="true" loading="lazy" title="Chess analysis and opening explorer"></iframe>
-        <p class="tool-note">Stockfish analysis + opening explorer + tablebase. Move pieces freely.</p>
-      </div>
+    <h2 class="sec-title">Daily Puzzle</h2>
+    <p class="sec-desc">One carefully chosen tactic every day. Same puzzle for everyone — build the habit.</p>
+    <div class="tool-solo" style="max-width:480px">
+      <iframe src="https://lichess.org/training/frame?theme=green&bg=dark" style="aspect-ratio:1/1.12;min-height:400px" allowtransparency="true" loading="lazy" title="Daily chess puzzle"></iframe>
+      <p class="tool-note">Click the board to solve. New puzzle at midnight UTC.</p>
     </div>
-    <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:10px">
-      <a class="btn btn-outline" href="https://lichess.org/tournament" target="_blank" rel="noopener">Live tournaments on Lichess</a>
-      <a class="btn btn-outline" href="https://lichess.org/swiss" target="_blank" rel="noopener">Swiss tournaments</a>
+    <div class="tool-actions">
+      <a class="btn btn-outline" href="https://lichess.org/training" target="_blank" rel="noopener">More puzzles on Lichess</a>
     </div>
   </div>
 </section>
+
+<section id="live-tv" style="background:var(--bg2);border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">Free chess tools</div>
+    <h2 class="sec-title">Live TV</h2>
+    <p class="sec-desc">Watch the highest-rated games on Lichess as they are played — no account needed.</p>
+    <div class="tool-solo" style="max-width:480px">
+      <iframe src="https://lichess.org/tv/frame?theme=green&bg=dark" style="aspect-ratio:1/1.12;min-height:400px" allowtransparency="true" loading="lazy" title="Lichess Live TV"></iframe>
+      <p class="tool-note">Auto-switches to the most interesting game.</p>
+    </div>
+    <div class="tool-actions">
+      <a class="btn btn-outline" href="https://lichess.org/tv" target="_blank" rel="noopener">Open full Lichess TV</a>
+      <a class="btn btn-outline" href="https://lichess.org/games" target="_blank" rel="noopener">Current games</a>
+    </div>
+  </div>
+</section>
+
+<section id="openings" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">Free chess tools</div>
+    <h2 class="sec-title">Opening Explorer & Analysis</h2>
+    <p class="sec-desc">Move pieces freely. See master-game stats, Stockfish evaluation, and endgame tablebases.</p>
+    <div class="tool-solo">
+      <iframe src="https://lichess.org/embed/analysis?theme=green&bg=dark" style="aspect-ratio:4/3;min-height:480px" allowtransparency="true" loading="lazy" title="Opening explorer and analysis board"></iframe>
+      <p class="tool-note">Use the explorer tab for opening databases. Engine runs in your browser.</p>
+    </div>
+    <div class="tool-actions">
+      <a class="btn btn-outline" href="https://lichess.org/analysis" target="_blank" rel="noopener">Full analysis board</a>
+      <a class="btn btn-outline" href="https://lichess.org/opening" target="_blank" rel="noopener">Opening tree</a>
+    </div>
+  </div>
+</section>
+
+<section id="tournaments" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">Play online</div>
+    <h2 class="sec-title">Live chess tournaments</h2>
+    <p class="sec-desc">Join free Arena and Swiss events on Lichess. Practice under time pressure — same format as real online events.</p>
+    <div class="grid-3" style="margin-top:28px">
+      <div class="card">
+        <h3>Arena tournaments</h3>
+        <p>Ongoing events. Play as many games as you want. Higher score wins.</p>
+        <a class="btn btn-outline" style="margin-top:14px" href="https://lichess.org/tournament" target="_blank" rel="noopener">Browse arenas</a>
+      </div>
+      <div class="card">
+        <h3>Swiss tournaments</h3>
+        <p>Fixed number of rounds. Fair pairings. Great for serious practice.</p>
+        <a class="btn btn-outline" style="margin-top:14px" href="https://lichess.org/swiss" target="_blank" rel="noopener">Browse Swiss</a>
+      </div>
+      <div class="card">
+        <h3>Academy events</h3>
+        <p>We host practice tournaments for students. Ask in class or on the free call.</p>
+        <a class="btn btn-green" style="margin-top:14px" href="#join">Get notified</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="programs">
   <div class="wrap">
     <div class="sec-label">Academy programs</div>
@@ -209,7 +255,7 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 </section>
 <footer>
   <div>© 2026 Saran Chess Academy</div>
-  <div><a href="#programs">Programs</a> · <a href="#traps">Traps</a> · <a href="#tools">Tools</a> · <a href="#join">Contact</a></div>
+  <div><a href="#programs">Programs</a> · <a href="#traps">Traps</a> · <a href="#puzzle">Puzzle</a> · <a href="#tournaments">Tournaments</a> · <a href="#join">Contact</a></div>
 </footer>
 <script>
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
