@@ -5,29 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
 <meta name="description" content="Solve today’s free daily chess puzzle from Lichess.">
-<title>Daily Chess Puzzle — Solve Today’s Puzzle Free | Saran Chess Academy</title>
+<title>Daily Chess Puzzle | Saran Chess Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#050505;--bg2:#0a0a0a;--surface:#111;--border:rgba(255,255,255,.08);--text:#f5f5f5;--muted:#8a8a8a;--green:#10a37f;--radius:16px}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-nav{position:fixed;inset:0 0 auto;z-index:100;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(5,5,5,.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.logo{font-weight:600}
-.nav-links{display:flex;gap:18px;font-size:14px;color:var(--muted)}
-.nav-links a.on{color:var(--text)}
-.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:500;border:1px solid transparent}
-.btn-solid{background:#fff;color:#050505}.btn-outline{border-color:var(--border)}
-main{padding:100px 0 64px}
-.sec-label{font-size:12px;font-weight:600;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
-h1{font-size:clamp(28px,4vw,40px);letter-spacing:-.03em}
-.lead{margin-top:10px;color:var(--muted);max-width:520px}
-.panel{margin-top:28px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;overflow:hidden;max-width:480px}
-.panel iframe{width:100%;border:0;border-radius:10px;background:#000;display:block;aspect-ratio:1/1.12;min-height:420px}
-footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-@media(max-width:800px){.nav-links{display:none}}
-</style>
+<link rel="stylesheet" href="/tools.css">
 </head>
 <body>
 <nav>
@@ -39,12 +19,85 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
   </div>
   <a class="btn btn-solid" href="/#join">Book a free call</a>
 </nav>
-<main><div class="wrap">
-  <div class="sec-label">Chess Hub</div>
-  <h1>Daily Puzzle</h1>
-  <p class="lead">One carefully chosen tactic every day. Click the board to solve.</p>
-  <div class="panel"><iframe src="https://lichess.org/training/frame?theme=green&bg=dark" allowtransparency="true" title="Daily chess puzzle"></iframe></div>
-  <p style="margin-top:16px"><a class="btn btn-outline" href="/explore.html">← Back to Chess Hub</a></p>
-</div></main>
-<footer><div>© 2026 Saran Chess Academy</div><div><a href="/">Home</a> · <a href="/explore.html">Chess Hub</a></div></footer>
-</body></html>
+<main>
+<div class="wrap">
+  <div class="page-head"><h1>🧩 Daily Puzzle</h1><p>Find the best move — a new Lichess puzzle every day.</p></div>
+  <div class="layout">
+    <div>
+      <div class="board-wrap"><div class="board" id="board"></div></div>
+      <p class="status" id="status">Loading…</p>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-outline" id="reset" type="button">↻ Reset</button>
+        <button class="btn btn-outline" id="reveal" type="button">💡 Reveal</button>
+        <a class="btn btn-outline" href="/explore.html">← Chess Hub</a>
+      </div>
+    </div>
+    <div class="side">
+      <div class="card" style="text-align:center"><h3>Puzzle Rating</h3><div class="badge" id="rating">—</div></div>
+      <div class="card"><h3>Your turn</h3><div id="turnLabel" style="font-weight:600">—</div><div class="status" id="stepLabel" style="margin:0">—</div></div>
+      <div class="card"><h3>Themes</h3><div class="tags" id="themes"></div></div>
+      <div class="card"><h3>From the game</h3><div id="fromGame"></div></div>
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+  <div>© 2026 Saran Chess Academy</div>
+  <div><a href="/">Home</a> · <a href="/explore.html">Chess Hub</a> · <a href="/tournaments.html">Tournaments</a></div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/chess.js@0.13.4/chess.min.js"></script>
+<script src="/board.js"></script>
+<script>
+const boardEl=document.getElementById('board');
+const statusEl=document.getElementById('status');
+let chess=null,solution=[],solIndex=0,selected=null,playerColor='w';
+async function load(){
+  statusEl.textContent='Loading today\'s puzzle…';
+  try{
+    const d=await (await fetch('https://lichess.org/api/puzzle/daily')).json();
+    const puzzle=d.puzzle, game=d.game;
+    document.getElementById('rating').textContent=puzzle.rating;
+    document.getElementById('themes').innerHTML=(puzzle.themes||[]).map(t=>'<span class="tag">'+t+'</span>').join('');
+    document.getElementById('fromGame').innerHTML=(game.players||[]).map(p=>'<div class="stat-row"><span>'+p.color+'</span><b>'+(p.name||'')+' ('+(p.rating||'?')+')</b></div>').join('');
+    chess=new Chess(puzzle.fen);
+    playerColor=chess.turn();
+    solution=puzzle.solution||[];
+    solIndex=0;selected=null;
+    document.getElementById('turnLabel').textContent=(playerColor==='w'?'White':'Black')+' to move';
+    document.getElementById('stepLabel').textContent='Step 1 of '+Math.ceil(solution.length/2);
+    draw(); statusEl.textContent='Find the best move!';
+  }catch(e){statusEl.textContent='Could not load puzzle.';}
+}
+function draw(hints=[]){
+  renderBoard(boardEl,chess.fen(),{flip:playerColor==='b',selected,hints,onClick:onSq});
+}
+function onSq(sq,piece){
+  if(solIndex>=solution.length) return;
+  if(selected){
+    const from=selected;selected=null;
+    const expected=solution[solIndex];
+    if((from+sq)===expected.slice(0,4) || (from+sq+'q')===expected){
+      const uci=expected;
+      const m=chess.move({from:uci.slice(0,2),to:uci.slice(2,4),promotion:uci[4]||'q'});
+      if(!m){statusEl.textContent='Move error';draw();return}
+      solIndex++;draw();statusEl.textContent='Correct!';
+      if(solIndex<solution.length){
+        setTimeout(()=>{
+          const u=solution[solIndex];
+          chess.move({from:u.slice(0,2),to:u.slice(2,4),promotion:u[4]||'q'});
+          solIndex++;draw();
+          if(solIndex>=solution.length){statusEl.textContent='Puzzle solved!';document.getElementById('stepLabel').textContent='Complete'}
+          else{statusEl.textContent='Your turn.';document.getElementById('stepLabel').textContent='Step '+(Math.floor(solIndex/2)+1)+' of '+Math.ceil(solution.length/2)}
+        },400);
+      } else {statusEl.textContent='Puzzle solved!';document.getElementById('stepLabel').textContent='Complete'}
+    } else {statusEl.textContent='Not the best move — try again.';draw()}
+  } else if(piece && ((playerColor==='w'&&piece===piece.toUpperCase())||(playerColor==='b'&&piece===piece.toLowerCase()))){
+    selected=sq;draw(chess.moves({square:sq,verbose:true}).map(m=>m.to));
+  }
+}
+document.getElementById('reveal').onclick=()=>{statusEl.textContent='Solution: '+solution.join(' → ')};
+document.getElementById('reset').onclick=load;
+load();
+</script>
+</body>
+</html>
