@@ -30,7 +30,11 @@ function renderBoard(el,fen,opts={}){
   ranks.forEach((rank,ri)=>files.forEach((file,fi)=>{
     const sq=file+rank;
     const d=document.createElement('div');
-    const dark=((ri+fi)%2)===1;
+    // a1 must be dark (standard). ranks are top→bottom 8..1 when not flipped.
+    // Color by absolute file/rank so flip keeps a1 dark from white's view logic via file+rank.
+    const fileIdx=file.charCodeAt(0)-97; // a=0
+    const rankIdx=rank-1; // 1=0
+    const dark=((fileIdx+rankIdx)%2)===0;
     d.className='sq '+(dark?'dk':'lt')+(opts.selected===sq?' sel':'')+(opts.hints&&opts.hints.includes(sq)?' mark':'');
     d.dataset.sq=sq;
     if(map[sq]&&PIECE_URL[map[sq]]){
