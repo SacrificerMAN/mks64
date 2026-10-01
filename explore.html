@@ -1,1 +1,83 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Free interactive chess tools for learners.">
+<title>Free Chess Tools — Daily Puzzle, Live TV, Opening Explorer | Saran Chess Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--surface:#111;--border:rgba(255,255,255,.08);--text:#f5f5f5;--muted:#8a8a8a;--green:#10a37f;--radius:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+nav{position:fixed;inset:0 0 auto;z-index:100;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(5,5,5,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-weight:600}
+.nav-links{display:flex;gap:18px;font-size:14px;color:var(--muted)}
+.nav-links a.on{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:500;border:1px solid transparent;cursor:pointer}
+.btn-solid{background:#fff;color:#050505}
+.btn-outline{border-color:var(--border)}
+main{padding:96px 0 64px}
+.page-head{margin-bottom:28px}
+.page-head h1{font-size:clamp(26px,4vw,36px);letter-spacing:-.03em}
+.page-head p{color:var(--muted);margin-top:8px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;display:block;min-height:180px}
+.card:hover{border-color:rgba(255,255,255,.18)}
+.tag{display:inline-flex;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:rgba(16,163,127,.15);color:var(--green)}
+footer{padding:28px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:40px}
+@media(max-width:800px){.nav-links{display:none}.grid2{grid-template-columns:1fr!important}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">♟ Saran Chess Academy</a>
+  <div class="nav-links">
+    <a href="/explore.html" class="on">Chess Hub</a>
+    <a href="/tournaments.html">Tournaments</a>
+    <a href="/#join">Join</a>
+  </div>
+  <a class="btn btn-solid" href="/#join">Book a free call</a>
+</nav>
+<main>
+<div class="wrap">
+  <div class="page-head">
+    <h1>♟ Chess Hub</h1>
+    <p>Free interactive tools — daily puzzles, live games, openings, and player stats.</p>
+  </div>
+  <div class="grid2" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px">
+    <a class="card" href="/puzzle.html">
+      <span class="tag">Daily · Free</span>
+      <h2 style="margin:14px 0 8px;font-size:22px">🧩 Daily Puzzle</h2>
+      <p style="color:var(--muted);font-size:14px">Solve today’s Lichess puzzle. New challenge every day.</p>
+      <p style="margin-top:16px;color:var(--green);font-weight:500">Open Daily Puzzle →</p>
+    </a>
+    <a class="card" href="/live.html">
+      <span class="tag">Live · Free</span>
+      <h2 style="margin:14px 0 8px;font-size:22px">📺 Live Chess TV</h2>
+      <p style="color:var(--muted);font-size:14px">Watch top games live across Blitz, Bullet, Rapid and more.</p>
+      <p style="margin-top:16px;color:var(--green);font-weight:500">Open Live Chess TV →</p>
+    </a>
+    <a class="card" href="/openings.html">
+      <span class="tag">Education · Free</span>
+      <h2 style="margin:14px 0 8px;font-size:22px">📖 Opening Explorer</h2>
+      <p style="color:var(--muted);font-size:14px">Explore lines, win rates, and engine-scored moves.</p>
+      <p style="margin-top:16px;color:var(--green);font-weight:500">Open Opening Explorer →</p>
+    </a>
+    <a class="card" href="/player.html">
+      <span class="tag">Chess.com + Lichess · Free</span>
+      <h2 style="margin:14px 0 8px;font-size:22px">🔍 Player Lookup</h2>
+      <p style="color:var(--muted);font-size:14px">Search any player — ratings, games, win rates on both platforms.</p>
+      <p style="margin-top:16px;color:var(--green);font-weight:500">Open Player Lookup →</p>
+    </a>
+  </div>
+</div>
+</main>
+<footer>
+  <div>© 2026 Saran Chess Academy</div>
+  <div><a href="/">Home</a> · <a href="/explore.html">Chess Hub</a> · <a href="/tournaments.html">Tournaments</a></div>
+</footer>
+</body>
+</html>
