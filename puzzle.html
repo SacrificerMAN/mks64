@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
-<meta name="description" content="Solve today’s free daily chess puzzle from Lichess.">
+<meta name="description" content="Solve chess puzzles by theme — pin, fork, skewer, mate in 1/2/3.">
 <title>Daily Chess Puzzle | Saran Chess Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/tools.css">
@@ -21,13 +21,13 @@
 </nav>
 <main>
 <div class="wrap">
-  <div class="page-head"><h1>🧩 Daily Puzzle</h1><p>Find the best move — a new Lichess puzzle every day.</p></div>
+  <div class="page-head"><h1>🧩 Daily Puzzle</h1><p>Pick a theme — a matching puzzle loads on the board.</p></div>
   <div class="layout">
     <div>
       <div class="board-wrap"><div class="board" id="board"></div></div>
       <p class="status" id="status">Loading…</p>
       <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn btn-outline" id="reset" type="button">↻ Reset</button>
+        <button class="btn btn-outline" id="reset" type="button">↻ New puzzle</button>
         <button class="btn btn-outline" id="reveal" type="button">💡 Reveal</button>
         <a class="btn btn-outline" href="/explore.html">← Chess Hub</a>
       </div>
@@ -35,7 +35,10 @@
     <div class="side">
       <div class="card" style="text-align:center"><h3>Puzzle Rating</h3><div class="badge" id="rating">—</div></div>
       <div class="card"><h3>Your turn</h3><div id="turnLabel" style="font-weight:600">—</div><div class="status" id="stepLabel" style="margin:0">—</div></div>
-      <div class="card"><h3>Themes</h3><div class="tags" id="themes"></div></div>
+      <div class="card">
+        <h3>Themes</h3>
+        <div class="chips" id="themeChips" style="margin:0"></div>
+      </div>
       <div class="card"><h3>From the game</h3><div id="fromGame"></div></div>
     </div>
   </div>
@@ -48,25 +51,57 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
 <script src="/board.js"></script>
 <script>
+const THEMES=[
+  {id:'pin',label:'Pin'},
+  {id:'fork',label:'Fork'},
+  {id:'skewer',label:'Skewer'},
+  {id:'discoveredAttack',label:'Discovered Attack'},
+  {id:'mateIn1',label:'Mate in 1'},
+  {id:'mateIn2',label:'Mate in 2'},
+  {id:'mateIn3',label:'Mate in 3'}
+];
 const boardEl=document.getElementById('board');
 const statusEl=document.getElementById('status');
-let chess=null,solution=[],solIndex=0,selected=null,playerColor='w';
+const chipsEl=document.getElementById('themeChips');
+let chess=null,solution=[],solIndex=0,selected=null,playerColor='w',currentAngle='mateIn1';
+
+THEMES.forEach(t=>{
+  const b=document.createElement('button');
+  b.type='button';
+  b.className='chip'+(t.id===currentAngle?' on':'');
+  b.textContent=t.label;
+  b.dataset.angle=t.id;
+  b.onclick=()=>{
+    currentAngle=t.id;
+    chipsEl.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.angle===currentAngle));
+    load();
+  };
+  chipsEl.appendChild(b);
+});
+
 async function load(){
-  statusEl.textContent='Loading today\'s puzzle…';
+  statusEl.textContent='Loading '+currentAngle+' puzzle…';
+  selected=null;solution=[];solIndex=0;chess=null;
+  boardEl.innerHTML='';
   try{
-    const d=await (await fetch('https://lichess.org/api/puzzle/daily')).json();
+    const url='https://lichess.org/api/puzzle/next?angle='+encodeURIComponent(currentAngle);
+    const d=await (await fetch(url,{headers:{Accept:'application/json'}})).json();
     const puzzle=d.puzzle, game=d.game;
-    document.getElementById('rating').textContent=puzzle.rating;
-    document.getElementById('themes').innerHTML=(puzzle.themes||[]).map(t=>'<span class="tag">'+t+'</span>').join('');
-    document.getElementById('fromGame').innerHTML=(game.players||[]).map(p=>'<div class="stat-row"><span>'+p.color+'</span><b>'+(p.name||'')+' ('+(p.rating||'?')+')</b></div>').join('');
+    if(!puzzle||!puzzle.fen){throw new Error('no puzzle');}
+    document.getElementById('rating').textContent=puzzle.rating||'—';
+    document.getElementById('fromGame').innerHTML=(game.players||[]).map(p=>'<div class="stat-row"><span>'+p.color+'</span><b>'+(p.name||'')+' ('+(p.rating||'?')+')</b></div>').join('')||'—';
     chess=new Chess(puzzle.fen);
     playerColor=chess.turn();
     solution=puzzle.solution||[];
-    solIndex=0;selected=null;
+    solIndex=0;
     document.getElementById('turnLabel').textContent=(playerColor==='w'?'White':'Black')+' to move';
-    document.getElementById('stepLabel').textContent='Step 1 of '+Math.ceil(solution.length/2);
-    draw(); statusEl.textContent='Find the best move!';
-  }catch(e){console.error(e);statusEl.textContent='Could not load puzzle.';}
+    document.getElementById('stepLabel').textContent='Step 1 of '+Math.max(1,Math.ceil(solution.length/2));
+    draw();
+    statusEl.textContent='Find the best move!';
+  }catch(e){
+    console.error(e);
+    statusEl.textContent='Could not load puzzle. Try another theme.';
+  }
 }
 function draw(hints=[]){
   if(!chess) return;
@@ -77,7 +112,7 @@ function onSq(sq,piece){
   if(selected){
     const from=selected;selected=null;
     const expected=solution[solIndex];
-    if((from+sq)===expected.slice(0,4) || (from+sq+'q')===expected){
+    if((from+sq)===expected.slice(0,4)||(from+sq+'q')===expected){
       const uci=expected;
       const m=chess.move({from:uci.slice(0,2),to:uci.slice(2,4),promotion:uci[4]||'q'});
       if(!m){statusEl.textContent='Move error';draw();return}
@@ -96,7 +131,7 @@ function onSq(sq,piece){
     selected=sq;draw(chess.moves({square:sq,verbose:true}).map(m=>m.to));
   }
 }
-document.getElementById('reveal').onclick=()=>{statusEl.textContent='Solution: '+solution.join(' → ')};
+document.getElementById('reveal').onclick=()=>{statusEl.textContent=solution.length?('Solution: '+solution.join(' → ')):'No solution'};
 document.getElementById('reset').onclick=load;
 load();
 </script>
