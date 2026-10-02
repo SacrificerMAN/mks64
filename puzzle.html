@@ -17,6 +17,7 @@
     <a href="/tournaments.html">Tournaments</a>
     <a href="/#join">Join</a>
   </div>
+  <a class="btn btn-wa" href="/#join">WhatsApp</a>
   <a class="btn btn-solid" href="/#join">Book a free call</a>
 </nav>
 <main>
@@ -110,26 +111,24 @@ function applyPuzzle(d){
   document.getElementById('turnLabel').textContent=(playerColor==='w'?'White':'Black')+' to move';
   document.getElementById('stepLabel').textContent='Step 1 of '+Math.max(1,Math.ceil(solution.length/2));
   draw();
-  statusEl.textContent='Find the best move!';
+  statusEl.textContent='Find the best move!';if(window._scaSoftGate)_scaSoftGate();
 }
 
 async function load(){
   statusEl.textContent='Loading puzzle…';
   selected=null;solution=[];solIndex=0;chess=null;
   boardEl.innerHTML='';
-  // throttle: min 1.2s between API calls
   const wait=1200-(Date.now()-lastFetch);
   if(wait>0) await new Promise(r=>setTimeout(r,wait));
   try{
     lastFetch=Date.now();
     const res=await fetch('https://lichess.org/api/puzzle/next?angle='+encodeURIComponent(currentAngle),{headers:{Accept:'application/json'}});
     if(res.status===429){
-      // fallback to daily
       statusEl.textContent='Theme busy — loading daily puzzle…';
       lastFetch=Date.now();
       const daily=await (await fetch('https://lichess.org/api/puzzle/daily',{headers:{Accept:'application/json'}})).json();
       applyPuzzle(daily);
-      statusEl.textContent='Daily puzzle (theme limit reached). Find the best move!';
+      statusEl.textContent='Daily puzzle (theme limit reached). Find the best move!';if(window._scaSoftGate)_scaSoftGate();
       return;
     }
     if(!res.ok) throw new Error('HTTP '+res.status);
@@ -141,7 +140,7 @@ async function load(){
     try{
       const daily=await (await fetch('https://lichess.org/api/puzzle/daily',{headers:{Accept:'application/json'}})).json();
       applyPuzzle(daily);
-      statusEl.textContent='Daily puzzle loaded. Find the best move!';
+      statusEl.textContent='Daily puzzle loaded. Find the best move!';if(window._scaSoftGate)_scaSoftGate();
     }catch(e2){
       statusEl.textContent='Could not load puzzle. Wait a few seconds and try again.';
     }
@@ -179,5 +178,7 @@ document.getElementById('reveal').onclick=()=>{statusEl.textContent=solution.len
 document.getElementById('reset').onclick=load;
 load();
 </script>
+<script src="/lead-cta.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(window.SCALead){SCALead.injectStrip("puzzle");window._scaSoftGate=function(){SCALead.softGate("puzzle",2);};}});</script>
 </body>
 </html>
