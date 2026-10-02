@@ -19,6 +19,8 @@ nav{position:fixed;inset:0 0 auto;z-index:100;height:64px;display:flex;align-ite
 .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:500;border:1px solid transparent;cursor:pointer}
 .btn-solid{background:#fff;color:#050505}.btn-outline{border-color:var(--border)}
 .btn-green{background:var(--green);color:#fff}
+.btn-wa{background:#25D366;color:#fff;border-color:#25D366}
+.nav-actions{display:flex;align-items:center;gap:10px}
 .hero{min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 56px}
 .hero h1{font-size:clamp(36px,6vw,60px);letter-spacing:-.04em;line-height:1.08;max-width:760px}
 .hero p{margin-top:18px;color:var(--muted);max-width:480px}
@@ -30,12 +32,22 @@ section{padding:80px 0}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
 .card h3{margin-bottom:8px}.card p{color:var(--muted);font-size:14px}
+.prog-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.prog-card h3{font-size:18px;margin-bottom:8px}
+.prog-card p{color:var(--muted);font-size:14px;margin-bottom:12px}
+.prog-card ul{list-style:none;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+.prog-card ul li::before{content:"✓ ";color:var(--green);font-weight:600}
+.prog-card .meta{margin-top:14px;font-size:12px;color:var(--muted)}
 .gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:24px}
 .gallery img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
 .quote{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}.quote blockquote{font-size:14px}
 .quote img{width:52px;height:52px;border-radius:50%;object-fit:cover}
 .quote cite{display:block;margin-top:6px;color:var(--muted);font-size:13px;font-style:normal}
+.results-table{width:100%;border-collapse:collapse;margin-top:28px;font-size:14px}
+.results-table th,.results-table td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--border)}
+.results-table th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04em;font-weight:500}
+.results-table td b{color:var(--green)}
 .coach{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
 .coach img{width:100%;border-radius:var(--radius);border:1px solid var(--border)}
 .tabs{display:inline-flex;padding:4px;border:1px solid var(--border);border-radius:999px;margin-top:24px}
@@ -43,9 +55,20 @@ section{padding:80px 0}
 .tab.active{background:#fff;color:#050505}
 .price-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
 .price-card{width:280px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.price-card .sub-cta{display:block;margin-top:10px;font-size:13px;color:var(--muted);text-align:center}
+.price-card .sub-cta:hover{color:var(--green)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
 .form-box{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
-.form-box input,.form-box select{background:#050505;border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--text)}
+.form-box input,.form-box select{background:#050505;border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--text);width:100%}
+.faq{margin-top:28px;display:flex;flex-direction:column;gap:10px;max-width:720px}
+.faq details{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.faq summary{cursor:pointer;font-weight:500;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq details[open] summary{margin-bottom:8px;color:var(--green)}
+.faq p{color:var(--muted);font-size:14px;line-height:1.55}
+.lead-thanks{display:none;text-align:center;padding:12px 0}
+.lead-thanks h3{font-size:18px;margin-bottom:8px}
+.lead-thanks p{color:var(--muted);font-size:14px;margin-bottom:14px}
 footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
 .video-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;overflow:hidden}
@@ -59,8 +82,8 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 .hub-card h3{font-size:20px;letter-spacing:-.02em}
 .hub-card p{color:var(--muted);font-size:14px;line-height:1.5;flex:1}
 .hub-icon{font-size:32px;line-height:1}
-@media(max-width:900px){.hub-grid{grid-template-columns:1fr}}
-@media(max-width:800px){.grid-3,.quotes,.coach,.form-grid,.video-grid{grid-template-columns:1fr}.nav-links{display:none}.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.hub-grid,.grid-3{grid-template-columns:1fr}.nav-links{display:none}.results-table{font-size:12px}}
+@media(max-width:800px){.quotes,.coach,.form-grid,.video-grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -73,15 +96,20 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
     <a href="/explore.html">Chess Hub</a>
     <a href="/tournaments.html">Tournaments</a>
     <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
     <a href="#join">Join</a>
   </div>
-  <a class="btn btn-solid" href="#join">Book a free call</a>
+  <div class="nav-actions">
+    <a class="btn btn-wa" id="navWa" href="#join">WhatsApp</a>
+    <a class="btn btn-solid" href="#join">Book a free call</a>
+  </div>
 </nav>
 <section class="hero">
   <h1>Stop guessing moves.<br>Start seeing the board.</h1>
   <p>Online coaching with Mohit Kumar Soni (2520+). English + Hindi. Free training call.</p>
   <div class="hero-ctas">
     <a class="btn btn-solid" href="#join">Book a free call</a>
+    <a class="btn btn-wa" id="heroWa" href="#join">WhatsApp us</a>
     <a class="btn btn-outline" href="#programs">See programs</a>
   </div>
 </section>
@@ -103,6 +131,14 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
         <div><blockquote>“Training here changed how I think during games — not just which move to play, but why it works.”</blockquote><cite>Vivaan Chaudhary · Saran Chess Academy</cite></div>
       </div>
     </div>
+    <table class="results-table" aria-label="Student results">
+      <thead><tr><th>Student</th><th>Focus</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Vedant</td><td>6 months · 2×/week</td><td><b>FIDE rated</b> · Blitz peak 1532 · Rapid +200</td></tr>
+        <tr><td>Vivaan Chaudhary</td><td>Structured training</td><td>Clearer in-game thinking & decision quality</td></tr>
+        <tr><td>Academy students</td><td>Group + 1:1 paths</td><td>Tournament-ready habits, not only engine moves</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 <section id="traps" style="border-top:1px solid var(--border)">
@@ -164,10 +200,41 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
   <div class="wrap">
     <div class="sec-label">Academy programs</div>
     <h2 class="sec-title">Pick the path that fits you</h2>
+    <p class="sec-desc">Clear structure. Measurable progress. English + Hindi.</p>
     <div class="grid-3">
-      <div class="card"><h3>Beginner</h3><p>Foundation, mates, opening principles.</p></div>
-      <div class="card"><h3>Intermediate</h3><p>Calculation, review, rating climb.</p></div>
-      <div class="card"><h3>Advanced / 1:1</h3><p>Tournament prep and personal plans.</p></div>
+      <div class="prog-card">
+        <h3>Beginner</h3>
+        <p>Zero se solid foundation — rules se aage, real games tak.</p>
+        <ul>
+          <li>Piece activity & basic mates</li>
+          <li>Opening principles (not rote lines)</li>
+          <li>Simple tactics: fork, pin, skewer</li>
+          <li>How to review your own games</li>
+        </ul>
+        <div class="meta">Best for: new players & parents of kids starting out</div>
+      </div>
+      <div class="prog-card">
+        <h3>Intermediate</h3>
+        <p>Calculation, openings repertoire, rating climb.</p>
+        <ul>
+          <li>Calculation habits under time pressure</li>
+          <li>Middle-game plans by pawn structure</li>
+          <li>Weekly game review</li>
+          <li>Targeted tactics by theme</li>
+        </ul>
+        <div class="meta">Best for: ~800–1600 online / club players</div>
+      </div>
+      <div class="prog-card">
+        <h3>Advanced / 1:1</h3>
+        <p>Tournament prep and a plan built around you.</p>
+        <ul>
+          <li>Personal opening file</li>
+          <li>Opponent prep & time management</li>
+          <li>Deep endgame & conversion</li>
+          <li>Pre-event training blocks</li>
+        </ul>
+        <div class="meta">Best for: serious competitors & FIDE aspirants</div>
+      </div>
     </div>
   </div>
 </section>
@@ -190,12 +257,26 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
       <button class="tab" data-region="intl" type="button">International ($)</button>
     </div>
     <div class="price-row" id="priceIn">
-      <div class="price-card"><div>Monthly</div><h3>₹2,999</h3><a class="btn btn-outline" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start</a></div>
-      <div class="price-card"><div>Yearly · save ₹6,000</div><h3>₹29,999</h3><a class="btn btn-green" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start</a></div>
+      <div class="price-card"><div>Monthly</div><h3>₹2,999</h3><a class="btn btn-outline" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start</a><a class="sub-cta" href="#join">Or book a free call first →</a></div>
+      <div class="price-card"><div>Yearly · save ₹6,000</div><h3>₹29,999</h3><a class="btn btn-green" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start</a><a class="sub-cta" href="#join">Or book a free call first →</a></div>
     </div>
     <div class="price-row" id="priceIntl" style="display:none">
-      <div class="price-card"><div>Monthly</div><h3>$50</h3><a class="btn btn-outline" href="https://rzp.io/rzp/j4oz4Ry" target="_blank" rel="noopener">Start</a></div>
-      <div class="price-card"><div>Yearly</div><h3>$500</h3><a class="btn btn-green" href="https://rzp.io/rzp/AgH7laAA" target="_blank" rel="noopener">Start</a></div>
+      <div class="price-card"><div>Monthly</div><h3>$50</h3><a class="btn btn-outline" href="https://rzp.io/rzp/j4oz4Ry" target="_blank" rel="noopener">Start</a><a class="sub-cta" href="#join">Or book a free call first →</a></div>
+      <div class="price-card"><div>Yearly</div><h3>$500</h3><a class="btn btn-green" href="https://rzp.io/rzp/AgH7laAA" target="_blank" rel="noopener">Start</a><a class="sub-cta" href="#join">Or book a free call first →</a></div>
+    </div>
+  </div>
+</section>
+<section id="faq" style="background:var(--bg2);border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">FAQ</div>
+    <h2 class="sec-title">Common questions</h2>
+    <div class="faq">
+      <details><summary>Is online coaching actually effective?</summary><p>Yes — if sessions are structured. We focus on how you think in real games (time pressure, practical decisions), not only engine lines. Students get homework and game review between classes.</p></details>
+      <details><summary>What age groups do you teach?</summary><p>Kids who can sit through a focused session, teens, and adults. Beginner track works well for school-age starters; intermediate and 1:1 suit serious juniors and adults.</p></details>
+      <details><summary>Hindi ya English — kaunsi language?</summary><p>Both. Classes can be in English, Hindi, or mixed — whatever helps the student learn fastest.</p></details>
+      <details><summary>Free training call me kya hota hai?</summary><p>We understand your level and goal, explain the right program, and answer parent/student questions. No payment required to talk.</p></details>
+      <details><summary>Kitne sessions milte hain?</summary><p>Depends on the plan (monthly/yearly and group vs 1:1). On the free call we map a realistic weekly schedule so progress is consistent.</p></details>
+      <details><summary>Refund / trial?</summary><p>Start with the free call so expectations are clear before you pay. Pricing is listed above; payment is via Razorpay secure checkout.</p></details>
     </div>
   </div>
 </section>
@@ -204,11 +285,17 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
     <div>
       <div class="sec-label">Next step</div>
       <h2 class="sec-title">Tell us where you are.</h2>
-      <p class="sec-desc">Tell us your level and goal. Chat widget also auto-saves name and phone.</p>
+      <p class="sec-desc">Free training call — no payment needed. Prefer chat? Use WhatsApp or the chat button.</p>
+      <p style="margin-top:16px"><a class="btn btn-wa" id="joinWa" href="#join">Message on WhatsApp</a></p>
     </div>
     <form class="form-box" id="leadForm">
-      <input name="name" placeholder="Your name" required>
-      <input name="contact" placeholder="Phone or email" required>
+      <input name="name" placeholder="Your name" required autocomplete="name">
+      <input name="phone" type="tel" placeholder="WhatsApp number *" required autocomplete="tel">
+      <input name="email" type="email" placeholder="Email (optional)" autocomplete="email">
+      <select name="who">
+        <option value="Student">I am the student</option>
+        <option value="Parent">I am a parent</option>
+      </select>
       <select name="rating"><option value="" disabled selected>Level</option><option>Beginner</option><option>Under 1200</option><option>1200–1600</option><option>1600–2000</option><option>2000+</option></select>
       <select name="goal" required>
         <option value="" disabled selected>What do you want?</option>
@@ -218,14 +305,26 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
         <option>Game analysis</option>
         <option>Beginner foundation</option>
       </select>
+      <select name="slot">
+        <option value="" disabled selected>Preferred time (optional)</option>
+        <option>Morning</option>
+        <option>Afternoon</option>
+        <option>Evening</option>
+        <option>Weekend</option>
+      </select>
       <button class="btn btn-solid" id="leadBtn" type="submit">Request my free call</button>
-      <div id="leadMsg" style="font-size:13px;min-height:16px"></div>
+      <div id="leadMsg" style="font-size:13px;min-height:16px;color:var(--muted)"></div>
+      <div class="lead-thanks" id="leadThanks">
+        <h3>Request received ✓</h3>
+        <p>We will call or WhatsApp you soon — usually within a few hours.</p>
+        <a class="btn btn-wa" id="thanksWa" href="#join">Continue on WhatsApp</a>
+      </div>
     </form>
   </div>
 </section>
 <footer>
   <div>© 2026 Saran Chess Academy</div>
-  <div><a href="#programs">Programs</a> · <a href="#traps">Traps</a> · <a href="/explore.html">Hub</a> · <a href="/tournaments.html">Tournaments</a> · <a href="#join">Contact</a></div>
+  <div><a href="#programs">Programs</a> · <a href="#faq">FAQ</a> · <a href="/explore.html">Hub</a> · <a href="/tournaments.html">Tournaments</a> · <a href="#join">Contact</a></div>
 </footer>
 <script>
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
@@ -235,15 +334,47 @@ document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
   document.getElementById('priceIn').style.display=intl?'none':'flex';
   document.getElementById('priceIntl').style.display=intl?'flex':'none';
 });
+// Set your WhatsApp number with country code, digits only (e.g. 919876543210)
+const WA_NUMBER = '';
 const LEAD_ENDPOINT="https://script.google.com/macros/s/AKfycbyn4ox_ddK6q5LKXVmDwU8SjiBUrWuYBvErWzHr1GD76VZmK_Ce4GkZrvZMWnqN8Lam/exec";
-const form=document.getElementById('leadForm'),btn=document.getElementById('leadBtn'),msg=document.getElementById('leadMsg');
+function waHref(text){
+  const t=encodeURIComponent(text||'Hi, I want a free chess training call from Saran Chess Academy.');
+  if(WA_NUMBER) return 'https://wa.me/'+WA_NUMBER+'?text='+t;
+  return '#join';
+}
+['navWa','heroWa','joinWa','thanksWa'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el){ el.href=waHref(); if(!WA_NUMBER){ el.addEventListener('click',e=>{e.preventDefault();document.getElementById('join').scrollIntoView({behavior:'smooth'});}); } }
+});
+const form=document.getElementById('leadForm'),btn=document.getElementById('leadBtn'),msg=document.getElementById('leadMsg'),thanks=document.getElementById('leadThanks');
+const params=new URLSearchParams(location.search);
+const source=params.get('src')||params.get('source')||'website-form';
 form.onsubmit=e=>{
   e.preventDefault();
   btn.disabled=true;btn.textContent='Sending…';
   const d=new FormData(form);
-  const payload={name:d.get('name'),contact:d.get('contact'),rating:d.get('rating')||'Not specified',goal:d.get('goal'),source:'website-form'};
+  const phone=(d.get('phone')||'').trim();
+  const email=(d.get('email')||'').trim();
+  const payload={
+    name:d.get('name'),
+    contact:phone+(email?(' | '+email):''),
+    phone:phone,
+    email:email,
+    who:d.get('who')||'',
+    rating:d.get('rating')||'Not specified',
+    goal:d.get('goal'),
+    slot:d.get('slot')||'',
+    source:source
+  };
   fetch(LEAD_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
-  .then(()=>{msg.textContent="Thanks — we'll reach out soon.";form.reset();btn.disabled=false;btn.textContent='Request my free call'})
+  .then(()=>{
+    msg.textContent='';
+    form.querySelectorAll('input,select,button').forEach(el=>{if(el.id!=='leadBtn') el.style.display='none'});
+    btn.style.display='none';
+    thanks.style.display='block';
+    const tw=document.getElementById('thanksWa');
+    if(tw) tw.href=waHref('Hi, I just submitted the free call form. Name: '+payload.name+' Phone: '+phone);
+  })
   .catch(()=>{msg.textContent='Try again.';btn.disabled=false;btn.textContent='Request my free call'});
 };
 </script>
