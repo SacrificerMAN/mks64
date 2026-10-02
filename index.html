@@ -95,7 +95,7 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
     <a href="#traps">Traps</a>
     <a href="/explore.html">Chess Hub</a>
     <a href="/tournaments.html">Tournaments</a>
-    <a href="#pricing">Pricing</a>
+    <a href="#plans">Plans</a>
     <a href="#faq">FAQ</a>
     <a href="#join">Join</a>
   </div>
@@ -246,22 +246,44 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
     </div>
   </div>
 </section>
-<section id="pricing">
+<section id="plans" style="border-top:1px solid var(--border)">
   <div class="wrap">
-    <div class="sec-label">Pricing</div>
-    <h2 class="sec-title">Invest in clarity</h2>
-    <div class="tabs">
-      <button class="tab active" data-region="in" type="button">India (₹)</button>
-      <button class="tab" data-region="intl" type="button">International ($)</button>
+    <div class="sec-label">Plans</div>
+    <h2 class="sec-title">Flexible coaching — details after demo</h2>
+    <p class="sec-desc">Group or 1:1. Monthly or longer blocks. Exact fees depend on level and schedule — we share clear options on WhatsApp after your free demo. No payment needed to start.</p>
+    <div class="grid-3" style="margin-top:28px">
+      <div class="prog-card">
+        <h3>Try it</h3>
+        <p>Short block to feel the teaching style and weekly rhythm.</p>
+        <ul>
+          <li>Structured sessions</li>
+          <li>Homework between classes</li>
+          <li>Game review basics</li>
+        </ul>
+        <div class="meta">Best for: first-time academy students</div>
+      </div>
+      <div class="prog-card">
+        <h3>Build consistency</h3>
+        <p>Steady weekly training for rating and tournament habits.</p>
+        <ul>
+          <li>Tactics by theme</li>
+          <li>Opening principles</li>
+          <li>Regular feedback</li>
+        </ul>
+        <div class="meta">Best for: club / online rated players</div>
+      </div>
+      <div class="prog-card">
+        <h3>Serious track</h3>
+        <p>Heavier load for competition and personal plans.</p>
+        <ul>
+          <li>1:1 or small group options</li>
+          <li>Event prep blocks</li>
+          <li>Deeper analysis</li>
+        </ul>
+        <div class="meta">Best for: tournament & FIDE goals</div>
+      </div>
     </div>
-    <div class="price-row" id="priceIn">
-      <div class="price-card"><div>Monthly</div><h3>₹2,999</h3><a class="btn btn-outline" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start</a><a class="sub-cta" href="#join">Or book a free Demo first →</a></div>
-      <div class="price-card"><div>Yearly · save ₹6,000</div><h3>₹29,999</h3><a class="btn btn-green" href="https://rzp.io/rzp/wUiMq5BI" target="_blank" rel="noopener">Start</a><a class="sub-cta" href="#join">Or book a free Demo first →</a></div>
-    </div>
-    <div class="price-row" id="priceIntl" style="display:none">
-      <div class="price-card"><div>Monthly</div><h3>$50</h3><a class="btn btn-outline" href="https://rzp.io/rzp/j4oz4Ry" target="_blank" rel="noopener">Start</a><a class="sub-cta" href="#join">Or book a free Demo first →</a></div>
-      <div class="price-card"><div>Yearly</div><h3>$500</h3><a class="btn btn-green" href="https://rzp.io/rzp/AgH7laAA" target="_blank" rel="noopener">Start</a><a class="sub-cta" href="#join">Or book a free Demo first →</a></div>
-    </div>
+    <p style="margin-top:24px"><a class="btn btn-solid" href="#join">Book a free Demo</a></p>
   </div>
 </section>
 <section id="faq" style="background:var(--bg2);border-top:1px solid var(--border)">
@@ -274,7 +296,7 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
       <details><summary>Hindi ya English — kaunsi language?</summary><p>Both. Classes can be in English, Hindi, or mixed — whatever helps the student learn fastest.</p></details>
       <details><summary>Free demo me kya hota hai?</summary><p>We understand your level and goal, explain the right program, and answer parent/student questions. No payment required for the demo.</p></details>
       <details><summary>Kitne sessions milte hain?</summary><p>Depends on the plan (monthly/yearly and group vs 1:1). On the free demo we map a realistic weekly schedule so progress is consistent.</p></details>
-      <details><summary>Refund / trial?</summary><p>Start with the free demo so expectations are clear before you pay. Pricing is listed above; payment is via Razorpay secure checkout.</p></details>
+      <details><summary>Refund / trial?</summary><p>Start with the free demo so expectations are clear. Plan and fees are shared on WhatsApp after we understand your level and goals.</p></details>
     </div>
   </div>
 </section>
@@ -324,13 +346,6 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
   <div><a href="#programs">Programs</a> · <a href="#faq">FAQ</a> · <a href="/explore.html">Hub</a> · <a href="/tournaments.html">Tournaments</a> · <a href="#join">Contact</a></div>
 </footer>
 <script>
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
-  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-  t.classList.add('active');
-  const intl=t.dataset.region==='intl';
-  document.getElementById('priceIn').style.display=intl?'none':'flex';
-  document.getElementById('priceIntl').style.display=intl?'flex':'none';
-});
 const WA_NUMBER = '919354811377';
 const LEAD_ENDPOINT="https://script.google.com/macros/s/AKfycbyn4ox_ddK6q5LKXVmDwU8SjiBUrWuYBvErWzHr1GD76VZmK_Ce4GkZrvZMWnqN8Lam/exec";
 function waHref(text){
