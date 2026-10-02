@@ -313,7 +313,8 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
       <div id="leadMsg" style="font-size:13px;min-height:16px;color:var(--muted)"></div>
       <div class="lead-thanks" id="leadThanks">
         <h3>Demo request received ✓</h3>
-        <p>We will confirm your free demo slot soon — usually within a few hours.</p>
+        <p>WhatsApp will open so you can send us your request. If it does not, tap the button below.</p>
+        <a class="btn btn-wa" id="thanksWa" href="#join" target="_blank" rel="noopener" style="margin-top:8px">Continue on WhatsApp</a>
       </div>
     </form>
   </div>
@@ -363,6 +364,13 @@ form.onsubmit=e=>{
     form.querySelectorAll('input,select,button').forEach(el=>{if(el.id!=='leadBtn') el.style.display='none'});
     btn.style.display='none';
     thanks.style.display='block';
+    const waText = 'Hi, I just booked a free demo from Saran Chess Academy.\nName: '+payload.name+'\nPhone: '+phone+'\nLevel: '+(payload.rating||'')+'\nGoal: '+(payload.goal||'')+(payload.slot?('\nPreferred time: '+payload.slot):'');
+    const link = waHref(waText);
+    const tw = document.getElementById('thanksWa');
+    if(tw){ tw.href = link; tw.style.display = 'inline-flex'; }
+    if(WA_NUMBER){
+      setTimeout(function(){ window.open(link, '_blank'); }, 400);
+    }
   })
   .catch(()=>{msg.textContent='Try again.';btn.disabled=false;btn.textContent='Book a free Demo'});
 };
