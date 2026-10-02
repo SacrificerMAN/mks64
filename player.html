@@ -17,6 +17,7 @@
     <a href="/tournaments.html">Tournaments</a>
     <a href="/#join">Join</a>
   </div>
+  <a class="btn btn-wa" href="/#join">WhatsApp</a>
   <a class="btn btn-solid" href="/#join">Book a free call</a>
 </nav>
 <main>
@@ -41,7 +42,6 @@
   <div>© 2026 Saran Chess Academy</div>
   <div><a href="/">Home</a> · <a href="/explore.html">Chess Hub</a> · <a href="/tournaments.html">Tournaments</a></div>
 </footer>
-<script src="/board.js"></script>
 <script>
 const out=document.getElementById('results');
 const statusEl=document.getElementById('status');
@@ -74,5 +74,7 @@ document.getElementById('searchBtn').onclick=()=>search(document.getElementById(
 document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')search(e.target.value)});
 document.querySelectorAll('[data-user]').forEach(b=>b.onclick=()=>{document.getElementById('q').value=b.dataset.user;search(b.dataset.user)});
 </script>
+<script src="/lead-cta.js"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){if(window.SCALead){SCALead.injectStrip("player");}});</script>
 </body>
 </html>
