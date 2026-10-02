@@ -1,6 +1,6 @@
 (function(){
   // Set digits only with country code, e.g. 919876543210
-  var WA_NUMBER = '';
+  var WA_NUMBER = '919354811377';
   var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyn4ox_ddK6q5LKXVmDwU8SjiBUrWuYBvErWzHr1GD76VZmK_Ce4GkZrvZMWnqN8Lam/exec';
   function waHref(text){
     var t = encodeURIComponent(text || 'Hi, I want a free chess training call from Saran Chess Academy.');
