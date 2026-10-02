@@ -82,6 +82,16 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 .hub-card h3{font-size:20px;letter-spacing:-.02em}
 .hub-card p{color:var(--muted);font-size:14px;line-height:1.5;flex:1}
 .hub-icon{font-size:32px;line-height:1}
+.plans-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
+.plan-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;display:flex;flex-direction:column;gap:8px;position:relative}
+.plan-card.popular{border-color:rgba(16,163,127,.45);box-shadow:0 0 0 1px rgba(16,163,127,.2)}
+.plan-badge{position:absolute;top:-10px;left:12px;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--green);color:#fff}
+.plan-card h3{font-size:18px;margin:4px 0 0}
+.plan-card .plan-for{color:var(--muted);font-size:13px;margin-bottom:6px}
+.plan-card ul{list-style:none;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:5px;flex:1}
+.plan-card ul li::before{content:"✓ ";color:var(--green);font-weight:600}
+@media(max-width:1000px){.plans-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.plans-grid{grid-template-columns:1fr}}
 @media(max-width:900px){.hub-grid,.grid-3{grid-template-columns:1fr}.nav-links{display:none}.results-table{font-size:12px}}
 @media(max-width:800px){.quotes,.coach,.form-grid,.video-grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
 </style>
@@ -249,41 +259,59 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 <section id="plans" style="border-top:1px solid var(--border)">
   <div class="wrap">
     <div class="sec-label">Plans</div>
-    <h2 class="sec-title">Flexible coaching — details after demo</h2>
-    <p class="sec-desc">Group or 1:1. Monthly or longer blocks. Exact fees depend on level and schedule — we share clear options on WhatsApp after your free demo. No payment needed to start.</p>
-    <div class="grid-3" style="margin-top:28px">
-      <div class="prog-card">
-        <h3>Try it</h3>
-        <p>Short block to feel the teaching style and weekly rhythm.</p>
+    <h2 class="sec-title">Simple, flexible blocks</h2>
+    <p class="sec-desc">Pick a duration that fits you. Exact fees depend on group vs 1:1 and schedule — shared on WhatsApp after your free demo. No payment needed to start.</p>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <h3>1 Month</h3>
+        <div class="plan-for">Best for: try it out</div>
         <ul>
-          <li>Structured sessions</li>
-          <li>Homework between classes</li>
-          <li>Game review basics</li>
+          <li>~8 sessions</li>
+          <li>Homework & basics</li>
+          <li>Feel the teaching style</li>
         </ul>
-        <div class="meta">Best for: first-time academy students</div>
       </div>
-      <div class="prog-card">
-        <h3>Build consistency</h3>
-        <p>Steady weekly training for rating and tournament habits.</p>
+      <div class="plan-card">
+        <h3>3 Months</h3>
+        <div class="plan-for">Best for: solid start</div>
         <ul>
-          <li>Tactics by theme</li>
-          <li>Opening principles</li>
-          <li>Regular feedback</li>
+          <li>~24 sessions</li>
+          <li>Tactics + openings</li>
+          <li>Weekly rhythm</li>
         </ul>
-        <div class="meta">Best for: club / online rated players</div>
       </div>
-      <div class="prog-card">
-        <h3>Serious track</h3>
-        <p>Heavier load for competition and personal plans.</p>
+      <div class="plan-card popular">
+        <span class="plan-badge">Most popular</span>
+        <h3>6 Months</h3>
+        <div class="plan-for">Best for: real progress</div>
         <ul>
-          <li>1:1 or small group options</li>
+          <li>~48 sessions</li>
+          <li>Game reviews</li>
+          <li>Tournament habits</li>
+        </ul>
+      </div>
+      <div class="plan-card popular">
+        <span class="plan-badge">Most popular</span>
+        <h3>9 Months</h3>
+        <div class="plan-for">Best for: serious climb</div>
+        <ul>
+          <li>~72 sessions</li>
+          <li>Deeper repertoire</li>
           <li>Event prep blocks</li>
-          <li>Deeper analysis</li>
         </ul>
-        <div class="meta">Best for: tournament & FIDE goals</div>
+      </div>
+      <div class="plan-card">
+        <h3>12 Months</h3>
+        <div class="plan-for">Best for: full year track</div>
+        <ul>
+          <li>~96 sessions</li>
+          <li>Long-term plan</li>
+          <li>Competitive focus</li>
+        </ul>
       </div>
     </div>
-    <p style="margin-top:24px"><a class="btn btn-solid" href="#join">Book a free Demo</a></p>
+    <p style="margin-top:22px;color:var(--muted);font-size:14px">✓ No hidden fees on the demo · ✓ Clear options on WhatsApp · ✓ Start with a free class</p>
+    <p style="margin-top:16px"><a class="btn btn-solid" href="#join">Book a free Demo</a></p>
   </div>
 </section>
 <section id="faq" style="background:var(--bg2);border-top:1px solid var(--border)">
