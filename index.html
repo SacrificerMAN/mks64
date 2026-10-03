@@ -1,1 +1,252 @@
-FILE_FROM_PATH
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Saran Chess Academy — Mohit Kumar Soni (2570+ Chess.com/Lichess, FIDE 1952). 7+ years, 10,000+ live classes. Students in 10+ countries. Online coaching in English & Hindi. Free demo.">
+<title>Saran Chess Academy — Online Chess Coaching | 2570+ · FIDE 1952</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--bg2:#0a0a0a;--surface:#111;--border:rgba(255,255,255,.08);--text:#f5f5f5;--muted:#8a8a8a;--green:#10a37f;--radius:16px}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+nav{position:fixed;inset:0 0 auto;z-index:100;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(5,5,5,.8);backdrop-filter:blur(16px)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600}
+.nav-links{display:flex;gap:18px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:500;border:1px solid transparent;cursor:pointer}
+.btn-solid{background:#fff;color:#050505}.btn-outline{border-color:var(--border)}.btn-green{background:var(--green);color:#fff}.btn-wa{background:#25D366;color:#fff}
+.hero{min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 56px}
+.hero h1{font-size:clamp(36px,6vw,60px);letter-spacing:-.04em;line-height:1.08;max-width:760px}
+.hero p{margin-top:18px;color:var(--muted);max-width:560px}
+.hero-ctas{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:22px;max-width:640px}
+.hero-stat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 18px;min-width:128px;text-align:center}
+.hero-stat b{display:block;font-size:24px;font-weight:700;color:#fff}
+.hero-stat span{display:block;margin-top:5px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--green)}
+.hero-stat.accent{border-color:rgba(16,163,127,.5);box-shadow:0 0 0 1px rgba(16,163,127,.2)}
+section{padding:80px 0}
+.sec-label{font-size:12px;font-weight:600;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.sec-title{font-size:clamp(26px,4vw,36px);letter-spacing:-.03em;max-width:560px}
+.sec-desc{margin-top:10px;color:var(--muted);max-width:560px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+.prog-card,.how-card,.hub-card,.plan-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.prog-card h3,.how-card h3,.hub-card h3{font-size:18px;margin-bottom:8px}
+.prog-card p,.how-card p,.hub-card p{color:var(--muted);font-size:14px}
+.prog-card ul{list-style:none;font-size:13px;color:var(--muted);margin-top:10px}
+.prog-card ul li::before{content:"✓ ";color:var(--green)}
+.hub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px}
+.hub-badge{display:inline-flex;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px;width:fit-content;background:rgba(16,163,127,.15);color:var(--green);margin-bottom:8px}
+.hub-icon{font-size:28px;margin-bottom:6px}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.how-card .num{width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;margin-bottom:12px}
+.plans-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
+.plan-card{position:relative;padding:20px 16px}
+.plan-card.popular{border-color:rgba(16,163,127,.75);background:linear-gradient(180deg,rgba(16,163,127,.16),var(--surface));box-shadow:0 0 0 1px rgba(16,163,127,.35)}
+.plan-badge{position:absolute;top:-11px;left:12px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:var(--green);color:#fff}
+.plan-card ul{list-style:none;font-size:13px;color:var(--muted);margin-top:8px}
+.plan-card ul li::before{content:"✓ ";color:var(--green)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.form-box{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.form-box input,.form-box select{background:#050505;border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--text);width:100%}
+.faq{margin-top:28px;display:flex;flex-direction:column;gap:10px;max-width:720px}
+.faq details{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.faq summary{cursor:pointer;font-weight:500}
+.faq p{color:var(--muted);font-size:14px;margin-top:8px}
+.trust-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:28px;padding:28px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2)}
+.trust-item{text-align:center}
+.trust-item b{display:block;font-size:22px;color:var(--text)}
+.trust-item span{font-size:11px;color:var(--muted);text-transform:uppercase}
+.gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:24px}
+.gallery img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.quote{display:flex;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.quote img{width:52px;height:52px;border-radius:50%;object-fit:cover}
+.quote cite{display:block;margin-top:6px;color:var(--muted);font-size:13px;font-style:normal}
+.coach{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
+.coach img{width:100%;border-radius:var(--radius);border:1px solid var(--border)}
+footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+.foot-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:28px}
+.foot-col h4{color:var(--text);font-size:13px;font-weight:600;margin-bottom:12px}
+.foot-col a{display:block;color:var(--muted);font-size:13px;margin-bottom:8px}
+.foot-col a:hover{color:var(--text)}
+.foot-bottom{max-width:1080px;margin:24px auto 0;padding-top:18px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px}
+.zone-list{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:10px}
+.zone-list span{font-size:11px;padding:4px 10px;border-radius:999px;border:1px solid var(--border);color:var(--muted)}
+.lead-thanks{display:none;text-align:center;padding:12px 0}
+@media(max-width:1000px){.plans-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.hub-grid,.grid-3,.how-grid{grid-template-columns:1fr}.nav-links{display:none}}
+@media(max-width:800px){.quotes,.coach,.form-grid,.foot-grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}.plans-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">♟ Saran Chess Academy</a>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#programs">Programs</a>
+    <a href="#results">Results</a>
+    <a href="/traps.html">Traps</a>
+    <a href="/explore.html">Chess Hub</a>
+    <a href="/tournaments.html">Tournaments</a>
+    <a href="/quiz.html">Chess Quiz</a>
+    <a href="#plans">Plans</a>
+    <a href="#faq">FAQ</a>
+    <a href="#join">Join</a>
+  </div>
+  <a class="btn btn-solid" href="#join">Book a free Demo</a>
+</nav>
+<section class="hero">
+  <h1>Stop guessing moves.<br>Start seeing the board.</h1>
+  <p>Online coaching with Mohit Kumar Soni. English + Hindi. Free first class.</p>
+  <div class="hero-stats">
+    <div class="hero-stat accent"><b>2570+</b><span>Chess.com / Lichess</span></div>
+    <div class="hero-stat accent"><b>1952</b><span>FIDE rating</span></div>
+    <div class="hero-stat"><b>7+ yrs</b><span>Experience</span></div>
+    <div class="hero-stat"><b>10,000+</b><span>Live classes</span></div>
+  </div>
+  <div class="hero-ctas">
+    <a class="btn btn-solid" href="#join">Book a free Demo</a>
+    <a class="btn btn-outline" href="#programs">See programs</a>
+  </div>
+</section>
+<div class="trust-bar">
+  <div class="trust-item"><b>7+ yrs</b><span>Experience</span></div>
+  <div class="trust-item"><b>10,000+</b><span>Live classes</span></div>
+  <div class="trust-item"><b>500+</b><span>Free demos</span></div>
+  <div class="trust-item"><b>10+</b><span>Countries</span></div>
+  <div class="trust-item"><b>2570+</b><span>Chess.com / Lichess</span></div>
+  <div class="trust-item"><b>1952</b><span>FIDE rating</span></div>
+</div>
+<section id="results" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">Proof</div>
+    <h2 class="sec-title">They showed up. They improved.</h2>
+    <div class="gallery">
+      <img src="vedant.jpg" alt="Vedant" loading="lazy"><img src="s4_1.jpg" alt="" loading="lazy"><img src="s1_1.jpg" alt="" loading="lazy"><img src="s2_1.jpg" alt="" loading="lazy"><img src="s3_1.jpg" alt="" loading="lazy">
+      <img src="s5.jpg" alt="" loading="lazy"><img src="s6_1.jpg" alt="" loading="lazy"><img src="s7_1.jpg" alt="" loading="lazy"><img src="s8_1.jpg" alt="" loading="lazy"><img src="s10_1.jpg" alt="" loading="lazy">
+    </div>
+    <div class="quotes">
+      <div class="quote"><img src="vedant.jpg" alt="Vedant"><div><blockquote>“Zero se start. 6 months — FIDE rated, Blitz peak 1532.”</blockquote><cite>Vedant’s father</cite></div></div>
+      <div class="quote"><img src="s4_1.jpg" alt="Vivaan"><div><blockquote>“Training here changed how I think during games.”</blockquote><cite>Vivaan Chaudhary</cite></div></div>
+    </div>
+  </div>
+</section>
+<section id="hub" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">Chess Hub</div>
+    <h2 class="sec-title">Free interactive tools</h2>
+    <div class="hub-grid">
+      <a class="hub-card" href="/quiz.html"><span class="hub-badge">Every Sunday · 9 PM IST</span><div class="hub-icon">🏆</div><h3>Chess Quiz Tournament</h3><p>Weekly free quiz — tactics &amp; traps. Join on WhatsApp.</p></a>
+      <a class="hub-card" href="/puzzle.html"><span class="hub-badge">Daily · Free</span><div class="hub-icon">🧩</div><h3>Daily Puzzle</h3><p>Themed puzzles — pin, fork, mate.</p></a>
+      <a class="hub-card" href="/live.html"><span class="hub-badge">Live · Free</span><div class="hub-icon">📺</div><h3>Live Chess TV</h3><p>Watch top games on Lichess.</p></a>
+      <a class="hub-card" href="/tournaments.html"><span class="hub-badge">Online + FIDE</span><div class="hub-icon">♟️</div><h3>Tournaments</h3><p>Live arenas + FIDE India events.</p></a>
+    </div>
+    <p style="margin-top:20px"><a class="btn btn-outline" href="/explore.html">Open full Chess Hub</a></p>
+  </div>
+</section>
+<section id="how" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">How it works</div>
+    <h2 class="sec-title">From first message to first class</h2>
+    <div class="how-grid">
+      <div class="how-card"><div class="num">1</div><h3>Book a free demo</h3><p>Form ke baad WhatsApp — no payment.</p></div>
+      <div class="how-card"><div class="num">2</div><h3>Level check + plan</h3><p>Short session, clear weekly plan.</p></div>
+      <div class="how-card"><div class="num">3</div><h3>Regular classes</h3><p>Live sessions, homework, game review.</p></div>
+    </div>
+  </div>
+</section>
+<section id="programs">
+  <div class="wrap">
+    <div class="sec-label">Programs</div>
+    <h2 class="sec-title">Pick the path that fits</h2>
+    <div class="grid-3">
+      <div class="prog-card"><h3>Beginner</h3><p>Zero se solid foundation.</p><ul><li>Opening principles</li><li>Basic tactics</li><li>Game review habits</li></ul></div>
+      <div class="prog-card"><h3>Intermediate</h3><p>Calculation &amp; rating climb.</p><ul><li>Repertoire building</li><li>Time pressure habits</li><li>Tournament prep</li></ul></div>
+      <div class="prog-card"><h3>Advanced / 1:1</h3><p>Deep analysis &amp; norms path.</p><ul><li>Opening files</li><li>Endgame technique</li><li>Post-mortem focus</li></ul></div>
+    </div>
+  </div>
+</section>
+<section id="plans" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">Plans</div>
+    <h2 class="sec-title">Commitment that matches your goals</h2>
+    <p class="sec-desc">Fees sirf WhatsApp pe discuss — pehle free demo.</p>
+    <div class="plans-grid">
+      <div class="plan-card"><h3>1 Month</h3><p style="color:var(--muted);font-size:13px">Try the system</p><ul><li>Live classes</li><li>Homework</li></ul></div>
+      <div class="plan-card"><h3>3 Months</h3><p style="color:var(--muted);font-size:13px">Build habits</p><ul><li>Progress tracking</li><li>Game review</li></ul></div>
+      <div class="plan-card popular"><span class="plan-badge">Most popular</span><h3>6 Months</h3><p style="color:var(--muted);font-size:13px">Serious climb</p><ul><li>Structured plan</li><li>Tournament ready</li></ul></div>
+      <div class="plan-card popular"><span class="plan-badge">Most popular</span><h3>9 Months</h3><p style="color:var(--muted);font-size:13px">Deep improvement</p><ul><li>Full repertoire</li><li>Rating goals</li></ul></div>
+      <div class="plan-card"><h3>12 Months</h3><p style="color:var(--muted);font-size:13px">Year-long path</p><ul><li>Long-term plan</li><li>Priority slots</li></ul></div>
+    </div>
+  </div>
+</section>
+<section id="faq" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">FAQ</div>
+    <h2 class="sec-title">Common questions</h2>
+    <div class="faq">
+      <details><summary>Is the first class free?</summary><p>Haan — free demo. Fees baad mein WhatsApp pe.</p></details>
+      <details><summary>English ya Hindi?</summary><p>Dono. Student ke hisaab se.</p></details>
+      <details><summary>Chess Quiz kab hai?</summary><p>Har Sunday 9:00 PM IST — free. Details: <a href="/quiz.html" style="color:var(--green)">quiz page</a>.</p></details>
+    </div>
+  </div>
+</section>
+<section id="join" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">Join</div>
+    <h2 class="sec-title">Book a free Demo</h2>
+    <div class="form-grid">
+      <div>
+        <p class="sec-desc">Form bharo — phir WhatsApp open hoga with your details. Lead save ho jati hai.</p>
+      </div>
+      <form class="form-box" id="leadForm">
+        <input name="name" placeholder="Your name" required>
+        <input name="phone" placeholder="WhatsApp number" required>
+        <input name="email" type="email" placeholder="Email (optional)">
+        <select name="goal"><option value="">Goal</option><option>Beginner</option><option>Rating climb</option><option>Tournament prep</option><option>Kids class</option></select>
+        <button class="btn btn-solid" type="submit">Book a free Demo</button>
+        <div class="lead-thanks" id="leadThanks"><h3>Thanks!</h3><p>WhatsApp khul raha hai…</p></div>
+      </form>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <h4>Saran Chess Academy</h4>
+      <p style="margin-bottom:10px;line-height:1.5">Mohit Kumar Soni — 2570+ · FIDE 1952. Students in 10+ countries.</p>
+      <a class="btn btn-solid" href="#join">Book a free Demo</a>
+    </div>
+    <div class="foot-col">
+      <h4>Explore</h4>
+      <a href="#programs">Programs</a>
+      <a href="#plans">Plans</a>
+      <a href="/traps.html">Famous traps</a>
+      <a href="/explore.html">Chess Hub</a>
+      <a href="/tournaments.html">Tournaments</a>
+      <a href="/quiz.html">Chess Quiz (Sun 9 PM)</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="#join">Book a free Demo</a>
+      <a href="https://wa.me/919354811377" target="_blank" rel="noopener">WhatsApp</a>
+      <h4 style="margin-top:18px">Live classes in every time zone</h4>
+      <div class="zone-list">
+        <span>United States</span><span>Canada</span><span>Australia</span><span>Singapore</span>
+        <span>United Kingdom</span><span>Malaysia</span><span>UAE</span><span>Qatar</span>
+        <span>Germany</span><span>India</span><span>Netherlands</span>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div>© 2026 Saran Chess Academy</div>
+    <div>Online chess coaching · Free first class</div>
+  </div>
+</footer>
+<script src="/lead-cta.js"></script>
+<script src="/chat.js" defer></script>
+</body>
+</html>
