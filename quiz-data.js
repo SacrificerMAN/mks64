@@ -42,15 +42,15 @@
     },
     {
       id: "sk1", theme: "Skewer", type: "tactic",
-      fen: "4k3/8/8/8/8/8/4R3/4K2r w - - 0 1",
-      q: "White to move. Which move skewers the Black king and wins the rook on h1?",
-      options: ["Re8+", "Ke2", "Rh2", "Re1"],
+      fen: "8/k6r/8/8/8/8/8/R5K1 w - - 0 1",
+      q: "White to move. Which move checks the king and skewers the rook on h7?",
+      options: ["Ra7+", "Ra8+", "Rh1", "Kg2"],
       answer: 0
     },
     {
       id: "sk2", theme: "Skewer", type: "tactic",
-      fen: "6k1/5ppp/8/8/8/8/5PPP/R5K1 w - - 0 1",
-      q: "White to move. Which move checks the king and attacks the back rank (skewer idea)?",
+      fen: "q5k1/5ppp/8/8/8/8/5PPP/R5K1 w - - 0 1",
+      q: "White to move. Which move skewers the king and wins the queen on a8?",
       options: ["Ra8+", "Rd1", "h3", "Kg2"],
       answer: 0
     },
@@ -114,7 +114,7 @@
 
   var visualize = [
     { id: "v1", theme: "Visualization", type: "viz", q: "From the starting position: 1.e4 e5 2.Nf3 Nc6 3.Bb5. Where is Black’s queen’s knight?", options: ["c6", "f6", "c5", "b8"], answer: 0 },
-    { id: "v2", theme: "Visualization", type: "viz", q: "White: King on a1, Rook on b1. Black: King on a3. White to move. Is Rb3 checkmate?", options: ["Yes", "No — the king escapes to a2", "No — the king captures the rook", "No — it is stalemate"], answer: 0 },
+    { id: "v2", theme: "Visualization", type: "viz", q: "White: King on c2, Rook on b3. Black: King on a1. White to move. Is Rb1 checkmate?", options: ["Yes", "No — Black king escapes to a2", "No — Black captures the rook", "No — it is stalemate"], answer: 0 },
     { id: "v3", theme: "Visualization", type: "viz", q: "After 1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4, on which square is White’s knight?", options: ["d4", "f3", "c3", "e5"], answer: 0 },
     { id: "v4", theme: "Visualization", type: "viz", q: "White has a rook on e4. White king on e1, Black king on e8, and no piece between them on the e-file. Is the Black king in check?", options: ["Yes", "No", "Only if it is Black’s turn", "Only in blitz"], answer: 0 },
     { id: "v5", theme: "Visualization", type: "viz", q: "The moves 1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 usually start which opening family?", options: ["King’s Indian Defence", "French Defence", "Scandinavian Defence", "London System only"], answer: 0 },
