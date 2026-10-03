@@ -50,13 +50,6 @@ section{padding:80px 0}
 .results-table td b{color:var(--green)}
 .coach{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center}
 .coach img{width:100%;border-radius:var(--radius);border:1px solid var(--border)}
-.tabs{display:inline-flex;padding:4px;border:1px solid var(--border);border-radius:999px;margin-top:24px}
-.tab{border:0;background:0;color:var(--muted);padding:10px 16px;border-radius:999px;cursor:pointer}
-.tab.active{background:#fff;color:#050505}
-.price-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
-.price-card{width:280px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
-.price-card .sub-cta{display:block;margin-top:10px;font-size:13px;color:var(--muted);text-align:center}
-.price-card .sub-cta:hover{color:var(--green)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
 .form-box{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
 .form-box input,.form-box select{background:#050505;border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--text);width:100%}
@@ -70,11 +63,6 @@ section{padding:80px 0}
 .lead-thanks h3{font-size:18px;margin-bottom:8px}
 .lead-thanks p{color:var(--muted);font-size:14px;margin-bottom:14px}
 footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:28px}
-.video-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;overflow:hidden}
-.video-card video{width:100%;border-radius:10px;background:#000;aspect-ratio:16/12;object-fit:contain}
-.video-card .vcap{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.4}
-.video-card .vcap strong{color:var(--text);display:block;margin-bottom:2px}
 .hub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px}
 .hub-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column;gap:12px;transition:border-color .15s}
 .hub-card:hover{border-color:rgba(255,255,255,.18)}
@@ -90,10 +78,15 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 .plan-card .plan-for{color:var(--muted);font-size:13px;margin-bottom:6px}
 .plan-card ul{list-style:none;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:5px;flex:1}
 .plan-card ul li::before{content:"✓ ";color:var(--green);font-weight:600}
+.trap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.trap-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px}
+.trap-cap{margin-top:8px;font-size:13px;color:var(--muted);line-height:1.4}
+.trap-cap strong{color:var(--text);display:block;margin-bottom:2px}
+.trap-play{margin-top:8px;padding:6px 14px;border-radius:999px;border:0;background:var(--green);color:#fff;font-size:13px;cursor:pointer}
 @media(max-width:1000px){.plans-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){.plans-grid{grid-template-columns:1fr}}
 @media(max-width:900px){.hub-grid,.grid-3{grid-template-columns:1fr}.nav-links{display:none}.results-table{font-size:12px}}
-@media(max-width:800px){.quotes,.coach,.form-grid,.video-grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.quotes,.coach,.form-grid,.trap-grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -102,7 +95,7 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
   <div class="nav-links">
     <a href="#programs">Programs</a>
     <a href="#results">Results</a>
-    <a href="#traps">Traps</a>
+    <a href="/traps.html">Traps</a>
     <a href="/explore.html">Chess Hub</a>
     <a href="/tournaments.html">Tournaments</a>
     <a href="#plans">Plans</a>
@@ -152,15 +145,10 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 <section id="traps" style="border-top:1px solid var(--border)">
   <div class="wrap">
     <div class="sec-label">Tactics lab</div>
-    <h2 class="sec-title">10 famous traps every player should know</h2>
-    <p class="sec-desc">Watch the board. Learn the pattern. Tap Play on any trap.</p>
-    <div class="video-card" style="margin-top:28px;max-width:520px">
-      <video controls playsinline preload="metadata" style="width:100%;border-radius:10px;background:#000">
-        <source src="famous-trap.mp4" type="video/mp4">
-      </video>
-      <div class="vcap"><strong>Blackburne Shilling</strong>Full video with voiceover · Italian Game trap</div>
-    </div>
+    <h2 class="sec-title">Famous traps every player should know</h2>
+    <p class="sec-desc">Corrected move-by-move boards — Scholar’s Mate, Legal’s Mate, Fried Liver, and more.</p>
     <div id="trap-player" style="margin-top:16px"></div>
+    <p style="margin-top:20px"><a class="btn btn-green" href="/traps.html">Open all 10 traps →</a></p>
   </div>
 </section>
 <section id="hub" style="border-top:1px solid var(--border)">
@@ -371,7 +359,7 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 </section>
 <footer>
   <div>© 2026 Saran Chess Academy</div>
-  <div><a href="#programs">Programs</a> · <a href="#faq">FAQ</a> · <a href="/explore.html">Hub</a> · <a href="/tournaments.html">Tournaments</a> · <a href="#join">Contact</a></div>
+  <div><a href="#programs">Programs</a> · <a href="#faq">FAQ</a> · <a href="/explore.html">Hub</a> · <a href="/traps.html">Traps</a> · <a href="#join">Contact</a></div>
 </footer>
 <script>
 const WA_NUMBER = '919354811377';
