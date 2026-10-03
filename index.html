@@ -75,8 +75,20 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 .hub-icon{font-size:32px;line-height:1}
 .plans-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
 .plan-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;display:flex;flex-direction:column;gap:8px;position:relative}
-.plan-card.popular{border-color:rgba(16,163,127,.45);box-shadow:0 0 0 1px rgba(16,163,127,.2)}
-.plan-badge{position:absolute;top:-10px;left:12px;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--green);color:#fff}
+.plan-card.popular{
+  border-color:rgba(16,163,127,.75);
+  background:linear-gradient(180deg,rgba(16,163,127,.16) 0%,var(--surface) 55%);
+  box-shadow:0 0 0 1px rgba(16,163,127,.4),0 12px 32px rgba(16,163,127,.14);
+}
+.plan-card.popular h3{color:#fff}
+.plan-badge{
+  position:absolute;top:-11px;left:12px;
+  font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:5px 12px;border-radius:999px;
+  background:linear-gradient(135deg,#12b886,#0d9488);
+  color:#fff;
+  box-shadow:0 4px 12px rgba(16,163,127,.4);
+}
 .plan-card h3{font-size:18px;margin:4px 0 0}
 .plan-card .plan-for{color:var(--muted);font-size:13px;margin-bottom:6px}
 .plan-card ul{list-style:none;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:5px;flex:1}
