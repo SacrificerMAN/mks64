@@ -1,1 +1,110 @@
-PLACEHOLDER_LANDING
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Weekly Chess Quiz — 30 questions, 30 minutes. Every Sunday 9 PM IST. Entry ₹300. Prizes up to ₹2500. Saran Chess Academy.">
+<title>Chess Quiz Tournament — Sunday 9 PM | Saran Chess Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--surface:#111;--border:rgba(255,255,255,.08);--text:#f5f5f5;--muted:#8a8a8a;--green:#10a37f;--radius:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+nav{position:fixed;inset:0 0 auto;z-index:100;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(5,5,5,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-weight:600}
+.nav-links{display:flex;gap:16px;font-size:13px;color:var(--muted)}
+.nav-links a.on{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:500;border:1px solid transparent;cursor:pointer}
+.btn-solid{background:#fff;color:#050505}.btn-green{background:var(--green);color:#fff}.btn-outline{border-color:var(--border);color:var(--text)}
+main{padding:100px 0 64px}
+.sec-label{font-size:12px;font-weight:600;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+h1{font-size:clamp(28px,4.5vw,42px);letter-spacing:-.03em;line-height:1.15}
+.lead{margin-top:12px;color:var(--muted);max-width:560px;font-size:16px}
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface);font-size:13px;font-weight:500}
+.badge strong{color:var(--green)}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(16,163,127,.25)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.card h3{font-size:16px;margin-bottom:8px}
+.card p,.card li{font-size:14px;color:var(--muted)}
+.card ul{margin:8px 0 0 18px}
+.prize-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
+.prize-table th,.prize-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.prize-table th{color:var(--muted);font-size:12px;text-transform:uppercase}
+.prize-table td b{color:var(--green)}
+.cta-box{margin-top:36px;padding:28px;border-radius:var(--radius);border:1px solid rgba(16,163,127,.35);background:linear-gradient(135deg,rgba(16,163,127,.12),var(--surface));text-align:center}
+.cta-box h2{font-size:22px;margin-bottom:8px}
+.cta-box p{color:var(--muted);font-size:14px;margin-bottom:16px}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+footer{padding:28px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:800px){.grid3,.grid2{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">♟ Saran Chess Academy</a>
+  <div class="nav-links">
+    <a href="/explore.html">Chess Hub</a>
+    <a href="/tournaments.html">Tournaments</a>
+    <a href="/quiz.html" class="on">Quiz</a>
+    <a href="/#join">Join</a>
+  </div>
+  <a class="btn btn-solid" href="/quiz-exam.html">Login / Enter Quiz</a>
+</nav>
+<main><div class="wrap">
+  <div class="sec-label">Weekly on-site exam</div>
+  <h1>Chess Quiz Tournament</h1>
+  <p class="lead">Every <strong style="color:#fff">Sunday 9:00 PM IST</strong> — 30 questions · 30 minutes · on this website. New paper every week.</p>
+  <div class="hero-badges">
+    <span class="badge"><span class="live-dot"></span> <strong>Sunday</strong> · 9:00 PM IST</span>
+    <span class="badge"><strong>30 Q</strong> · 30 min</span>
+    <span class="badge">Entry <strong>₹300</strong></span>
+  </div>
+  <div class="grid3">
+    <div class="card"><h3>Format</h3><ul><li>14 tactics (board) — Pin, Fork, Skewer, Discovery, Mate in 1/2/3 (2 each)</li><li>6 visualization — text positions, no board</li><li>10 Chess GK &amp; GS</li></ul></div>
+    <div class="card"><h3>How it works</h3><ul><li>Register / login on site</li><li>Pay entry ₹300 (UPI / WhatsApp)</li><li>Sunday 9 PM — start exam here</li><li>Auto submit at 30:00</li></ul></div>
+    <div class="card"><h3>Next quiz</h3><p id="nextLabel" style="color:#fff;font-weight:600;margin-top:6px">—</p><p style="margin-top:8px">Week ID: <span id="weekId">—</span></p></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h3>Prize pool</h3>
+      <table class="prize-table"><thead><tr><th>Rank</th><th>Prize</th></tr></thead><tbody>
+        <tr><td>1st</td><td><b>₹2,500</b></td></tr>
+        <tr><td>2nd</td><td><b>₹2,000</b></td></tr>
+        <tr><td>3rd</td><td><b>₹1,500</b></td></tr>
+        <tr><td>4th</td><td><b>₹1,000</b></td></tr>
+        <tr><td>5th – 6th</td><td><b>₹500</b> each</td></tr>
+      </tbody></table>
+      <p style="margin-top:12px;font-size:13px">Entry <strong style="color:#fff">₹300</strong></p>
+    </div>
+    <div class="card"><h3>Rules</h3><ul><li>One attempt per player per Sunday</li><li>No engines / outside help</li><li>Timer final · auto-submit at 0:00</li><li>Ties: faster finish</li><li>Academy decision final</li></ul></div>
+  </div>
+  <div class="cta-box">
+    <h2>Ready for this Sunday?</h2>
+    <p>Login → pay ₹300 → unlock exam.</p>
+    <div class="cta-row">
+      <a class="btn btn-green" href="/quiz-exam.html">Login / Register</a>
+      <a class="btn btn-outline" id="waPay" href="#" target="_blank" rel="noopener">Pay ₹300 on WhatsApp</a>
+    </div>
+  </div>
+</div></main>
+<footer>
+  <div>© 2026 Saran Chess Academy</div>
+  <div><a href="/">Home</a> · <a href="/quiz-exam.html">Exam login</a></div>
+</footer>
+<script src="/quiz-data.js"></script>
+<script>
+(function(){
+  if(!window.SCAQuiz)return;
+  document.getElementById("nextLabel").textContent = SCAQuiz.nextSundayLabel() + " · 9:00 PM IST";
+  document.getElementById("weekId").textContent = SCAQuiz.getWeekId();
+  var msg = encodeURIComponent("Hi! Chess Quiz entry ₹300.\nName:\nUPI/Txn ID:\nWeek: "+SCAQuiz.getWeekId());
+  document.getElementById("waPay").href = "https://wa.me/"+SCAQuiz.WA+"?text="+msg;
+})();
+</script>
+</body>
+</html>
