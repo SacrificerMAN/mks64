@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
-<meta name="description" content="Saran Chess Academy — Mohit Kumar Soni (2570+ Chess.com/Lichess, FIDE 1952). 7+ years, 10,000+ live classes. Students in 10+ countries. Online coaching in English & Hindi. Free demo.">
+<meta name="description" content="Saran Chess Academy — Mohit Kumar Soni (2570+ Chess.com/Lichess, FIDE 1952). Beginner 24, Intermediate 48, Advanced 48, FIDE Rating 96 classes. Free demo.">
 <title>Saran Chess Academy — Online Chess Coaching | 2570+ · FIDE 1952</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -31,7 +31,6 @@ section{padding:80px 0}
 .sec-label{font-size:12px;font-weight:600;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
 .sec-title{font-size:clamp(26px,4vw,36px);letter-spacing:-.03em;max-width:560px}
 .sec-desc{margin-top:10px;color:var(--muted);max-width:640px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
 .prog-card,.how-card,.hub-card,.plan-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
 .prog-card h3,.how-card h3,.hub-card h3{font-size:18px;margin-bottom:8px}
@@ -52,7 +51,7 @@ section{padding:80px 0}
 .hub-icon{font-size:28px;margin-bottom:6px}
 .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
 .how-card .num{width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;margin-bottom:12px}
-.plans-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
+.plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
 .plan-card{position:relative;padding:20px 16px}
 .plan-card.popular{border-color:rgba(16,163,127,.75);background:linear-gradient(180deg,rgba(16,163,127,.16),var(--surface));box-shadow:0 0 0 1px rgba(16,163,127,.35)}
 .plan-badge{position:absolute;top:-11px;left:12px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 12px;border-radius:999px;background:var(--green);color:#fff}
@@ -85,7 +84,7 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
 .zone-list span{font-size:11px;padding:4px 10px;border-radius:999px;border:1px solid var(--border);color:var(--muted)}
 .lead-thanks{display:none;text-align:center;padding:12px 0}
 @media(max-width:1000px){.plans-grid,.grid-4,.bonus-row{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:900px){.hub-grid,.grid-3,.how-grid{grid-template-columns:1fr}.nav-links{display:none}}
+@media(max-width:900px){.hub-grid,.how-grid{grid-template-columns:1fr}.nav-links{display:none}}
 @media(max-width:700px){.quotes,.form-grid,.foot-grid,.grid-4,.bonus-row,.plans-grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
@@ -117,7 +116,7 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
   </div>
   <div class="hero-ctas">
     <a class="btn btn-solid" href="#join">Book a free Demo</a>
-    <a class="btn btn-outline" href="#programs">See programs</a>
+    <a class="btn btn-outline" href="#programs">See courses</a>
   </div>
 </section>
 <div class="trust-bar">
@@ -147,7 +146,7 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
     <div class="sec-label">Chess Hub</div>
     <h2 class="sec-title">Free interactive tools</h2>
     <div class="hub-grid">
-      <a class="hub-card" href="/quiz.html"><span class="hub-badge">Every Sunday · 9 PM IST</span><div class="hub-icon">🏆</div><h3>Chess Quiz Tournament</h3><p>Weekly free quiz — tactics &amp; traps. Join on WhatsApp.</p></a>
+      <a class="hub-card" href="/quiz.html"><span class="hub-badge">Every Sunday · 9 PM IST</span><div class="hub-icon">🏆</div><h3>Chess Quiz Tournament</h3><p>Weekly free quiz — tactics &amp; traps.</p></a>
       <a class="hub-card" href="/puzzle.html"><span class="hub-badge">Daily · Free</span><div class="hub-icon">🧩</div><h3>Daily Puzzle</h3><p>Themed puzzles — pin, fork, mate.</p></a>
       <a class="hub-card" href="/live.html"><span class="hub-badge">Live · Free</span><div class="hub-icon">📺</div><h3>Live Chess TV</h3><p>Watch top games on Lichess.</p></a>
       <a class="hub-card" href="/tournaments.html"><span class="hub-badge">Online + FIDE</span><div class="hub-icon">♟️</div><h3>Tournaments</h3><p>Live arenas + FIDE India events.</p></a>
@@ -161,87 +160,136 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
     <h2 class="sec-title">From first message to first class</h2>
     <div class="how-grid">
       <div class="how-card"><div class="num">1</div><h3>Book a free demo</h3><p>Form ke baad WhatsApp — no payment.</p></div>
-      <div class="how-card"><div class="num">2</div><h3>Level check + plan</h3><p>Short session, clear weekly plan.</p></div>
+      <div class="how-card"><div class="num">2</div><h3>Level check + course</h3><p>Beginner → Intermediate → Advanced → FIDE Rating.</p></div>
       <div class="how-card"><div class="num">3</div><h3>Regular classes</h3><p>Live sessions, homework, game review.</p></div>
     </div>
   </div>
 </section>
 <section id="programs">
   <div class="wrap">
-    <div class="sec-label">Live coaching tracks</div>
-    <h2 class="sec-title">One coach. Clear levels. Measurable outcomes.</h2>
-    <p class="sec-desc">Placement free demo se hota hai — test nahi, level check. Aap move karte hain jab ready hote hain. Kids + adults. English + Hindi.</p>
+    <div class="sec-label">Live courses</div>
+    <h2 class="sec-title">Clear courses. Fixed classes. Real outcomes.</h2>
+    <p class="sec-desc">Har course me basic habits + level-specific depth. Placement free demo se. Kids + adults. English + Hindi.</p>
     <div class="grid-4">
       <div class="prog-card">
-        <h3>♟ Foundation</h3>
-        <p>Zero se solid board vision.</p>
-        <div class="prog-meta"><span class="hi">Unrated – ~800</span><span>Kids &amp; adults</span></div>
+        <h3>♟ Beginner</h3>
+        <p>Zero se solid foundation.</p>
+        <div class="prog-meta"><span class="hi">24 classes · 3 months</span><span>2× / week</span></div>
         <ul>
           <li>Rules, mates, piece values</li>
           <li>Opening principles (not rote lines)</li>
           <li>Fork, pin, skewer, mate in 1–2</li>
+          <li>Candidate moves — “best 2–3 options”</li>
+          <li>Simple visualization (short lines)</li>
           <li>How to review your own games</li>
         </ul>
-        <div class="prog-out"><b>Outcome</b>Full games alone · fewer hanging pieces · ready for first online / school event</div>
+        <div class="prog-out"><b>Outcome</b>Full games alone · fewer hanging pieces · ready for school / online events</div>
       </div>
       <div class="prog-card">
-        <h3>♞ Club Player</h3>
-        <p>Calculation + first real climb.</p>
-        <div class="prog-meta"><span class="hi">~800 – 1400</span><span>2× / week ideal</span></div>
+        <h3>♞ Intermediate</h3>
+        <p>Calculation + rating climb.</p>
+        <div class="prog-meta"><span class="hi">48 classes · 6 months</span><span>2× / week</span></div>
         <ul>
           <li>Weekly full-game review</li>
           <li>White + Black repertoire start</li>
           <li>Tactics under time pressure</li>
-          <li>Simple endgames that decide games</li>
+          <li>Candidate moves in middlegame</li>
+          <li>Visualization: 3–5 move sequences</li>
+          <li>Endgames that decide club games</li>
         </ul>
-        <div class="prog-out"><b>Outcome</b>Stable rating band · fewer blunders · confident online / local events</div>
+        <div class="prog-out"><b>Outcome</b>Stable rating band · fewer blunders · confident club / online events</div>
       </div>
       <div class="prog-card">
-        <h3>♜ Tournament</h3>
-        <p>Clock, opponent, pressure.</p>
-        <div class="prog-meta"><span class="hi">~1400 – 1800</span><span>Event calendar</span></div>
+        <h3>♜ Advanced</h3>
+        <p>Clock, plans, conversion.</p>
+        <div class="prog-meta"><span class="hi">48 classes · 6 months</span><span>2× / week</span></div>
         <ul>
           <li>Tournament-ready openings</li>
           <li>Middlegame plans + conversion</li>
           <li>Mock games + post-mortem</li>
-          <li>FIDE / state event prep</li>
+          <li>Candidate moves under the clock</li>
+          <li>Visualization for tactics &amp; endgames</li>
+          <li>State / district event prep</li>
         </ul>
-        <div class="prog-out"><b>Outcome</b>Tournament readiness · visible rating jump · calm under the clock</div>
+        <div class="prog-out"><b>Outcome</b>Tournament readiness · visible rating jump · calm under pressure</div>
       </div>
       <div class="prog-card">
-        <h3>♚ Elite Track</h3>
-        <p>Deep work. Title direction.</p>
-        <div class="prog-meta"><span class="hi">1800+ / FIDE path</span><span>1:1 focus</span></div>
+        <h3>♚ FIDE Rating</h3>
+        <p>Rated path. Openings locked.</p>
+        <div class="prog-meta"><span class="hi">96 classes · 12 months</span><span>2× / week</span></div>
         <ul>
-          <li>Personal opening files</li>
-          <li>Advanced calculation drills</li>
-          <li>Endgame technique library</li>
-          <li>Norm / rating goal planning</li>
+          <li><b>4 openings:</b> 2 as White + 2 as Black</li>
+          <li>District / state level opponents ready</li>
+          <li>Visualization — calculate without the board</li>
+          <li>Candidate moves: find, rank, choose</li>
+          <li>Personal opening files + side lines</li>
+          <li>Endgame technique + event calendar</li>
         </ul>
-        <div class="prog-out"><b>Outcome</b>Consistent event results · structured path to next rating / title milestone</div>
+        <div class="prog-out"><b>Outcome</b>FIDE-rated path · 4-opening toolkit · strong calculation without board</div>
       </div>
     </div>
     <div class="bonus-row">
-      <div class="bonus-item"><h4>🏆 Sunday Quiz</h4><p>Free every Sunday 9 PM IST — tactics under light pressure.</p></div>
-      <div class="bonus-item"><h4>🪤 Traps Lab</h4><p>10 famous traps, move-by-move boards on site.</p></div>
-      <div class="bonus-item"><h4>♟ Chess Hub</h4><p>Daily puzzle, live TV, openings, player lookup.</p></div>
-      <div class="bonus-item"><h4>📅 FIDE India list</h4><p>Upcoming rated events + AICF calendar links.</p></div>
+      <div class="bonus-item"><h4>🎯 All courses include</h4><p>Candidate moves · game review · homework · English + Hindi</p></div>
+      <div class="bonus-item"><h4>👁 Visualization</h4><p>Short lines (Beginner) → board-free calculation (FIDE)</p></div>
+      <div class="bonus-item"><h4>🏆 Sunday Quiz</h4><p>Free every Sunday 9 PM IST</p></div>
+      <div class="bonus-item"><h4>📅 FIDE India list</h4><p>Upcoming rated events + AICF links</p></div>
     </div>
     <p style="margin-top:24px"><a class="btn btn-solid" href="#join">Book a free Demo — get placed</a>
-    <a class="btn btn-outline" href="#plans" style="margin-left:8px">See class plans</a></p>
+    <a class="btn btn-outline" href="#plans" style="margin-left:8px">See plans</a></p>
   </div>
 </section>
 <section id="plans" style="border-top:1px solid var(--border)">
   <div class="wrap">
     <div class="sec-label">Plans</div>
-    <h2 class="sec-title">Commitment that matches your goals</h2>
-    <p class="sec-desc">Har plan me fixed live classes (2× / week). Outcomes clear. Fees sirf WhatsApp pe — pehle free demo.</p>
+    <h2 class="sec-title">Course · classes · duration</h2>
+    <p class="sec-desc">Fixed class count per course. Fees sirf WhatsApp pe — pehle free demo.</p>
     <div class="plans-grid">
-      <div class="plan-card"><h3>1 Month</h3><p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">8 live classes</p><p style="color:var(--muted);font-size:13px">2× / week · try the system</p><ul><li>Level check + personal plan</li><li>Opening principles locked in</li><li>Basic tactics patterns</li><li>Outcome: study habit + first rated-style games</li></ul></div>
-      <div class="plan-card"><h3>3 Months</h3><p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">24 live classes</p><p style="color:var(--muted);font-size:13px">2× / week · build habits</p><ul><li>Full game review every week</li><li>Opening repertoire started</li><li>Calculation under time pressure</li><li>Outcome: stable rating + fewer blunders</li></ul></div>
-      <div class="plan-card popular"><span class="plan-badge">Most popular</span><h3>6 Months</h3><p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">48 live classes</p><p style="color:var(--muted);font-size:13px">2× / week · serious climb</p><ul><li>Tournament-ready openings</li><li>Middlegame + endgame technique</li><li>Mock games + post-mortem</li><li>Outcome: tournament readiness + rating jump</li></ul></div>
-      <div class="plan-card popular"><span class="plan-badge">Most popular</span><h3>9 Months</h3><p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">72 live classes</p><p style="color:var(--muted);font-size:13px">2× / week · deep improvement</p><ul><li>Full repertoire main + sides</li><li>Advanced tactics &amp; drills</li><li>Event prep before tournaments</li><li>Outcome: consistent event performance</li></ul></div>
-      <div class="plan-card"><h3>12 Months</h3><p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">96 live classes</p><p style="color:var(--muted);font-size:13px">2× / week · year-long path</p><ul><li>Long-term rating / title goals</li><li>Priority slots + continuous review</li><li>Opening files + endgame library</li><li>Outcome: measurable year of progress</li></ul></div>
+      <div class="plan-card">
+        <h3>Beginner</h3>
+        <p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">24 live classes</p>
+        <p style="color:var(--muted);font-size:13px">3 months · 2× / week</p>
+        <ul>
+          <li>Foundation rules &amp; mates</li>
+          <li>Basic tactics + candidate moves</li>
+          <li>Short visualization drills</li>
+          <li>Outcome: school / online ready</li>
+        </ul>
+      </div>
+      <div class="plan-card popular">
+        <span class="plan-badge">Popular</span>
+        <h3>Intermediate</h3>
+        <p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">48 live classes</p>
+        <p style="color:var(--muted);font-size:13px">6 months · 2× / week</p>
+        <ul>
+          <li>Repertoire start + weekly review</li>
+          <li>Calculation under time pressure</li>
+          <li>Visualization 3–5 moves</li>
+          <li>Outcome: stable rating, fewer blunders</li>
+        </ul>
+      </div>
+      <div class="plan-card popular">
+        <span class="plan-badge">Popular</span>
+        <h3>Advanced</h3>
+        <p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">48 live classes</p>
+        <p style="color:var(--muted);font-size:13px">6 months · 2× / week</p>
+        <ul>
+          <li>Tournament openings &amp; plans</li>
+          <li>Mock games + post-mortem</li>
+          <li>Candidate moves on the clock</li>
+          <li>Outcome: tournament readiness</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h3>FIDE Rating</h3>
+        <p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">96 live classes</p>
+        <p style="color:var(--muted);font-size:13px">12 months · 2× / week</p>
+        <ul>
+          <li><b>4 openings</b> — 2 White + 2 Black</li>
+          <li>Board-free visualization practice</li>
+          <li>Candidate moves system</li>
+          <li>Outcome: FIDE path + district/state ready</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -252,8 +300,9 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
     <div class="faq">
       <details><summary>Is the first class free?</summary><p>Haan — free demo. Fees baad mein WhatsApp pe.</p></details>
       <details><summary>English ya Hindi?</summary><p>Dono. Student ke hisaab se.</p></details>
+      <details><summary>Kaunsa course sahi hai?</summary><p>Free demo me level check — Beginner (24) → Intermediate (48) → Advanced (48) → FIDE Rating (96).</p></details>
+      <details><summary>FIDE course me openings?</summary><p>4 openings: 2 White + 2 Black, taaki district/state level opponents se aasani se khel sako. Visualization + candidate moves bhi.</p></details>
       <details><summary>Chess Quiz kab hai?</summary><p>Har Sunday 9:00 PM IST — free. <a href="/quiz.html" style="color:var(--green)">Quiz page</a>.</p></details>
-      <details><summary>Kaunsa level sahi hai?</summary><p>Free demo me level check — Foundation se Elite Track tak. Jab ready, aage move.</p></details>
     </div>
   </div>
 </section>
@@ -267,7 +316,7 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
         <input name="name" placeholder="Your name" required>
         <input name="phone" placeholder="WhatsApp number" required>
         <input name="email" type="email" placeholder="Email (optional)">
-        <select name="goal"><option value="">Goal</option><option>Beginner / Foundation</option><option>Club Player</option><option>Tournament</option><option>Elite Track</option><option>Kids class</option></select>
+        <select name="goal"><option value="">Goal / course</option><option>Beginner (24 classes)</option><option>Intermediate (48)</option><option>Advanced (48)</option><option>FIDE Rating (96)</option><option>Kids class</option></select>
         <button class="btn btn-solid" type="submit">Book a free Demo</button>
         <div class="lead-thanks" id="leadThanks"><h3>Thanks!</h3><p>WhatsApp khul raha hai…</p></div>
       </form>
