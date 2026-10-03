@@ -27,6 +27,11 @@ nav{position:fixed;inset:0 0 auto;z-index:100;height:64px;display:flex;align-ite
 .hero-stat b{display:block;font-size:24px;font-weight:700;color:#fff}
 .hero-stat span{display:block;margin-top:5px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--green)}
 .hero-stat.accent{border-color:rgba(16,163,127,.5);box-shadow:0 0 0 1px rgba(16,163,127,.2)}
+.coach-bar{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:28px;padding:18px 22px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);max-width:520px}
+.coach-bar img{width:88px;height:88px;border-radius:50%;object-fit:cover;border:2px solid rgba(16,163,127,.45)}
+.coach-bar .coach-meta{text-align:left}
+.coach-bar .coach-meta strong{display:block;font-size:16px}
+.coach-bar .coach-meta span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
 section{padding:80px 0}
 .sec-label{font-size:12px;font-weight:600;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
 .sec-title{font-size:clamp(26px,4vw,36px);letter-spacing:-.03em;max-width:560px}
@@ -114,6 +119,13 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
     <div class="hero-stat"><b>7+ yrs</b><span>Experience</span></div>
     <div class="hero-stat"><b>10,000+</b><span>Live classes</span></div>
   </div>
+  <div class="coach-bar">
+    <img src="founder.jpg" alt="Mohit Kumar Soni — Coach">
+    <div class="coach-meta">
+      <strong>Mohit Kumar Soni</strong>
+      <span>Coach · 2570+ online · FIDE 1952 · 7+ years</span>
+    </div>
+  </div>
   <div class="hero-ctas">
     <a class="btn btn-solid" href="#join">Book a free Demo</a>
     <a class="btn btn-outline" href="#programs">See courses</a>
@@ -146,7 +158,7 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
     <div class="sec-label">Chess Hub</div>
     <h2 class="sec-title">Free interactive tools</h2>
     <div class="hub-grid">
-      <a class="hub-card" href="/quiz.html"><span class="hub-badge">Every Sunday · 9 PM IST</span><div class="hub-icon">🏆</div><h3>Chess Quiz Tournament</h3><p>Weekly free quiz — tactics &amp; traps.</p></a>
+      <a class="hub-card" href="/quiz.html"><span class="hub-badge">Every Sunday · 9 PM IST</span><div class="hub-icon">🏆</div><h3>Chess Quiz Tournament</h3><p>Weekly free quiz — tactics & traps.</p></a>
       <a class="hub-card" href="/puzzle.html"><span class="hub-badge">Daily · Free</span><div class="hub-icon">🧩</div><h3>Daily Puzzle</h3><p>Themed puzzles — pin, fork, mate.</p></a>
       <a class="hub-card" href="/live.html"><span class="hub-badge">Live · Free</span><div class="hub-icon">📺</div><h3>Live Chess TV</h3><p>Watch top games on Lichess.</p></a>
       <a class="hub-card" href="/tournaments.html"><span class="hub-badge">Online + FIDE</span><div class="hub-icon">♟️</div><h3>Tournaments</h3><p>Live arenas + FIDE India events.</p></a>
@@ -178,7 +190,7 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
         <ul>
           <li>Board, ranks, files, square names</li>
           <li>Piece moves + notation</li>
-          <li>Attack &amp; capture unprotected pieces</li>
+          <li>Attack & capture unprotected pieces</li>
           <li>Check / escape · 4 ways to defend</li>
           <li>Castling, promotion, en passant</li>
           <li>Basic mates: 2R, Q, R · mate in 1</li>
@@ -215,7 +227,7 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
           <li>Pawn structures: doubled, isolated, backward</li>
           <li>Minority attack · forcing moves</li>
           <li>Candidate moves under the clock</li>
-          <li>Visualization for tactics &amp; endgames</li>
+          <li>Visualization for tactics & endgames</li>
         </ul>
         <div class="prog-out"><b>Outcome</b>Tournament readiness · rating jump · calm under pressure</div>
       </div>
@@ -225,7 +237,7 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
         <div class="prog-meta"><span class="hi">96 classes · 12 months</span><span>2× / week</span></div>
         <ul>
           <li><b>4 openings:</b> 2 White + 2 Black</li>
-          <li>Attacking the king &amp; center</li>
+          <li>Attacking the king & center</li>
           <li>Prophylaxis · good vs bad bishop</li>
           <li>Rook endings · bishop pair</li>
           <li>Exploiting weaknesses · space advantage</li>
