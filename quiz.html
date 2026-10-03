@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Free weekly Chess Quiz Tournament every Sunday at 9:00 PM IST — Saran Chess Academy. Tactics, openings & endgame. Join from WhatsApp.">
+<title>Chess Quiz Tournament — Every Sunday 9 PM | Saran Chess Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--surface:#111;--border:rgba(255,255,255,.08);--text:#f5f5f5;--muted:#8a8a8a;--green:#10a37f;--radius:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+nav{position:fixed;inset:0 0 auto;z-index:100;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(5,5,5,.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-weight:600}
+.nav-links{display:flex;gap:18px;font-size:14px;color:var(--muted)}
+.nav-links a.on{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:500;border:1px solid transparent;cursor:pointer}
+.btn-solid{background:#fff;color:#050505}
+.btn-green{background:var(--green);color:#fff}
+.btn-outline{border-color:var(--border);color:var(--text)}
+main{padding:100px 0 64px}
+.sec-label{font-size:12px;font-weight:600;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+h1{font-size:clamp(28px,4.5vw,42px);letter-spacing:-.03em;line-height:1.15}
+.lead{margin-top:12px;color:var(--muted);max-width:540px;font-size:16px}
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface);font-size:13px;font-weight:500}
+.badge strong{color:var(--green)}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(16,163,127,.25)}
+.next-card{margin-top:32px;padding:28px;border-radius:var(--radius);border:1px solid rgba(16,163,127,.35);background:linear-gradient(135deg,rgba(16,163,127,.12),var(--surface));display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.next-card h2{font-size:18px;margin-bottom:6px}
+.next-card p{color:var(--muted);font-size:14px}
+.next-time{font-size:28px;font-weight:700;letter-spacing:-.03em;color:#fff}
+.next-time span{display:block;font-size:12px;font-weight:600;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.card h3{font-size:16px;margin-bottom:8px}
+.card p{font-size:14px;color:var(--muted)}
+.steps{margin-top:40px}
+.steps h2{font-size:22px;margin-bottom:16px}
+.step-list{display:flex;flex-direction:column;gap:12px}
+.step{display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;padding:16px 18px;border-radius:14px;border:1px solid var(--border);background:var(--surface)}
+.step-num{width:40px;height:40px;border-radius:12px;background:rgba(16,163,127,.15);color:var(--green);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
+.step h3{font-size:15px;margin-bottom:4px}
+.step p{font-size:13px;color:var(--muted)}
+.cta-box{margin-top:40px;padding:28px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);text-align:center}
+.cta-box h2{font-size:22px;margin-bottom:8px}
+.cta-box p{color:var(--muted);font-size:14px;max-width:420px;margin:0 auto 18px}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.nav-links{display:none}.next-card{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">♟ Saran Chess Academy</a>
+  <div class="nav-links">
+    <a href="/explore.html">Chess Hub</a>
+    <a href="/tournaments.html">Tournaments</a>
+    <a href="/quiz.html" class="on">Quiz</a>
+    <a href="/traps.html">Traps</a>
+    <a href="/#join">Join</a>
+  </div>
+  <a class="btn btn-solid" href="/#join">Book a free Demo</a>
+</nav>
+<main><div class="wrap">
+  <div class="sec-label">Weekly event</div>
+  <h1>Chess Quiz Tournament</h1>
+  <p class="lead">Every <strong style="color:#fff">Sunday at 9:00 PM IST</strong> — free online quiz for students & parents who want sharp tactics and real tournament pressure, without the clock stress of a full game.</p>
+
+  <div class="hero-badges">
+    <span class="badge"><span class="live-dot"></span> <strong>Every Sunday</strong> · 9:00 PM IST</span>
+    <span class="badge">Online · Phone / Laptop</span>
+    <span class="badge">Free to join</span>
+  </div>
+
+  <div class="next-card">
+    <div>
+      <h2>Next quiz</h2>
+      <p id="nextLabel">Calculating next Sunday…</p>
+    </div>
+    <div class="next-time" id="nextTime">—<span>IST</span></div>
+    <a class="btn btn-green" id="waJoin" href="#" target="_blank" rel="noopener">Join on WhatsApp</a>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>What we cover</h3>
+      <p>Tactics (pins, forks, mates), opening traps, and simple endgame patterns — mixed difficulty so beginners and rated players both learn.</p>
+    </div>
+    <div class="card">
+      <h3>Format</h3>
+      <p>~30–45 minutes. Multiple-choice + board positions. Score on the spot. Winners get a shout-out in the group.</p>
+    </div>
+    <div class="card">
+      <h3>Who it’s for</h3>
+      <p>Kids & adults training with us, and anyone who wants a weekly chess habit. No rating required.</p>
+    </div>
+  </div>
+
+  <div class="steps">
+    <h2>How to join</h2>
+    <div class="step-list">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Message us on WhatsApp</h3>
+          <p>Tap “Join on WhatsApp” and send your name + city. We’ll add you to the quiz reminder list.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Sunday evening reminder</h3>
+          <p>You’ll get the quiz link / group message before 9:00 PM IST.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Play · learn · improve</h3>
+          <p>Answer live, see solutions, and pick one idea to use in your next game or class.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h2>Want structured training too?</h2>
+    <p>The weekly quiz is free. For openings, calculation, and tournament prep — book a free demo class.</p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="/#join">Book a free Demo</a>
+      <a class="btn btn-outline" href="/tournaments.html">Live & FIDE tournaments</a>
+    </div>
+  </div>
+</div></main>
+<footer>
+  <div>© 2026 Saran Chess Academy</div>
+  <div><a href="/">Home</a> · <a href="/quiz.html">Quiz</a> · <a href="/tournaments.html">Tournaments</a> · <a href="/#join">Demo</a></div>
+</footer>
+<script>
+(function(){
+  const WA = '919354811377';
+  function nextSunday9pmIST(){
+    // IST = UTC+5:30
+    const now = new Date();
+    const utc = now.getTime() + now.getTimezoneOffset()*60000;
+    const ist = new Date(utc + 330*60000);
+    const day = ist.getDay(); // 0 Sun
+    let add = (7 - day) % 7;
+    const target = new Date(ist.getFullYear(), ist.getMonth(), ist.getDate() + add, 21, 0, 0, 0);
+    // if today is Sunday and past 9pm IST, go next week
+    if(day === 0 && (ist.getHours() > 21 || (ist.getHours()===21 && ist.getMinutes()>0))){
+      target.setDate(target.getDate() + 7);
+    }
+    if(day === 0 && ist.getHours() < 21){
+      // today
+    }
+    return target;
+  }
+  const t = nextSunday9pmIST();
+  const opts = { weekday:'long', day:'numeric', month:'short', year:'numeric' };
+  const dateStr = t.toLocaleDateString('en-IN', opts);
+  document.getElementById('nextLabel').textContent = dateStr + ' · 9:00 PM IST';
+  document.getElementById('nextTime').innerHTML = '9:00 PM<span>IST · ' + dateStr + '</span>';
+  const msg = encodeURIComponent('Hi! I want to join the Sunday 9pm Chess Quiz Tournament.');
+  document.getElementById('waJoin').href = 'https://wa.me/' + WA + '?text=' + msg;
+})();
+</script>
+</body>
+</html>
