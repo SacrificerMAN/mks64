@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
-<meta name="description" content="Saran Chess Academy — online chess coaching with Mohit Kumar Soni (2520+). Structured training in English & Hindi. Free demo class. Students rated, tournament-ready.">
+<meta name="description" content="Saran Chess Academy — online chess coaching with Mohit Kumar Soni (2520+). 5 years, 500+ demos, 8000+ live classes. English & Hindi. Free demo.">
 <title>Saran Chess Academy — Online Chess Coaching | 2520+ Coach</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -23,7 +23,7 @@ nav{position:fixed;inset:0 0 auto;z-index:100;height:64px;display:flex;align-ite
 .nav-actions{display:flex;align-items:center;gap:10px}
 .hero{min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 56px}
 .hero h1{font-size:clamp(36px,6vw,60px);letter-spacing:-.04em;line-height:1.08;max-width:760px}
-.hero p{margin-top:18px;color:var(--muted);max-width:480px}
+.hero p{margin-top:18px;color:var(--muted);max-width:520px}
 .hero-ctas{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 section{padding:80px 0}
 .sec-label{font-size:12px;font-weight:600;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
@@ -83,16 +83,28 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 .trap-cap{margin-top:8px;font-size:13px;color:var(--muted);line-height:1.4}
 .trap-cap strong{color:var(--text);display:block;margin-bottom:2px}
 .trap-play{margin-top:8px;padding:6px 14px;border-radius:999px;border:0;background:var(--green);color:#fff;font-size:13px;cursor:pointer}
+.trust-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:28px 40px;padding:28px 24px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2)}
+.trust-item{text-align:center;min-width:100px}
+.trust-item b{display:block;font-size:22px;letter-spacing:-.02em;color:var(--text)}
+.trust-item span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.how-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.how-card .num{width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;margin-bottom:12px}
+.how-card h3{font-size:16px;margin-bottom:6px}
+.how-card p{font-size:13px;color:var(--muted);line-height:1.5}
+.class-peek{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;margin-top:28px}
+.class-peek video{width:100%;border-radius:var(--radius);border:1px solid var(--border);background:#000;aspect-ratio:16/10;object-fit:contain}
 @media(max-width:1000px){.plans-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){.plans-grid{grid-template-columns:1fr}}
-@media(max-width:900px){.hub-grid,.grid-3{grid-template-columns:1fr}.nav-links{display:none}.results-table{font-size:12px}}
-@media(max-width:800px){.quotes,.coach,.form-grid,.trap-grid{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.hub-grid,.grid-3,.how-grid{grid-template-columns:1fr}.nav-links{display:none}.results-table{font-size:12px}}
+@media(max-width:800px){.quotes,.coach,.form-grid,.trap-grid,.class-peek{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
 <nav>
   <a class="logo" href="#">♟ Saran Chess Academy</a>
   <div class="nav-links">
+    <a href="#how">How it works</a>
     <a href="#programs">Programs</a>
     <a href="#results">Results</a>
     <a href="/traps.html">Traps</a>
@@ -108,12 +120,19 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 </nav>
 <section class="hero">
   <h1>Stop guessing moves.<br>Start seeing the board.</h1>
-  <p>Online coaching with Mohit Kumar Soni (2520+). English + Hindi. Free demo class.</p>
+  <p>Online coaching with Mohit Kumar Soni (2520+). 5 years · 500+ demos · English + Hindi. Free first class.</p>
   <div class="hero-ctas">
     <a class="btn btn-solid" href="#join">Book a free Demo</a>
     <a class="btn btn-outline" href="#programs">See programs</a>
   </div>
 </section>
+<div class="trust-bar" aria-label="Academy stats">
+  <div class="trust-item"><b>500+</b><span>Free demos</span></div>
+  <div class="trust-item"><b>5 yrs</b><span>Daily coaching</span></div>
+  <div class="trust-item"><b>8,000+</b><span>Live classes</span></div>
+  <div class="trust-item"><b>5–6</b><span>Classes / day</span></div>
+  <div class="trust-item"><b>2520+</b><span>Coach rating</span></div>
+</div>
 <section id="results" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="wrap">
     <div class="sec-label">Proof</div>
@@ -192,6 +211,30 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
     </div>
   </div>
 </section>
+<section id="how" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">How it works</div>
+    <h2 class="sec-title">From first message to first class</h2>
+    <p class="sec-desc">Simple process. No pressure. Fees only after you like the demo.</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="num">1</div>
+        <h3>Book a free demo</h3>
+        <p>Fill the form — we open WhatsApp so you can confirm a slot. No payment, no card.</p>
+      </div>
+      <div class="how-card">
+        <div class="num">2</div>
+        <h3>Level check + plan</h3>
+        <p>Short session to see level and goals. We suggest group or 1:1 and a realistic weekly rhythm.</p>
+      </div>
+      <div class="how-card">
+        <div class="num">3</div>
+        <h3>Regular classes</h3>
+        <p>Live online sessions, homework between classes, game review. Hindi + English as needed.</p>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="programs">
   <div class="wrap">
     <div class="sec-label">Academy programs</div>
@@ -240,7 +283,32 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
     <div>
       <div class="sec-label">Coach</div>
       <h2 class="sec-title">Mohit Kumar Soni</h2>
-      <p class="sec-desc">2520+ rated player. Teaches how the game is actually played — under time pressure, not only what the engine likes.</p>
+      <p class="sec-desc">2520+ rated player. 5 years of daily coaching — typically 5–6 live classes a day, 8,000+ sessions and 500+ free demos. Teaches how the game is actually played under time pressure, not only what the engine likes.</p>
+    </div>
+  </div>
+</section>
+<section id="live-class" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">Inside a live class</div>
+    <h2 class="sec-title">What a session actually looks like</h2>
+    <p class="sec-desc">Real coaching — board, explanation, student moves. Clips from actual sessions (with permission).</p>
+    <div class="class-peek">
+      <div>
+        <video controls playsinline preload="metadata">
+          <source src="class-sample.mp4" type="video/mp4">
+        </video>
+        <p style="margin-top:10px;font-size:13px;color:var(--muted)">Sample clip · live online class format</p>
+      </div>
+      <div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:12px;font-size:14px;color:var(--muted)">
+          <li>✓ Screen-share board + clear explanation</li>
+          <li>✓ Student plays moves — not only watching</li>
+          <li>✓ Tactics / openings / game review by level</li>
+          <li>✓ Short homework after class</li>
+          <li>✓ Hindi + English as the student needs</li>
+        </ul>
+        <p style="margin-top:20px"><a class="btn btn-solid" href="#join">Book a free Demo</a></p>
+      </div>
     </div>
   </div>
 </section>
