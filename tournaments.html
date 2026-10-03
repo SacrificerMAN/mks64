@@ -1,1 +1,206 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Live online chess tournaments on Lichess + upcoming FIDE rated events in India. Tournament-ready coaching at Saran Chess Academy.">
+<title>Chess Tournaments Online & FIDE India | Saran Chess Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--surface:#111;--border:rgba(255,255,255,.08);--text:#f5f5f5;--muted:#8a8a8a;--green:#10a37f;--radius:16px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+nav{position:fixed;inset:0 0 auto;z-index:100;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(5,5,5,.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-weight:600}
+.nav-links{display:flex;gap:18px;font-size:14px;color:var(--muted)}
+.nav-links a.on{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:500;border:1px solid transparent;cursor:pointer}
+.btn-solid{background:#fff;color:#050505}
+.btn-green{background:var(--green);color:#fff}
+.btn-outline{border-color:var(--border);color:var(--text)}
+main{padding:100px 0 64px}
+.sec-label{font-size:12px;font-weight:600;color:var(--green);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+h1{font-size:clamp(28px,4vw,40px);letter-spacing:-.03em}
+.lead{margin-top:10px;color:var(--muted);max-width:560px}
+.tabs{display:flex;gap:8px;margin-top:28px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--border);background:transparent;color:var(--muted);padding:10px 18px;border-radius:999px;font-size:14px;font-weight:500;cursor:pointer}
+.tabs button.active{border-color:var(--green);color:#fff;background:rgba(16,163,127,.15)}
+.panel{display:none;margin-top:8px}
+.panel.active{display:block}
+.tour-filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;align-items:center}
+.tour-filters button{border:1px solid var(--border);background:transparent;color:var(--muted);padding:8px 14px;border-radius:999px;font-size:13px;cursor:pointer}
+.tour-filters button.active{border-color:var(--green);color:#fff;background:rgba(16,163,127,.12)}
+.tour-meta{font-size:13px;color:var(--muted);margin-left:auto}
+.tour-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.tour-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:10px}
+.tour-card .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tour-card .live{font-size:11px;font-weight:600;color:var(--green);display:inline-flex;align-items:center;gap:6px}
+.tour-card .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(16,163,127,.2)}
+.tour-card .speed{font-size:12px;color:var(--muted)}
+.tour-card h3{font-size:16px;line-height:1.35}
+.tour-card .stat{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.tour-card .stat span:last-child{color:var(--text)}
+.tour-card .join{margin-top:6px;display:inline-flex;align-items:center;justify-content:center;width:100%;padding:11px;border-radius:12px;background:var(--green);color:#fff;font-size:14px;font-weight:500}
+.fide-note{margin-top:16px;font-size:13px;color:var(--muted);max-width:640px;line-height:1.5}
+.fide-list{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.fide-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;display:grid;grid-template-columns:72px 1fr auto;gap:16px;align-items:center}
+.fide-date{text-align:center}
+.fide-date b{display:block;font-size:22px;letter-spacing:-.03em;line-height:1.1}
+.fide-date span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.fide-card h3{font-size:15px;margin-bottom:4px;line-height:1.35}
+.fide-card h3 a:hover{color:var(--green)}
+.fide-meta{font-size:13px;color:var(--muted)}
+.fide-badge{font-size:11px;font-weight:600;color:var(--green);border:1px solid rgba(16,163,127,.35);padding:4px 10px;border-radius:999px;white-space:nowrap;text-decoration:none}
+.fide-badge:hover{background:rgba(16,163,127,.12)}
+.fide-pager{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:24px;flex-wrap:wrap}
+.fide-pager button{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:13px;cursor:pointer}
+.fide-pager button.active{background:#fff;color:#050505;border-color:#fff;font-weight:600}
+.fide-pager button:disabled{opacity:.35;cursor:default}
+.cta-box{margin-top:36px;padding:24px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.cta-box p{color:var(--muted);font-size:14px;max-width:420px}
+footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:900px){.tour-grid{grid-template-columns:1fr}.nav-links{display:none}.fide-card{grid-template-columns:64px 1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">♟ Saran Chess Academy</a>
+  <div class="nav-links">
+    <a href="/explore.html">Chess Hub</a>
+    <a href="/tournaments.html" class="on">Tournaments</a>
+    <a href="/traps.html">Traps</a>
+    <a href="/#join">Join</a>
+  </div>
+  <a class="btn btn-solid" href="/#join">Book a free Demo</a>
+</nav>
+<main><div class="wrap">
+  <div class="sec-label">Compete</div>
+  <h1>Chess tournaments — online & FIDE India</h1>
+  <p class="lead">Play live arenas on Lichess, or plan your next rated OTB event in India. Get tournament-ready with structured coaching.</p>
+
+  <div class="tabs" role="tablist">
+    <button type="button" class="active" data-tab="online" role="tab" aria-selected="true">Online (Lichess)</button>
+    <button type="button" data-tab="fide" role="tab" aria-selected="false">FIDE India</button>
+  </div>
+
+  <div id="panel-online" class="panel active" role="tabpanel">
+    <div class="tour-filters">
+      <button type="button" class="active" data-filter="all">All</button>
+      <button type="button" data-filter="bullet">Bullet</button>
+      <button type="button" data-filter="blitz">Blitz</button>
+      <button type="button" data-filter="rapid">Rapid</button>
+      <button type="button" data-filter="classical">Classical</button>
+      <span class="tour-meta" id="tourMeta">Loading…</span>
+      <button type="button" id="tourRefresh">↻ Refresh</button>
+    </div>
+    <div class="tour-grid" id="tourGrid"></div>
+  </div>
+
+  <div id="panel-fide" class="panel" role="tabpanel">
+    <p class="fide-note">Curated upcoming FIDE-rated events in India. Tap <strong>Details</strong> for the official page. Page numbers below show more upcoming events.</p>
+    <div class="fide-list" id="fideList"></div>
+    <div class="fide-pager" id="fidePager" aria-label="Tournament pages"></div>
+    <p style="margin-top:22px;display:flex;flex-wrap:wrap;gap:10px">
+      <a class="btn btn-outline" href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">Full FIDE India calendar →</a>
+      <a class="btn btn-outline" href="https://aicf.in/all-events/" target="_blank" rel="noopener">AICF all events →</a>
+      <a class="btn btn-outline" href="https://chessbase.in/chess-calendar" target="_blank" rel="noopener">ChessBase India calendar →</a>
+    </p>
+  </div>
+
+  <div class="cta-box">
+    <div>
+      <strong style="display:block;margin-bottom:6px">Want to be tournament-ready?</strong>
+      <p>Openings, calculation under time, and game review — book a free demo and we’ll map a plan for your next event.</p>
+    </div>
+    <a class="btn btn-solid" href="/#join">Book a free Demo</a>
+  </div>
+</div></main>
+<footer>
+  <div>© 2026 Saran Chess Academy</div>
+  <div><a href="/">Home</a> · <a href="/explore.html">Chess Hub</a> · <a href="/tournaments.html">Tournaments</a> · <a href="/#join">Demo</a></div>
+</footer>
+<script>
+(function(){
+  const tabs=document.querySelectorAll('.tabs button');
+  const panels={online:document.getElementById('panel-online'),fide:document.getElementById('panel-fide')};
+  tabs.forEach(btn=>{
+    btn.onclick=()=>{
+      tabs.forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false')});
+      btn.classList.add('active');btn.setAttribute('aria-selected','true');
+      Object.keys(panels).forEach(k=>panels[k].classList.remove('active'));
+      panels[btn.dataset.tab].classList.add('active');
+    };
+  });
+
+  const FIDE_EVENTS = [
+    {d:'07',m:'Oct',title:'Eight Square Chess Academy — 3rd International FIDE Rated Open',meta:'Chennai · Tamil Nadu · Classical · 7–11 Oct 2026',url:'https://ratings.fide.com/tournament_information.phtml?event=485051'},
+    {d:'07',m:'Oct',title:'Nexchess International Open FIDE Rating',meta:'Delhi · Classical · 7–11 Oct 2026',url:'https://ratings.fide.com/tournament_information.phtml?event=492654'},
+    {d:'11',m:'Oct',title:'1st Chess-Titans FIDE Rated Rapid',meta:'Bengaluru · Karnataka · Rapid · 11 Oct 2026',url:'https://ratings.fide.com/tournament_information.phtml?event=494630'},
+    {d:'12',m:'Oct',title:'National Sub-Junior Open & Girls’ Championships',meta:'Hyderabad · 12–20 Oct 2026',url:'https://ratings.fide.com/rated_tournaments.phtml?country=IND'},
+    {d:'17',m:'Oct',title:'1st Shivbhumi International Open FIDE Rapid Rating',meta:'Pune · Maharashtra · Rapid · 17–18 Oct 2026',url:'https://ratings.fide.com/rated_tournaments.phtml?country=IND'},
+    {d:'17',m:'Oct',title:'1st Manchester City International Open FIDE Rated',meta:'Coimbatore · Tamil Nadu · from 17 Oct 2026',url:'https://ratings.fide.com/rated_tournaments.phtml?country=IND'},
+    {d:'23',m:'Oct',title:'Western Asian Junior Chess Championship 2026 Rapid',meta:'Ahmedabad · Gujarat · Rapid · 23 Oct 2026',url:'https://aicf.in/'},
+    {d:'23',m:'Oct',title:'Western Asian Junior Girls Chess Championship 2026 Rapid',meta:'Ahmedabad · Gujarat · Rapid · 23 Oct 2026',url:'https://aicf.in/'},
+    {d:'24',m:'Oct',title:'Dasara Cup Open FIDE Rated Rapid & Blitz',meta:'Shivamogga · Karnataka · 24–25 Oct 2026',url:'https://aicf.in/all-events/'},
+    {d:'25',m:'Oct',title:'9th N L Pandiyar Memorial International Open FIDE Rating',meta:'Udaipur · Rajasthan · Classical · 25–29 Oct 2026',url:'https://ratings.fide.com/rated_tournaments.phtml?country=IND'},
+    {d:'30',m:'Oct',title:'7th SSS International Below 1800 FIDE Rated',meta:'Pudukkottai · Tamil Nadu · 30 Oct – 1 Nov 2026',url:'https://ratings.fide.com/rated_tournaments.phtml?country=IND'},
+    {d:'30',m:'Oct',title:'1st Chola Chess Open International Grandmasters',meta:'Chennai · 30 Oct – 7 Nov 2026 · 2250+',url:'https://ratings.fide.com/rated_tournaments.phtml?country=IND'},
+    {d:'11',m:'Nov',title:'All India Open Shantikumarji Firodiya Classical FIDE Rating',meta:'Ahilyanagar · Maharashtra · Classical · 11–15 Nov 2026',url:'https://ratings.fide.com/rated_tournaments.phtml?country=IND'},
+    {d:'21',m:'Nov',title:'1st CastleMasters International Open Rapid FIDE Rated',meta:'Gurgaon · Haryana · Rapid · 21–22 Nov 2026',url:'https://ratings.fide.com/rated_tournaments.phtml?country=IND'},
+    {d:'29',m:'Nov',title:'63rd National Chess Championship 2026',meta:'Varanasi · UP · 29 Nov – 9 Dec 2026',url:'https://aicf.in/all-events/'},
+    {d:'30',m:'Nov',title:'52nd National Women Chess Championship 2026',meta:'Telangana · 30 Nov – 10 Dec 2026',url:'https://aicf.in/all-events/'}
+  ];
+  const PER = 6;
+  let fidePage = 0;
+  const fideList = document.getElementById('fideList');
+  const fidePager = document.getElementById('fidePager');
+  function renderFide(){
+    if(!fideList) return;
+    const pages = Math.max(1, Math.ceil(FIDE_EVENTS.length / PER));
+    if(fidePage >= pages) fidePage = pages - 1;
+    const start = fidePage * PER;
+    const slice = FIDE_EVENTS.slice(start, start + PER);
+    fideList.innerHTML = slice.map(e =>
+      '<article class="fide-card"><div class="fide-date"><b>'+e.d+'</b><span>'+e.m+'</span></div><div><h3><a href="'+e.url+'" target="_blank" rel="noopener">'+e.title+'</a></h3><div class="fide-meta">'+e.meta+'</div></div><a class="fide-badge" href="'+e.url+'" target="_blank" rel="noopener">Details →</a></article>'
+    ).join('');
+    let html = '<button type="button" data-p="prev" '+(fidePage===0?'disabled':'')+' aria-label="Previous">‹</button>';
+    for(let i=0;i<pages;i++) html += '<button type="button" data-p="'+i+'" class="'+(i===fidePage?'active':'')+'">'+(i+1)+'</button>';
+    html += '<button type="button" data-p="next" '+(fidePage>=pages-1?'disabled':'')+' aria-label="Next">›</button>';
+    fidePager.innerHTML = html;
+    fidePager.querySelectorAll('button').forEach(btn=>{
+      btn.onclick=()=>{
+        const p=btn.dataset.p;
+        if(p==='prev'){ if(fidePage>0) fidePage--; }
+        else if(p==='next'){ if(fidePage<pages-1) fidePage++; }
+        else fidePage=parseInt(p,10);
+        renderFide();
+      };
+    });
+  }
+  renderFide();
+
+  const grid=document.getElementById('tourGrid');
+  const meta=document.getElementById('tourMeta');
+  if(!grid) return;
+  let all=[], filter='all';
+  function fmtClock(c){if(!c)return'—';return Math.floor((c.limit||0)/60)+'+'+(c.increment||0)}
+  function ago(ms){const d=Date.now()-ms;if(d<6e4)return'just now';if(d<36e5)return Math.floor(d/6e4)+'m ago';return Math.floor(d/36e5)+'h ago'}
+  function speedKey(t){const k=(t.perf&&t.perf.key)||'';if(['bullet','ultraBullet'].includes(k))return'bullet';if(['blitz','superBlitz'].includes(k))return'blitz';if(k==='rapid')return'rapid';if(k==='classical')return'classical';return k||'other'}
+  function render(){
+    const list=all.filter(t=>filter==='all'||speedKey(t)===filter).slice(0,12);
+    meta.textContent=all.length+' live · showing '+list.length;
+    grid.innerHTML=list.map(t=>{
+      const variant=(t.variant&&t.variant.name&&t.variant.key!=='standard')?t.variant.name:'';
+      return '<div class="tour-card"><div class="row"><span class="live">LIVE NOW</span><span class="speed">'+(t.perf&&t.perf.name||'Arena')+'</span></div><h3>'+t.fullName+'</h3><div class="stat"><span>Time Control</span><span>'+fmtClock(t.clock)+(t.minutes?(' · '+t.minutes+'min'):'')+'</span></div><div class="stat"><span>Players</span><span>'+(t.nbPlayers||0)+'</span></div><div class="stat"><span>Started</span><span>'+ago(t.startsAt)+'</span></div>'+(variant?'<div class="stat"><span>Variant</span><span>'+variant+'</span></div>':'')+'<a class="join" href="https://lichess.org/tournament/'+t.id+'" target="_blank" rel="noopener">▶ Join Now on Lichess</a></div>';
+    }).join('')||'<p style="color:var(--muted)">No live tournaments in this filter.</p>';
+  }
+  function load(){meta.textContent='Loading…';fetch('https://lichess.org/api/tournament',{headers:{Accept:'application/json'}}).then(r=>r.json()).then(d=>{all=(d.started||[]).slice().sort((a,b)=>(b.nbPlayers||0)-(a.nbPlayers||0));render()}).catch(()=>meta.textContent='Could not load')}
+  document.querySelectorAll('.tour-filters button[data-filter]').forEach(btn=>{btn.onclick=()=>{document.querySelectorAll('.tour-filters button[data-filter]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');filter=btn.dataset.filter;render()}});
+  document.getElementById('tourRefresh').onclick=load;load();
+})();
+</script>
+</body>
+</html>
