@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="10 famous chess traps with move-by-move boards — Scholar's Mate, Legal's Mate, Fried Liver, Blackburne Shilling, and more.">
+<title>Famous Chess Traps | Saran Chess Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/tools.css">
+<style>
+.trap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+.trap-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px;overflow:hidden}
+.trap-cap{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.45}
+.trap-cap strong{color:var(--text);display:block;font-size:16px;margin-bottom:4px}
+.trap-cap .side{display:block;margin-top:4px;font-size:12px;color:var(--green)}
+.trap-play{margin-top:10px;padding:8px 16px;border-radius:999px;border:1px solid transparent;background:var(--green);color:#fff;font-size:13px;font-weight:500;cursor:pointer}
+.trap-play:hover{filter:brightness(1.08)}
+.trap-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.trap-nav a{font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--border);color:var(--muted)}
+.trap-nav a:hover{color:var(--text);border-color:rgba(255,255,255,.2)}
+@media(max-width:800px){.trap-grid{grid-template-columns:1fr}.nav-links{display:none}}
+</style>
+</head>
+<body data-traps-page="1">
+<nav>
+  <a class="logo" href="/">♟ Saran Chess Academy</a>
+  <div class="nav-links">
+    <a href="/explore.html">Chess Hub</a>
+    <a href="/traps.html" class="on">Traps</a>
+    <a href="/tournaments.html">Tournaments</a>
+    <a href="/#join">Join</a>
+  </div>
+  <a class="btn btn-solid" href="/#join">Book a free Demo</a>
+</nav>
+<main>
+<div class="wrap">
+  <div class="page-head">
+    <h1>🎯 Famous Chess Traps</h1>
+    <p>Move-by-move boards for classic traps. Tap <strong>Play</strong> on any card. Sequences corrected for real opening theory.</p>
+  </div>
+  <div class="trap-nav" id="trapNav"></div>
+  <div id="trap-player"></div>
+  <p style="margin-top:28px">
+    <a class="btn btn-outline" href="/">← Home</a>
+    <a class="btn btn-green" href="/#join" style="margin-left:8px">Book a free Demo</a>
+  </p>
+</div>
+</main>
+<footer>
+  <div>© 2026 Saran Chess Academy</div>
+  <div><a href="/">Home</a> · <a href="/explore.html">Chess Hub</a> · <a href="/traps.html">Traps</a></div>
+</footer>
+<script src="/traps.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var nav=document.getElementById('trapNav');
+  if(nav&&window.SCATraps){
+    SCATraps.TRAPS.forEach(function(t){
+      var a=document.createElement('a');
+      a.href='#trap-'+t.id;
+      a.textContent=t.name;
+      nav.appendChild(a);
+    });
+  }
+  if(window.SCALead) SCALead.injectStrip('traps');
+});
+</script>
+<script src="/lead-cta.js"></script>
+</body>
+</html>
