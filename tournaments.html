@@ -51,8 +51,10 @@ h1{font-size:clamp(28px,4vw,40px);letter-spacing:-.03em}
 .fide-date b{display:block;font-size:22px;letter-spacing:-.03em;line-height:1.1}
 .fide-date span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
 .fide-card h3{font-size:15px;margin-bottom:4px;line-height:1.35}
+.fide-card h3 a:hover{color:var(--green)}
 .fide-meta{font-size:13px;color:var(--muted)}
-.fide-badge{font-size:11px;font-weight:600;color:var(--green);border:1px solid rgba(16,163,127,.35);padding:4px 10px;border-radius:999px;white-space:nowrap}
+.fide-badge{font-size:11px;font-weight:600;color:var(--green);border:1px solid rgba(16,163,127,.35);padding:4px 10px;border-radius:999px;white-space:nowrap;text-decoration:none}
+.fide-badge:hover{background:rgba(16,163,127,.12)}
 .cta-box{margin-top:36px;padding:24px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
 .cta-box p{color:var(--muted);font-size:14px;max-width:420px}
 footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
@@ -94,87 +96,87 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
   </div>
 
   <div id="panel-fide" class="panel" role="tabpanel">
-    <p class="fide-note">Curated upcoming FIDE-rated events in India (classical / rapid / blitz). Always confirm dates and entry on the official brochure or FIDE calendar — listings can change.</p>
+    <p class="fide-note">Curated upcoming FIDE-rated events in India. Tap <strong>Details</strong> for the official FIDE page (regs / entry info). Always confirm dates with the organiser.</p>
     <div class="fide-list">
       <article class="fide-card">
         <div class="fide-date"><b>07</b><span>Oct</span></div>
         <div>
-          <h3>Eight Square Chess Academy — 3rd International FIDE Rated Open</h3>
+          <h3><a href="https://ratings.fide.com/tournament_information.phtml?event=485051" target="_blank" rel="noopener">Eight Square Chess Academy — 3rd International FIDE Rated Open</a></h3>
           <div class="fide-meta">Chennai · Tamil Nadu · Classical · 7–11 Oct 2026</div>
         </div>
-        <span class="fide-badge">Classical</span>
+        <a class="fide-badge" href="https://ratings.fide.com/tournament_information.phtml?event=485051" target="_blank" rel="noopener">Details →</a>
       </article>
       <article class="fide-card">
         <div class="fide-date"><b>07</b><span>Oct</span></div>
         <div>
-          <h3>Nexchess International Open FIDE Rating</h3>
+          <h3><a href="https://ratings.fide.com/tournament_information.phtml?event=492654" target="_blank" rel="noopener">Nexchess International Open FIDE Rating</a></h3>
           <div class="fide-meta">Delhi · Classical · 7–11 Oct 2026</div>
         </div>
-        <span class="fide-badge">Classical</span>
+        <a class="fide-badge" href="https://ratings.fide.com/tournament_information.phtml?event=492654" target="_blank" rel="noopener">Details →</a>
       </article>
       <article class="fide-card">
         <div class="fide-date"><b>11</b><span>Oct</span></div>
         <div>
-          <h3>1st Chess-Titans FIDE Rated Rapid</h3>
+          <h3><a href="https://ratings.fide.com/tournament_information.phtml?event=494630" target="_blank" rel="noopener">1st Chess-Titans FIDE Rated Rapid</a></h3>
           <div class="fide-meta">Bengaluru · Karnataka · Rapid · 11 Oct 2026</div>
         </div>
-        <span class="fide-badge">Rapid</span>
+        <a class="fide-badge" href="https://ratings.fide.com/tournament_information.phtml?event=494630" target="_blank" rel="noopener">Details →</a>
       </article>
       <article class="fide-card">
         <div class="fide-date"><b>12</b><span>Oct</span></div>
         <div>
-          <h3>National Sub-Junior Open & Girls’ Championships</h3>
+          <h3><a href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">National Sub-Junior Open & Girls’ Championships</a></h3>
           <div class="fide-meta">Hyderabad · 12–20 Oct 2026</div>
         </div>
-        <span class="fide-badge">National</span>
+        <a class="fide-badge" href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">FIDE list →</a>
       </article>
       <article class="fide-card">
         <div class="fide-date"><b>17</b><span>Oct</span></div>
         <div>
-          <h3>1st Shivbhumi International Open FIDE Rapid Rating</h3>
+          <h3><a href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">1st Shivbhumi International Open FIDE Rapid Rating</a></h3>
           <div class="fide-meta">Pune · Maharashtra · Rapid · 17–18 Oct 2026</div>
         </div>
-        <span class="fide-badge">Rapid</span>
+        <a class="fide-badge" href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">FIDE list →</a>
       </article>
       <article class="fide-card">
         <div class="fide-date"><b>25</b><span>Oct</span></div>
         <div>
-          <h3>9th N L Pandiyar Memorial International Open FIDE Rating</h3>
+          <h3><a href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">9th N L Pandiyar Memorial International Open FIDE Rating</a></h3>
           <div class="fide-meta">Udaipur · Rajasthan · Classical · 25–29 Oct 2026</div>
         </div>
-        <span class="fide-badge">Classical</span>
+        <a class="fide-badge" href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">FIDE list →</a>
       </article>
       <article class="fide-card">
-        <div class="fide-date"><b>27</b><span>Oct</span></div>
+        <div class="fide-date"><b>17</b><span>Oct</span></div>
         <div>
-          <h3>1st Manchester City International Below 1800 FIDE Rated</h3>
-          <div class="fide-meta">Coimbatore · Tamil Nadu · 27–29 Oct 2026</div>
+          <h3><a href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">1st Manchester City International Open FIDE Rated</a></h3>
+          <div class="fide-meta">Coimbatore · Tamil Nadu · from 17 Oct 2026</div>
         </div>
-        <span class="fide-badge">Below 1800</span>
+        <a class="fide-badge" href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">FIDE list →</a>
       </article>
       <article class="fide-card">
         <div class="fide-date"><b>30</b><span>Oct</span></div>
         <div>
-          <h3>7th SSS International Below 1800 FIDE Rated</h3>
+          <h3><a href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">7th SSS International Below 1800 FIDE Rated</a></h3>
           <div class="fide-meta">Pudukkottai · Tamil Nadu · 30 Oct – 1 Nov 2026</div>
         </div>
-        <span class="fide-badge">Below 1800</span>
+        <a class="fide-badge" href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">FIDE list →</a>
       </article>
       <article class="fide-card">
         <div class="fide-date"><b>11</b><span>Nov</span></div>
         <div>
-          <h3>All India Open Shantikumarji Firodiya Classical FIDE Rating</h3>
+          <h3><a href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">All India Open Shantikumarji Firodiya Classical FIDE Rating</a></h3>
           <div class="fide-meta">Ahilyanagar · Maharashtra · Classical · 11–15 Nov 2026</div>
         </div>
-        <span class="fide-badge">Classical</span>
+        <a class="fide-badge" href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">FIDE list →</a>
       </article>
       <article class="fide-card">
         <div class="fide-date"><b>21</b><span>Nov</span></div>
         <div>
-          <h3>1st CastleMasters International Open Rapid FIDE Rated</h3>
+          <h3><a href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">1st CastleMasters International Open Rapid FIDE Rated</a></h3>
           <div class="fide-meta">Gurgaon · Haryana · Rapid · 21–22 Nov 2026</div>
         </div>
-        <span class="fide-badge">Rapid</span>
+        <a class="fide-badge" href="https://ratings.fide.com/rated_tournaments.phtml?country=IND" target="_blank" rel="noopener">FIDE list →</a>
       </article>
     </div>
     <p style="margin-top:22px;display:flex;flex-wrap:wrap;gap:10px">
