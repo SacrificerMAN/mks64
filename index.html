@@ -51,7 +51,7 @@ section{padding:80px 0}
 .prog-meta{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
 .prog-meta span{font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--border);color:var(--muted);background:rgba(255,255,255,.03)}
 .prog-meta span.hi{border-color:rgba(16,163,127,.55);color:#fff;background:rgba(16,163,127,.22);font-size:13px}
-.prog-out{margin-top:18px;padding:14px 14px 12px;border-top:1px solid var(--border);border-radius:12px;font-size:14px;color:var(--muted);line-height:1.5;background:rgba(16,163,127,.06);border:1px solid rgba(16,163,127,.2)}
+.prog-out{margin-top:18px;padding:14px 14px 12px;border-radius:12px;font-size:14px;color:var(--muted);line-height:1.5;background:rgba(16,163,127,.06);border:1px solid rgba(16,163,127,.2)}
 .prog-out b{color:var(--green);display:block;margin-bottom:6px;font-size:12px;letter-spacing:.05em;text-transform:uppercase}
 section#programs{padding:96px 0}
 @media(min-width:1001px){.grid-4{gap:18px}}
@@ -266,3 +266,157 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
     <a class="btn btn-outline" href="#plans" style="margin-left:8px">See plans</a></p>
   </div>
 </section>
+<section id="plans" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">Plans</div>
+    <h2 class="sec-title">Course · classes · duration</h2>
+    <p class="sec-desc">Fixed class count. Curriculum = implementable topics only. Fees WhatsApp pe — pehle free demo.</p>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <h3>Beginner</h3>
+        <p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">24 live classes</p>
+        <p style="color:var(--muted);font-size:13px">3 months · 2× / week</p>
+        <ul>
+          <li>Board, moves, notation, defence</li>
+          <li>Basic mates + mate in 1</li>
+          <li>Candidate moves + short visualization</li>
+          <li>Outcome: full games, school/online ready</li>
+        </ul>
+      </div>
+      <div class="plan-card popular">
+        <span class="plan-badge">Most popular</span>
+        <h3>Intermediate</h3>
+        <p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">48 live classes</p>
+        <p style="color:var(--muted);font-size:13px">6 months · 2× / week</p>
+        <ul>
+          <li>Tactics: pin, fork, skewer, discovery</li>
+          <li>Mate in 2 · pawn endings</li>
+          <li>Candidate moves + visualization</li>
+          <li>Outcome: stable rating, club events</li>
+        </ul>
+      </div>
+      <div class="plan-card popular">
+        <span class="plan-badge">Most popular</span>
+        <h3>Advanced</h3>
+        <p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">48 live classes</p>
+        <p style="color:var(--muted);font-size:13px">6 months · 2× / week</p>
+        <ul>
+          <li>Calculation · structures · conversion</li>
+          <li>King attack · pawn structures</li>
+          <li>Candidate moves under the clock</li>
+          <li>Outcome: tournament readiness</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h3>FIDE Rating</h3>
+        <p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">96 live classes</p>
+        <p style="color:var(--muted);font-size:13px">12 months · 2× / week</p>
+        <ul>
+          <li>4 openings locked (2W + 2B)</li>
+          <li>Board-free visualization</li>
+          <li>Endgames + prophylaxis</li>
+          <li>Outcome: FIDE / district-state ready</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:20px;color:var(--muted);font-size:14px">Class packs also available: 1 · 3 · 6 · 9 · 12 classes. Fees on WhatsApp after free demo.</p>
+  </div>
+</section>
+<section id="faq" style="border-top:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-label">FAQ</div>
+    <h2 class="sec-title">Quick answers</h2>
+    <div class="faq">
+      <details><summary>Online classes kaise hoti hain?</summary><p>Live video + shared board. Homework + game review. English + Hindi.</p></details>
+      <details><summary>Beginner ke liye sahi hai?</summary><p>Haan — Beginner course zero se start. Free demo pe level check.</p></details>
+      <details><summary>FIDE rating ke liye kitna time?</summary><p>FIDE Rating course 96 classes / 12 months. Openings + calculation focus.</p></details>
+      <details><summary>Fees kab batate ho?</summary><p>Free demo ke baad WhatsApp pe — plans clear, no website price pressure.</p></details>
+    </div>
+  </div>
+</section>
+<section id="join" style="border-top:1px solid var(--border);padding-bottom:100px">
+  <div class="wrap">
+    <div class="sec-label">Join</div>
+    <h2 class="sec-title">Book a free Demo</h2>
+    <p class="sec-desc">Form bharo → WhatsApp message. No payment for first class.</p>
+    <div class="form-grid" style="margin-top:28px">
+      <form class="form-box" id="leadForm">
+        <input name="name" placeholder="Your name" required>
+        <input name="phone" type="tel" placeholder="WhatsApp number" required>
+        <input name="email" type="email" placeholder="Email (optional)">
+        <select name="goal">
+          <option value="">Goal (optional)</option>
+          <option>Beginner foundation</option>
+          <option>Rating improvement</option>
+          <option>Tournament prep</option>
+          <option>FIDE path</option>
+          <option>1:1 coaching</option>
+        </select>
+        <button class="btn btn-solid" type="submit" style="margin-top:6px">Book a free Demo</button>
+        <p class="lead-thanks" id="leadThanks" style="color:var(--green)">Thanks — WhatsApp open ho gaya. Message bhej do.</p>
+      </form>
+      <div>
+        <p style="color:var(--muted);font-size:14px;line-height:1.6">Prefer chat? WhatsApp pe seedha likho.</p>
+        <a class="btn btn-wa" style="margin-top:14px" href="https://wa.me/919354811377?text=Hi%2C%20I%20want%20a%20free%20chess%20demo" target="_blank" rel="noopener">WhatsApp · +91 9354811377</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="foot-grid">
+    <div class="foot-col">
+      <h4>Saran Chess Academy</h4>
+      <p style="color:var(--muted);font-size:13px;line-height:1.5;max-width:280px">Online coaching with Mohit Kumar Soni — 2570+ online, FIDE 1952, 7+ years, 10,000+ classes.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Explore</h4>
+      <a href="#programs">Courses</a>
+      <a href="/explore.html">Chess Hub</a>
+      <a href="/quiz.html">Chess Quiz</a>
+      <a href="/tournaments.html">Tournaments</a>
+      <a href="/traps.html">Traps</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="#join">Book a free Demo</a>
+      <a href="https://wa.me/919354811377" target="_blank" rel="noopener">WhatsApp</a>
+      <h4 style="margin-top:18px">Live classes in every time zone</h4>
+      <div class="zone-list">
+        <span>United States</span><span>Canada</span><span>Australia</span><span>Singapore</span>
+        <span>United Kingdom</span><span>Malaysia</span><span>UAE</span><span>Qatar</span>
+        <span>Germany</span><span>India</span><span>Netherlands</span>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div>© 2026 Saran Chess Academy</div>
+    <div>Online chess coaching · Free first class</div>
+  </div>
+</footer>
+<script>
+(function(){
+  var WA = '919354811377';
+  var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyn4ox_ddK6q5LKXVmDwU8SjiBUrWuYBvErWzHr1GD76VZmK_Ce4GkZrvZMWnqN8Lam/exec';
+  var form = document.getElementById('leadForm');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var fd = new FormData(form);
+    var name = (fd.get('name')||'').trim();
+    var phone = (fd.get('phone')||'').toString().replace(/\D/g,'');
+    var email = (fd.get('email')||'').trim();
+    var goal = (fd.get('goal')||'').toString();
+    if(name.length<2 || phone.length<8){ alert('Name and phone required'); return; }
+    var payload = { name:name, contact:phone, phone:phone, email:email, rating:'Not specified', goal:goal||'Free demo', source:'homepage-form' };
+    fetch(LEAD_ENDPOINT, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload) }).catch(function(){});
+    var thanks = document.getElementById('leadThanks');
+    if(thanks) thanks.style.display = 'block';
+    var text = encodeURIComponent('Hi, I want to book a free chess demo.\nName: '+name+'\nPhone: '+phone+(email?('\nEmail: '+email):'')+(goal?('\nGoal: '+goal):'')+'\nSource: Website form');
+    window.open('https://wa.me/'+WA+'?text='+text, '_blank');
+  });
+})();
+</script>
+<script src="/lead-cta.js"></script>
+<script src="/chat.js" defer></script>
+</body>
+</html>
