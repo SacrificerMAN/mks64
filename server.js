@@ -75,4 +75,62 @@ function quizApi(req, res, url) {
   return false;
 }
 
-http.createServer((req,res)=>{const url=new URL(req.url,`http://${req.headers.host}`);if(req.method==="POST"&&url.pathname==="/api/chat")return chat(req,res);if(req.method==="GET"&&url.pathname==="/api/health")return send(res,200,JSON.stringify({ok:true,model:MODEL,key:Boolean(KEY)}));if(url.pathname.startsWith("/api/quiz/"))return quizApi(req,res,url);if(req.method!=="GET"&&req.method!=="HEAD")return send(res,405,"Method not allowed","text/plain");serveStatic(req,res);}).listen(PORT,"0.0.0.0",()=>console.log("listening",PORT));
+const USERS_FILE = path.join(ROOT, "data", "users.json");
+function readUsers() {
+  try { return JSON.parse(fs.readFileSync(USERS_FILE, "utf8")); } catch { return {}; }
+}
+function writeUsers(data) {
+  try {
+    fs.mkdirSync(path.dirname(USERS_FILE), { recursive: true });
+    fs.writeFileSync(USERS_FILE, JSON.stringify(data, null, 2));
+    return true;
+  } catch { return false; }
+}
+function token() {
+  return Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
+function authApi(req, res, url) {
+  if (req.method === "POST" && url.pathname === "/api/auth/register") {
+    let raw = "";
+    req.on("data", c => { raw += c; if (raw.length > 20000) req.destroy(); });
+    req.on("end", () => {
+      let p;
+      try { p = JSON.parse(raw || "{}"); } catch { return send(res, 400, JSON.stringify({ error: "bad json" })); }
+      const name = String(p.name || "").trim().slice(0, 60);
+      const phone = String(p.phone || "").replace(/\D/g, "").slice(-10);
+      const password = String(p.password || "");
+      if (name.length < 2) return send(res, 400, JSON.stringify({ error: "Name required" }));
+      if (phone.length !== 10) return send(res, 400, JSON.stringify({ error: "Valid 10-digit phone" }));
+      if (password.length < 4) return send(res, 400, JSON.stringify({ error: "Password min 4 chars" }));
+      const all = readUsers();
+      if (all[phone]) return send(res, 409, JSON.stringify({ error: "Already registered — please login" }));
+      const tok = token();
+      all[phone] = { name, password, token: tok, createdAt: Date.now(), source: "register" };
+      writeUsers(all);
+      return send(res, 200, JSON.stringify({ ok: true, name, phone, token: tok }));
+    });
+    return;
+  }
+  if (req.method === "POST" && url.pathname === "/api/auth/login") {
+    let raw = "";
+    req.on("data", c => { raw += c; if (raw.length > 20000) req.destroy(); });
+    req.on("end", () => {
+      let p;
+      try { p = JSON.parse(raw || "{}"); } catch { return send(res, 400, JSON.stringify({ error: "bad json" })); }
+      const phone = String(p.phone || "").replace(/\D/g, "").slice(-10);
+      const password = String(p.password || "");
+      const all = readUsers();
+      const u = all[phone];
+      if (!u || u.password !== password) return send(res, 401, JSON.stringify({ error: "Invalid phone or password" }));
+      const tok = token();
+      u.token = tok;
+      u.lastLogin = Date.now();
+      writeUsers(all);
+      return send(res, 200, JSON.stringify({ ok: true, name: u.name, phone, token: tok }));
+    });
+    return;
+  }
+  return false;
+}
+
+http.createServer((req,res)=>{const url=new URL(req.url,`http://${req.headers.host}`);if(req.method==="POST"&&url.pathname==="/api/chat")return chat(req,res);if(req.method==="GET"&&url.pathname==="/api/health")return send(res,200,JSON.stringify({ok:true,model:MODEL,key:Boolean(KEY)}));if(url.pathname.startsWith("/api/auth/"))return authApi(req,res,url);if(url.pathname.startsWith("/api/quiz/"))return quizApi(req,res,url);if(req.method!=="GET"&&req.method!=="HEAD")return send(res,405,"Method not allowed","text/plain");serveStatic(req,res);}).listen(PORT,"0.0.0.0",()=>console.log("listening",PORT));
