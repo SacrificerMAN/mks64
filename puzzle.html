@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/tools.css">
 </head>
-<body>
+<body data-require-auth="1">
 <nav>
   <a class="logo" href="/">♟ Saran Chess Academy</a>
   <div class="nav-links">
@@ -17,8 +17,7 @@
     <a href="/tournaments.html">Tournaments</a>
     <a href="/#join">Join</a>
   </div>
-  <a class="btn btn-wa" href="/#join">WhatsApp</a>
-  <a class="btn btn-solid" href="/#join">Book a free call</a>
+  <a class="btn btn-solid" href="/#join">Book a free Demo</a>
 </nav>
 <main>
 <div class="wrap">
@@ -180,5 +179,6 @@ load();
 </script>
 <script src="/lead-cta.js"></script>
 <script>document.addEventListener("DOMContentLoaded",function(){if(window.SCALead){SCALead.injectStrip("puzzle");window._scaSoftGate=function(){SCALead.softGate("puzzle",2);};}});</script>
+<script src="/auth.js"></script>
 </body>
 </html>
