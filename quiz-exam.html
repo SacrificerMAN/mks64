@@ -1,1 +1,328 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>Quiz Exam — Login & Play | Saran Chess Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--surface:#111;--border:rgba(255,255,255,.08);--text:#f5f5f5;--muted:#8a8a8a;--green:#10a37f;--radius:16px;--danger:#e85d5d}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.5;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:720px;margin:0 auto;padding:24px}
+nav{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid var(--border);background:rgba(5,5,5,.9)}
+.logo{font-weight:600;font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:500;border:1px solid transparent;cursor:pointer}
+.btn-solid{background:#fff;color:#050505}.btn-green{background:var(--green);color:#fff;border:0}.btn-outline{border-color:var(--border);background:transparent;color:var(--text)}
+.panel{display:none;margin-top:28px}.panel.on{display:block}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+h1{font-size:22px;margin-bottom:8px}
+.muted{color:var(--muted);font-size:14px}
+label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:12px 0 6px;text-transform:uppercase;letter-spacing:.04em}
+input{width:100%;background:#050505;border:1px solid var(--border);border-radius:12px;padding:12px;color:var(--text);font-size:15px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.err{color:var(--danger);font-size:13px;margin-top:10px}
+.ok{color:var(--green);font-size:13px;margin-top:10px}
+.tabs{display:flex;gap:8px;margin-bottom:16px}
+.tabs button{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-weight:500}
+.tabs button.on{background:rgba(16,163,127,.15);color:var(--green);border-color:rgba(16,163,127,.4)}
+.exam-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;position:sticky;top:0;background:var(--bg);padding:12px 0;z-index:10;border-bottom:1px solid var(--border)}
+.timer{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.timer.warn{color:#f5a524}.timer.hot{color:var(--danger)}
+.q-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px}
+.q-meta{font-size:11px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.q-text{font-size:15px;margin-bottom:12px}
+.q-board{max-width:280px;width:100%;border-radius:8px;border:1px solid var(--border);margin-bottom:12px;background:#222}
+.opts label{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:10px;border:1px solid var(--border);margin-bottom:8px;cursor:pointer;text-transform:none;letter-spacing:0;font-weight:500;color:var(--text);font-size:14px}
+.opts input{width:auto;margin-top:3px}
+.progress{font-size:13px;color:var(--muted)}
+.result-score{font-size:48px;font-weight:700;color:var(--green)}
+.lb-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
+.lb-table th,.lb-table td{padding:10px 8px;text-align:left;border-bottom:1px solid var(--border)}
+.lb-table th{color:var(--muted);font-size:11px;text-transform:uppercase}
+.lb-table tr.me td{color:var(--green);font-weight:600}
+.rev-ok{border-color:rgba(16,163,127,.5)!important;background:rgba(16,163,127,.08)}
+.rev-bad{border-color:rgba(232,93,93,.45)!important;background:rgba(232,93,93,.08)}
+.rev-ans{font-size:13px;margin-top:8px;color:var(--muted)}
+.rev-ans b{color:var(--green)}
+</style>
+</head>
+<body data-require-auth="1">
+<nav>
+  <a class="logo" href="/quiz.html">♟ Chess Quiz</a>
+  <div style="display:flex;gap:8px;align-items:center">
+    <span class="muted" id="userChip" style="font-size:13px"></span>
+    <button class="btn btn-outline" id="btnLogout" style="display:none;padding:6px 12px;font-size:12px">Logout</button>
+  </div>
+</nav>
+<div class="wrap">
+  <div class="panel on" id="panelAuth">
+    <div class="card">
+      <div class="tabs">
+        <button type="button" class="on" data-tab="login">Login</button>
+        <button type="button" data-tab="register">Register</button>
+      </div>
+      <div id="formLogin">
+        <h1>Login</h1>
+        <p class="muted">Phone + password se exam area.</p>
+        <label>Phone</label><input id="loginPhone" type="tel" placeholder="10-digit mobile">
+        <label>Password</label><input id="loginPass" type="password" placeholder="Password">
+        <div class="row"><button class="btn btn-green" id="doLogin">Login</button></div>
+        <p class="err" id="loginErr"></p>
+      </div>
+      <div id="formRegister" style="display:none">
+        <h1>Register</h1>
+        <p class="muted">Account banao → ₹300 pay → unlock.</p>
+        <label>Full name</label><input id="regName" placeholder="Your name">
+        <label>Phone (WhatsApp)</label><input id="regPhone" type="tel" placeholder="10-digit mobile">
+        <label>Password</label><input id="regPass" type="password" placeholder="Min 4 characters">
+        <div class="row"><button class="btn btn-green" id="doRegister">Create account</button></div>
+        <p class="err" id="regErr"></p>
+      </div>
+    </div>
+  </div>
+  <div class="panel" id="panelPay">
+    <div class="card">
+      <h1>Entry fee ₹300</h1>
+      <p class="muted">Week: <strong id="payWeek" style="color:#fff"></strong></p>
+      <div class="row"><a class="btn btn-outline" id="waPayBtn" target="_blank" rel="noopener">Open WhatsApp pay</a></div>
+      <label>Payment reference</label><input id="txnId" placeholder="UPI ref or SCA-DEMO">
+      <div class="row"><button class="btn btn-green" id="doUnlock">Unlock this week</button></div>
+      <p class="ok" id="payOk"></p><p class="err" id="payErr"></p>
+      <p class="muted" style="margin-top:14px;font-size:12px">Test: <code style="color:var(--green)">SCA-DEMO</code></p>
+    </div>
+  </div>
+  <div class="panel" id="panelLobby">
+    <div class="card">
+      <h1>You’re in</h1>
+      <p class="muted">Week <strong id="lobbyWeek" style="color:#fff"></strong> · 30 Q · 30 min</p>
+      <div class="row"><button class="btn btn-green" id="doStart">Start exam</button><a class="btn btn-outline" href="/quiz.html">Info</a></div>
+      <p class="err" id="lobbyErr"></p>
+      <div id="preLb" style="margin-top:20px"></div>
+    </div>
+  </div>
+  <div class="panel" id="panelExam">
+    <div class="exam-top">
+      <div class="progress"><span id="qProgress">0 / 30</span></div>
+      <div class="timer" id="timer">30:00</div>
+      <button class="btn btn-solid" id="doSubmit">Submit</button>
+    </div>
+    <div id="qList"></div>
+    <div class="row" style="margin:20px 0 40px"><button class="btn btn-green" id="doSubmit2">Submit answers</button></div>
+  </div>
+  <div class="panel" id="panelResult">
+    <div class="card" style="text-align:center">
+      <p class="muted">Your score</p>
+      <div class="result-score" id="scoreNum">0</div>
+      <p class="muted" id="scoreDetail">/ 30</p>
+      <p class="muted" style="margin-top:12px" id="resultNote"></p>
+      <div class="row" style="justify-content:center;margin-top:18px">
+        <a class="btn btn-outline" href="/quiz.html">Quiz home</a>
+        <a class="btn btn-green" id="waResult" target="_blank" rel="noopener">Share score</a>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h1 style="font-size:18px">Leaderboard · this week</h1>
+      <p class="muted">Top scores · ties by faster time</p>
+      <div id="lbBox"><p class="muted" style="margin-top:10px">Loading…</p></div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h1 style="font-size:18px">Answer review</h1>
+      <p class="muted">Green = correct · Red = your wrong choice</p>
+      <div id="reviewBox" style="margin-top:14px"></div>
+    </div>
+  </div>
+</div>
+<script src="/quiz-data.js"></script>
+<script>
+(function(){
+  var Q = window.SCAQuiz;
+  if(!Q){ alert("quiz-data.js missing"); return; }
+  var LS_USERS = "sca_quiz_users_v2";
+  var LS_SESSION = "sca_quiz_session_v2";
+  var weekId = Q.getWeekId();
+  function users(){ try{ return JSON.parse(localStorage.getItem(LS_USERS)||"{}"); }catch(e){ return {}; } }
+  function saveUsers(u){ localStorage.setItem(LS_USERS, JSON.stringify(u)); }
+  function session(){ try{ return JSON.parse(localStorage.getItem(LS_SESSION)||"null"); }catch(e){ return null; } }
+  function setSession(s){ localStorage.setItem(LS_SESSION, JSON.stringify(s)); }
+  function clearSession(){ localStorage.removeItem(LS_SESSION); }
+  function show(id){ ["panelAuth","panelPay","panelLobby","panelExam","panelResult"].forEach(function(p){ document.getElementById(p).classList.toggle("on", p===id); }); }
+  function currentUser(){
+    var s = session(); if(!s||!s.phone) return null;
+    var u = users()[s.phone]; return u ? Object.assign({phone:s.phone}, u) : null;
+  }
+  function route(){
+    var u = currentUser();
+    var chip = document.getElementById("userChip");
+    var lo = document.getElementById("btnLogout");
+    if(!u){ chip.textContent=""; lo.style.display="none"; show("panelAuth"); return; }
+    chip.textContent = u.name + " · " + u.phone; lo.style.display="inline-flex";
+    if(u.attempts && u.attempts[weekId] && u.attempts[weekId].submitted){ showResult(u.attempts[weekId]); return; }
+    if(u.paidWeeks && u.paidWeeks[weekId]){ document.getElementById("lobbyWeek").textContent=weekId; show("panelLobby"); loadLb(document.getElementById("preLb"), false); return; }
+    document.getElementById("payWeek").textContent=weekId;
+    var msg = encodeURIComponent("Quiz entry ₹300\nName: "+u.name+"\nPhone: "+u.phone+"\nWeek: "+weekId+"\nTxn:");
+    document.getElementById("waPayBtn").href = "https://wa.me/"+Q.WA+"?text="+msg;
+    show("panelPay");
+  }
+  document.querySelectorAll(".tabs button").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      document.querySelectorAll(".tabs button").forEach(function(b){ b.classList.remove("on"); });
+      btn.classList.add("on");
+      var t = btn.getAttribute("data-tab");
+      document.getElementById("formLogin").style.display = t==="login"?"block":"none";
+      document.getElementById("formRegister").style.display = t==="register"?"block":"none";
+    });
+  });
+  document.getElementById("doRegister").onclick = function(){
+    var name=(document.getElementById("regName").value||"").trim();
+    var phone=(document.getElementById("regPhone").value||"").replace(/\D/g,"").slice(-10);
+    var pass=document.getElementById("regPass").value||"";
+    var err=document.getElementById("regErr"); err.textContent="";
+    if(name.length<2){ err.textContent="Name required"; return; }
+    if(phone.length!==10){ err.textContent="Valid 10-digit phone"; return; }
+    if(pass.length<4){ err.textContent="Password min 4 chars"; return; }
+    var u=users(); if(u[phone]){ err.textContent="Already registered — login"; return; }
+    u[phone]={ name:name, pass:pass, paidWeeks:{}, attempts:{} }; saveUsers(u); setSession({phone:phone});
+    fetch("/api/auth/register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:name,phone:phone,password:pass})}).catch(function(){});
+    try{ localStorage.setItem("sca_session_v1", JSON.stringify({phone:phone,name:name,token:"quiz"})); }catch(e){}
+    route();
+  };
+  document.getElementById("doLogin").onclick = function(){
+    var phone=(document.getElementById("loginPhone").value||"").replace(/\D/g,"").slice(-10);
+    var pass=document.getElementById("loginPass").value||"";
+    var err=document.getElementById("loginErr"); err.textContent="";
+    var u=users()[phone];
+    if(u && u.pass===pass){ setSession({phone:phone}); route(); return; }
+    fetch("/api/auth/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({phone:phone,password:pass})})
+      .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+      .then(function(res){
+        if(!res.ok){ err.textContent=(res.j&&res.j.error)||"Invalid phone or password"; return; }
+        var all=users(); if(!all[phone]) all[phone]={name:res.j.name,pass:pass,paidWeeks:{},attempts:{}}; saveUsers(all);
+        setSession({phone:phone});
+        try{ localStorage.setItem("sca_session_v1", JSON.stringify({phone:phone,name:res.j.name,token:res.j.token})); }catch(e){}
+        route();
+      }).catch(function(){ err.textContent="Invalid phone or password"; });
+  };
+  document.getElementById("btnLogout").onclick = function(){ clearSession(); try{localStorage.removeItem("sca_session_v1");}catch(e){} route(); };
+  document.getElementById("doUnlock").onclick = function(){
+    var u=currentUser(); if(!u) return;
+    var txn=(document.getElementById("txnId").value||"").trim().toUpperCase();
+    var err=document.getElementById("payErr"); var ok=document.getElementById("payOk");
+    err.textContent=""; ok.textContent="";
+    if(txn.length<3){ err.textContent="Enter payment reference or SCA-DEMO"; return; }
+    var all=users(); var rec=all[u.phone]; if(!rec.paidWeeks) rec.paidWeeks={};
+    rec.paidWeeks[weekId]={ txn:txn, at:Date.now() }; saveUsers(all);
+    ok.textContent="Unlocked for "+weekId; setTimeout(route,500);
+  };
+  var questions=[], answers={}, endsAt=0, startedAt=0, timerIv=null;
+  function renderExam(){
+    questions=Q.getQuestions(); answers={};
+    var list=document.getElementById("qList"); list.innerHTML="";
+    questions.forEach(function(q, idx){
+      var div=document.createElement("div"); div.className="q-card";
+      var board="";
+      if(q.type==="tactic"&&q.fen) board='<img class="q-board" alt="Board" src="'+Q.fenImg(q.fen)+'" loading="lazy">';
+      if(q.type==="viz") board='<p class="muted" style="margin-bottom:10px">👁 Visualization — board mat dekho.</p>';
+      var opts=q.options.map(function(o,i){ return '<label><input type="radio" name="q_'+q.id+'" value="'+i+'"> <span>'+o+'</span></label>'; }).join("");
+      div.innerHTML='<div class="q-meta">Q'+(idx+1)+' · '+q.theme+'</div><div class="q-text">'+q.q+'</div>'+board+'<div class="opts">'+opts+'</div>';
+      list.appendChild(div);
+      div.querySelectorAll("input").forEach(function(inp){
+        inp.addEventListener("change", function(){ answers[q.id]=parseInt(inp.value,10); updateProgress(); });
+      });
+    });
+    updateProgress();
+  }
+  function updateProgress(){ document.getElementById("qProgress").textContent=Object.keys(answers).length+" / "+questions.length; }
+  function tick(){
+    var left=Math.max(0, Math.floor((endsAt-Date.now())/1000));
+    var m=String(Math.floor(left/60)).padStart(2,"0"); var s=String(left%60).padStart(2,"0");
+    var el=document.getElementById("timer"); el.textContent=m+":"+s;
+    el.classList.toggle("warn", left<=120&&left>60); el.classList.toggle("hot", left<=60);
+    if(left<=0){ clearInterval(timerIv); finish(true); }
+  }
+  document.getElementById("doStart").onclick=function(){
+    var u=currentUser(); if(!u) return;
+    var all=users(); var rec=all[u.phone];
+    if(rec.attempts&&rec.attempts[weekId]&&rec.attempts[weekId].submitted){
+      document.getElementById("lobbyErr").textContent="Already submitted this week."; return;
+    }
+    renderExam(); startedAt=Date.now(); endsAt=Date.now()+Q.DURATION_SEC*1000;
+    if(timerIv) clearInterval(timerIv); timerIv=setInterval(tick,250); tick(); show("panelExam");
+  };
+  function finish(auto){
+    if(timerIv) clearInterval(timerIv);
+    var u=currentUser(); if(!u) return;
+    var score=0;
+    questions.forEach(function(q){ if(answers[q.id]===q.answer) score++; });
+    var timeMs = Math.max(0, Date.now() - (startedAt||Date.now()));
+    var result={ score:score, total:questions.length, submitted:true, auto:!!auto, at:Date.now(), week:weekId, timeMs:timeMs, answers:answers, paper:questions.map(function(q){ return {id:q.id,theme:q.theme,q:q.q,options:q.options,answer:q.answer,type:q.type,fen:q.fen||null}; }) };
+    var all=users(); if(!all[u.phone].attempts) all[u.phone].attempts={};
+    all[u.phone].attempts[weekId]=result; saveUsers(all);
+    fetch("/api/quiz/score",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({week:weekId,name:u.name,phone:u.phone,score:score,total:questions.length,timeMs:timeMs})}).catch(function(){});
+    showResult(result);
+  }
+  function renderReview(result){
+    var box=document.getElementById("reviewBox");
+    var paper=result.paper||[];
+    var ans=result.answers||{};
+    if(!paper.length){ box.innerHTML='<p class="muted">Review not saved for this attempt.</p>'; return; }
+    box.innerHTML=paper.map(function(q,idx){
+      var chosen = ans[q.id];
+      var ok = chosen===q.answer;
+      var board = (q.type==="tactic"&&q.fen) ? '<img class="q-board" src="'+Q.fenImg(q.fen)+'" alt="Board">' : '';
+      var opts = q.options.map(function(o,i){
+        var cls="";
+        if(i===q.answer) cls="rev-ok";
+        else if(chosen===i && !ok) cls="rev-bad";
+        return '<div class="opts"><label class="'+cls+'" style="cursor:default"><span>'+(i===q.answer?"✓ ":"")+(chosen===i&&!ok?"✗ ":"")+o+'</span></label></div>';
+      }).join("");
+      return '<div class="q-card"><div class="q-meta">Q'+(idx+1)+' · '+q.theme+(ok?' · Correct':' · Wrong')+'</div><div class="q-text">'+q.q+'</div>'+board+opts+'<p class="rev-ans">Correct: <b>'+q.options[q.answer]+'</b></p></div>';
+    }).join("");
+  }
+  function loadLb(container, highlightPhone){
+    if(!container) return;
+    container.innerHTML='<p class="muted" style="margin-top:8px">Loading leaderboard…</p>';
+    fetch("/api/quiz/leaderboard?week="+encodeURIComponent(weekId)).then(function(r){return r.json();}).then(function(data){
+      var list=data.leaders||[];
+      if(!list.length){ container.innerHTML='<p class="muted" style="margin-top:8px">No scores yet this week.</p>'; return; }
+      var rows=list.map(function(x,i){
+        var me = highlightPhone && x.phone===highlightPhone;
+        var mins=Math.floor((x.timeMs||0)/60000); var secs=Math.floor(((x.timeMs||0)%60000)/1000);
+        return '<tr class="'+(me?"me":"")+'"><td>'+(i+1)+'</td><td>'+escapeHtml(x.name)+(me?" (you)":"")+'</td><td>'+x.score+'/'+(x.total||30)+'</td><td>'+mins+":"+String(secs).padStart(2,"0")+'</td></tr>';
+      }).join("");
+      container.innerHTML='<table class="lb-table"><thead><tr><th>#</th><th>Name</th><th>Score</th><th>Time</th></tr></thead><tbody>'+rows+'</tbody></table>';
+    }).catch(function(){
+      container.innerHTML='<p class="muted" style="margin-top:8px">Leaderboard offline — score on this device.</p>';
+    });
+  }
+  function escapeHtml(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&","<":"<",">":">","\"":"""}[c];}); }
+  function showResult(result){
+    show("panelResult");
+    document.getElementById("scoreNum").textContent=result.score;
+    document.getElementById("scoreDetail").textContent="/ "+(result.total||30)+" · week "+(result.week||weekId);
+    document.getElementById("resultNote").textContent=result.auto?"Time up — auto submitted.":"Submitted. Leaderboard + answer review below.";
+    var u=currentUser();
+    var msg=encodeURIComponent("Chess Quiz "+(result.week||weekId)+"\n"+u.name+" · Score "+result.score+"/"+(result.total||30));
+    document.getElementById("waResult").href="https://wa.me/"+Q.WA+"?text="+msg;
+    renderReview(result);
+    loadLb(document.getElementById("lbBox"), u.phone);
+  }
+  document.getElementById("doSubmit").onclick=function(){ if(confirm("Submit now?")) finish(false); };
+  document.getElementById("doSubmit2").onclick=function(){ if(confirm("Submit now?")) finish(false); };
+  // Sync shared auth session into quiz local users
+  try {
+    var sa = JSON.parse(localStorage.getItem("sca_session_v1")||"null");
+    if(sa && sa.phone && sa.name){
+      var all = users();
+      if(!all[sa.phone]) { all[sa.phone]={name:sa.name,pass:"synced",paidWeeks:{},attempts:{}}; saveUsers(all); }
+      if(!session()) setSession({phone:sa.phone});
+    }
+  } catch(e){}
+  route();
+})();
+</script>
+<script src="/auth.js"></script>
+</body>
+</html>
