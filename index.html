@@ -38,15 +38,23 @@ section{padding:80px 0}
 .sec-desc{margin-top:10px;color:var(--muted);max-width:640px}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
 .prog-card,.how-card,.hub-card,.plan-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+.prog-card{padding:28px 24px;min-height:100%}
 .prog-card h3,.how-card h3,.hub-card h3{font-size:18px;margin-bottom:8px}
+.prog-card h3{font-size:22px;letter-spacing:-.02em;margin-bottom:10px}
+.prog-card>p{color:var(--muted);font-size:15px;line-height:1.45;margin-bottom:4px}
 .prog-card p,.how-card p,.hub-card p{color:var(--muted);font-size:14px}
-.prog-card ul{list-style:none;font-size:13px;color:var(--muted);margin-top:10px}
-.prog-card ul li::before{content:"✓ ";color:var(--green)}
-.prog-meta{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 12px}
-.prog-meta span{font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--border);color:var(--muted);background:rgba(255,255,255,.03)}
-.prog-meta span.hi{border-color:rgba(16,163,127,.45);color:var(--green);background:rgba(16,163,127,.1)}
-.prog-out{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:13px;color:var(--muted);line-height:1.45}
-.prog-out b{color:var(--text);display:block;margin-bottom:4px;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.prog-card ul{list-style:none;font-size:14px;color:var(--muted);margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.prog-card ul li{line-height:1.4;padding-left:2px}
+.prog-card ul li::before{content:"✓ ";color:var(--green);font-weight:700}
+.prog-card ul li strong,.prog-card ul li .hl{color:#fff;font-weight:600}
+.prog-card ul li em.tag{display:inline-block;font-style:normal;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;margin-left:4px;background:rgba(16,163,127,.15);color:var(--green);vertical-align:middle}
+.prog-meta{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+.prog-meta span{font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--border);color:var(--muted);background:rgba(255,255,255,.03)}
+.prog-meta span.hi{border-color:rgba(16,163,127,.55);color:#fff;background:rgba(16,163,127,.22);font-size:13px}
+.prog-out{margin-top:18px;padding:14px 14px 12px;border-top:1px solid var(--border);border-radius:12px;font-size:14px;color:var(--muted);line-height:1.5;background:rgba(16,163,127,.06);border:1px solid rgba(16,163,127,.2)}
+.prog-out b{color:var(--green);display:block;margin-bottom:6px;font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+section#programs{padding:96px 0}
+@media(min-width:1001px){.grid-4{gap:18px}}
 .bonus-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
 .bonus-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px}
 .bonus-item h4{font-size:14px;margin-bottom:4px}
@@ -185,33 +193,33 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
     <div class="grid-4">
       <div class="prog-card">
         <h3>♟ Beginner</h3>
-        <p>Zero se solid foundation.</p>
+        <p>Zero se solid foundation — board pe confident feel.</p>
         <div class="prog-meta"><span class="hi">24 classes · 3 months</span><span>2× / week</span></div>
         <ul>
-          <li>Board, ranks, files, square names</li>
-          <li>Piece moves + notation</li>
+          <li><strong>Board mastery</strong> — ranks, files, square names</li>
+          <li><strong>Piece moves + notation</strong> — games write karna</li>
           <li>Attack & capture unprotected pieces</li>
-          <li>Check / escape · 4 ways to defend</li>
+          <li><strong>Check / escape</strong> · 4 ways to defend</li>
           <li>Castling, promotion, en passant</li>
-          <li>Basic mates: 2R, Q, R · mate in 1</li>
-          <li>Candidate moves (best 2–3) + short visualization</li>
-          <li>Game review habit</li>
+          <li><strong>Basic mates</strong>: 2R, Q, R · mate in 1 <em class="tag">Core</em></li>
+          <li><strong>Candidate moves</strong> (best 2–3) + short visualization <em class="tag">Key skill</em></li>
+          <li>Game review habit — har game se 1 lesson</li>
         </ul>
         <div class="prog-out"><b>Outcome</b>Full games alone · fewer hanging pieces · school / online ready</div>
       </div>
       <div class="prog-card">
         <h3>♞ Intermediate</h3>
-        <p>Tactics + first real climb.</p>
+        <p>Tactics + first real rating climb.</p>
         <div class="prog-meta"><span class="hi">48 classes · 6 months</span><span>2× / week</span></div>
         <ul>
-          <li>Double attack, pin, skewer, discovery</li>
+          <li><strong>Pin, fork, skewer, discovery</strong> <em class="tag">Tactics</em></li>
           <li>Knight fork · deflection · decoy</li>
-          <li>Opening principles · back-rank mates</li>
-          <li>Mate in 2 · opponent’s threats</li>
-          <li>Pawn endings · passed pawn · rule of the square</li>
+          <li>Opening principles · <strong>back-rank mates</strong></li>
+          <li><strong>Mate in 2</strong> · opponent’s threats pehle dekho</li>
+          <li><strong>Pawn endings</strong> · passed pawn · rule of the square</li>
           <li>Rooks on the 7th · simplification</li>
-          <li>Candidate moves in middlegame</li>
-          <li>Visualization: 3–5 move lines</li>
+          <li><strong>Candidate moves</strong> in middlegame <em class="tag">Key skill</em></li>
+          <li>Visualization: <strong>3–5 move lines</strong></li>
         </ul>
         <div class="prog-out"><b>Outcome</b>Stable rating · fewer blunders · club / online events</div>
       </div>
@@ -220,30 +228,30 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
         <p>Calculation, structure, conversion.</p>
         <div class="prog-meta"><span class="hi">48 classes · 6 months</span><span>2× / week</span></div>
         <ul>
-          <li>Clearance, overload, zwischenzug</li>
-          <li>Attack on castled king · 7th/8th rank</li>
+          <li><strong>Clearance, overload, zwischenzug</strong></li>
+          <li><strong>Attack on castled king</strong> · 7th/8th rank <em class="tag">Core</em></li>
           <li>Correct exchanges · short calculation</li>
           <li>Open files, outposts, weak squares</li>
-          <li>Pawn structures: doubled, isolated, backward</li>
+          <li><strong>Pawn structures</strong>: doubled, isolated, backward</li>
           <li>Minority attack · forcing moves</li>
-          <li>Candidate moves under the clock</li>
+          <li><strong>Candidate moves under the clock</strong> <em class="tag">Key skill</em></li>
           <li>Visualization for tactics & endgames</li>
         </ul>
         <div class="prog-out"><b>Outcome</b>Tournament readiness · rating jump · calm under pressure</div>
       </div>
       <div class="prog-card">
         <h3>♚ FIDE Rating</h3>
-        <p>Rated path. Openings locked.</p>
+        <p>Rated path — openings locked, calculation board-free.</p>
         <div class="prog-meta"><span class="hi">96 classes · 12 months</span><span>2× / week</span></div>
         <ul>
-          <li><b>4 openings:</b> 2 White + 2 Black</li>
+          <li><strong>4 openings locked:</strong> 2 White + 2 Black <em class="tag">Core</em></li>
           <li>Attacking the king & center</li>
           <li>Prophylaxis · good vs bad bishop</li>
-          <li>Rook endings · bishop pair</li>
+          <li><strong>Rook endings</strong> · bishop pair</li>
           <li>Exploiting weaknesses · space advantage</li>
           <li>Preventing counterplay · two weaknesses</li>
-          <li>Board-free visualization practice</li>
-          <li>Candidate moves: find → rank → choose</li>
+          <li><strong>Board-free visualization</strong> practice <em class="tag">Key skill</em></li>
+          <li><strong>Candidate moves:</strong> find → rank → choose</li>
         </ul>
         <div class="prog-out"><b>Outcome</b>FIDE path · district/state ready · calculate without board</div>
       </div>
@@ -258,125 +266,3 @@ footer{padding:40px 24px 28px;border-top:1px solid var(--border);color:var(--mut
     <a class="btn btn-outline" href="#plans" style="margin-left:8px">See plans</a></p>
   </div>
 </section>
-<section id="plans" style="border-top:1px solid var(--border)">
-  <div class="wrap">
-    <div class="sec-label">Plans</div>
-    <h2 class="sec-title">Course · classes · duration</h2>
-    <p class="sec-desc">Fixed class count. Curriculum = implementable topics only. Fees WhatsApp pe — pehle free demo.</p>
-    <div class="plans-grid">
-      <div class="plan-card">
-        <h3>Beginner</h3>
-        <p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">24 live classes</p>
-        <p style="color:var(--muted);font-size:13px">3 months · 2× / week</p>
-        <ul>
-          <li>Board, moves, notation, defence</li>
-          <li>Basic mates + mate in 1</li>
-          <li>Candidate moves + short visualization</li>
-          <li>Outcome: full games, school/online ready</li>
-        </ul>
-      </div>
-      <div class="plan-card popular">
-        <span class="plan-badge">Popular</span>
-        <h3>Intermediate</h3>
-        <p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">48 live classes</p>
-        <p style="color:var(--muted);font-size:13px">6 months · 2× / week</p>
-        <ul>
-          <li>Core tactics: pin, fork, discovery…</li>
-          <li>Opening principles + pawn endings</li>
-          <li>Visualization 3–5 moves</li>
-          <li>Outcome: stable rating, fewer blunders</li>
-        </ul>
-      </div>
-      <div class="plan-card popular">
-        <span class="plan-badge">Popular</span>
-        <h3>Advanced</h3>
-        <p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">48 live classes</p>
-        <p style="color:var(--muted);font-size:13px">6 months · 2× / week</p>
-        <ul>
-          <li>Deep tactics + pawn structures</li>
-          <li>Calculation under the clock</li>
-          <li>Open files, outposts, conversion</li>
-          <li>Outcome: tournament readiness</li>
-        </ul>
-      </div>
-      <div class="plan-card">
-        <h3>FIDE Rating</h3>
-        <p style="color:var(--green);font-size:13px;font-weight:600;margin:4px 0 2px">96 live classes</p>
-        <p style="color:var(--muted);font-size:13px">12 months · 2× / week</p>
-        <ul>
-          <li><b>4 openings</b> — 2 White + 2 Black</li>
-          <li>Board-free visualization</li>
-          <li>Prophylaxis, endings, two weaknesses</li>
-          <li>Outcome: FIDE path + district/state ready</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="faq" style="border-top:1px solid var(--border)">
-  <div class="wrap">
-    <div class="sec-label">FAQ</div>
-    <h2 class="sec-title">Common questions</h2>
-    <div class="faq">
-      <details><summary>Is the first class free?</summary><p>Haan — free demo. Fees baad mein WhatsApp pe.</p></details>
-      <details><summary>English ya Hindi?</summary><p>Dono. Student ke hisaab se.</p></details>
-      <details><summary>Kaunsa course sahi hai?</summary><p>Free demo me level check — Beginner (24) → Intermediate (48) → Advanced (48) → FIDE Rating (96).</p></details>
-      <details><summary>FIDE course me openings?</summary><p>4 openings: 2 White + 2 Black — district/state opponents ke liye. Board-free visualization + candidate moves system bhi.</p></details>
-      <details><summary>Chess Quiz kab hai?</summary><p>Har Sunday 9:00 PM IST — free. <a href="/quiz.html" style="color:var(--green)">Quiz page</a>.</p></details>
-    </div>
-  </div>
-</section>
-<section id="join" style="border-top:1px solid var(--border)">
-  <div class="wrap">
-    <div class="sec-label">Join</div>
-    <h2 class="sec-title">Book a free Demo</h2>
-    <div class="form-grid">
-      <div><p class="sec-desc">Form bharo — phir WhatsApp open hoga with your details.</p></div>
-      <form class="form-box" id="leadForm">
-        <input name="name" placeholder="Your name" required>
-        <input name="phone" placeholder="WhatsApp number" required>
-        <input name="email" type="email" placeholder="Email (optional)">
-        <select name="goal"><option value="">Goal / course</option><option>Beginner (24 classes)</option><option>Intermediate (48)</option><option>Advanced (48)</option><option>FIDE Rating (96)</option><option>Kids class</option></select>
-        <button class="btn btn-solid" type="submit">Book a free Demo</button>
-        <div class="lead-thanks" id="leadThanks"><h3>Thanks!</h3><p>WhatsApp khul raha hai…</p></div>
-      </form>
-    </div>
-  </div>
-</section>
-<footer>
-  <div class="foot-grid">
-    <div class="foot-col">
-      <h4>Saran Chess Academy</h4>
-      <p style="margin-bottom:10px;line-height:1.5">Mohit Kumar Soni — 2570+ · FIDE 1952. Students in 10+ countries.</p>
-      <a class="btn btn-solid" href="#join">Book a free Demo</a>
-    </div>
-    <div class="foot-col">
-      <h4>Explore</h4>
-      <a href="#programs">Programs</a>
-      <a href="#plans">Plans</a>
-      <a href="/traps.html">Famous traps</a>
-      <a href="/explore.html">Chess Hub</a>
-      <a href="/tournaments.html">Tournaments</a>
-      <a href="/quiz.html">Chess Quiz (Sun 9 PM)</a>
-    </div>
-    <div class="foot-col">
-      <h4>Contact</h4>
-      <a href="#join">Book a free Demo</a>
-      <a href="https://wa.me/919354811377" target="_blank" rel="noopener">WhatsApp</a>
-      <h4 style="margin-top:18px">Live classes in every time zone</h4>
-      <div class="zone-list">
-        <span>United States</span><span>Canada</span><span>Australia</span><span>Singapore</span>
-        <span>United Kingdom</span><span>Malaysia</span><span>UAE</span><span>Qatar</span>
-        <span>Germany</span><span>India</span><span>Netherlands</span>
-      </div>
-    </div>
-  </div>
-  <div class="foot-bottom">
-    <div>© 2026 Saran Chess Academy</div>
-    <div>Online chess coaching · Free first class</div>
-  </div>
-</footer>
-<script src="/lead-cta.js"></script>
-<script src="/chat.js" defer></script>
-</body>
-</html>
