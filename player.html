@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/tools.css">
 </head>
-<body>
+<body data-require-auth="1">
 <nav>
   <a class="logo" href="/">♟ Saran Chess Academy</a>
   <div class="nav-links">
@@ -75,5 +75,6 @@ document.querySelectorAll('[data-user]').forEach(b=>b.onclick=()=>{document.getE
 </script>
 <script src="/lead-cta.js"></script>
 <script>document.addEventListener("DOMContentLoaded",function(){if(window.SCALead){SCALead.injectStrip("player");}});</script>
+<script src="/auth.js"></script>
 </body>
 </html>
