@@ -19,7 +19,7 @@
 @media(max-width:800px){.nav-links{display:none}.grid2{grid-template-columns:1fr!important}}
 </style>
 </head>
-<body>
+<body data-require-auth="1">
 <nav>
   <a class="logo" href="/">♟ Saran Chess Academy</a>
   <div class="nav-links">
@@ -34,14 +34,14 @@
 <div class="wrap">
   <div class="page-head">
     <h1>♟ Chess Hub</h1>
-    <p>Free tools to practice and explore — no login required.</p>
+    <p>Free tools to practice and explore — login required (free account).</p>
   </div>
   <div class="grid2">
     <a class="hub-card" href="/quiz.html">
       <span class="hub-badge">Every Sunday · 9 PM IST</span>
       <div class="hub-icon">🏆</div>
       <h3>Chess Quiz Tournament</h3>
-      <p>Weekly free quiz — tactics, traps & endgames. Join on WhatsApp.</p>
+      <p>Weekly free quiz — tactics, traps & endgames.</p>
       <span style="font-size:14px;font-weight:500;color:var(--green)">Open →</span>
     </a>
     <a class="hub-card" href="/puzzle.html">
@@ -73,10 +73,10 @@
       <span style="font-size:14px;font-weight:500;color:var(--green)">Open →</span>
     </a>
     <a class="hub-card" href="/tournaments.html">
-      <span class="hub-badge">Online + FIDE India</span>
+      <span class="hub-badge">Online + FIDE India + USA</span>
       <div class="hub-icon">♟️</div>
       <h3>Tournaments</h3>
-      <p>Live Lichess arenas + upcoming FIDE-rated events in India.</p>
+      <p>Live Lichess arenas + FIDE India + USA events.</p>
       <span style="font-size:14px;font-weight:500;color:var(--green)">Open →</span>
     </a>
   </div>
@@ -88,5 +88,6 @@
 </footer>
 <script src="/lead-cta.js"></script>
 <script>document.addEventListener("DOMContentLoaded",function(){if(window.SCALead){SCALead.injectStrip("explore");}});</script>
+<script src="/auth.js"></script>
 </body>
 </html>
