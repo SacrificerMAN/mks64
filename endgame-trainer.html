@@ -13,10 +13,10 @@ ChessTrainer.mountQuiz({groups:[
 {name:'Mate patterns',questions:[
 {fen:'7k/8/5KQ1/8/8/8/8/8 w - - 0 1',prompt:'White can finish immediately. Which queen move is checkmate?',options:['Qg7#','Qh7+','Qe8+'],answer:0,explain:'Qg7# covers the escape squares while the white king takes away g7 and h7.'},
 {fen:'6k1/8/5K2/8/8/8/8/3R4 w - - 0 1',prompt:'Which rook move cuts the king off and gives check?',options:['Rd8+','Rd2','Rh1'],answer:0,explain:'Rd8+ uses the rook from a safe distance to restrict the enemy king along the back rank.'},
-{fen:'7k/8/6K1/7Q/8/8/8/8 w - - 0 1',prompt:'Which move keeps the king boxed in with a queen?',options:['Qe8+','Qh8+','Qd1'],answer:0,explain:'Qe8+ is a forcing queen check that continues the box pattern around the king.'}]},
+{fen:'k7/8/2K5/1Q6/8/8/8/8 w - - 0 1',prompt:'White can box the king in and mate. Which move is checkmate?',options:['Qb7#','Qb8+','Qd7'],answer:0,explain:'Qb7# checks along the diagonal, covers a7 and b8, and the white king protects the queen on b7.'}]},
 {name:'Pawn endings',questions:[
-{fen:'5k2/8/4K3/4P3/8/8/8/8 w - - 0 1',prompt:'In a king-and-pawn ending, which move improves king support of the pawn?',options:['Kf6','Kd6','e6'],answer:0,explain:'Kf6 keeps the king close, helping the pawn advance while controlling key squares.'},
+{fen:'6k1/8/5K2/4P3/8/8/8/8 w - - 0 1',prompt:'Which king move keeps the e5 pawn directly protected?',options:['Ke6','Kg6','e6'],answer:0,explain:'Ke6 keeps the king beside the pawn, protecting e5 and controlling the key promotion squares.'},
 {fen:'8/5pk1/6p1/8/5KP1/8/8/8 w - - 0 1',prompt:'Which move activates the king toward the centre?',options:['Ke5','Kg3','g5'],answer:0,explain:'Ke5 centralises the king, the most important piece in many pawn endings.'},
-{fen:'8/4k3/4p3/4P3/4K3/8/8/8 w - - 0 1',prompt:'Which king move protects the pawn while contesting key squares?',options:['Kd3','Kf3','e6'],answer:0,explain:'Kd3 keeps the king close to the pawn and prepares to escort it forward.'}]}
+{fen:'8/4k3/8/4P3/3K4/8/8/8 w - - 0 1',prompt:'Which king move directly protects the pawn on e5?',options:['Ke4','Kc3','e6'],answer:0,explain:'Ke4 brings the king next to the pawn, so it protects e5 while preparing the advance.'}]}
 ],complete:name=>'You completed the '+name+' drill. Repeat the positions until the ideas feel instant.'});
 </script></body></html>
