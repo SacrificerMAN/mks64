@@ -1,7 +1,29 @@
 (function(){
-  const glyphs={K:'♔',Q:'♕',R:'♖',B:'♗',N:'♘',P:'♙',k:'♚',q:'♛',r:'♜',b:'♝',n:'♞',p:'♟'};
   function squaresFromFen(fen){const rows=fen.split(' ')[0].split('/');const out=[];rows.forEach(row=>{for(const ch of row){if(/\d/.test(ch)){for(let i=0;i<Number(ch);i++)out.push('')}else out.push(ch)}});return out}
-  function drawBoard(el,fen){if(!el)return;const pieces=squaresFromFen(fen);el.innerHTML='';pieces.forEach((piece,index)=>{const rank=8-Math.floor(index/8),file='abcdefgh'[index%8];const sq=document.createElement('div');sq.className='square '+((Math.floor(index/8)+index%8)%2?'dark':'light');if(piece){const span=document.createElement('span');span.className='piece '+(/[kqrbnp]/.test(piece)?'black':'white');span.textContent=glyphs[piece];sq.append(span)}if(index%8===0){const c=document.createElement('small');c.className='coord';c.textContent=rank;sq.append(c)}if(Math.floor(index/8)===7){const c=document.createElement('small');c.className='coord';c.style.left='auto';c.style.right='4px';c.style.bottom='3px';c.textContent=file;sq.append(c)}el.append(sq)})}
+  function drawBoard(el,fen){
+    if(!el)return;
+    const pieces=squaresFromFen(fen);
+    el.innerHTML='';
+    el.setAttribute('role','grid');
+    pieces.forEach((piece,index)=>{
+      const rank=8-Math.floor(index/8),file='abcdefgh'[index%8];
+      const sq=document.createElement('div');
+      sq.className='square '+((Math.floor(index/8)+index%8)%2?'dark':'light');
+      sq.setAttribute('role','gridcell');
+      if(piece){
+        const color=piece===piece.toUpperCase()?'w':'b';
+        const name={p:'pawn',n:'knight',b:'bishop',r:'rook',q:'queen',k:'king'}[piece.toLowerCase()];
+        const image=document.createElement('img');
+        image.className='piece '+(color==='w'?'white':'black');
+        image.src='https://lichess1.org/assets/piece/cburnett/'+color+piece.toUpperCase()+'.svg';
+        image.alt=(color==='w'?'White ':'Black ')+name;
+        image.draggable=false;
+        sq.setAttribute('aria-label',file+rank+', '+image.alt.toLowerCase());
+        sq.append(image);
+      }else sq.setAttribute('aria-label',file+rank+', empty');
+      el.append(sq);
+    });
+  }
   function mountQuiz(config){const root=document.querySelector('[data-chess-tool]');if(!root)return;const board=root.querySelector('.board'),title=root.querySelector('[data-title]'),prompt=root.querySelector('[data-prompt]'),choices=root.querySelector('[data-choices]'),feedback=root.querySelector('[data-feedback]'),progress=root.querySelector('[data-progress]'),counter=root.querySelector('[data-counter]'),next=root.querySelector('[data-next]'),done=root.querySelector('[data-done]');let selected=0,step=0,locked=false;
     function active(){return config.groups[selected]}
     function render(){const group=active(),q=group.questions[step];locked=false;title.textContent=group.name;drawBoard(board,q.fen);prompt.textContent=q.prompt;counter.textContent=(step+1)+' / '+group.questions.length;progress.style.width=((step/group.questions.length)*100)+'%';choices.innerHTML='';feedback.textContent='Choose the move you would play.';feedback.className='feedback';next.hidden=true;done.classList.remove('show');q.options.forEach((move,i)=>{const b=document.createElement('button');b.className='choice';b.textContent=move;b.addEventListener('click',()=>answer(i,b));choices.append(b)})}
