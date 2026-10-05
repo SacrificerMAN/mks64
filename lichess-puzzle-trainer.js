@@ -115,7 +115,7 @@
       const correct=move===current.solution;
       buttons.forEach(item=>{if(item.textContent===current.solution)item.classList.add('correct')});
       if(correct){
-        feedback.textContent='Correct — '+current.solution+' is the first move in Lichess's saved solution. Open the source puzzle to play the full line.';
+        feedback.textContent='Correct — '+current.solution+' is the first move in the saved Lichess solution. Open the source puzzle to play the full line.';
         feedback.className='feedback good';
       }else{
         button.classList.add('wrong');
