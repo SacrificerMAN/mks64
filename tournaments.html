@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
-<meta name="description" content="Live online chess tournaments on Lichess + upcoming FIDE rated events in India. Tournament-ready coaching at Saran Chess Academy.">
-<title>Chess Tournaments Online & FIDE India | Saran Chess Academy</title>
+<meta name="description" content="Live online chess tournaments on Lichess + FIDE India + USA / USCF events. Tournament-ready coaching at Saran Chess Academy.">
+<title>Chess Tournaments Online · FIDE India · USA | Saran Chess Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#050505;--surface:#111;--border:rgba(255,255,255,.08);--text:#f5f5f5;--muted:#8a8a8a;--green:#10a37f;--radius:16px}
@@ -78,12 +78,13 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 </nav>
 <main><div class="wrap">
   <div class="sec-label">Compete</div>
-  <h1>Chess tournaments — online & FIDE India</h1>
-  <p class="lead">Play live arenas on Lichess, or plan your next rated OTB event in India. Get tournament-ready with structured coaching.</p>
+  <h1>Chess tournaments — online · FIDE India · USA</h1>
+  <p class="lead">Play live arenas on Lichess, or plan rated OTB events in India and the USA. Get tournament-ready with structured coaching.</p>
 
   <div class="tabs" role="tablist">
     <button type="button" class="active" data-tab="online" role="tab" aria-selected="true">Online (Lichess)</button>
     <button type="button" data-tab="fide" role="tab" aria-selected="false">FIDE India</button>
+    <button type="button" data-tab="usa" role="tab" aria-selected="false">USA</button>
   </div>
 
   <div id="panel-online" class="panel active" role="tabpanel">
@@ -110,6 +111,18 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
     </p>
   </div>
 
+  <div id="panel-usa" class="panel" role="tabpanel">
+    <p class="fide-note">Curated upcoming <strong>USA</strong> events (USCF + major FIDE-rated). Tap <strong>Details</strong> for official pages. More on US Chess calendar.</p>
+    <div class="fide-list" id="usaList"></div>
+    <div class="fide-pager" id="usaPager" aria-label="USA tournament pages"></div>
+    <p style="margin-top:22px;display:flex;flex-wrap:wrap;gap:10px">
+      <a class="btn btn-outline" href="https://new.uschess.org/upcoming-tournaments" target="_blank" rel="noopener">US Chess upcoming →</a>
+      <a class="btn btn-outline" href="https://new.uschess.org/plan-ahead-calendar" target="_blank" rel="noopener">US Chess plan-ahead →</a>
+      <a class="btn btn-outline" href="https://ratings.fide.com/rated_tournaments.phtml?country=USA" target="_blank" rel="noopener">FIDE USA calendar →</a>
+      <a class="btn btn-outline" href="https://new.uschess.org/national-events-calendar" target="_blank" rel="noopener">National events →</a>
+    </p>
+  </div>
+
   <div class="cta-box">
     <div>
       <strong style="display:block;margin-bottom:6px">Want to be tournament-ready?</strong>
@@ -125,7 +138,7 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
 <script>
 (function(){
   const tabs=document.querySelectorAll('.tabs button');
-  const panels={online:document.getElementById('panel-online'),fide:document.getElementById('panel-fide')};
+  const panels={online:document.getElementById('panel-online'),fide:document.getElementById('panel-fide'),usa:document.getElementById('panel-usa')};
   tabs.forEach(btn=>{
     btn.onclick=()=>{
       tabs.forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false')});
@@ -181,6 +194,52 @@ footer{padding:32px 24px;border-top:1px solid var(--border);color:var(--muted);f
     });
   }
   renderFide();
+
+  const USA_EVENTS = [
+    {d:'10',m:'Oct',title:'2026 U.S. Championship & U.S. Women’s Championship',meta:'St. Louis, MO · 10–24 Oct 2026 · National',url:'https://new.uschess.org/national-events-calendar'},
+    {d:'16',m:'Oct',title:'2026 South Dakota Governor’s Cup',meta:'Sioux Falls, SD · 16–18 Oct 2026',url:'https://new.uschess.org/plan-ahead-calendar'},
+    {d:'16',m:'Oct',title:'4th Gulf Coast October Open',meta:'Estero, FL · 16–18 Oct 2026',url:'https://new.uschess.org/plan-ahead-calendar'},
+    {d:'23',m:'Oct',title:'ALTO (Charlotte)',meta:'Charlotte, NC · 23–25 Oct 2026',url:'https://new.uschess.org/plan-ahead-calendar'},
+    {d:'04',m:'Nov',title:'20th Seattle Chess Classic / Norm event',meta:'Bellevue, WA · 4–9 Nov 2026 · FIDE norms',url:'https://en.chessbase.com/post/upcoming-tournaments-and-events-5'},
+    {d:'13',m:'Nov',title:'24th Annual Turkey Bowl',meta:'Fort Lauderdale, FL · 13–15 Nov 2026',url:'https://new.uschess.org/plan-ahead-calendar'},
+    {d:'13',m:'Nov',title:'Thanksgiving Open',meta:'St. Louis, MO · 13–15 Nov 2026',url:'https://new.uschess.org/plan-ahead-calendar'},
+    {d:'22',m:'Nov',title:'2026 Illinois Class State Championship',meta:'Schaumburg, IL · 22 Nov 2026',url:'https://new.uschess.org/plan-ahead-calendar'},
+    {d:'25',m:'Nov',title:'US Masters ($25,000+ Guaranteed)',meta:'Charlotte, NC · 25–29 Nov 2026 · National / FIDE',url:'https://www.charlottechesscenter.org/events/usmasters'},
+    {d:'27',m:'Nov',title:'National Chess Congress',meta:'Philadelphia, PA · 27–29 Nov 2026',url:'https://new.uschess.org/plan-ahead-calendar'},
+    {d:'27',m:'Nov',title:'Sevan Memorial',meta:'Schaumburg, IL · 27–29 Nov 2026',url:'https://new.uschess.org/plan-ahead-calendar'},
+    {d:'28',m:'Nov',title:'61st American Open',meta:'Garden Grove, CA · 28 Nov – 5 Dec 2026 · FIDE top sections',url:'https://en.chessbase.com/post/upcoming-tournaments-and-events-5'},
+    {d:'05',m:'Dec',title:'Junior Chess Congress',meta:'Sunnyvale, CA · 5–6 Dec 2026',url:'https://new.uschess.org/national-events-calendar'},
+    {d:'11',m:'Dec',title:'US Chess Grade (K–12) National Championships',meta:'Orlando, FL · 11–13 Dec 2026 · National scholastic',url:'https://new.uschess.org/national-events-calendar'},
+    {d:'18',m:'Dec',title:'2026 Saint Louis Chess Club Championship',meta:'St. Louis, MO · 18–20 Dec 2026',url:'https://new.uschess.org/plan-ahead-calendar'},
+    {d:'26',m:'Dec',title:'2026 Winter Classic ($7,000 Guaranteed)',meta:'Charlotte, NC · 26–28 Dec 2026',url:'https://new.uschess.org/plan-ahead-calendar'}
+  ];
+  let usaPage = 0;
+  const usaList = document.getElementById('usaList');
+  const usaPager = document.getElementById('usaPager');
+  function renderUsa(){
+    if(!usaList) return;
+    const pages = Math.max(1, Math.ceil(USA_EVENTS.length / PER));
+    if(usaPage >= pages) usaPage = pages - 1;
+    const start = usaPage * PER;
+    const slice = USA_EVENTS.slice(start, start + PER);
+    usaList.innerHTML = slice.map(e =>
+      '<article class="fide-card"><div class="fide-date"><b>'+e.d+'</b><span>'+e.m+'</span></div><div><h3><a href="'+e.url+'" target="_blank" rel="noopener">'+e.title+'</a></h3><div class="fide-meta">'+e.meta+'</div></div><a class="fide-badge" href="'+e.url+'" target="_blank" rel="noopener">Details →</a></article>'
+    ).join('');
+    let html = '<button type="button" data-p="prev" '+(usaPage===0?'disabled':'')+' aria-label="Previous">‹</button>';
+    for(let i=0;i<pages;i++) html += '<button type="button" data-p="'+i+'" class="'+(i===usaPage?'active':'')+'">'+(i+1)+'</button>';
+    html += '<button type="button" data-p="next" '+(usaPage>=pages-1?'disabled':'')+' aria-label="Next">›</button>';
+    usaPager.innerHTML = html;
+    usaPager.querySelectorAll('button').forEach(btn=>{
+      btn.onclick=()=>{
+        const p=btn.dataset.p;
+        if(p==='prev'){ if(usaPage>0) usaPage--; }
+        else if(p==='next'){ if(usaPage<pages-1) usaPage++; }
+        else usaPage=parseInt(p,10);
+        renderUsa();
+      };
+    });
+  }
+  renderUsa();
 
   const grid=document.getElementById('tourGrid');
   const meta=document.getElementById('tourMeta');
