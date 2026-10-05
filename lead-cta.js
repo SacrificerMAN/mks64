@@ -12,7 +12,7 @@
     strip.id = 'leadStrip';
     strip.className = 'lead-strip';
     strip.innerHTML = '<div class="lead-strip-inner">'
-      + '<div><strong>Want a coach to review your games?</strong><span>Book a free demo class — English + Hindi.</span></div>'
+      + '<div><strong>Want a coach to review your games?</strong><span>Book a free demo class — taught in English.</span></div>'
       + '<div class="lead-strip-actions">'
       + '<a class="btn btn-solid" href="/#join">Book a free Demo</a>'
       + '</div></div>';
