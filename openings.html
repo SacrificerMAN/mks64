@@ -58,7 +58,7 @@
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
 <script src="/board.js"></script>
-<script src="/auth.js?v=3e74bcc"></script>
+
 <script>
 const boardEl=document.getElementById('board');
 const movesEl=document.getElementById('moves');
@@ -79,8 +79,24 @@ const PRESETS={
   london:()=>{const c=new Chess();['d4','d5','Nf3','Nf6','Bf4'].forEach(m=>c.move(m));return c.fen()},
   kid:()=>{const c=new Chess();['d4','Nf6','c4','g6'].forEach(m=>c.move(m));return c.fen()}
 };
-function isLoggedIn(){return !!(window.SCAAuth&&window.SCAAuth.isLoggedIn&&window.SCAAuth.isLoggedIn())}
-function showLogin(){if(window.SCAAuth&&window.SCAAuth.showGate)window.SCAAuth.showGate();else alert('Please login or register to prepare beyond the free preview.');}
+function getSession(){try{return JSON.parse(localStorage.getItem('sca_session_v1')||'null')}catch(e){return null}}
+function isLoggedIn(){const s=getSession();return !!(s&&s.phone&&s.name)}
+function showLogin(){
+  if(document.getElementById('openingLoginGate'))return;
+  const gate=document.createElement('div');
+  gate.id='openingLoginGate';
+  gate.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(5,5,5,.93);display:flex;align-items:center;justify-content:center;padding:20px;font-family:Inter,system-ui,sans-serif';
+  gate.innerHTML='<div style="width:100%;max-width:410px;background:#111;border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:26px;color:#f5f5f5"><h2 style="margin:0 0 8px;font-size:22px">Prepare deeper</h2><p style="margin:0 0 16px;color:#aaa;line-height:1.5">You have used the 3 free opening moves. Login or create a free account to prepare unlimited lines.</p><div style="display:flex;gap:8px;margin-bottom:14px"><button type="button" id="openingLoginTab" style="flex:1;padding:10px;border-radius:10px;border:1px solid #10a37f;background:rgba(16,163,127,.16);color:#fff;cursor:pointer">Login</button><button type="button" id="openingRegisterTab" style="flex:1;padding:10px;border-radius:10px;border:1px solid #333;background:transparent;color:#aaa;cursor:pointer">Register</button></div><div id="openingLoginForm"><label style="display:block;font-size:12px;color:#aaa;margin:10px 0 5px">PHONE</label><input id="openingLoginPhone" type="tel" placeholder="10-digit mobile" style="box-sizing:border-box;width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#050505;color:#fff"><label style="display:block;font-size:12px;color:#aaa;margin:10px 0 5px">PASSWORD</label><input id="openingLoginPass" type="password" placeholder="Password" style="box-sizing:border-box;width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#050505;color:#fff"><button type="button" id="openingDoLogin" style="width:100%;margin-top:16px;padding:12px;border:0;border-radius:999px;background:#10a37f;color:#fff;font-weight:700;cursor:pointer">Login</button></div><div id="openingRegisterForm" style="display:none"><label style="display:block;font-size:12px;color:#aaa;margin:10px 0 5px">FULL NAME</label><input id="openingRegName" placeholder="Your name" style="box-sizing:border-box;width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#050505;color:#fff"><label style="display:block;font-size:12px;color:#aaa;margin:10px 0 5px">PHONE</label><input id="openingRegPhone" type="tel" placeholder="10-digit mobile" style="box-sizing:border-box;width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#050505;color:#fff"><label style="display:block;font-size:12px;color:#aaa;margin:10px 0 5px">PASSWORD</label><input id="openingRegPass" type="password" placeholder="Min 4 characters" style="box-sizing:border-box;width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#050505;color:#fff"><button type="button" id="openingDoRegister" style="width:100%;margin-top:16px;padding:12px;border:0;border-radius:999px;background:#10a37f;color:#fff;font-weight:700;cursor:pointer">Create free account</button></div><p id="openingLoginError" style="min-height:18px;margin:12px 0 0;color:#f08383;font-size:13px"></p></div>';
+  document.body.appendChild(gate);
+  const loginForm=document.getElementById('openingLoginForm'),regForm=document.getElementById('openingRegisterForm'),loginTab=document.getElementById('openingLoginTab'),regTab=document.getElementById('openingRegisterTab'),error=document.getElementById('openingLoginError');
+  function tab(register){loginForm.style.display=register?'none':'block';regForm.style.display=register?'block':'none';loginTab.style.borderColor=register?'#333':'#10a37f';loginTab.style.background=register?'transparent':'rgba(16,163,127,.16)';loginTab.style.color=register?'#aaa':'#fff';regTab.style.borderColor=register?'#10a37f':'#333';regTab.style.background=register?'rgba(16,163,127,.16)':'transparent';regTab.style.color=register?'#fff':'#aaa';error.textContent=''}
+  loginTab.onclick=()=>tab(false);regTab.onclick=()=>tab(true);
+  function cleanPhone(v){return (v||'').replace(/\D/g,'').slice(-10)}
+  function post(path,data){return fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).then(async r=>({ok:r.ok,data:await r.json()}))}
+  function complete(res){localStorage.setItem('sca_session_v1',JSON.stringify({phone:res.data.phone,name:res.data.name,token:res.data.token}));gate.remove();location.reload()}
+  document.getElementById('openingDoLogin').onclick=()=>{const phone=cleanPhone(document.getElementById('openingLoginPhone').value),password=document.getElementById('openingLoginPass').value||'';if(phone.length!==10)return error.textContent='Valid 10-digit phone required';if(password.length<4)return error.textContent='Password must be at least 4 characters';post('/api/auth/login',{phone:phone,password:password}).then(res=>res.ok?complete(res):error.textContent=((res.data&&res.data.error)||'Login failed')).catch(()=>error.textContent='Network error — please try again')};
+  document.getElementById('openingDoRegister').onclick=()=>{const name=(document.getElementById('openingRegName').value||'').trim(),phone=cleanPhone(document.getElementById('openingRegPhone').value),password=document.getElementById('openingRegPass').value||'';if(name.length<2)return error.textContent='Name required';if(phone.length!==10)return error.textContent='Valid 10-digit phone required';if(password.length<4)return error.textContent='Password must be at least 4 characters';post('/api/auth/register',{name:name,phone:phone,password:password}).then(res=>res.ok?complete(res):error.textContent=((res.data&&res.data.error)||'Registration failed')).catch(()=>error.textContent='Network error — please try again')};
+}
 function updateAccess(){
   const logged=isLoggedIn();
   accessTitle.textContent=logged?'Unlimited opening preparation':'Free opening preview';
