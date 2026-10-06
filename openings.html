@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/tools.css">
 </head>
-<body data-require-auth="1">
+<body>
 <nav>
   <a class="logo" href="/">♟ Saran Chess Academy</a>
   <div class="nav-links">
@@ -21,7 +21,7 @@
 </nav>
 <main>
 <div class="wrap">
-  <div class="page-head"><h1>📖 Opening Explorer</h1><p>Click pieces to explore. Book moves with win rates from ChessDB.</p></div>
+  <div class="page-head"><h1>📖 Opening Explorer</h1><p>Explore any opening with live ChessDB book moves, win rates and practical preparation.</p></div>
   <div class="chips">
     <button type="button" class="chip on" data-preset="start">Start</button>
     <button type="button" class="chip" data-preset="italian">Italian</button>
@@ -42,6 +42,11 @@
         <button class="btn btn-outline" id="resetBtn" type="button">Reset</button>
         <a class="btn btn-outline" href="/explore.html">← Chess Hub</a>
       </div>
+      <div class="card" style="margin-top:16px" id="accessCard">
+        <h3 id="accessTitle">Free opening preview</h3>
+        <p class="status" id="accessText" style="margin:6px 0 12px">Loading your practice access…</p>
+        <button class="btn btn-solid" type="button" id="unlockBtn">Login / Register for unlimited preparation</button>
+      </div>
     </div>
     <div class="side"><div class="card"><h3>Top moves</h3><p class="status" id="status" style="margin:0 0 10px">—</p><div class="move-list" id="moves"></div></div></div>
   </div>
@@ -53,11 +58,16 @@
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
 <script src="/board.js"></script>
+<script src="/auth.js"></script>
 <script>
 const boardEl=document.getElementById('board');
 const movesEl=document.getElementById('moves');
 const statusEl=document.getElementById('status');
-let chess=new Chess(), selected=null;
+const accessTitle=document.getElementById('accessTitle');
+const accessText=document.getElementById('accessText');
+const unlockBtn=document.getElementById('unlockBtn');
+const FREE_PLIES=6;
+let chess=new Chess(), selected=null, practicePlies=0;
 const PRESETS={
   start:'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
   italian:()=>{const c=new Chess();['e4','e5','Nf3','Nc6','Bc4'].forEach(m=>c.move(m));return c.fen()},
@@ -69,35 +79,67 @@ const PRESETS={
   london:()=>{const c=new Chess();['d4','d5','Nf3','Nf6','Bf4'].forEach(m=>c.move(m));return c.fen()},
   kid:()=>{const c=new Chess();['d4','Nf6','c4','g6'].forEach(m=>c.move(m));return c.fen()}
 };
-function draw(hints=[]){renderBoard(boardEl,chess.fen(),{selected,hints,onClick:onSq});document.getElementById('fenLabel').textContent=chess.fen().split(' ').slice(0,2).join(' ')}
+function isLoggedIn(){return !!(window.SCAAuth&&window.SCAAuth.isLoggedIn&&window.SCAAuth.isLoggedIn())}
+function showLogin(){if(window.SCAAuth&&window.SCAAuth.showGate)window.SCAAuth.showGate();else alert('Please login or register to prepare beyond the free preview.');}
+function updateAccess(){
+  const logged=isLoggedIn();
+  accessTitle.textContent=logged?'Unlimited opening preparation':'Free opening preview';
+  accessText.textContent=logged?'You have unlimited preparation moves. Explore any line as deeply as you want.':'Free access includes 3 full moves (6 turns) from any starting position. '+Math.min(practicePlies,FREE_PLIES)+' / '+FREE_PLIES+' turns used.';
+  unlockBtn.hidden=logged;
+}
+function needsLogin(){
+  if(isLoggedIn()||practicePlies<FREE_PLIES)return false;
+  updateAccess();
+  showLogin();
+  return true;
+}
+function draw(hints=[]){
+  renderBoard(boardEl,chess.fen(),{selected,hints,onClick:onSq});
+  document.getElementById('fenLabel').textContent=chess.fen().split(' ').slice(0,2).join(' ');
+  updateAccess();
+}
+function makeMove(move){
+  if(needsLogin())return false;
+  const made=chess.move(move);
+  if(made){if(!isLoggedIn())practicePlies++;selected=null;draw();loadMoves();return true}
+  return false;
+}
 function onSq(sq,piece){
-  if(selected){const from=selected;selected=null;if(chess.move({from,to:sq,promotion:'q'})){draw();loadMoves()}else draw()}
-  else if(piece){selected=sq;draw(chess.moves({square:sq,verbose:true}).map(m=>m.to))}
+  if(selected){
+    const from=selected;selected=null;
+    if(!makeMove({from,to:sq,promotion:'q'}))draw();
+  }else if(piece){
+    selected=sq;draw(chess.moves({square:sq,verbose:true}).map(m=>m.to));
+  }
 }
 async function loadMoves(){
-  statusEl.textContent='Loading book moves…';movesEl.innerHTML='';
+  statusEl.textContent='Loading live book moves…';movesEl.innerHTML='';
   try{
     const r=await fetch('https://www.chessdb.cn/cdb.php?action=queryall&board='+encodeURIComponent(chess.fen()));
     const text=await r.text();
     const moves=[];
     text.split('|').forEach(part=>{const o={};part.split(',').forEach(kv=>{const i=kv.indexOf(':');if(i>0)o[kv.slice(0,i)]=kv.slice(i+1)});if(o.move)moves.push(o)});
     if(!moves.length){statusEl.textContent='No book data — move pieces freely.';return}
-    statusEl.textContent=moves.length+' book moves';
+    statusEl.textContent=moves.length+' live book moves from ChessDB';
     moves.slice(0,12).forEach(m=>{
       const uci=m.move;const wr=parseFloat(m.winrate||0);
-      const div=document.createElement('div');div.className='move-item';
+      const div=document.createElement('button');div.type='button';div.className='move-item';
       const tmp=new Chess(chess.fen());const mv=tmp.move({from:uci.slice(0,2),to:uci.slice(2,4),promotion:uci[4]||'q'});
       div.innerHTML='<span class="san">'+(mv?mv.san:uci)+'</span><span class="bar"><i style="width:'+(wr||15)+'%"></i></span><span class="pct">'+(wr?wr.toFixed(1)+'%':(m.note||''))+'</span>';
-      div.onclick=()=>{if(chess.move({from:uci.slice(0,2),to:uci.slice(2,4),promotion:uci[4]||'q'})){selected=null;draw();loadMoves()}};
+      div.onclick=()=>makeMove({from:uci.slice(0,2),to:uci.slice(2,4),promotion:uci[4]||'q'});
       movesEl.appendChild(div);
     });
   }catch(e){statusEl.textContent='Book unavailable — move pieces freely.'}
 }
-document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{const k=b.dataset.preset;const fen=typeof PRESETS[k]==='function'?PRESETS[k]():PRESETS[k];chess=new Chess(fen);selected=null;draw();loadMoves();document.querySelectorAll('[data-preset]').forEach(x=>x.classList.toggle('on',x===b))});
-document.getElementById('undoBtn').onclick=()=>{chess.undo();selected=null;draw();loadMoves()};
-document.getElementById('resetBtn').onclick=()=>{chess=new Chess();selected=null;draw();loadMoves()};
+document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.preset;const fen=typeof PRESETS[k]==='function'?PRESETS[k]():PRESETS[k];
+  chess=new Chess(fen);selected=null;practicePlies=0;draw();loadMoves();
+  document.querySelectorAll('[data-preset]').forEach(x=>x.classList.toggle('on',x===b));
+});
+document.getElementById('undoBtn').onclick=()=>{if(chess.undo()&&practicePlies>0)practicePlies--;selected=null;draw();loadMoves()};
+document.getElementById('resetBtn').onclick=()=>{chess=new Chess();selected=null;practicePlies=0;draw();loadMoves()};
+unlockBtn.onclick=showLogin;
 draw();loadMoves();
 </script>
-<script src="/auth.js"></script>
 </body>
 </html>
