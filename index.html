@@ -1,1 +1,29 @@
-LOADING
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>Saran Chess Academy</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230a1f14' stroke='%23c9a227' stroke-width='3'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='28'%3E%E2%99%9E%3C/text%3E%3C/svg%3E">
+<style>body{background:#050505;color:#aaa;font-family:system-ui;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}</style>
+</head><body><p id="s">Loading Saran Chess Academy…</p>
+<script src="c0.js"></script>
+<script src="c1.js"></script>
+<script>
+(async function(){
+  try {
+    var b64 = (window.__C0||"")+(window.__C1||"");
+    var bin = atob(b64);
+    var bytes = new Uint8Array(bin.length);
+    for (var i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
+    var ds = new DecompressionStream("deflate-raw");
+    var stream = new Blob([bytes]).stream().pipeThrough(ds);
+    var html = await new Response(stream).text();
+    if (html.indexOf("Book a free Demo") === -1) throw new Error("bad content");
+    document.open(); document.write(html); document.close();
+  } catch(e) {
+    document.getElementById("s").innerHTML = "Loading failed. <a href='https://cdn.jsdelivr.net/gh/SacrificerMAN/mks64@f769b15db6558e65b367ffe80473e22b25447ed4/index.html' style='color:#10a37f'>Open full site</a><br><small>"+e+"</small>";
+  }
+})();
+</script>
+</body></html>
