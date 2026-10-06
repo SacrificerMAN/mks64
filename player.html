@@ -4,27 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
-<meta name="description" content="Search any player on Chess.com and Lichess — profile photo, ratings, games.">
+<meta name="description" content="Search Chess.com, Lichess and FIDE chess players in one place.">
 <title>Player Lookup | Saran Chess Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/tools.css">
 <style>
-.player-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:16px}
-.player-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;overflow:hidden}
-.player-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
-.player-avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;background:#1a1a1a;border:2px solid rgba(16,163,127,.35);flex-shrink:0}
-.player-avatar.ph{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--muted)}
-.player-meta{min-width:0}
-.player-meta .platform{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
-.player-meta .uname{font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.player-meta .real{font-size:13px;color:var(--muted);margin-top:2px}
-.badge-title{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;background:rgba(16,163,127,.2);color:var(--green)}
-.player-card .stat-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:14px}
-.player-card .stat-row:last-of-type{border-bottom:0}
-.player-card .stat-row span{color:var(--muted)}
-.player-card .stat-row b{color:var(--text);font-variant-numeric:tabular-nums}
-.player-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)}
-.player-foot a{color:var(--green);font-weight:500}
+.player-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:18px}.player-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:18px}.player-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}.player-avatar{width:56px;height:56px;border-radius:50%;object-fit:cover;background:#1f2c21}.player-avatar.ph{display:grid;place-items:center;font-size:30px}.player-meta{min-width:0}.platform{font-size:12px;color:var(--accent);font-weight:700;letter-spacing:.04em;text-transform:uppercase}.uname{font-size:18px;font-weight:700;overflow-wrap:anywhere}.real{font-size:13px;color:var(--muted);margin-top:3px}.badge-title{color:#f6ce64}.stat-row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid var(--border);font-size:14px}.player-foot{border-top:1px solid var(--border);margin-top:10px;padding-top:12px;display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted)}.player-foot a{color:var(--accent);font-weight:700}.source-note{font-size:12px;color:var(--muted);margin:4px 0 0}@media(max-width:600px){.player-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body data-require-auth="1">
@@ -39,17 +24,18 @@
 </nav>
 <main>
 <div class="wrap">
-  <div class="page-head"><h1>🔍 Player Lookup</h1><p>Search any player — profile photo, ratings & stats on Chess.com and Lichess.</p></div>
-  <div style="display:flex;gap:10px;flex-wrap:wrap;max-width:560px">
-    <input id="q" placeholder="Username (e.g. hikaru)" style="flex:1;min-width:220px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--text);font-size:15px">
+  <div class="page-head"><h1>🔍 Player Lookup</h1><p>Search Chess.com, Lichess and FIDE players — including official FIDE IDs and over-the-board ratings.</p></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;max-width:680px">
+    <input id="q" placeholder="Username, FIDE player name or FIDE ID (e.g. Erigaisi Arjun)" style="flex:1;min-width:220px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;color:var(--text);font-size:15px">
     <button class="btn btn-solid" id="searchBtn" type="button">Search</button>
   </div>
   <div class="chips">
     <button type="button" class="chip" data-user="hikaru">hikaru</button>
-    <button type="button" class="chip" data-user="MagnusCarlsen">MagnusCarlsen</button>
-    <button type="button" class="chip" data-user="GMAnishGiri">GMAnishGiri</button>
-    <button type="button" class="chip" data-user="DrNykterstein">DrNykterstein</button>
+    <button type="button" class="chip" data-user="Magnus Carlsen">Magnus Carlsen</button>
+    <button type="button" class="chip" data-user="Erigaisi Arjun">Erigaisi Arjun</button>
+    <button type="button" class="chip" data-user="Divya Deshmukh">Divya Deshmukh</button>
   </div>
+  <p class="source-note">FIDE results show standard, rapid and blitz ratings. Each FIDE card links to its official rating profile.</p>
   <p class="status" id="status"></p>
   <div id="results" class="player-grid"></div>
   <p style="margin-top:20px"><a class="btn btn-outline" href="/explore.html">← Chess Hub</a></p>
@@ -62,91 +48,54 @@
 <script>
 const out=document.getElementById('results');
 const statusEl=document.getElementById('status');
-function fmtNum(n){if(n==null)return'—';return Number(n).toLocaleString('en-IN')}
-function fmtDate(ts){if(!ts)return'';const d=new Date(ts*1000);return d.toLocaleDateString('en-IN',{month:'short',year:'numeric'})}
-function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&','<':'<','>':'>','"':'"'}[c]));}
-
+const searchInput=document.getElementById('q');
+function fmtNum(n){return n==null?'—':Number(n).toLocaleString('en-IN')}
+function fmtDate(ts){if(!ts)return'';return new Date(ts*1000).toLocaleDateString('en-IN',{month:'short',year:'numeric'})}
+function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function ratingRow(label,value){return value?'<div class="stat-row"><span>'+label+'</span><b>'+fmtNum(value)+'</b></div>':''}
+async function asJson(url,options){try{const r=await fetch(url,options);return r.ok?r.json():null}catch(e){return null}}
 async function search(name){
   name=(name||'').trim();if(!name)return;
-  statusEl.textContent='Searching…';out.innerHTML='';
-  const key=encodeURIComponent(name);
-  const keyLower=encodeURIComponent(name.toLowerCase());
-  const [lichess,chesscom,cstats]=await Promise.all([
-    fetch('https://lichess.org/api/user/'+key).then(r=>r.ok?r.json():null).catch(()=>null),
-    fetch('https://api.chess.com/pub/player/'+keyLower,{headers:{'User-Agent':'SaranChessAcademy/1.0'}}).then(r=>r.ok?r.json():null).catch(()=>null),
-    fetch('https://api.chess.com/pub/player/'+keyLower+'/stats',{headers:{'User-Agent':'SaranChessAcademy/1.0'}}).then(r=>r.ok?r.json():null).catch(()=>null)
+  statusEl.textContent='Searching Chess.com, Lichess and FIDE…';out.innerHTML='';
+  const key=encodeURIComponent(name);const keyLower=encodeURIComponent(name.toLowerCase());
+  const results=await Promise.all([
+    asJson('https://lichess.org/api/user/'+key),
+    asJson('https://api.chess.com/pub/player/'+keyLower),
+    asJson('https://api.chess.com/pub/player/'+keyLower+'/stats'),
+    asJson('https://lichess.org/api/fide/player?q='+key)
   ]);
-  if(!lichess&&!chesscom){statusEl.textContent='No player found for "'+name+'".';return}
-  statusEl.textContent='Results for '+name;
+  const lichess=results[0],chesscom=results[1],cstats=results[2],fidePlayers=Array.isArray(results[3])?results[3]:[];
+  if(!lichess&&!chesscom&&!fidePlayers.length){statusEl.textContent='No Chess.com, Lichess or FIDE player found for "'+name+'".';return}
+  statusEl.textContent='Results for '+name+' · '+fidePlayers.length+' FIDE match'+(fidePlayers.length===1?'':'es');
   let html='';
-
-  // Chess.com card (with profile picture)
+  fidePlayers.slice(0,12).forEach(f=>{
+    const photo=f.photo&&f.photo.small?f.photo.small:'';
+    const profile='https://ratings.fide.com/profile/'+encodeURIComponent(f.id);
+    html+='<article class="player-card">';
+    html+='<div class="player-head">'+(photo?'<img class="player-avatar" src="'+esc(photo)+'" alt="'+esc(f.name)+'" width="56" height="56" loading="lazy">':'<div class="player-avatar ph">♛</div>');
+    html+='<div class="player-meta"><div class="platform">FIDE rated player</div><div class="uname">'+(f.title?'<span class="badge-title">'+esc(f.title)+'</span> ':'')+esc(f.name)+'</div><div class="real">'+esc(f.federation||'')+(f.year?' · Born '+esc(f.year):'')+(f.inactive?' · Inactive':'')+'</div></div></div>';
+    html+=ratingRow('♟ Standard',f.standard)+ratingRow('⚡ Rapid',f.rapid)+ratingRow('🔥 Blitz',f.blitz);
+    html+='<div class="player-foot"><span>FIDE ID '+esc(f.id)+'</span><a href="'+profile+'" target="_blank" rel="noopener">Official profile ↗</a></div></article>';
+  });
   if(chesscom){
-    const avatar=chesscom.avatar||'';
-    const title=chesscom.title||'';
-    const uname=chesscom.username||name;
-    const real=chesscom.name||'';
-    const followers=chesscom.followers;
-    const joined=chesscom.joined;
-    const fide=chesscom.fide;
-    const url=chesscom.url||('https://www.chess.com/member/'+uname);
-    html+='<div class="player-card">';
-    html+='<div class="player-head">';
-    if(avatar) html+='<img class="player-avatar" src="'+esc(avatar)+'" alt="'+esc(uname)+'" width="56" height="56" loading="lazy">';
-    else html+='<div class="player-avatar ph">♟</div>';
-    html+='<div class="player-meta"><div class="platform">Chess.com</div>';
-    html+='<div class="uname">'+(title?'<span class="badge-title">'+esc(title)+'</span> ':'')+esc(uname)+'</div>';
-    if(real) html+='<div class="real">'+esc(real)+'</div>';
-    if(followers!=null) html+='<div class="real">👥 '+fmtNum(followers)+'</div>';
-    html+='</div></div>';
-    if(cstats){
-      [['chess_rapid','⏱ Rapid'],['chess_blitz','🔥 Blitz'],['chess_bullet','⚡ Bullet'],['chess_daily','📅 Daily'],['tactics','🧩 Tactics']].forEach(([k,label])=>{
-        const block=cstats[k];
-        const r=block&&block.last&&block.last.rating;
-        const peak=block&&block.best&&block.best.rating;
-        const games=block&&block.record?(block.record.win+block.record.loss+block.record.draw):null;
-        if(r){
-          html+='<div class="stat-row"><span>'+label+'</span><b>'+r+(peak?(' <span style="color:var(--muted);font-weight:500">★'+peak+'</span>'):'')+(games!=null?(' <span style="color:var(--muted);font-weight:500;font-size:12px">'+fmtNum(games)+'g</span>'):'')+'</b></div>';
-        }
-      });
-    }
-    html+='<div class="player-foot"><span>'+(fide?('FIDE '+fide+' · '):'')+(joined?fmtDate(joined):'')+'</span><a href="'+esc(url)+'" target="_blank" rel="noopener">View ↗</a></div>';
-    html+='</div>';
+    const avatar=chesscom.avatar||'',title=chesscom.title||'',uname=chesscom.username||name,real=chesscom.name||'',url=chesscom.url||('https://www.chess.com/member/'+uname);
+    html+='<article class="player-card"><div class="player-head">'+(avatar?'<img class="player-avatar" src="'+esc(avatar)+'" alt="'+esc(uname)+'" width="56" height="56" loading="lazy">':'<div class="player-avatar ph">♟</div>')+'<div class="player-meta"><div class="platform">Chess.com</div><div class="uname">'+(title?'<span class="badge-title">'+esc(title)+'</span> ':'')+esc(uname)+'</div>'+(real?'<div class="real">'+esc(real)+'</div>':'')+'</div></div>';
+    if(cstats){[['chess_rapid','⏱ Rapid'],['chess_blitz','🔥 Blitz'],['chess_bullet','⚡ Bullet'],['chess_daily','📅 Daily'],['tactics','🧩 Tactics']].forEach(pair=>{const block=cstats[pair[0]],rating=block&&block.last&&block.last.rating;if(rating)html+=ratingRow(pair[1],rating)})}
+    html+='<div class="player-foot"><span>'+(chesscom.fide?'FIDE '+esc(chesscom.fide)+' · ':'')+(chesscom.joined?fmtDate(chesscom.joined):'')+'</span><a href="'+esc(url)+'" target="_blank" rel="noopener">View ↗</a></div></article>';
   }
-
-  // Lichess card
   if(lichess){
-    const uname=lichess.username||name;
-    const title=lichess.title||'';
-    const p=lichess.perfs||{};
-    const closed=lichess.disabled||lichess.tosViolation;
-    html+='<div class="player-card">';
-    html+='<div class="player-head">';
-    html+='<div class="player-avatar ph">♞</div>';
-    html+='<div class="player-meta"><div class="platform">Lichess</div>';
-    html+='<div class="uname">'+(title?'<span class="badge-title">'+esc(title)+'</span> ':'')+esc(uname)+'</div>';
-    if(closed) html+='<div class="real" style="color:#e85d5d">Account closed / restricted</div>';
-    else if(lichess.count) html+='<div class="real">'+fmtNum(lichess.count.all)+' games</div>';
-    html+='</div></div>';
-    ['bullet','blitz','rapid','classical','puzzle'].forEach(k=>{
-      if(p[k]&&p[k].rating){
-        const games=p[k].games;
-        const prog=p[k].prog;
-        html+='<div class="stat-row"><span>'+k.charAt(0).toUpperCase()+k.slice(1)+'</span><b>'+p[k].rating+(games!=null?(' <span style="color:var(--muted);font-weight:500;font-size:12px">'+fmtNum(games)+'g</span>'):'')+'</b></div>';
-      }
-    });
-    html+='<div class="player-foot"><span>'+(lichess.createdAt?new Date(lichess.createdAt).toLocaleDateString('en-IN',{month:'short',year:'numeric'}):'')+'</span><a href="https://lichess.org/@/'+esc(uname)+'" target="_blank" rel="noopener">View ↗</a></div>';
-    html+='</div>';
+    const perf=lichess.perfs||{},title=lichess.title||'',uname=lichess.username||name,real=lichess.profile&&lichess.profile.firstName?lichess.profile.firstName+(lichess.profile.lastName?' '+lichess.profile.lastName:''):'';
+    html+='<article class="player-card"><div class="player-head"><div class="player-avatar ph">♞</div><div class="player-meta"><div class="platform">Lichess</div><div class="uname">'+(title?'<span class="badge-title">'+esc(title)+'</span> ':'')+esc(uname)+'</div>'+(real?'<div class="real">'+esc(real)+'</div>':'')+'</div></div>';
+    [['rapid','⏱ Rapid'],['blitz','🔥 Blitz'],['bullet','⚡ Bullet'],['classical','♟ Classical'],['puzzle','🧩 Puzzle']].forEach(pair=>{if(perf[pair[0]]&&perf[pair[0]].rating)html+=ratingRow(pair[1],perf[pair[0]].rating)});
+    html+='<div class="player-foot"><span>'+(lichess.playTime&&lichess.playTime.total?'Played '+Math.round(lichess.playTime.total/3600)+'h':'')+'</span><a href="https://lichess.org/@/'+encodeURIComponent(uname)+'" target="_blank" rel="noopener">View ↗</a></div></article>';
   }
-
   out.innerHTML=html;
 }
-document.getElementById('searchBtn').onclick=()=>search(document.getElementById('q').value);
-document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')search(e.target.value)});
-document.querySelectorAll('[data-user]').forEach(b=>b.onclick=()=>{document.getElementById('q').value=b.dataset.user;search(b.dataset.user)});
+document.getElementById('searchBtn').onclick=()=>search(searchInput.value);
+searchInput.addEventListener('keydown',e=>{if(e.key==='Enter')search(searchInput.value)});
+document.querySelectorAll('[data-user]').forEach(b=>b.onclick=()=>{searchInput.value=b.dataset.user;search(b.dataset.user)});
 </script>
 <script src="/lead-cta.js"></script>
-<script>document.addEventListener("DOMContentLoaded",function(){if(window.SCALead){SCALead.injectStrip("player");}});</script>
 <script src="/auth.js"></script>
 </body>
 </html>
