@@ -81,7 +81,8 @@
       requestPuzzle(settings).then(data=>{
         const fen=positionFromGame(data);
         const chess=new Chess(fen);
-        const firstMove=moveFromUci(chess,data.puzzle.solution[0]);
+        const solutionBoard=new Chess(fen);
+        const firstMove=moveFromUci(solutionBoard,data.puzzle.solution[0]);
         if(!firstMove)throw new Error('The Lichess solution could not be read');
         const solution=firstMove.san;
         const alternatives=shuffle(chess.moves().filter(move=>move!==solution)).slice(0,2);
