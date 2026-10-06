@@ -3,32 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saran Chess Academy</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230a1f14' stroke='%23c9a227' stroke-width='3'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-size='32'%3E%E2%99%9E%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Live 1:1 online chess coaching with Mohit Kumar Soni — FIDE 1952, 2570+ online. Book a free demo.">
+<title>Online Chess Coaching Worldwide | Saran Chess Academy</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230a1f14' stroke='%23c9a227' stroke-width='3'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='28'%3E%E2%99%9E%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--surface:#111;--border:rgba(255,255,255,.08);--text:#f5f5f5;--muted:#8a8a8a;--green:#10a37f}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+nav{position:fixed;inset:0 0 auto;z-index:10;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(5,5,5,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600}
+.logo span{font-size:22px}
+.btn{display:inline-flex;align-items:center;border-radius:999px;padding:10px 18px;font-size:14px;font-weight:500}
+.btn-green{background:var(--green);color:#fff}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px}
+.hero h1{font-size:clamp(28px,5vw,48px);letter-spacing:-.03em;line-height:1.15;max-width:720px}
+.hero p{margin-top:14px;color:var(--muted);max-width:520px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 16px;min-width:110px}
+.stat b{display:block;font-size:20px}.stat span{font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:.05em}
+.ctas{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.note{margin-top:40px;font-size:13px;color:var(--muted)}
+</style>
 </head>
 <body>
-<script>
-(async function () {
-  var urls = [
-    'https://cdn.jsdelivr.net/gh/SacrificerMAN/mks64@f769b15db6558e65b367ffe80473e22b25447ed4/index.html',
-    'https://raw.githack.com/SacrificerMAN/mks64/f769b15db6558e65b367ffe80473e22b25447ed4/index.html',
-    'https://raw.githubusercontent.com/SacrificerMAN/mks64/f769b15db6558e65b367ffe80473e22b25447ed4/index.html'
-  ];
-  for (var i = 0; i < urls.length; i++) {
-    try {
-      var r = await fetch(urls[i], { cache: 'no-store' });
-      if (!r.ok) continue;
-      var html = await r.text();
-      if (html.indexOf('Book a free Demo') === -1) continue;
-      document.open();
-      document.write(html);
-      document.close();
-      return;
-    } catch (e) {}
-  }
-  document.body.innerHTML = '<p style="font-family:system-ui;padding:40px;text-align:center">Site restoring… <a href="https://saranchessacademy.com/">Refresh</a></p>';
-})();
-</script>
-<noscript><p>Please enable JavaScript. Or open <a href="https://cdn.jsdelivr.net/gh/SacrificerMAN/mks64@f769b15db6558e65b367ffe80473e22b25447ed4/index.html">this mirror</a>.</p></noscript>
+<nav>
+  <a class="logo" href="/"><span>♞</span> Saran Chess Academy</a>
+  <a class="btn btn-green" href="https://wa.me/919354811377?text=Hi%2C%20I%20want%20to%20book%20a%20free%20demo">Book a free Demo</a>
+</nav>
+<section class="hero">
+  <h1>Online Chess Coaching.<br>Learn from anywhere.</h1>
+  <p>Live 1:1 classes with Mohit Kumar Soni — FIDE 1952, 2570+ online, 7+ years, 10,000+ classes. Free first demo.</p>
+  <div class="stats">
+    <div class="stat"><b>2570+</b><span>Online</span></div>
+    <div class="stat"><b>1952</b><span>FIDE</span></div>
+    <div class="stat"><b>7+ yrs</b><span>Experience</span></div>
+    <div class="stat"><b>10,000+</b><span>Classes</span></div>
+  </div>
+  <div class="ctas">
+    <a class="btn btn-green" href="https://wa.me/919354811377?text=Hi%2C%20I%20want%20to%20book%20a%20free%20demo">Book a free Demo</a>
+  </div>
+  <p class="note">Full site pages restoring shortly. Demo booking is live on WhatsApp.</p>
+</section>
 </body>
 </html>
