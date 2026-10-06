@@ -142,7 +142,7 @@
 
   function escapeHtml(str) {
     return String(str).replace(/[&<>"]/g, function (c) {
-      return { "&": "&", "<": "<", ">": ">", '"': """ }[c];
+      return { "&": "&", "<": "<", ">": ">", '"': '&quot;' }[c];
     });
   }
 
