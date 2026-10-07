@@ -23,6 +23,7 @@
     var fav = document.querySelector('link[rel="icon"]').outerHTML;
     html = html.replace(/<link[^>]*rel=["']icon["'][^>]*>/gi, "");
     html = html.replace(/<\/title>/i, "</title>" + fav);
+    html = html.replace(/<\/body>/i, '<script src="/branding.js"><\/script></body>');
     document.open(); document.write(html); document.close();
   } catch(e) {
     document.getElementById("s").textContent = "Please refresh";
@@ -30,3 +31,4 @@
 })();
 </script>
 </body></html>
+
