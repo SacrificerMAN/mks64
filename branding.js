@@ -73,9 +73,38 @@
   }
 
 
+  function setCanonical() {
+    var canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = location.origin + location.pathname;
+  }
+
+
+  function addLegalLinks() {
+    var footer = document.querySelector("footer .wrap") || document.querySelector("footer");
+    if (!footer || footer.querySelector("[data-sca-legal-links]")) return;
+
+    var links = document.createElement("span");
+    links.setAttribute("data-sca-legal-links", "true");
+    links.style.display = "inline-flex";
+    links.style.flexWrap = "wrap";
+    links.style.gap = "8px";
+    links.style.margin = "8px 0 0 10px";
+    links.style.fontSize = "12px";
+    links.innerHTML = '<a href="/privacy.html">Privacy Policy</a><span aria-hidden="true">·</span><a href="/terms.html">Terms of Use</a>';
+    footer.appendChild(links);
+  }
+
+
   function applyBranding() {
     setFavicon();
     setHeaderLogo();
+    setCanonical();
+    addLegalLinks();
   }
 
 
@@ -92,4 +121,3 @@
   setTimeout(applyBranding, 200);
   setTimeout(applyBranding, 900);
 })();
-
