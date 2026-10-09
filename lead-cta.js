@@ -1,7 +1,24 @@
 (function(){
   // Set digits only with country code, e.g. 919876543210
   var WA_NUMBER = '919354811377';
-  var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyn4ox_ddK6q5LKXVmDwU8SjiBUrWuYBvErWzHr1GD76VZmK_Ce4GkZrvZMWnqN8Lam/exec';
+  var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxR1olMm7l-BYHfuhBTQVeyYn415I4OvPQLcmj97_3U77v-jSdu4Kwobxc5PCsoWDPIqQ/exec';
+  function leadContext(source){
+    var q = new URLSearchParams(window.location.search || '');
+    var zone = '';
+    try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e) {}
+    return {
+      pageUrl: window.location.href,
+      referrerUrl: document.referrer || '',
+      utmSource: q.get('utm_source') || source || 'website',
+      utmMedium: q.get('utm_medium') || 'website',
+      utmCampaign: q.get('utm_campaign') || '',
+      utmContent: q.get('utm_content') || '',
+      locale: navigator.language || '',
+      timeZone: zone,
+      consent: 'yes',
+      website: ''
+    };
+  }
   function waHref(text){
     var t = encodeURIComponent(text || 'Hi, I want to book a free chess demo from Saran Chess Academy.');
     return WA_NUMBER ? ('https://wa.me/' + WA_NUMBER + '?text=' + t) : '/#join';
@@ -38,6 +55,7 @@
       + '<input name="name" placeholder="Name" required>'
       + '<input name="phone" type="tel" placeholder="Phone number" required>'
       + '<button class="btn btn-solid" type="submit">Book free Demo</button>'
+      + '<p style="margin:10px 0 0;color:#a7b0ad;font-size:12px;line-height:1.45">By submitting, you agree to our <a href="/privacy.html">Privacy Policy</a>.</p>'
       + '</form>'
       + '<p class="lead-gate-skip" id="gateSkip">Continue without saving</p>'
       + '</div>';
@@ -48,14 +66,14 @@
     document.getElementById('gateForm').onsubmit = function(e){
       e.preventDefault();
       var fd = new FormData(e.target);
-      var payload = {
+      var payload = Object.assign(leadContext(source + '-soft-gate'), {
         name: fd.get('name'),
         contact: fd.get('phone'),
         phone: fd.get('phone'),
         rating: 'Tool user',
         goal: 'Free tip / interested',
         source: source + '-soft-gate'
-      };
+      });
       fetch(LEAD_ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload)})
         .then(function(){ localStorage.setItem('sca_lead_done','1'); close(); })
         .catch(function(){ close(); });

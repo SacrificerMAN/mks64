@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
 const MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite";
 const KEY = process.env.GEMINI_API_KEY || "";
-const LEAD_ENDPOINT = process.env.LEAD_ENDPOINT || "https://script.google.com/macros/s/AKfycbyn4ox_ddK6q5LKXVmDwU8SjiBUrWuYBvErWzHr1GD76VZmK_Ce4GkZrvZMWnqN8Lam/exec";
+const LEAD_ENDPOINT = process.env.LEAD_ENDPOINT || "https://script.google.com/macros/s/AKfycbxR1olMm7l-BYHfuhBTQVeyYn415I4OvPQLcmj97_3U77v-jSdu4Kwobxc5PCsoWDPIqQ/exec";
 const TYPES = {".html":"text/html; charset=utf-8",".js":"application/javascript; charset=utf-8",".css":"text/css; charset=utf-8",".jpg":"image/jpeg",".jpeg":"image/jpeg",".png":"image/png",".webp":"image/webp",".svg":"image/svg+xml",".ico":"image/x-icon",".xml":"application/xml; charset=utf-8",".txt":"text/plain; charset=utf-8"};
 const SYSTEM = `You are the on-site mentor for Saran Chess Academy (coach Mohit Kumar Soni, 2520+ rapid/blitz).
 Speak like a calm Grandmaster-style teacher: precise, practical, encouraging. English or Hindi — match the visitor.
