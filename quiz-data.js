@@ -8,7 +8,7 @@
     { rank: "2nd", amount: 2000 },
     { rank: "3rd", amount: 1500 },
     { rank: "4th", amount: 1000 },
-    { rank: "5th–6th", amount: 500 }
+    { rank: "5th–10th", amount: 500 }
   ];
 
   var tactics = [
