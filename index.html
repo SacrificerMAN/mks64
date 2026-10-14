@@ -295,6 +295,11 @@
           <option>Canada</option>
           <option>Australia</option>
           <option>Singapore</option>
+          <option>Malaysia</option>
+          <option>Qatar</option>
+          <option>Germany</option>
+          <option>Netherlands</option>
+          <option>Philippines</option>
           <option>Other</option>
         </select>
         <select name="childAge" required>
@@ -371,6 +376,18 @@
   var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxR1olMm7l-BYHfuhBTQVeyYn415I4OvPQLcmj97_3U77v-jSdu4Kwobxc5PCsoWDPIqQ/exec';
   var form = document.getElementById('leadForm');
   if(!form) return;
+  var countrySelect = form.querySelector('select[name="country"]');
+  var queryParams = new URLSearchParams(window.location.search || '');
+  var countryFromUrl = queryParams.get('country') || '';
+  if(!countryFromUrl && document.referrer){
+    var countryBySlug = {india:'India',usa:'United States',uk:'United Kingdom',uae:'United Arab Emirates',canada:'Canada',australia:'Australia',singapore:'Singapore',malaysia:'Malaysia',qatar:'Qatar',germany:'Germany',netherlands:'Netherlands',philippines:'Philippines'};
+    var refMatch = document.referrer.match(/online-chess-coaching-([a-z-]+)\.html/i);
+    if(refMatch) countryFromUrl = countryBySlug[refMatch[1].toLowerCase()] || '';
+  }
+  if(countrySelect && countryFromUrl){
+    var countryOption = Array.prototype.find.call(countrySelect.options, function(option){ return option.value.toLowerCase() === countryFromUrl.toLowerCase(); });
+    if(countryOption) countrySelect.value = countryOption.value;
+  }
   window.dataLayer = window.dataLayer || [];
   function track(eventName, params){
     var event = Object.assign({event:eventName}, params || {});
