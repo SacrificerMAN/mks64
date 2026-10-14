@@ -169,7 +169,7 @@
     <h2 class="sec-title">How online chess classes work</h2>
     <p class="sec-desc">Saran Chess Academy offers live online chess coaching for children, beginners, intermediate players and tournament aspirants worldwide. Time-zone-friendly 1:1 lessons combine clear teaching, practical puzzles, homework, game analysis and tournament preparation.</p>
     <div class="how-grid">
-      <div class="how-card"><div class="num">1</div><h3>Book a free demo</h3><p>Submit the form — we message you on WhatsApp. No payment.</p></div>
+      <div class="how-card"><div class="num">1</div><h3>Book a free demo</h3><p>Submit the short form — we confirm a suitable time by WhatsApp or email. No payment.</p></div>
       <div class="how-card"><div class="num">2</div><h3>Level check + course</h3><p>Beginner → Intermediate → Advanced → FIDE Rating.</p></div>
       <div class="how-card"><div class="num">3</div><h3>Regular classes</h3><p>Live sessions, homework, game review.</p></div>
     </div>
@@ -263,7 +263,7 @@
       <details><summary>How do online classes work?</summary><p>Live video + shared board. Homework + game review. Classes in English.</p></details>
       <details><summary>Is this right for beginners?</summary><p>Yes — the Beginner course starts from zero. Level check in the free demo.</p></details>
       <details><summary>How long for a FIDE rating path?</summary><p>FIDE Rating course 96 classes / 12 months. Openings + calculation focus.</p></details>
-      <details><summary>When do you share fees?</summary><p>After the free demo on WhatsApp — plans are clear, no price pressure on the website.</p></details>
+      <details><summary>When do you share fees?</summary><p>After the free demo, we recommend the right plan clearly. You do not need WhatsApp to submit the enquiry.</p></details>
       <details><summary>Do you offer online chess coaching worldwide?</summary><p>Yes. Students around the world join live 1:1 online chess classes. The free demo helps place each player in the right course and discuss a suitable class time.</p></details>
       <details><summary>Do you coach tournament and FIDE players?</summary><p>Yes. The FIDE Rating course focuses on calculation, openings, endgames and practical tournament preparation.</p></details>
       <details><summary>Can classes be scheduled for my time zone?</summary><p>Yes. Share your preferred days and times in the free demo form, and we will discuss a suitable live class slot.</p></details>
@@ -280,12 +280,38 @@
   <div class="wrap">
     <div class="sec-label">Join</div>
     <h2 class="sec-title">Book a free Demo</h2>
-    <p class="sec-desc">Fill the form → WhatsApp message. No payment for the first class.</p>
+    <p class="sec-desc">Tell us a little about the player. We will confirm a suitable live demo time by WhatsApp or email. No payment for the first class.</p>
     <div class="form-grid" style="margin-top:28px">
       <form class="form-box" id="leadForm">
         <input name="name" placeholder="Your name" required>
-        <input name="phone" type="tel" placeholder="WhatsApp number" required>
+        <input name="phone" type="tel" placeholder="Phone / WhatsApp number" required>
         <input name="email" type="email" placeholder="Email (optional)">
+        <select name="country" required>
+          <option value="">Country</option>
+          <option>India</option>
+          <option>United States</option>
+          <option>United Kingdom</option>
+          <option>United Arab Emirates</option>
+          <option>Canada</option>
+          <option>Australia</option>
+          <option>Singapore</option>
+          <option>Other</option>
+        </select>
+        <select name="childAge" required>
+          <option value="">Player age</option>
+          <option>5–7</option>
+          <option>8–10</option>
+          <option>11–15</option>
+          <option>16+</option>
+        </select>
+        <select name="level" required>
+          <option value="">Current level</option>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+          <option>Tournament player</option>
+          <option>FIDE-focused</option>
+        </select>
         <select name="goal">
           <option value="">Goal (optional)</option>
           <option>Beginner foundation</option>
@@ -294,12 +320,16 @@
           <option>FIDE path</option>
           <option>1:1 coaching</option>
         </select>
-        <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"><p class="lead-consent">By booking a demo, you agree to our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Use</a>.</p><button class="btn btn-solid" type="submit" style="margin-top:6px">Book a free Demo</button>
-        <p class="lead-thanks" id="leadThanks" style="color:var(--green)">Thanks — WhatsApp is opening. Please send the message.</p>
+        <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"><p class="lead-consent">By booking a demo, you agree to our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Use</a>.</p><button class="btn btn-solid" type="submit" style="margin-top:6px">Request my free Demo</button>
+        <div class="lead-success" id="leadThanks" role="status" aria-live="polite">
+          <strong>Request received.</strong>
+          <span>We’ll review the player details and confirm a suitable demo time.</span>
+          <div class="lead-next-actions"><a class="btn btn-wa" id="leadWhatsApp" href="#" target="_blank" rel="noopener">Optional: open WhatsApp</a><button class="btn btn-outline" id="leadAnother" type="button">Submit another request</button></div>
+        </div>
       </form>
       <div>
-        <p style="color:var(--muted);font-size:14px;line-height:1.6">Prefer chat? Message us on WhatsApp.</p>
-        <a class="btn btn-wa" style="margin-top:14px" href="https://wa.me/919354811377?text=Hi%2C%20I%20want%20a%20free%20chess%20demo" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <p style="color:var(--muted);font-size:14px;line-height:1.6">Prefer chat? WhatsApp is optional after submitting the form. If the app is unavailable, your request is still saved and the team can reply by email or phone.</p>
+        <a class="btn btn-wa" style="margin-top:14px" id="directWhatsApp" href="https://wa.me/919354811377?text=Hi%2C%20I%20want%20a%20free%20chess%20demo" target="_blank" rel="noopener">Chat on WhatsApp</a>
       </div>
     </div>
   </div>
@@ -341,6 +371,18 @@
   var LEAD_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxR1olMm7l-BYHfuhBTQVeyYn415I4OvPQLcmj97_3U77v-jSdu4Kwobxc5PCsoWDPIqQ/exec';
   var form = document.getElementById('leadForm');
   if(!form) return;
+  window.dataLayer = window.dataLayer || [];
+  function track(eventName, params){
+    var event = Object.assign({event:eventName}, params || {});
+    window.dataLayer.push(event);
+    if(typeof window.gtag === 'function') window.gtag('event', eventName, params || {});
+    if(typeof window.fbq === 'function') window.fbq('trackCustom', eventName, params || {});
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('a[href="#join"]'), function(link){
+    link.addEventListener('click', function(){ track('demo_cta_click', {location: link.textContent.trim().slice(0,80)}); });
+  });
+  var directWhatsApp = document.getElementById('directWhatsApp');
+  if(directWhatsApp) directWhatsApp.addEventListener('click', function(){ track('whatsapp_click', {location:'join_sidebar'}); });
   function leadContext(){
     var q = new URLSearchParams(window.location.search || '');
     var zone = '';
@@ -354,7 +396,8 @@
       utmContent: q.get('utm_content') || '',
       locale: navigator.language || '',
       timeZone: zone,
-      consent: 'yes'
+      consent: 'yes',
+      landingPage: window.location.pathname
     };
   }
   form.addEventListener('submit', function(e){
@@ -363,15 +406,36 @@
     var name = (fd.get('name')||'').trim();
     var phone = (fd.get('phone')||'').toString().replace(/\D/g,'');
     var email = (fd.get('email')||'').trim();
+    var country = (fd.get('country')||'').toString();
+    var childAge = (fd.get('childAge')||'').toString();
+    var level = (fd.get('level')||'').toString();
     var goal = (fd.get('goal')||'').toString();
     var website = (fd.get('website')||'').trim();
-    if(name.length<2 || phone.length<8){ alert('Name and phone required'); return; }
-    var payload = Object.assign(leadContext(), { name:name, contact:phone, phone:phone, email:email, goal:goal||'Free demo', source:'homepage-form', website:website });
+    if(name.length<2 || phone.length<8 || !country || !childAge || !level){ alert('Please complete name, phone, country, player age and level.'); return; }
+    if(website){ track('lead_blocked', {reason:'honeypot'}); return; }
+    var payload = Object.assign(leadContext(), { name:name, contact:phone, phone:phone, email:email, country:country, childAge:childAge, level:level, goal:goal||'Free demo', source:'homepage-form', website:website });
     fetch(LEAD_ENDPOINT, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload), keepalive:true }).catch(function(){});
     var thanks = document.getElementById('leadThanks');
-    if(thanks) thanks.style.display = 'block';
-    var text = encodeURIComponent('Hi, I want to book a free chess demo.\nName: '+name+'\nPhone: '+phone+(email?('\nEmail: '+email):'')+(goal?('\nGoal: '+goal):'')+'\nSource: Website form');
-    window.open('https://wa.me/'+WA+'?text='+text, '_blank');
+    if(thanks){
+      thanks.style.display = 'block';
+      var wa = document.getElementById('leadWhatsApp');
+      if(wa){
+        var text = encodeURIComponent('Hi, I want to book a free chess demo.\nName: '+name+'\nPhone: '+phone+'\nCountry: '+country+'\nPlayer age: '+childAge+'\nLevel: '+level+(email?('\nEmail: '+email):'')+(goal?('\nGoal: '+goal):'' )+'\nSource: Website form');
+        wa.href = 'https://wa.me/'+WA+'?text='+text;
+        wa.addEventListener('click', function(){ track('whatsapp_click', {location:'post_lead', country:country}); }, {once:true});
+      }
+      form.querySelector('button[type="submit"]').style.display = 'none';
+      track('lead_submitted', {country:country, child_age:childAge, level:level, goal:goal||'Free demo'});
+    }
+    form.reset();
+  });
+  var leadAnother = document.getElementById('leadAnother');
+  if(leadAnother) leadAnother.addEventListener('click', function(){
+    var thanks = document.getElementById('leadThanks');
+    if(thanks) thanks.style.display = 'none';
+    var submit = form.querySelector('button[type="submit"]');
+    if(submit) submit.style.display = '';
+    track('lead_another_request');
   });
 })();
 </script>
@@ -379,4 +443,5 @@
 <script src="/chat.js" defer></script>
 <script src="/branding.js"></script></body>
 </html>
+
 
