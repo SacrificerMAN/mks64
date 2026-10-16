@@ -41,12 +41,21 @@ async function askModel(messages){
   if(!KEY)throw new Error("GEMINI_API_KEY missing");
   const contents=(messages||[]).filter(m=>m&&m.text).map(m=>({role:m.role==="model"?"model":"user",parts:[{text:String(m.text).slice(0,2000)}]}));
   if(!contents.length)throw new Error("Empty message");
-  const url=`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${encodeURIComponent(KEY)}`;
-  const r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({system_instruction:{parts:[{text:systemPromptFor(messages,ACADEMY_CONTEXT)}]},contents,generationConfig:{temperature:0.7,maxOutputTokens:350}})});
-  const data=await r.json();
-  if(!r.ok)throw new Error((data.error&&data.error.message)||"Gemini error");
-  const parts=((((data.candidates||[])[0]||{}).content||{}).parts)||[];
-  return parts.map(x=>x.text||"").join("\n").trim()||"Apna rating aur goal likho.";
+  const models=[...new Set([MODEL,process.env.GEMINI_FALLBACK_MODEL||"gemini-3.5-flash-lite","gemini-3-flash-preview"])]
+  let lastError;
+  for(const model of models){
+    try{
+      const url=`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(KEY)}`;
+      const r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({system_instruction:{parts:[{text:systemPromptFor(messages,ACADEMY_CONTEXT)}]},contents,generationConfig:{temperature:0.7,maxOutputTokens:350}})});
+      const data=await r.json();
+      if(!r.ok){lastError=new Error(`${model}: ${(data.error&&data.error.message)||"Gemini error"}`);continue;}
+      const parts=((((data.candidates||[])[0]||{}).content||{}).parts)||[];
+      const reply=parts.map(x=>x.text||"").join("\n").trim();
+      if(reply)return reply;
+      lastError=new Error(`${model}: empty response`);
+    }catch(e){lastError=e;}
+  }
+  throw lastError||new Error("Gemini error");
 }
 async function whatsappWebhook(req,res){
   let raw;
@@ -69,7 +78,8 @@ async function whatsappWebhook(req,res){
   if(lead)reply+="\n\nAapki enquiry team ko mil gayi hai — hum aapse contact karenge.";
   return send(res,200,`<Response><Message>${twimlEscape(reply)}</Message></Response>`,"text/xml; charset=utf-8");
 }
-async function chat(req,res){let raw="";req.on("data",c=>{raw+=c;if(raw.length>20000)req.destroy();});req.on("end",async()=>{let payload;try{payload=JSON.parse(raw||"{}");}catch{return send(res,400,JSON.stringify({error:"Invalid JSON"}));}const messages=Array.isArray(payload.messages)?payload.messages.slice(-12):[];const agentId=detectAgent(messages);const lead=extractLead(messages);if(lead){lead.agent=agentId;lead.channel="website-chat";}let leadSaved=false;if(lead)leadSaved=await saveLead(lead);if(!KEY)return send(res,503,JSON.stringify({error:"GEMINI_API_KEY missing",leadSaved,agent:agentId}));const contents=messages.filter(m=>m&&m.text).map(m=>({role:m.role==="model"?"model":"user",parts:[{text:String(m.text).slice(0,2000)}]}));if(!contents.length)return send(res,400,JSON.stringify({error:"Empty message"}));const url=`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${encodeURIComponent(KEY)}`;try{const r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({system_instruction:{parts:[{text:systemPromptFor(messages,ACADEMY_CONTEXT)}]},contents,generationConfig:{temperature:0.7,maxOutputTokens:350}})});const data=await r.json();if(!r.ok)return send(res,502,JSON.stringify({error:(data.error&&data.error.message)||"Gemini error",leadSaved,agent:agentId}));const parts=((((data.candidates||[])[0]||{}).content||{}).parts)||[];let reply=parts.map(x=>x.text||"").join("\n").trim()||"Apna rating aur goal likho.";if(leadSaved)reply+="\n\nLead save ho gaya — team aapko contact karegi.";send(res,200,JSON.stringify({reply,leadSaved,agent:agentId}));}catch(e){send(res,502,JSON.stringify({error:"Network error",leadSaved,agent:agentId}));}});}
+async function chat(req,res){let raw="";req.on("data",c=>{raw+=c;if(raw.length>20000)req.destroy();});req.on("end",async()=>{let payload;try{payload=JSON.parse(raw||"{}");}catch{return send(res,400,JSON.stringify({error:"Invalid JSON"}));}const messages=Array.isArray(payload.messages)?payload.messages.slice(-12):[];const agentId=detectAgent(messages);const lead=extractLead(messages);if(lead){lead.agent=agentId;lead.channel="website-chat";}let leadSaved=false;if(lead)leadSaved=await saveLead(lead);if(!KEY)return send(res,503,JSON.stringify({error:"GEMINI_API_KEY missing",leadSaved,agent:agentId}));if(!messages.some(m=>m&&m.text))return send(res,400,JSON.stringify({error:"Empty message"}));try{let reply=await askModel(messages);if(leadSaved)reply+="\n\nLead save ho gaya — team aapko contact karegi.";send(res,200,JSON.stringify({reply,leadSaved,agent:agentId}));}catch(e){console.error("Website Gemini error:",e&&e.message?String(e.message).slice(0,300):"unknown");send(res,502,JSON.stringify({error:"Gemini temporarily unavailable",leadSaved,agent:agentId}));}});}
+
 
 const QUIZ_FILE = path.join(ROOT, "data", "quiz-scores.json");
 function readQuiz() {
