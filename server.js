@@ -45,8 +45,11 @@ async function askModel(messages){
   let lastError;
   for(const model of models){
     try{
+      const controller=new AbortController();
+      const timeout=setTimeout(()=>controller.abort(),Number(process.env.GEMINI_TIMEOUT_MS||5000));
       const url=`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(KEY)}`;
-      const r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({system_instruction:{parts:[{text:systemPromptFor(messages,ACADEMY_CONTEXT)}]},contents,generationConfig:{temperature:0.7,maxOutputTokens:350}})});
+      const r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},signal:controller.signal,body:JSON.stringify({system_instruction:{parts:[{text:systemPromptFor(messages,ACADEMY_CONTEXT)}]},contents,generationConfig:{temperature:0.7,maxOutputTokens:350}})});
+      clearTimeout(timeout);
       const data=await r.json();
       if(!r.ok){lastError=new Error(`${model}: ${(data.error&&data.error.message)||"Gemini error"}`);continue;}
       const parts=((((data.candidates||[])[0]||{}).content||{}).parts)||[];
@@ -56,6 +59,14 @@ async function askModel(messages){
     }catch(e){lastError=e;}
   }
   throw lastError||new Error("Gemini error");
+}
+function whatsappFallbackReply(body){
+  const low=String(body||"").toLowerCase();
+  if(/service|course|program|class/.test(low))return "Saran Chess Academy online Beginner, Intermediate, Advanced, 1:1 coaching, tournament preparation aur game analysis classes provide karti hai. Free demo book karne ke liye website form use karein: https://saranchessacademy.com/#join";
+  if(/demo|trial|book|join/.test(low))return "Free chess demo book karne ke liye https://saranchessacademy.com/#join par form submit karein. Team aapke child ki age, level aur time zone ke hisaab se guide karegi.";
+  if(/fee|price|cost|payment/.test(low))return "Fees player ke level aur class format par depend karti hai. Pehle free demo me level check hota hai; final fee team clearly confirm karegi.";
+  if(/test|hi|hello|hey/.test(low))return "Message receive ho gaya. Aap child ki age, current chess level aur country/time zone bhej dein—team aapko suitable coaching path batayegi.";
+  return "Message receive ho gaya. Aap apna chess question, child ki age ya free demo request bhej sakte hain.";
 }
 async function whatsappWebhook(req,res){
   let raw;
@@ -74,7 +85,7 @@ async function whatsappWebhook(req,res){
   if(leadIntent&&from&&!lead)lead={name:profile||"WhatsApp visitor",contact:from,rating:"Not specified",goal:"WhatsApp enquiry",source:"whatsapp"};
   if(lead){lead.agent=agentId;lead.channel="whatsapp";if(!lead.contact)lead.contact=from||lead.contact;await saveLead(lead);}
   let reply;
-  try{reply=await askModel(messages);}catch(e){console.error("WhatsApp Gemini error:",e&&e.message?String(e.message).slice(0,300):"unknown");reply="Thanks for messaging Saran Chess Academy. Team aapko jaldi reply karegi.";}
+  try{reply=await askModel(messages);}catch(e){console.error("WhatsApp Gemini error:",e&&e.message?String(e.message).slice(0,300):"unknown");reply=whatsappFallbackReply(body);}
   if(lead)reply+="\n\nAapki enquiry team ko mil gayi hai — hum aapse contact karenge.";
   return send(res,200,`<Response><Message>${twimlEscape(reply)}</Message></Response>`,"text/xml; charset=utf-8");
 }
