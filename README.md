@@ -24,6 +24,14 @@ node server.js
 
 Bottom-right widget uses Gemini 3.1 Flash-Lite as an academy mentor (GM-style teaching, not a fake FIDE title).
 
+## Department agents
+
+The website chat now routes each conversation to a focused department agent (admissions, academic, parent support, operations, finance, marketing, analytics, or the CEO/orchestrator). Leads saved from chat include the selected agent and channel so the CRM/Google Sheet can be assigned to the right team.
+
+Twilio WhatsApp can call `POST /api/whatsapp/webhook` with `application/x-www-form-urlencoded` data. Set `TWILIO_AUTH_TOKEN` in production and point the WhatsApp sender webhook to the deployed URL. Set `REQUIRE_TWILIO_SIGNATURE=true` to require signature verification when the token is present. The webhook returns TwiML replies and routes lead-intent messages to the same CRM endpoint.
+
+The agents are intentionally approval-based: they do not publish ads, spend money, issue refunds, confirm payments, or make hiring decisions automatically.
+
 ## Branding
 
 Site name: **Saran Chess Academy**  
