@@ -65,7 +65,7 @@ async function whatsappWebhook(req,res){
   if(leadIntent&&from&&!lead)lead={name:profile||"WhatsApp visitor",contact:from,rating:"Not specified",goal:"WhatsApp enquiry",source:"whatsapp"};
   if(lead){lead.agent=agentId;lead.channel="whatsapp";if(!lead.contact)lead.contact=from||lead.contact;await saveLead(lead);}
   let reply;
-  try{reply=await askModel(messages);}catch(e){reply="Thanks for messaging Saran Chess Academy. Team aapko jaldi reply karegi.";}
+  try{reply=await askModel(messages);}catch(e){console.error("WhatsApp Gemini error:",e&&e.message?String(e.message).slice(0,300):"unknown");reply="Thanks for messaging Saran Chess Academy. Team aapko jaldi reply karegi.";}
   if(lead)reply+="\n\nAapki enquiry team ko mil gayi hai — hum aapse contact karenge.";
   return send(res,200,`<Response><Message>${twimlEscape(reply)}</Message></Response>`,"text/xml; charset=utf-8");
 }
