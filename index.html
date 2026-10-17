@@ -54,6 +54,14 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230a1f14' stroke='%23c9a227' stroke-width='3'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-size='28'%3E%E2%99%9E%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<!-- Google tag for Google Ads -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17033927430"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17033927430');
+</script>
 </head>
 <body>
 <nav>
@@ -370,6 +378,7 @@
     if(name.length<2 || phone.length<8){ alert('Name and phone required'); return; }
     var payload = Object.assign(leadContext(), { name:name, contact:phone, phone:phone, email:email, goal:goal||'Free demo', source:'homepage-form', website:website });
     fetch(LEAD_ENDPOINT, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload), keepalive:true }).catch(function(){});
+    if (typeof gtag === 'function') { gtag('event', 'conversion', { 'send_to': 'AW-17033927430/TfmSCNzE8L4aEIa2tLo_' }); }
     var thanks = document.getElementById('leadThanks');
     if(thanks) thanks.style.display = 'block';
     var text = encodeURIComponent('Hi, I want to book a free chess demo.\nName: '+name+'\nPhone: '+phone+(email?('\nEmail: '+email):'')+(goal?('\nGoal: '+goal):'')+'\nSource: Website form');
