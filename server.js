@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 const { URL } = require("url");
-const { detectAgent, systemPromptFor } = require("./agent-system");
+const { AGENTS, detectAgent, systemPromptFor } = require("./agent-system");
 const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
 const MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite";
@@ -19,6 +19,70 @@ Academy facts:
 - Best next step: free training call via the website form (#join)
 Goals: answer chess/academy questions clearly; soft conversion to free call or checkout; if they share name + phone/email, thank them (lead is auto-saved).
 Keep replies under 120 words.`;
+const AGENT_RUNTIME = Object.fromEntries(Object.keys(AGENTS).map(id => [id, {
+  status: "Standby",
+  handled: 0,
+  lastActivity: null,
+  lastChannel: "",
+  currentTask: "Waiting for a new request",
+  timer: null
+}]));
+const AGENT_ACTIVITY = [];
+let agentActivityId = 0;
+function agentName(id) {
+  return (AGENTS[id] && AGENTS[id].name) || id;
+}
+function recordAgentActivity(agentId, channel) {
+  const id = AGENTS[agentId] ? agentId : "orchestrator";
+  const now = new Date().toISOString();
+  const state = AGENT_RUNTIME[id];
+  state.status = "Working";
+  state.handled += 1;
+  state.lastActivity = now;
+  state.lastChannel = channel;
+  state.currentTask = channel === "WhatsApp" ? "Replying to a WhatsApp enquiry" : "Responding in website chat";
+  AGENT_ACTIVITY.unshift({
+    id: ++agentActivityId,
+    agentId: id,
+    agentName: agentName(id),
+    channel,
+    summary: channel + " request routed to " + agentName(id),
+    at: now
+  });
+  if (AGENT_ACTIVITY.length > 40) AGENT_ACTIVITY.length = 40;
+  if (state.timer) clearTimeout(state.timer);
+  state.timer = setTimeout(() => {
+    if (state.lastActivity === now) {
+      state.status = "Standby";
+      state.currentTask = "Waiting for a new request";
+    }
+  }, 5500);
+}
+function agentStatusApi(req, res) {
+  const agents = Object.keys(AGENTS).map(id => {
+    const state = AGENT_RUNTIME[id];
+    return {
+      id,
+      name: agentName(id),
+      purpose: AGENTS[id].purpose,
+      status: state.status,
+      handled: state.handled,
+      lastActivity: state.lastActivity,
+      lastChannel: state.lastChannel,
+      currentTask: state.currentTask
+    };
+  });
+  const activeAgents = agents.filter(agent => agent.status === "Working").length;
+  const totalHandled = agents.reduce((sum, agent) => sum + agent.handled, 0);
+  return send(res, 200, JSON.stringify({
+    ok: true,
+    updatedAt: new Date().toISOString(),
+    activeAgents,
+    totalHandled,
+    agents,
+    activity: AGENT_ACTIVITY.slice(0, 20)
+  }));
+}
 function send(res,code,body,type="application/json; charset=utf-8"){res.writeHead(code,{"Content-Type":type,"Cache-Control":"no-store"});res.end(body);}
 function serveStatic(req,res){const host=(req.headers.host||"").split(":")[0].toLowerCase();if(host==="www.saranchessacademy.com"){res.writeHead(301,{"Location":`https://saranchessacademy.com${req.url}`});res.end();return;}let urlPath=decodeURIComponent(req.url.split("?")[0]);if(urlPath==="/")urlPath="/index.html";const file=path.normalize(path.join(ROOT,urlPath));if(!file.startsWith(ROOT))return send(res,403,"Forbidden","text/plain");fs.readFile(file,(err,data)=>{if(err){return fs.readFile(path.join(ROOT,"index.html"),(e2,html)=>{if(e2)return send(res,404,"Not found","text/plain");send(res,200,html,"text/html; charset=utf-8");});}const type=TYPES[path.extname(file).toLowerCase()]||"application/octet-stream";if(type.startsWith("text/html")){const canonicalPath=urlPath==="/index.html"?"/":urlPath;const canonical=`https://saranchessacademy.com${canonicalPath}`;const html=data.toString().replace(/<head>/i,`<head><link rel="canonical" href="${canonical}"><link rel="icon" href="/favicon.ico?v=20261008">`).replace(/<\/body>\s*<\/html>\s*$/i,'<script src="/branding.js"></script></body></html>');return send(res,200,html,"text/html; charset=utf-8");}send(res,200,data,type);});}
 function extractLead(messages){const text=(messages||[]).map(m=>m.text||"").join("\n");const email=(text.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)||[])[0];const phone=(text.match(/(?:\+?\d[\d\s-]{8,}\d)/)||[])[0];const nameMatch=text.match(/(?:my name is|i am|i'm|naam)\s+([A-Za-z][A-Za-z\s]{1,40})/i);const name=nameMatch?nameMatch[1].trim():"";const contact=phone||email;if(!contact)return null;const low=text.toLowerCase();let goal="General enquiry";if(low.includes("tournament"))goal="Tournament prep";else if(low.includes("1:1")||low.includes("one on one")||low.includes("private"))goal="1:1 coaching";else if(low.includes("beginner"))goal="Beginner foundation";return{name:name||"Chat visitor",contact,rating:"Not specified",goal,source:"chat-widget"};}
@@ -79,6 +143,7 @@ async function whatsappWebhook(req,res){
   if(!body)return send(res,200,"<Response></Response>","text/xml; charset=utf-8");
   const messages=[{role:"user",text:body}];
   const agentId=detectAgent(messages);
+  recordAgentActivity(agentId, "WhatsApp");
   const low=body.toLowerCase();
   const leadIntent=/demo|join|enrol|enroll|admission|fee|price|class|coach|program|course|trial|book/.test(low);
   let lead=extractLead(messages);
@@ -89,8 +154,7 @@ async function whatsappWebhook(req,res){
   if(lead)reply+="\n\nAapki enquiry team ko mil gayi hai — hum aapse contact karenge.";
   return send(res,200,`<Response><Message>${twimlEscape(reply)}</Message></Response>`,"text/xml; charset=utf-8");
 }
-async function chat(req,res){let raw="";req.on("data",c=>{raw+=c;if(raw.length>20000)req.destroy();});req.on("end",async()=>{let payload;try{payload=JSON.parse(raw||"{}");}catch{return send(res,400,JSON.stringify({error:"Invalid JSON"}));}const messages=Array.isArray(payload.messages)?payload.messages.slice(-12):[];const agentId=detectAgent(messages);const lead=extractLead(messages);if(lead){lead.agent=agentId;lead.channel="website-chat";}let leadSaved=false;if(lead)leadSaved=await saveLead(lead);if(!KEY)return send(res,503,JSON.stringify({error:"GEMINI_API_KEY missing",leadSaved,agent:agentId}));if(!messages.some(m=>m&&m.text))return send(res,400,JSON.stringify({error:"Empty message"}));try{let reply=await askModel(messages);if(leadSaved)reply+="\n\nLead save ho gaya — team aapko contact karegi.";send(res,200,JSON.stringify({reply,leadSaved,agent:agentId}));}catch(e){console.error("Website Gemini error:",e&&e.message?String(e.message).slice(0,300):"unknown");send(res,502,JSON.stringify({error:"Gemini temporarily unavailable",leadSaved,agent:agentId}));}});}
-
+async function chat(req,res){let raw="";req.on("data",c=>{raw+=c;if(raw.length>20000)req.destroy();});req.on("end",async()=>{let payload;try{payload=JSON.parse(raw||"{}");}catch{return send(res,400,JSON.stringify({error:"Invalid JSON"}));}const messages=Array.isArray(payload.messages)?payload.messages.slice(-12):[];const agentId=detectAgent(messages);recordAgentActivity(agentId, "Website chat");const lead=extractLead(messages);if(lead){lead.agent=agentId;lead.channel="website-chat";}let leadSaved=false;if(lead)leadSaved=await saveLead(lead);if(!KEY)return send(res,503,JSON.stringify({error:"GEMINI_API_KEY missing",leadSaved,agent:agentId}));if(!messages.some(m=>m&&m.text))return send(res,400,JSON.stringify({error:"Empty message"}));try{let reply=await askModel(messages);if(leadSaved)reply+="\n\nLead save ho gaya — team aapko contact karegi.";send(res,200,JSON.stringify({reply,leadSaved,agent:agentId}));}catch(e){console.error("Website Gemini error:",e&&e.message?String(e.message).slice(0,300):"unknown");send(res,502,JSON.stringify({error:"Gemini temporarily unavailable",leadSaved,agent:agentId}));}});}
 
 const QUIZ_FILE = path.join(ROOT, "data", "quiz-scores.json");
 function readQuiz() {
@@ -202,4 +266,4 @@ function authApi(req, res, url) {
   return false;
 }
 
-http.createServer((req,res)=>{const url=new URL(req.url,`http://${req.headers.host}`);if(req.method==="POST"&&url.pathname==="/api/chat")return chat(req,res);if(req.method==="POST"&&url.pathname==="/api/whatsapp/webhook")return whatsappWebhook(req,res);if(req.method==="GET"&&url.pathname==="/api/health")return send(res,200,JSON.stringify({ok:true,model:MODEL,key:Boolean(KEY),whatsappWebhook:"/api/whatsapp/webhook",agents:true}));if(url.pathname.startsWith("/api/auth/"))return authApi(req,res,url);if(url.pathname.startsWith("/api/quiz/"))return quizApi(req,res,url);if(req.method!=="GET"&&req.method!=="HEAD")return send(res,405,"Method not allowed","text/plain");serveStatic(req,res);}).listen(PORT,"0.0.0.0",()=>console.log("listening",PORT));
+http.createServer((req,res)=>{const url=new URL(req.url,`http://${req.headers.host}`);if(req.method==="POST"&&url.pathname==="/api/chat")return chat(req,res);if(req.method==="POST"&&url.pathname==="/api/whatsapp/webhook")return whatsappWebhook(req,res);if(req.method==="GET"&&url.pathname==="/api/agents/status")return agentStatusApi(req,res);if(req.method==="GET"&&url.pathname==="/api/health")return send(res,200,JSON.stringify({ok:true,model:MODEL,key:Boolean(KEY),whatsappWebhook:"/api/whatsapp/webhook",agents:true}));if(url.pathname.startsWith("/api/auth/"))return authApi(req,res,url);if(url.pathname.startsWith("/api/quiz/"))return quizApi(req,res,url);if(req.method!=="GET"&&req.method!=="HEAD")return send(res,405,"Method not allowed","text/plain");serveStatic(req,res);}).listen(PORT,"0.0.0.0",()=>console.log("listening",PORT));

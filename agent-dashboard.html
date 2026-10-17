@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI Agents | Saran Chess Academy</title>
+  <meta name="description" content="Internal AI department dashboard for Saran Chess Academy.">
+  <link rel="stylesheet" href="/agent-dashboard.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/">
+        <span class="brand-mark">♞</span>
+        <span><strong>Saran</strong><small>Chess Academy</small></span>
+      </a>
+      <div class="topbar-right">
+        <span class="internal-pill"><span class="pulse"></span> Internal AI team</span>
+        <a class="back-link" href="/">Back to academy <span>↗</span></a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">AI OPERATIONS CENTER</p>
+          <h1>See your AI team<br><em>in motion.</em></h1>
+          <p class="hero-copy">Every website chat and WhatsApp enquiry is routed to the right department, so you can see who is handling what in real time.</p>
+        </div>
+        <div class="sync-card">
+          <span class="live-label"><span class="pulse"></span> LIVE MONITOR</span>
+          <strong id="syncStatus">Connecting…</strong>
+          <small id="syncTime">Waiting for the first update</small>
+        </div>
+      </section>
+
+      <section class="stat-grid" aria-label="Team summary">
+        <article class="stat-card accent-blue"><span class="stat-icon">◈</span><div><small>Total agents</small><strong id="totalAgents">8</strong><span>Departments covered</span></div></article>
+        <article class="stat-card accent-green"><span class="stat-icon">◉</span><div><small>Working now</small><strong id="activeAgents">0</strong><span id="activeLabel">Waiting for activity</span></div></article>
+        <article class="stat-card accent-gold"><span class="stat-icon">↗</span><div><small>Requests handled</small><strong id="totalHandled">0</strong><span>Since this dashboard started</span></div></article>
+        <article class="stat-card accent-purple"><span class="stat-icon">⌁</span><div><small>Channels connected</small><strong>2</strong><span>Website chat · WhatsApp</span></div></article>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div><p class="eyebrow">DEPARTMENT ROSTER</p><h2>Who is on the team?</h2></div>
+          <span class="roster-note" id="rosterNote">All agents standby</span>
+        </div>
+        <div id="agentGrid" class="agent-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel activity-panel">
+          <div class="panel-heading"><div><p class="eyebrow">LIVE FEED</p><h2>Recent routing</h2></div><span class="feed-dot"><span class="pulse"></span> Auto-refresh</span></div>
+          <div id="activityFeed" class="activity-feed"><div class="empty-state"><span>⌁</span><p>No requests yet.<br>Send a website chat or WhatsApp message to see the team respond.</p></div></div>
+        </article>
+        <article class="panel workflow-panel">
+          <div class="panel-heading"><div><p class="eyebrow">HOW IT WORKS</p><h2>One request. Right expert.</h2></div></div>
+          <div class="workflow">
+            <div class="workflow-step"><span class="step-number">01</span><div><strong>Visitor writes</strong><p>Website chat or WhatsApp message arrives.</p></div></div>
+            <div class="workflow-line"></div>
+            <div class="workflow-step"><span class="step-number">02</span><div><strong>Router identifies intent</strong><p>The Orchestrator selects the best department.</p></div></div>
+            <div class="workflow-line"></div>
+            <div class="workflow-step"><span class="step-number">03</span><div><strong>Specialist replies</strong><p>The right agent answers and escalates when needed.</p></div></div>
+          </div>
+          <div class="trust-note"><span>♟</span><p>AI stays within academy guardrails. Payments, complaints and sensitive child information are handed to a human.</p></div>
+        </article>
+      </section>
+    </main>
+    <footer><span>Saran Chess Academy</span><span>AI operations dashboard · v1</span></footer>
+  </div>
+  <script src="/agent-dashboard.js"></script>
+</body>
+</html>
