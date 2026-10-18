@@ -7,9 +7,9 @@
 .platform-pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(16,163,127,.12)}
 .platform-pill.chesscom::before{background:#7cb342;box-shadow:0 0 0 4px rgba(124,179,66,.12)}
 .proof-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;margin-top:30px}
-.proof-card{grid-column:span 4;overflow:hidden;margin:0;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.22)}
+.proof-card{grid-column:span 4;overflow:hidden;margin:0;background:var(--surface);border:1px solid rgba(212,175,55,.72);border-radius:18px;box-shadow:0 16px 40px rgba(0,0,0,.22),0 0 0 1px rgba(212,175,55,.12)}
 .proof-card--wide{grid-column:span 6}
-.proof-card img{width:100%;height:260px;object-fit:contain;background:#171717}
+.proof-card img{display:block;width:calc(100% - 24px);height:260px;margin:12px;object-fit:contain;background:#171717;border:3px solid #d4af37;border-radius:12px;box-sizing:border-box}
 .proof-card--wide img{height:300px}
 .proof-card figcaption{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:13px 15px 15px}
 .proof-card figcaption strong{font-size:13px;color:#fff}
