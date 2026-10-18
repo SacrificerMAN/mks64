@@ -1,7 +1,7 @@
 // Saran Chess Academy — Weekly Quiz (verified paper)
 // 30 Q | 14 tactics + 6 viz + 10 GK | answers checked
 (function (global) {
-  var WA = "919354811377";
+  var WA = "13143385468";
   var ENTRY_FEE = 300;
   var PRIZES = [
     { rank: "1st", amount: 2500 },
