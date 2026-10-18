@@ -51,6 +51,34 @@
 @media(max-width:900px){.parent-clarity-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.parent-clarity-grid{grid-template-columns:1fr}}
 </style>
+<style id="sca-proof-showcase-style">
+.proof-showcase{background:linear-gradient(180deg,#111,#050505);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.proof-showcase__heading{max-width:760px}
+.proof-showcase__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:32px}
+.proof-showcase-card{overflow:hidden;background:#0a0a0a;border:1px solid #222;border-radius:20px;color:#fff;box-shadow:0 12px 40px rgba(0,0,0,.2)}
+.proof-showcase-card__top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:25px 25px 15px}
+.proof-showcase-card__identity{display:flex;align-items:center;gap:14px;min-width:0}
+.proof-showcase-card__avatar{display:grid;place-items:center;width:52px;height:52px;flex:none;overflow:hidden;border:2px solid #d4af37;border-radius:50%;background:#1c1c1c;color:#f0d060;font-size:17px;font-weight:800}
+.proof-showcase-card__avatar img{width:100%;height:100%;object-fit:cover}
+.proof-showcase-card__name{font-size:16px;font-weight:800;color:#fff}
+.proof-showcase-card__meta{margin-top:3px;color:#999;font-size:12px;line-height:1.35}
+.proof-showcase-card__badge{padding:5px 10px;border-radius:12px;background:#e8f5e9;color:#1b5e20;font-size:10px;font-weight:800;white-space:nowrap}
+.proof-showcase-card__badge--gold{background:#d4af37;color:#000}
+.proof-showcase-card__graph{padding:0 25px}
+.proof-showcase-card__graph img{display:block;width:100%;height:185px;object-fit:contain;border:1px solid #333;border-radius:12px;background:#171717}
+.proof-showcase-card__body{padding:15px 25px 25px}
+.proof-showcase-card__title{color:#00ff88;font-size:15px;font-weight:800;line-height:1.35}
+.proof-showcase-card__body p{margin-top:8px;color:#aaa;font-size:13px;line-height:1.4;font-style:italic}
+.proof-showcase-card__link{display:inline-block;margin-top:12px;color:#d4af37;font-size:11px;font-weight:700;text-decoration:none}
+.proof-showcase-card__tag{display:inline-block;margin-top:12px;padding:6px 10px;border:1px solid #d4af37;border-radius:20px;background:rgba(212,175,55,.15);color:#d4af37;font-size:11px}
+.proof-showcase__cta{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:50px;padding:25px;background:#0a0a0a;border-radius:16px}
+.proof-showcase__cta strong{display:block;color:#fff;font-size:18px}
+.proof-showcase__cta span{display:block;margin-top:4px;color:#888;font-size:13px}
+.proof-showcase__cta a{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;border-radius:30px;background:#d4af37;color:#000;font-size:14px;font-weight:800;text-decoration:none;white-space:nowrap}
+.proof-showcase__note{margin-top:20px;color:var(--muted);font-size:12px;line-height:1.5}
+@media(max-width:900px){.proof-showcase__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.proof-showcase__grid{grid-template-columns:1fr}.proof-showcase-card__graph img{height:auto;aspect-ratio:1.55}.proof-showcase__cta{margin-top:32px;padding:20px}.proof-showcase__cta a{width:100%}}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -162,18 +190,50 @@
   <div class="trust-item"><b>2570+</b><span>Chess.com / Lichess</span></div>
   <div class="trust-item"><b>1952</b><span>FIDE rating</span></div>
 </div>
-<section id="results" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<section id="results" class="proof-showcase" aria-labelledby="results-title">
   <div class="wrap">
-    <div class="sec-label">Proof</div>
-    <h2 class="sec-title">They showed up. They improved.</h2>
-    <div class="gallery">
-      <img src="vedant.jpg" alt="Vedant" loading="lazy"><img src="s4_1.jpg" alt="" loading="lazy"><img src="s1_1.jpg" alt="" loading="lazy"><img src="s2_1.jpg" alt="" loading="lazy"><img src="s3_1.jpg" alt="" loading="lazy">
-      <img src="s5.jpg" alt="" loading="lazy"><img src="s6_1.jpg" alt="" loading="lazy"><img src="s7_1.jpg" alt="" loading="lazy"><img src="s8_1.jpg" alt="" loading="lazy"><img src="s10_1.jpg" alt="" loading="lazy">
+    <div class="proof-showcase__heading">
+      <div class="sec-label">Student results · real progress</div>
+      <h2 id="results-title" class="sec-title">They showed up. They improved.</h2>
+      <p class="sec-desc">Real student photos and rating snapshots from online training, tournament preparation and FIDE-focused coaching.</p>
     </div>
-    <div class="quotes">
-      <div class="quote"><img src="vedant.jpg" alt="Vedant"><div><blockquote>“Started from zero. In 6 months — FIDE rated, Blitz peak 1532.”</blockquote><cite>Vedant’s father</cite></div></div>
-      <div class="quote"><img src="s4_1.jpg" alt="Vivaan"><div><blockquote>“Training here changed how I think during games.”</blockquote><cite>Vivaan Chaudhary</cite></div></div>
+    <div class="proof-showcase__grid">
+      <article class="proof-showcase-card">
+        <div class="proof-showcase-card__top">
+          <div class="proof-showcase-card__identity">
+            <div class="proof-showcase-card__avatar">IP</div>
+            <div><div class="proof-showcase-card__name">International student</div><div class="proof-showcase-card__meta">Online coaching • Rating progress</div></div>
+          </div>
+          <div class="proof-showcase-card__badge">✓ VERIFIED</div>
+        </div>
+        <div class="proof-showcase-card__graph"><img src="results/lichess-ipuligundla.webp" alt="Lichess rating graph and FIDE profile progress" loading="lazy"></div>
+        <div class="proof-showcase-card__body"><div class="proof-showcase-card__title">Board-Free Calculation • Memory Palace</div><p>“Consistent training made game decisions clearer.”</p><a class="proof-showcase-card__link" href="https://lichess.org/@/ipuligundla" target="_blank" rel="noopener">→ View Public Profile</a></div>
+      </article>
+      <article class="proof-showcase-card">
+        <div class="proof-showcase-card__top">
+          <div class="proof-showcase-card__identity">
+            <div class="proof-showcase-card__avatar"><img src="s4_1.jpg" alt="Student holding a chess trophy" loading="lazy"></div>
+            <div><div class="proof-showcase-card__name">Tournament student</div><div class="proof-showcase-card__meta">Online coaching • Tournament prep</div></div>
+          </div>
+          <div class="proof-showcase-card__badge">✓ VERIFIED</div>
+        </div>
+        <div class="proof-showcase-card__graph"><img src="results/chesscom-targetplus.webp" alt="Chess.com student progress dashboard" loading="lazy"></div>
+        <div class="proof-showcase-card__body"><div class="proof-showcase-card__title">Game Analysis • Stronger Decisions</div><p>“Training changed how I think during games.”</p><span class="proof-showcase-card__tag">Live coaching • Practical progress</span></div>
+      </article>
+      <article class="proof-showcase-card">
+        <div class="proof-showcase-card__top">
+          <div class="proof-showcase-card__identity">
+            <div class="proof-showcase-card__avatar"><img src="vedant.jpg" alt="Vedant with chess trophies" loading="lazy"></div>
+            <div><div class="proof-showcase-card__name">Vedant - 12 yrs</div><div class="proof-showcase-card__meta">📍 Noida, India (Online) • Now FIDE Rated</div></div>
+          </div>
+          <div class="proof-showcase-card__badge proof-showcase-card__badge--gold">TOP RESULT</div>
+        </div>
+        <div class="proof-showcase-card__graph"><img src="results/lichess-vedant-progress.webp" alt="Vedant Lichess rating progress graph" loading="lazy"></div>
+        <div class="proof-showcase-card__body"><div class="proof-showcase-card__title">0 to FIDE Rated in 6 Months | Blitz Peak 1532</div><p>“Started from zero. In 6 months — FIDE rated, Blitz peak 1532.” — Vedant’s father</p><a class="proof-showcase-card__link" href="https://lichess.org/@/V_Vedant" target="_blank" rel="noopener">→ View Public Profile</a><div class="proof-showcase-card__tag">10+ Countries Taught • Proven Method</div></div>
+      </article>
     </div>
+    <div class="proof-showcase__cta"><div><strong>Want Your Child’s Graph Here?</strong><span>Canada &amp; Ireland evening slots • FIDE 1952 Method • 10,000+ Classes</span></div><a href="#join">Book Free Demo</a></div>
+    <p class="proof-showcase__note">Screenshots and student photos are shared as examples of progress. Student names and public profiles should be published only with the student or parent/guardian’s permission.</p>
   </div>
 </section>
 <section id="student-results" class="student-results" aria-labelledby="student-results-title">
