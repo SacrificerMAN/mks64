@@ -9,6 +9,8 @@ const ROOT = __dirname;
 const MODEL = process.env.GEMINI_MODEL || "gemini-3.1-flash-lite";
 const KEY = process.env.GEMINI_API_KEY || "";
 const LEAD_ENDPOINT = process.env.LEAD_ENDPOINT || "https://script.google.com/macros/s/AKfycbxR1olMm7l-BYHfuhBTQVeyYn415I4OvPQLcmj97_3U77v-jSdu4Kwobxc5PCsoWDPIqQ/exec";
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "";
+const TELEGRAM_ADMIN_CHAT_ID = String(process.env.TELEGRAM_ADMIN_CHAT_ID || "");
 const TYPES = {".html":"text/html; charset=utf-8",".js":"application/javascript; charset=utf-8",".css":"text/css; charset=utf-8",".jpg":"image/jpeg",".jpeg":"image/jpeg",".png":"image/png",".webp":"image/webp",".svg":"image/svg+xml",".ico":"image/x-icon",".xml":"application/xml; charset=utf-8",".txt":"text/plain; charset=utf-8"};
 const ACADEMY_CONTEXT = `You are the on-site mentor for Saran Chess Academy (coach Mohit Kumar Soni, 2520+ rapid/blitz).
 Speak like a calm Grandmaster-style teacher: precise, practical, encouraging. English or Hindi — match the visitor.
@@ -29,6 +31,33 @@ const AGENT_RUNTIME = Object.fromEntries(Object.keys(AGENTS).map(id => [id, {
 }]));
 const AGENT_ACTIVITY = [];
 let agentActivityId = 0;
+const HANDOFF_STATE = new Map();
+const HANDOFF_TTL_MS = Number(process.env.HANDOFF_TTL_MS || 7 * 24 * 60 * 60 * 1000);
+function normalizeWhatsAppAddress(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+  const number = raw.replace(/^whatsapp:/i, "").replace(/[^+\d]/g, "");
+  return number ? `whatsapp:${number}` : "";
+}
+function getHandoffMode(value) {
+  const key = normalizeWhatsAppAddress(value);
+  if (!key) return "ai";
+  const state = HANDOFF_STATE.get(key);
+  if (!state) return "ai";
+  if (state.expiresAt && state.expiresAt <= Date.now()) {
+    HANDOFF_STATE.delete(key);
+    return "ai";
+  }
+  return state.mode === "human" ? "human" : "ai";
+}
+function setHandoffMode(value, mode, source = "") {
+  const key = normalizeWhatsAppAddress(value);
+  if (!key) return "";
+  const normalizedMode = String(mode || "").toLowerCase() === "human" ? "human" : "ai";
+  if (normalizedMode === "ai") HANDOFF_STATE.delete(key);
+  else HANDOFF_STATE.set(key, { mode: normalizedMode, source: String(source || ""), updatedAt: new Date().toISOString(), expiresAt: Date.now() + HANDOFF_TTL_MS });
+  return normalizedMode;
+}
 function agentName(id) {
   return (AGENTS[id] && AGENTS[id].name) || id;
 }
@@ -83,10 +112,52 @@ function agentStatusApi(req, res) {
     activity: AGENT_ACTIVITY.slice(0, 20)
   }));
 }
+async function handoffApi(req, res, url) {
+  if (req.method === "GET") {
+    const phone = url.searchParams.get("phone") || "";
+    return send(res, 200, JSON.stringify({ ok: true, phone: normalizeWhatsAppAddress(phone), mode: getHandoffMode(phone) }));
+  }
+  let raw = "";
+  try { raw = await readBody(req, 10000); } catch { return send(res, 413, JSON.stringify({ ok: false, error: "Request too large" })); }
+  let payload = {};
+  try { payload = JSON.parse(raw || "{}"); } catch {
+    const form = new URLSearchParams(raw);
+    payload = { phone: form.get("phone"), mode: form.get("mode"), source: form.get("source") };
+  }
+  const phone = normalizeWhatsAppAddress(payload.phone);
+  if (!phone) return send(res, 400, JSON.stringify({ ok: false, error: "phone is required" }));
+  const mode = setHandoffMode(phone, payload.mode, payload.source);
+  return send(res, 200, JSON.stringify({ ok: true, phone, mode }));
+}
 function send(res,code,body,type="application/json; charset=utf-8"){res.writeHead(code,{"Content-Type":type,"Cache-Control":"no-store"});res.end(body);}
 function serveStatic(req,res){const host=(req.headers.host||"").split(":")[0].toLowerCase();if(host==="www.saranchessacademy.com"){res.writeHead(301,{"Location":`https://saranchessacademy.com${req.url}`});res.end();return;}let urlPath=decodeURIComponent(req.url.split("?")[0]);if(urlPath==="/")urlPath="/index.html";const file=path.normalize(path.join(ROOT,urlPath));if(!file.startsWith(ROOT))return send(res,403,"Forbidden","text/plain");fs.readFile(file,(err,data)=>{if(err){return fs.readFile(path.join(ROOT,"index.html"),(e2,html)=>{if(e2)return send(res,404,"Not found","text/plain");send(res,200,html,"text/html; charset=utf-8");});}const type=TYPES[path.extname(file).toLowerCase()]||"application/octet-stream";if(type.startsWith("text/html")){const canonicalPath=urlPath==="/index.html"?"/":urlPath;const canonical=`https://saranchessacademy.com${canonicalPath}`;const html=data.toString().replace(/<head>/i,`<head><link rel="canonical" href="${canonical}"><link rel="icon" href="/favicon.ico?v=20261008">`).replace(/<\/body>\s*<\/html>\s*$/i,'<script src="/branding.js"></script></body></html>');return send(res,200,html,"text/html; charset=utf-8");}send(res,200,data,type);});}
 function extractLead(messages){const text=(messages||[]).map(m=>m.text||"").join("\n");const email=(text.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)||[])[0];const phone=(text.match(/(?:\+?\d[\d\s-]{8,}\d)/)||[])[0];const nameMatch=text.match(/(?:my name is|i am|i'm|naam)\s+([A-Za-z][A-Za-z\s]{1,40})/i);const name=nameMatch?nameMatch[1].trim():"";const contact=phone||email;if(!contact)return null;const low=text.toLowerCase();let goal="General enquiry";if(low.includes("tournament"))goal="Tournament prep";else if(low.includes("1:1")||low.includes("one on one")||low.includes("private"))goal="1:1 coaching";else if(low.includes("beginner"))goal="Beginner foundation";return{name:name||"Chat visitor",contact,rating:"Not specified",goal,source:"chat-widget"};}
 async function saveLead(lead){if(!lead)return false;try{await fetch(LEAD_ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(lead)});return true;}catch{return false;}}
+function formatLeadAlert(lead, agentId, saved){
+  const agent = agentName(agentId);
+  const source = lead.channel || lead.source || "unknown";
+  const status = saved ? "Saved to the lead sheet" : "Sheet save needs checking";
+  return [
+    "🔔 New lead — Saran Chess Academy",
+    `Source: ${source}`,
+    `Department: ${agent}`,
+    `Name: ${lead.name || "Not provided"}`,
+    `Contact: ${lead.contact || "Not provided"}`,
+    `Goal: ${lead.goal || "General enquiry"}`,
+    status,
+    "",
+    "Aap baat karenge ya Admissions Agent handle kare?",
+    "Reply HUMAN to take over, or AGENT to let the AI continue."
+  ].join("\n");
+}
+async function notifyLead(lead, agentId, saved){
+  if(!lead || !TELEGRAM_BOT_TOKEN || !TELEGRAM_ADMIN_CHAT_ID)return false;
+  try{
+    const body=new URLSearchParams({chat_id:TELEGRAM_ADMIN_CHAT_ID,text:formatLeadAlert(lead,agentId,saved)});
+    const response=await fetch(`https://api.telegram.org/bot${encodeURIComponent(TELEGRAM_BOT_TOKEN)}/sendMessage`,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body});
+    return response.ok;
+  }catch{return false;}
+}
 function twimlEscape(value){return String(value||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&apos;");}
 function twilioSignatureIsValid(req, raw){
   const authToken=process.env.TWILIO_AUTH_TOKEN||"";
@@ -141,6 +212,7 @@ async function whatsappWebhook(req,res){
   const from=String(form.get("From")||"").replace(/^whatsapp:/i,"");
   const profile=String(form.get("ProfileName")||"").trim();
   if(!body)return send(res,200,"<Response></Response>","text/xml; charset=utf-8");
+  if(getHandoffMode(from)==="human")return send(res,200,"<Response></Response>","text/xml; charset=utf-8");
   const messages=[{role:"user",text:body}];
   const agentId=detectAgent(messages);
   recordAgentActivity(agentId, "WhatsApp");
@@ -148,13 +220,17 @@ async function whatsappWebhook(req,res){
   const leadIntent=/demo|join|enrol|enroll|admission|fee|price|class|coach|program|course|trial|book/.test(low);
   let lead=extractLead(messages);
   if(leadIntent&&from&&!lead)lead={name:profile||"WhatsApp visitor",contact:from,rating:"Not specified",goal:"WhatsApp enquiry",source:"whatsapp"};
-  if(lead){lead.agent=agentId;lead.channel="whatsapp";if(!lead.contact)lead.contact=from||lead.contact;await saveLead(lead);}
+  if(lead){
+    lead.agent=agentId;lead.channel="whatsapp";if(!lead.contact)lead.contact=from||lead.contact;
+    const saved=await saveLead(lead);
+    void notifyLead(lead,agentId,saved);
+  }
   let reply;
   try{reply=await askModel(messages);}catch(e){console.error("WhatsApp Gemini error:",e&&e.message?String(e.message).slice(0,300):"unknown");reply=whatsappFallbackReply(body);}
-  if(lead)reply+="\n\nAapki enquiry team ko mil gayi hai — hum aapse contact karenge.";
+  if(lead)reply+="\n\nAapki enquiry team ko mil gayi hai — aap chahenge AI agent details continue kare ya human coach aapse baat kare?";
   return send(res,200,`<Response><Message>${twimlEscape(reply)}</Message></Response>`,"text/xml; charset=utf-8");
 }
-async function chat(req,res){let raw="";req.on("data",c=>{raw+=c;if(raw.length>20000)req.destroy();});req.on("end",async()=>{let payload;try{payload=JSON.parse(raw||"{}");}catch{return send(res,400,JSON.stringify({error:"Invalid JSON"}));}const messages=Array.isArray(payload.messages)?payload.messages.slice(-12):[];const agentId=detectAgent(messages);recordAgentActivity(agentId, "Website chat");const lead=extractLead(messages);if(lead){lead.agent=agentId;lead.channel="website-chat";}let leadSaved=false;if(lead)leadSaved=await saveLead(lead);if(!KEY)return send(res,503,JSON.stringify({error:"GEMINI_API_KEY missing",leadSaved,agent:agentId}));if(!messages.some(m=>m&&m.text))return send(res,400,JSON.stringify({error:"Empty message"}));try{let reply=await askModel(messages);if(leadSaved)reply+="\n\nLead save ho gaya — team aapko contact karegi.";send(res,200,JSON.stringify({reply,leadSaved,agent:agentId}));}catch(e){console.error("Website Gemini error:",e&&e.message?String(e.message).slice(0,300):"unknown");send(res,502,JSON.stringify({error:"Gemini temporarily unavailable",leadSaved,agent:agentId}));}});}
+async function chat(req,res){let raw="";req.on("data",c=>{raw+=c;if(raw.length>20000)req.destroy();});req.on("end",async()=>{let payload;try{payload=JSON.parse(raw||"{}");}catch{return send(res,400,JSON.stringify({error:"Invalid JSON"}));}const messages=Array.isArray(payload.messages)?payload.messages.slice(-12):[];const agentId=detectAgent(messages);recordAgentActivity(agentId, "Website chat");const lead=extractLead(messages);if(lead){lead.agent=agentId;lead.channel="website-chat";}let leadSaved=false;if(lead){leadSaved=await saveLead(lead);void notifyLead(lead,agentId,leadSaved);}if(!KEY)return send(res,503,JSON.stringify({error:"GEMINI_API_KEY missing",leadSaved,agent:agentId}));if(!messages.some(m=>m&&m.text))return send(res,400,JSON.stringify({error:"Empty message"}));try{let reply=await askModel(messages);if(leadSaved)reply+="\n\nLead save ho gaya — team aapko contact karegi. Aap chahenge AI agent details continue kare ya human coach aapse baat kare?";send(res,200,JSON.stringify({reply,leadSaved,agent:agentId}));}catch(e){console.error("Website Gemini error:",e&&e.message?String(e.message).slice(0,300):"unknown");send(res,502,JSON.stringify({error:"Gemini temporarily unavailable",leadSaved,agent:agentId}));}});}
 
 const QUIZ_FILE = path.join(ROOT, "data", "quiz-scores.json");
 function readQuiz() {
@@ -266,4 +342,5 @@ function authApi(req, res, url) {
   return false;
 }
 
-http.createServer((req,res)=>{const url=new URL(req.url,`http://${req.headers.host}`);if(req.method==="POST"&&url.pathname==="/api/chat")return chat(req,res);if(req.method==="POST"&&url.pathname==="/api/whatsapp/webhook")return whatsappWebhook(req,res);if(req.method==="GET"&&url.pathname==="/api/agents/status")return agentStatusApi(req,res);if(req.method==="GET"&&url.pathname==="/api/health")return send(res,200,JSON.stringify({ok:true,model:MODEL,key:Boolean(KEY),whatsappWebhook:"/api/whatsapp/webhook",agents:true}));if(url.pathname.startsWith("/api/auth/"))return authApi(req,res,url);if(url.pathname.startsWith("/api/quiz/"))return quizApi(req,res,url);if(req.method!=="GET"&&req.method!=="HEAD")return send(res,405,"Method not allowed","text/plain");serveStatic(req,res);}).listen(PORT,"0.0.0.0",()=>console.log("listening",PORT));
+http.createServer((req,res)=>{const url=new URL(req.url,`http://${req.headers.host}`);if(req.method==="POST"&&url.pathname==="/api/chat")return chat(req,res);if((req.method==="GET"||req.method==="POST")&&url.pathname==="/api/whatsapp/handoff")return handoffApi(req,res,url);if(req.method==="POST"&&url.pathname==="/api/whatsapp/webhook")return whatsappWebhook(req,res);if(req.method==="GET"&&url.pathname==="/api/agents/status")return agentStatusApi(req,res);if(req.method==="GET"&&url.pathname==="/api/health")return send(res,200,JSON.stringify({ok:true,model:MODEL,key:Boolean(KEY),whatsappWebhook:"/api/whatsapp/webhook",handoff:true,agents:true,leadAlerts:Boolean(TELEGRAM_BOT_TOKEN&&TELEGRAM_ADMIN_CHAT_ID)}));if(url.pathname.startsWith("/api/auth/"))return authApi(req,res,url);if(url.pathname.startsWith("/api/quiz/"))return quizApi(req,res,url);if(req.method!=="GET"&&req.method!=="HEAD")return send(res,405,"Method not allowed","text/plain");serveStatic(req,res);}).listen(PORT,"0.0.0.0",()=>console.log("listening",PORT));
+
