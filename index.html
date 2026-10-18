@@ -20,26 +20,27 @@
 <meta name="twitter:image" content="https://saranchessacademy.com/gold-hero.png">
 <style id="sca-portrait-hero-style">.hero-visual.portrait{width:min(520px,100%)}.hero-visual.portrait img{height:auto;aspect-ratio:auto;object-fit:contain}@media(max-width:640px){.hero-visual.portrait img{height:auto}}</style>
 <style id="sca-master-hero-style">
-.master-hero{position:relative;overflow:hidden;padding:92px 20px 72px;color:#fff;background:linear-gradient(135deg,#0a0a0a 0%,#171717 100%);border-bottom:1px solid rgba(212,175,55,.22)}
-.master-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 12% 30%,rgba(212,175,55,.14),transparent 34%),radial-gradient(circle at 92% 70%,rgba(16,163,127,.1),transparent 36%);pointer-events:none}
-.master-hero__inner{position:relative;z-index:1;width:min(1100px,100%);margin:0 auto;display:grid;grid-template-columns:minmax(300px,1fr) minmax(300px,1fr);align-items:center;gap:clamp(28px,5vw,56px)}
-.master-hero__media{text-align:center}
-.master-hero__media img{display:block;width:100%;max-width:500px;aspect-ratio:1/1;object-fit:contain;object-position:center;margin:0 auto;border:2px solid #d4af37;border-radius:16px;box-shadow:0 20px 60px rgba(212,175,55,.3)}
-.master-hero__badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:15px}
-.master-hero__badge{padding:6px 12px;border-radius:20px;font-weight:700;font-size:12px;line-height:1.2;background:#d4af37;color:#000}
-.master-hero__badge--green{background:#00d982}
-.master-hero__eyebrow{color:#d4af37;font-weight:700;letter-spacing:2px;font-size:13px;margin-bottom:10px}
-.master-hero__copy h1{max-width:620px;margin:0 0 15px;font-size:clamp(32px,4.5vw,50px);line-height:1.08;letter-spacing:-.04em;font-weight:800}
+.master-hero{position:relative;overflow:hidden;padding:60px 20px;color:#fff;background:#0a0a0a;border-bottom:1px solid rgba(212,175,55,.22)}
+.master-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 50%,rgba(212,175,55,.08),transparent 36%),radial-gradient(circle at 90% 50%,rgba(16,163,127,.08),transparent 36%);pointer-events:none}
+.master-hero__inner{position:relative;z-index:1;width:min(1150px,100%);margin:0 auto;display:grid;grid-template-columns:minmax(320px,1fr) minmax(320px,1fr);align-items:center;gap:40px}
+.master-hero__copy{order:1}
+.master-hero__media{order:2;text-align:center}
+.master-hero__media img{display:block;width:100%;max-width:480px;aspect-ratio:1/1;object-fit:contain;object-position:center;margin:0 auto;border:2px solid #d4af37;border-radius:16px;box-shadow:0 20px 60px rgba(212,175,55,.3)}
+.master-hero__eyebrow{color:#d4af37;font-weight:700;letter-spacing:2px;font-size:12px;margin-bottom:12px}
+.master-hero__copy h1{max-width:620px;margin:0 0 15px;font-size:clamp(32px,4.5vw,50px);line-height:1.1;letter-spacing:-.04em;font-weight:800}
 .master-hero__copy h1 span{color:#d4af37}
-.master-hero__copy>p{max-width:610px;margin:0 0 20px;color:#aaa;font-size:16px;line-height:1.65}
+.master-hero__copy>p{max-width:610px;margin:0 0 20px;color:#aaa;font-size:16px;line-height:1.5}
 .master-hero__copy>p strong{color:#fff}
-.master-hero__proof{max-width:620px;margin-bottom:25px;padding:15px;border-left:3px solid #d4af37;border-radius:0 8px 8px 0;background:rgba(255,255,255,.05);font-size:14px;line-height:1.7;color:#fff}
-.master-hero__proof a{color:#f0d060;text-decoration:underline;text-underline-offset:2px}
+.master-hero__badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}
+.master-hero__badge{padding:7px 14px;border-radius:20px;font-weight:800;font-size:12px;line-height:1.2;background:#d4af37;color:#000}
+.master-hero__badge--green{background:#00ff88}
+.master-hero__badge--white{background:#fff;color:#000}
 .master-hero__actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.master-hero__cta{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;border-radius:30px;background:linear-gradient(90deg,#d4af37,#f0d060);color:#000;font-weight:800;text-decoration:none;font-size:16px;box-shadow:0 12px 28px rgba(212,175,55,.2)}
+.master-hero__cta{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;border-radius:30px;background:#d4af37;color:#000;font-weight:800;text-decoration:none;font-size:16px;box-shadow:0 12px 28px rgba(212,175,55,.2)}
 .master-hero__cta:hover{transform:translateY(-1px)}
-.master-hero__note{margin-top:12px;color:#777;font-size:12px}
-@media(max-width:760px){.master-hero{padding:72px 18px 54px}.master-hero__inner{grid-template-columns:1fr;gap:30px}.master-hero__media{order:2}.master-hero__copy{order:1}.master-hero__copy h1{font-size:clamp(32px,9vw,44px)}.master-hero__copy>p{font-size:15px}.master-hero__actions{justify-content:flex-start}}
+.master-hero__note{margin-top:10px;color:#777;font-size:12px;line-height:1.5}
+.master-hero__note a{color:#f0d060;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:760px){.master-hero{padding:48px 18px}.master-hero__inner{grid-template-columns:1fr;gap:30px}.master-hero__copy{order:1}.master-hero__media{order:2}.master-hero__copy h1{font-size:clamp(32px,9vw,44px)}.master-hero__copy>p{font-size:15px}.master-hero__actions{justify-content:flex-start}}
 </style>
 <style id="sca-parent-clarity-style">
 .parent-clarity{background:linear-gradient(120deg,rgba(16,163,127,.11),rgba(255,255,255,.02));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -130,23 +131,23 @@
 </nav>
 <section class="master-hero" aria-labelledby="master-hero-title">
   <div class="master-hero__inner">
-    <div class="master-hero__media">
-      <img src="/gold-hero.png" alt="Mohit Kumar Soni chess coaching hero — FIDE 1952, 2528 Blitz, 2570 Rapid" fetchpriority="high">
-    </div>
     <div class="master-hero__copy">
-      <div class="master-hero__eyebrow">SARAN CHESS ACADEMY • CHHAPRA TO WORLD</div>
-      <h1 id="master-hero-title">Learn from <span>Mohit Kumar Soni</span><br>FIDE 1952 | 2570+ Player</h1>
-      <p>National Youth Silver Medalist | World U-18 2019 | FIDE ID 25706829<br><strong>+ Brain Training:</strong> Memory Palace | Spaced Repetition | Chunking Method</p>
-      <div class="master-hero__proof">
-        ✓ 96 Classes FIDE Path • Board-Free Calculation<br>
-        ✓ <a href="https://www.chess.com/member/1mohitkumarsoni" target="_blank" rel="noopener">Chess.com: 1MohitKumarSoni</a> | <a href="https://lichess.org/@/pksoni69" target="_blank" rel="noopener">Lichess: pksoni69</a><br>
-        ✓ Live 1:1 — Canada &amp; Ireland evening slots
+      <div class="master-hero__eyebrow">CANADA • IRELAND • USA • UK | LIVE 1:1 | EVENING SLOTS</div>
+      <h1 id="master-hero-title">Mohit Kumar Soni<br><span>FIDE 1952 | 2570+ Player</span></h1>
+      <p>10,000+ Live Classes | 10+ Countries | 500+ Free Demos<br><strong>Chess + Brain Training:</strong> Memory Palace | Spaced Repetition | Chunking</p>
+      <div class="master-hero__badges" aria-label="Coach ratings and experience">
+        <span class="master-hero__badge">FIDE 1952</span>
+        <span class="master-hero__badge master-hero__badge--green">2528 BLITZ</span>
+        <span class="master-hero__badge master-hero__badge--green">2570 RAPID</span>
+        <span class="master-hero__badge master-hero__badge--white">10K+ CLASSES</span>
       </div>
       <div class="master-hero__actions">
-        <a class="master-hero__cta" href="#join">Book Free Demo</a>
-        <a class="btn btn-outline" href="#programs">See coaching programs</a>
+        <a class="master-hero__cta" href="#join">Book Free Demo - Canada/Ireland Slots</a>
       </div>
-      <div class="master-hero__note">✓ Free level check • No payment for first class</div>
+      <div class="master-hero__note">✓ FIDE ID 25706829 | ✓ <a href="https://www.chess.com/member/1mohitkumarsoni" target="_blank" rel="noopener">Chess.com: 1MohitKumarSoni</a> | ✓ <a href="https://lichess.org/@/pksoni69" target="_blank" rel="noopener">Lichess: pksoni69</a></div>
+    </div>
+    <div class="master-hero__media">
+      <img src="/gold-hero.png" alt="Mohit Kumar Soni chess coaching hero — FIDE 1952, 2528 Blitz, 2570 Rapid" fetchpriority="high">
     </div>
   </div>
 </section>
