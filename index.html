@@ -415,7 +415,12 @@
           <option>FIDE path</option>
           <option>1:1 coaching</option>
         </select>
-        <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0"><p class="lead-consent">By booking a demo, you agree to our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Use</a>.</p><button class="btn btn-solid" type="submit" style="margin-top:6px">Book a free Demo</button>
+        <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <label class="sms-consent">
+          <input name="smsConsent" type="checkbox" value="yes">
+          <span>I agree to receive recurring informational and promotional SMS from Saran Chess Academy at the number provided, including demo scheduling, class reminders and coaching updates. Consent is not a condition of purchase. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help.</span>
+        </label>
+        <p class="lead-consent">By booking a demo, you agree to our <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Use</a>.</p><button class="btn btn-solid" type="submit" style="margin-top:6px">Book a free Demo</button>
         <p class="lead-thanks" id="leadThanks" style="color:var(--green)">Thanks — WhatsApp is opening. Please send the message.</p>
       </form>
       <div>
@@ -476,7 +481,7 @@
       utmContent: q.get('utm_content') || '',
       locale: navigator.language || '',
       timeZone: zone,
-      consent: 'yes'
+      consent: 'website-form'
     };
   }
   form.addEventListener('submit', function(e){
@@ -486,9 +491,10 @@
     var phone = (fd.get('phone')||'').toString().replace(/\D/g,'');
     var email = (fd.get('email')||'').trim();
     var goal = (fd.get('goal')||'').toString();
+    var smsConsent = fd.get('smsConsent') === 'yes';
     var website = (fd.get('website')||'').trim();
     if(name.length<2 || phone.length<8){ alert('Name and phone required'); return; }
-    var payload = Object.assign(leadContext(), { name:name, contact:phone, phone:phone, email:email, goal:goal||'Free demo', source:'homepage-form', website:website });
+    var payload = Object.assign(leadContext(), { name:name, contact:phone, phone:phone, email:email, goal:goal||'Free demo', source:'homepage-form', website:website, smsConsent:smsConsent ? 'yes' : 'no' });
     fetch(LEAD_ENDPOINT, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(payload), keepalive:true }).catch(function(){});
     if (typeof gtag === 'function') { gtag('event', 'conversion', { 'send_to': 'AW-17033927430/vyIJCP3riJ0dEIa2tLo_' }); }
     var thanks = document.getElementById('leadThanks');
